@@ -18,7 +18,7 @@ inte redan gjort det i del 1. Annars kan ni ta fram er lösning från lab 1 del 
 och fortsätta därifrån. Notera att om ni inte är klara eller fått godkänt på
 del 1 bör ni göra detta först.
 
-== Uppgift a) ==
+## Uppgift a)
 
 Skapa en representation av en Scania-lastbil med modellnamn Scania. Ge den rimliga
 startvärden för relevanta fält. Lägg den i filen Scania.java i samma mapp.
@@ -35,7 +35,7 @@ Följande förhållanden ska gälla:
 Lägg allt i Scania.java och skriv Javadoc för klassen och fälten. Gör minst ett
 JUnit-test i er Testklass.
 
-== Uppgift b) ==
+## Uppgift b)
 
 Skapa en representation av en biltransport - dvs en långtradare som kan
 transportera bilar på flaket. Ge den ett valfritt modellnamn och filnamn.
@@ -73,7 +73,7 @@ Kom ihåg att skriva Javadoc-dokumentation, och JUnit-tester för relevanta
 aspekter av er kod.
 
 
-== VG-uppgift ==
+## VG-uppgift
 
 Den här uppgiften behöver endast göras av dem satsar på VG på labb-delen.
 
@@ -111,7 +111,7 @@ Viktigt att tänka på:
   implementation (OCP).
 - Ni behöver inte implementera kängurus, det var bara ett exempel.
 
-== Extra uppgifter för mer utmaning ==
+## Extra uppgifter för mer utmaning ==
 
 - Låt bilfärjan ha ett antal olika filer i vilka bilarna kan befinna sig.
   För varje fil gäller att bilarna i den filen enbart kan lastas av i samma 
@@ -122,7 +122,7 @@ Viktigt att tänka på:
   namn på fält för objekten i er modell.
 
 
-== Labbkriterier ==
+## Labbkriterier ==
 - Det är absolut förbjudet att dela, kopiera eller använda kod från varandra på
 något sätt. Det är däremot accepterat att diskutera uppgifter och lösningar sinsemellan.
 
