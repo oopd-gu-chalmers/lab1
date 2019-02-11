@@ -1,4 +1,4 @@
-=== Laboration 1, del 2/2 ===
+### Laboration 1, del B
 
 Läs labbkriterierna längst ner på sidan innan ni fortsätter!
 
