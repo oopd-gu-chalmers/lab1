@@ -18,7 +18,7 @@ inte redan gjort det i del 1. Annars kan ni ta fram er lösning från lab 1 del 
 och fortsätta därifrån. Notera att om ni inte är klara eller fått godkänt på
 del 1 bör ni göra detta först.
 
-## Uppgift a)
+## Uppgift 1
 
 Skapa en representation av en Scania-lastbil med modellnamn Scania. Ge den rimliga
 startvärden för relevanta fält. Lägg den i filen Scania.java i samma mapp.
@@ -35,7 +35,7 @@ närvarande, samt funktioner för att höja och sänka det.
 Lägg allt i Scania.java och skriv Javadoc för klassen och fälten. Gör minst ett
 JUnit-test i er Testklass.
 
-## Uppgift b)
+## Uppgift 2
 
 Skapa en representation av en biltransport - dvs en långtradare som kan
 transportera bilar på flaket. Ge den ett valfritt modellnamn och filnamn.
