@@ -1,4 +1,4 @@
-### Laboration 1, del B
+# Laboration 1, del B
 
 Läs labbkriterierna längst ner på sidan innan ni fortsätter!
 
@@ -111,7 +111,7 @@ Viktigt att tänka på:
   implementation (OCP).
 - Ni behöver inte implementera kängurus, det var bara ett exempel.
 
-## Extra uppgifter för mer utmaning ==
+## Extra uppgifter för mer utmaning
 
 - Låt bilfärjan ha ett antal olika filer i vilka bilarna kan befinna sig.
   För varje fil gäller att bilarna i den filen enbart kan lastas av i samma 
@@ -122,7 +122,7 @@ Viktigt att tänka på:
   namn på fält för objekten i er modell.
 
 
-## Labbkriterier ==
+## Labbkriterier
 - Det är absolut förbjudet att dela, kopiera eller använda kod från varandra på
 något sätt. Det är däremot accepterat att diskutera uppgifter och lösningar sinsemellan.
 
