@@ -28,9 +28,9 @@ funktionalitet: den har ett flak som kan höjas (tippas) och sänkas. Införliva
 detta i er design så att vi kan hålla reda på vilken vinkel flaket har för
 närvarande, samt funktioner för att höja och sänka det.
 
-Följande förhållanden ska gälla:
-- Vinkeln på flaket kan inte vara lägre än 0 eller högre än 70.
-- Flaket kan enbart ha en annan vinkel än 0 om lastbilen står stilla.
+### Följande förhållanden ska gälla:
+* Vinkeln på flaket kan inte vara lägre än 0 eller högre än 70.
+* Flaket kan enbart ha en annan vinkel än 0 om lastbilen står stilla.
 
 Lägg allt i Scania.java och skriv Javadoc för klassen och fälten. Gör minst ett
 JUnit-test i er Testklass.
@@ -48,25 +48,25 @@ Bilar ska kunna lastas på och av biltransporten. Biltransporten har ett maximal
 antal bilar som den kan lasta. Bilar som ska lastas på biltransporten får inte
 vara för stora (gör ett eget antagande).
 
-Följande förhållanden ska gälla:
-- Biltransportens ramp har endast två lägen, uppe eller nere.
-- Rampen kan endast vara nere om biltransporten står stilla.
-- Bilar kan endast lastas om rampen är nere, och de befinner sig rimligt nära 
+### Följande förhållanden ska gälla:
+* Biltransportens ramp har endast två lägen, uppe eller nere.
+* Rampen kan endast vara nere om biltransporten står stilla.
+* Bilar kan endast lastas om rampen är nere, och de befinner sig rimligt nära 
   biltransporten (gör ett eget antagande, de exakta detaljerna är inte viktiga).
-- Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära 
+* Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära 
   biltransporten.
-- Bilar kan endast lossas i omvänd ordning från hur de lastades, dvs den sista
+* Bilar kan endast lossas i omvänd ordning från hur de lastades, dvs den sista
   bilen som lastades måste vara först att lossas (first-in-last-out).
-- Biltransporten ska inte kunna lasta på sig själv.
-- Under det att en bil är lastad på biltransporten ska dess position i världen 
+* Biltransporten ska inte kunna lasta på sig själv.
+* Under det att en bil är lastad på biltransporten ska dess position i världen 
   alltid vara densamma som biltransportens position. 
 
 
-Viktiga saker att ha i åtanke under den här uppgiften:
-- Undvik kodduplicering för funktionalitet som är gemensam för flera olika
+### Viktiga saker att ha i åtanke under den här uppgiften:
+* Undvik kodduplicering för funktionalitet som är gemensam för flera olika
   klasser, e.g. lastbil och biltransport.
-- Fundera över behovet av polymorfism för olika ändamål.
-- Fundera över hur ni bäst håller reda på de bilar som lastats - vilken sorts
+* Fundera över behovet av polymorfism för olika ändamål.
+* Fundera över hur ni bäst håller reda på de bilar som lastats - vilken sorts
   datastruktur är bäst för ändamålet?
 
 Kom ihåg att skriva Javadoc-dokumentation, och JUnit-tester för relevanta
@@ -88,10 +88,10 @@ På bilfärjan gäller samma regler som för biltransporten, med undantaget att
 bilar lossas i samma ordning som de lastades, dvs den första bilen som lastades
 måste vara först att lossas (first-in-first-out).
 
-Viktiga saker att ha i åtanke under den här uppgiften:
-- Undvik kodduplicering för funktionalitet som är gemensam för e.g. bilfärjan
+### Viktiga saker att ha i åtanke under den här uppgiften:
+* Undvik kodduplicering för funktionalitet som är gemensam för e.g. bilfärjan
   och biltransporten.
-- Fundera över behovet av polymorfism
+* Fundera över behovet av polymorfism
 
 (2)
 
@@ -103,30 +103,29 @@ tillämpliga på bilar och bilfärjor som på t ex känguruungar och
 kängurumammor. Refaktorisera er bil- och bilfärjekod så att
 de blir specifika instanser av koden från denna uppgift.
 
-Viktigt att tänka på:
-- En kängurumamma ska inte kunna lasta på en bil i pungen. Samtidigt vill vi
+### Viktigt att tänka på:
+* En kängurumamma ska inte kunna lasta på en bil i pungen. Samtidigt vill vi
   inte låsa oss i förväg till att hon bara kan bära just känguruungar.
   Designa så att om vi i framtiden implementerar t ex wallabyungar,
   kan dessa lastas i en kängurumamma utan att vi behöver ändra kängurumammans
   implementation (OCP).
-- Ni behöver inte implementera kängurus, det var bara ett exempel.
+* Ni behöver inte implementera kängurus, det var bara ett exempel.
 
 ## Extra uppgifter för mer utmaning
-
-- Låt bilfärjan ha ett antal olika filer i vilka bilarna kan befinna sig.
+* Låt bilfärjan ha ett antal olika filer i vilka bilarna kan befinna sig.
   För varje fil gäller att bilarna i den filen enbart kan lastas av i samma 
   ordning som de lastades på (first-in-first-out), men bilar från olika filer
   kan lastas av i olika ordning (även omväxlande mellan filerna).
-- Utöka er command line controller till att hantera alla nya element.
-- Använd Javas Reflection API för att skriva ut klassnamn, metodnamn och
+* Utöka er command line controller till att hantera alla nya element.
+* Använd Javas Reflection API för att skriva ut klassnamn, metodnamn och
   namn på fält för objekten i er modell.
 
 
 ## Labbkriterier
-- Det är absolut förbjudet att dela, kopiera eller använda kod från varandra på
+* Det är absolut förbjudet att dela, kopiera eller använda kod från varandra på
 något sätt. Det är däremot accepterat att diskutera uppgifter och lösningar sinsemellan.
 
-- För att få godkänt på labben gör ni muntliga redovisningar. Gruppen gör detta
+* För att få godkänt på labben gör ni muntliga redovisningar. Gruppen gör detta
 samtidigt: alla gruppmedlemmar kommer ställas frågor var och en för sig. För att
 gruppen ska bli godkänd ska alla gruppmedlemmar kunna svara på frågor.
 Så se till att ni hänger med i laborationen; fråga om hjälp ifall ni fastnar.
