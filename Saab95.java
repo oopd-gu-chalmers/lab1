@@ -62,7 +62,7 @@ public class Saab95 extends Car{
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
     
-    /*// TODO fix this method according to lab pm
+    // TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);
     }
@@ -70,5 +70,5 @@ public class Saab95 extends Car{
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
-    }*/
+    }
 }
