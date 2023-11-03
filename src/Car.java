@@ -9,29 +9,42 @@ public class Car {
 
     public int getNrDoors(){
         return nrDoors;
-    }
+    } //Get number of doors
     public double getEnginePower(){
         return enginePower;
-    }
+    } //Get Engine Power
 
     public double getCurrentSpeed(){
         return currentSpeed;
-    }
+    }// Get Current Speed
 
     public Color getColor(){
         return color;
-    }
+    }// Get Color
 
     public void setColor(Color clr){
         color = clr;
-    }
+    } // Set Color
 
     public void startEngine(){
         currentSpeed = 0.1;
-    }
+    } // Start Engine
 
-    public void stopEngine(){
-        currentSpeed = 0;
+    public void stopEngine(){currentSpeed = 0;}// Stops Engine
+
+    public double getDirection(){return direction;}// Returns Direction
+
+    public double[] getPosition(){return new double[]{xPosition,yPosition};}// Returns Posision
+
+    public void move() {
+        xPosition += currentSpeed * Math.cos(direction);
+        yPosition += currentSpeed * Math.sin(direction);
+    }
+    public void turnLeft(double radians) {
+        direction += radians;
+    }
+    public void turnRight(double radians) {
+        direction -= radians;
     }
 }
 
