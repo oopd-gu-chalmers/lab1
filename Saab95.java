@@ -13,7 +13,7 @@ public class Saab95 extends Car{
         stopEngine();
     }
     
-    public int getNrDoors(){
+    /*public int getNrDoors(){
         return nrDoors;
     }
     public double getEnginePower(){
@@ -38,7 +38,7 @@ public class Saab95 extends Car{
 
     public void stopEngine(){
 	    currentSpeed = 0;
-    }
+    }*/
 
     public void setTurboOn(){
 	    turboOn = true;
@@ -62,7 +62,7 @@ public class Saab95 extends Car{
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
     
-    // TODO fix this method according to lab pm
+    /*// TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);
     }
@@ -70,5 +70,5 @@ public class Saab95 extends Car{
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
-    }
+    }*/
 }
