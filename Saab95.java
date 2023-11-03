@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Saab95 extends Car{
 
-    public boolean turboOn;
+    public boolean turboOn; //egen variabel
     
     public Saab95(){
         nrDoors = 2;
@@ -48,17 +48,17 @@ public class Saab95 extends Car{
 	    turboOn = false;
     }
     
-    public double speedFactor(){
-        double turbo = 1;
+    public double speedFactor(){ //ser olika ut, turbo istället för trimfactor
+        double turbo = 1; 
         if(turboOn) turbo = 1.3;
         return enginePower * 0.01 * turbo;
     }
 
-    public void incrementSpeed(double amount){
+    public void incrementSpeed(double amount){ //olika, ingen math.min
         currentSpeed = getCurrentSpeed() + speedFactor() * amount;
     }
 
-    public void decrementSpeed(double amount){
+    public void decrementSpeed(double amount){ //olika, ingen math.max
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
     
