@@ -34,6 +34,7 @@ public abstract class Car {
         currentSpeed = 0;
     }
 
+    //Är det meningen att vi ska ha massa abstrakta methods här?
     public abstract double speedFactor();
 
     public abstract void incrementSpeed(double amount);

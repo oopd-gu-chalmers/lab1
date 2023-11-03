@@ -11,33 +11,8 @@ public class Volvo240 extends Car{
         modelName = "Volvo240";
         stopEngine();
     }
-    
-    /*public int getNrDoors(){
-        return nrDoors;
-    }
-    public double getEnginePower(){
-        return enginePower;
-    }
 
-    public double getCurrentSpeed(){
-        return currentSpeed;
-    }
 
-    public Color getColor(){
-        return color;
-    }
-
-    public void setColor(Color clr){
-	    color = clr;
-    }
-
-    public void startEngine(){
-	    currentSpeed = 0.1;
-    }
-
-    public void stopEngine(){
-	    currentSpeed = 0;
-    }*/
     
     public double speedFactor(){ //Annorlunda mellan bilarna
         return enginePower * 0.01 * trimFactor; //Skillnad i trimfactor, är turbo i Saab
@@ -52,12 +27,12 @@ public class Volvo240 extends Car{
     } //Har math.min med 0 som andra faktor
 
     // TODO fix this method according to lab pm
-    /*public void gas(double amount){
+    public void gas(double amount){
         incrementSpeed(amount);
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
-    }*/
+    }
 }
