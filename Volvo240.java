@@ -12,7 +12,7 @@ public class Volvo240 extends Car{
         stopEngine();
     }
     
-    public int getNrDoors(){
+    /*public int getNrDoors(){
         return nrDoors;
     }
     public double getEnginePower(){
@@ -37,7 +37,7 @@ public class Volvo240 extends Car{
 
     public void stopEngine(){
 	    currentSpeed = 0;
-    }
+    }*/
     
     public double speedFactor(){
         return enginePower * 0.01 * trimFactor;
