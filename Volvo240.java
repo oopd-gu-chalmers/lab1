@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Volvo240 extends Car{
 
-    public final static double trimFactor = 1.25; //Egen variabel
+    private final static double trimFactor = 1.25; //Gjorde private
     
     public Volvo240(){
         nrDoors = 4;
