@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Saab95 extends Car{
 
-    public boolean turboOn; //egen variabel
+    private boolean turboOn; //egen variabel
     
     public Saab95(){
         nrDoors = 2;
@@ -13,13 +13,11 @@ public class Saab95 extends Car{
         stopEngine();
     }
     
-
-
-    public void setTurboOn(){
+    private void setTurboOn(){
 	    turboOn = true;
     }
 
-    public void setTurboOff(){
+    private void setTurboOff(){
 	    turboOn = false;
     }
     
