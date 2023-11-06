@@ -7,6 +7,8 @@ class Cars {
     protected double currentSpeed; // The current speed of the car
     protected Color color; // Color of the car
     protected String modelName; // The car model name
+
+    protected double speedFactor;
     public boolean turboOn;
     public static double trimfactor;
 
@@ -37,6 +39,16 @@ class Cars {
     public void stopEngine(){
         currentSpeed = 0;
     }
+
+    // TODO fix this method according to lab pm
+    public void gas(double amount){
+        incrementSpeed(amount);
+    }
+
+    // TODO fix this method according to lab pm
+    public void brake(double amount){
+        decrementSpeed(amount);
+    }
 }
 
 class Volvo2401 extends Cars {
@@ -46,6 +58,8 @@ class Volvo2401 extends Cars {
         enginePower = 100;
         modelName = "Volvo240";
         trimfactor = 1.25;
+        double turbo = 1;
+        speedFactor = 0;
         super.stopEngine();
     }
     public void setTurboOn(){
@@ -63,21 +77,13 @@ class Volvo2401 extends Cars {
     }
 
     public void incrementSpeed(double amount){
+
         currentSpeed = getCurrentSpeed() + speedFactor() * amount;
     }
 
     public void decrementSpeed(double amount){
+
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
-
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
     }
 }
 
@@ -88,28 +94,17 @@ class Saab951 extends Cars {
         enginePower = 125;
         turboOn = false;
         modelName = "Saab95";
+        speedFactor = 125 * 0.01 * trimfactor;
         super.stopEngine();
-    }
-    public double speedFactor(){
-        return enginePower * 0.01 * trimfactor;
     }
 
     public void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor * amount,enginePower);
     }
 
     public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-    }
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor * amount,0);
     }
 }
 
@@ -121,5 +116,6 @@ class Main {
         out.println(mySaab95.getNrDoors());
         out.println(mySaab95.nrDoors);
         out.println(Volvo240.nrDoors);
+        out.println(mySaab95.speedFactor);
     }
 }
