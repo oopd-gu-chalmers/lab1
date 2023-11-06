@@ -2,11 +2,11 @@ import java.awt.*;
 import static java.lang.System.out;
 
 class Cars {
-    public int nrDoors; // Number of doors on the car
-    public double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    public String modelName; // The car model name
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
     public boolean turboOn;
     public static double trimfactor;
 
