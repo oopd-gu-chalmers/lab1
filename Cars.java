@@ -40,7 +40,7 @@ class Cars {
 }
 
 class Volvo2401 extends Cars {
-    public void specs(){
+    public Volvo2401(){
         nrDoors = 4;
         color = Color.black;
         enginePower = 100;
@@ -51,7 +51,7 @@ class Volvo2401 extends Cars {
 }
 
 class Saab951 extends Cars {
-    public void specs(){
+    public Saab951(){
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;
