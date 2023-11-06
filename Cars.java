@@ -4,37 +4,34 @@ import static java.lang.System.out;
 public abstract class Cars {
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
 
-    public void Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName){
+    public Cars(int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
-        this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
     }
 
-    public abstract void incrementSpeed(double amount);
-    public abstract void decrementSpeed(double amount);
+    public abstract double incrementSpeed(double amount);
+    public abstract double decrementSpeed(double amount);
     public abstract double speedFactor();
     public boolean turboOn;
-    public static double trimfactor;
+    private double currentSpeed; // The current speed of the car
 
-
-    public final int getNrDoors(){
+    public int getNrDoors(){
         return nrDoors;
     }
-    public final double getEnginePower(){
+    public double getEnginePower(){
         return enginePower;
     }
 
-    public final double getCurrentSpeed(){
+    public double getCurrentSpeed(){
         return currentSpeed;
     }
 
-    public final Color getColor(){
+    public Color getColor(){
         return color;
     }
 
@@ -70,32 +67,29 @@ public abstract class Cars {
     */
 }
 
-public class Volvo2401 extends Cars {
-    public Volvo2401(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName){
-        super(nrDoors,color,enginePower,modelName)
-        nrDoors = 4;
-        color = Color.black;
-        enginePower = 100;
-        modelName = "Volvo240";
-        trimfactor = 1.25;
+class Volvo2401 extends Cars {
+    private final double trimfactor;
+    public Volvo2401(){
+        super(4,100,Color.black,"Volvo240");
+        // super(nrDoors,enginePower,color,modelName);
+        this.trimfactor = 1.25;
         super.stopEngine();
     }
     @Override
     public double speedFactor(){
-        return enginePower * 0.01 * trimfactor;
+        return getEnginePower() * 0.01 * trimfactor;
     }
     @Override
-    public void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor * amount,enginePower);
+    public double incrementSpeed(double amount){
+        return Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
     @Override
-    public void decrementSpeed(double amount){
-
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor * amount,0);
+    public double decrementSpeed(double amount){
+        return Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 }
-
-public class Saab951 extends Cars {
+/*
+class Saab951 extends Cars {
     public Saab951(){
         nrDoors = 2;
         color = Color.red;
@@ -130,16 +124,16 @@ public class Saab951 extends Cars {
 
 
 }
-
+*/
 class Main {
     public static void main(String[] args) {
-        Cars myCars = new Cars();
-        Saab951 mySaab95 = new Saab951();
+        //Cars myCars = new Cars();
+        //Saab951 mySaab95 = new Saab951();
         Volvo2401 myVolvo240 = new Volvo2401();
-        out.println(mySaab95.getNrDoors());
-        out.println(mySaab95.nrDoors);
-        out.println(myVolvo240.nrDoors);
+        //out.println(mySaab95.getNrDoors());
+        //out.println(mySaab95.nrDoors);
+        out.println(myVolvo240.getNrDoors());
         out.println(myVolvo240.speedFactor());
-        out.println(mySaab95.speedFactor());
+        //out.println(mySaab95.speedFactor());
     }
 }
