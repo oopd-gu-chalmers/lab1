@@ -42,10 +42,14 @@ public abstract class Car {
     protected abstract void decrementSpeed(double amount);
 
     public void gas(double amount) {
-        incrementSpeed(amount);
+        if ((amount >= 0) && (amount <= 1)) {
+            incrementSpeed(amount);
+        }
     }
 
     public void brake(double amount) {
-        decrementSpeed(amount);
+        if ((amount >= 0) && (amount <= 1)) {
+            decrementSpeed(amount);
+        }
     }
 }
