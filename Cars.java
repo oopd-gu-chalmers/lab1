@@ -2,11 +2,11 @@ import java.awt.*;
 import static java.lang.System.out;
 
 class Cars {
-    private int nrDoors; // Number of doors on the car
-    private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
-    private Color color; // Color of the car
-    private String modelName; // The car model name
+    protected int nrDoors; // Number of doors on the car
+    protected double enginePower; // Engine power of the car
+    protected double currentSpeed; // The current speed of the car
+    protected Color color; // Color of the car
+    protected String modelName; // The car model name
     public boolean turboOn;
     public static double trimfactor;
 
@@ -45,7 +45,7 @@ class Volvo2401 extends Cars {
         color = Color.black;
         enginePower = 100;
         modelName = "Volvo240";
-        trimFactor = 1.25
+        trimfactor = 1.25;
         super.stopEngine();
     }
 }
