@@ -77,11 +77,10 @@ class Saab951 extends Cars {
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;
-        turboOn = false;
         modelName = "Saab95";
         super.stopEngine();
     }
-    public boolean turboOn = false;
+    protected boolean turboOn = false;
     public void setTurboOn(){
         turboOn = true;
     }
@@ -116,6 +115,6 @@ class Main {
         out.println(mySaab95.getNrDoors());
         out.println(mySaab95.nrDoors);
         out.println(Volvo240.nrDoors);
-        out.println(speedFactor(mySaab95));
+        out.println(Saab951.speedFactor());
     }
 }
