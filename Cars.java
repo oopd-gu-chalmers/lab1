@@ -41,14 +41,14 @@ class Cars {
     }
 
     // TODO fix this method according to lab pm
-    public void gas(double amount){
+    /*public void gas(double amount){
         incrementSpeed(amount);
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
-    }
+    }*/
 }
 
 class Volvo2401 extends Cars {
@@ -58,10 +58,30 @@ class Volvo2401 extends Cars {
         enginePower = 100;
         modelName = "Volvo240";
         trimfactor = 1.25;
-        double turbo = 1;
-        speedFactor = 0;
+        speedFactor = 125 * 0.01 * trimfactor;
         super.stopEngine();
     }
+    public void incrementSpeed(double amount){
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor * amount,enginePower);
+    }
+
+    public void decrementSpeed(double amount){
+
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor * amount,0);
+    }
+
+}
+
+class Saab951 extends Cars {
+    public Saab951(){
+        nrDoors = 2;
+        color = Color.red;
+        enginePower = 125;
+        turboOn = false;
+        modelName = "Saab95";
+        super.stopEngine();
+    }
+    public boolean turboOn = false;
     public void setTurboOn(){
         turboOn = true;
     }
@@ -85,27 +105,7 @@ class Volvo2401 extends Cars {
 
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
-}
 
-class Saab951 extends Cars {
-    public Saab951(){
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
-        turboOn = false;
-        modelName = "Saab95";
-        speedFactor = 125 * 0.01 * trimfactor;
-        super.stopEngine();
-    }
-
-    public void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor * amount,enginePower);
-    }
-
-    public void decrementSpeed(double amount){
-
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor * amount,0);
-    }
 }
 
 class Main {
@@ -116,6 +116,6 @@ class Main {
         out.println(mySaab95.getNrDoors());
         out.println(mySaab95.nrDoors);
         out.println(Volvo240.nrDoors);
-        out.println(mySaab95.speedFactor);
+        out.println(speedFactor(mySaab95));
     }
 }
