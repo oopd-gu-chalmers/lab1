@@ -28,11 +28,15 @@ public class Saab95 extends Car implements Movable{
     }
 
     protected void incrementSpeed(double amount){ //olika, ingen math.min
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        if (getCurrentSpeed() + speedFactor() * amount <= enginePower) {
+            currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        }
     }
 
     protected void decrementSpeed(double amount){ //olika, ingen math.max
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        if (getCurrentSpeed() - speedFactor() * amount >= 0) {
+            currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        }
     }
     
 }
