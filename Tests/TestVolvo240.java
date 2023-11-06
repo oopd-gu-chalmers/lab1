@@ -15,6 +15,16 @@ public class TestVolvo240 {
 
     }
     @Test
+    public void TestIncrementSpeedMoreThanEnginePower() {
+        newVolvo.incrementSpeed(100);
+        // enginePower = 100
+        // currentSpeed = 0 + 1.25*100 = (125)
+        double current = newVolvo.getCurrentSpeed();
+        assert current == 100;
+
+    }
+
+    @Test
     public void TestDecrementSpeed(){
 
     }

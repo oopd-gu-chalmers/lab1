@@ -46,5 +46,16 @@ public class Car {
     public void turnRight(double radians) {
         direction -= radians;
     }
+
+    public void gas(double amount){
+        if (amount > 0){
+            incrementSpeed(Math.min(amount,1));
+        }
+    }
+    public void brake(double amount){
+        if (amount > 0) {
+            decrementSpeed(Math.min(amount,1));
+        }
+    }
 }
 

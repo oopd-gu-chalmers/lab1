@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Saab95 extends Car {
 
-    private boolean turboOn;
+    public boolean turboOn;
     
     public Saab95() {
         nrDoors = 2;
@@ -27,21 +27,13 @@ public class Saab95 extends Car {
         return enginePower * 0.01 * turbo;
     }
 
-    private void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+    protected void incrementSpeed(double amount){
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+
     }
 
-    private void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
-    
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    protected void decrementSpeed(double amount){
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
-    }
 }
