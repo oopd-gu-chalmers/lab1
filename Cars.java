@@ -82,11 +82,11 @@ class Volvo2401 extends Cars {
     @Override
     public double incrementSpeed(double amount){
         return Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
-    }
+    }   // Current speed not set
     @Override
     public double decrementSpeed(double amount){
         return Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-    }
+    }   // Current speed not set
 }
 /*
 class Saab951 extends Cars {
