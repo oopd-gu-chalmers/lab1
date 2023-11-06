@@ -1,13 +1,24 @@
 import java.awt.*;
 import static java.lang.System.out;
 
-class Cars {
-    protected int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
-    protected double currentSpeed; // The current speed of the car
-    protected Color color; // Color of the car
-    protected String modelName; // The car model name
+public abstract class Cars {
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
 
+    public void Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName){
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.currentSpeed = currentSpeed;
+        this.color = color;
+        this.modelName = modelName;
+    }
+
+    public abstract void incrementSpeed(double amount);
+    public abstract void decrementSpeed(double amount);
+    public abstract double speedFactor();
     public boolean turboOn;
     public static double trimfactor;
 
@@ -59,8 +70,9 @@ class Cars {
     */
 }
 
-class Volvo2401 extends Cars {
-    public Volvo2401(){
+public class Volvo2401 extends Cars {
+    public Volvo2401(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName){
+        super(nrDoors,color,enginePower,modelName)
         nrDoors = 4;
         color = Color.black;
         enginePower = 100;
@@ -68,14 +80,22 @@ class Volvo2401 extends Cars {
         trimfactor = 1.25;
         super.stopEngine();
     }
+    @Override
     public double speedFactor(){
         return enginePower * 0.01 * trimfactor;
     }
+    @Override
+    public void incrementSpeed(double amount){
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor * amount,enginePower);
+    }
+    @Override
+    public void decrementSpeed(double amount){
 
-
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor * amount,0);
+    }
 }
 
-class Saab951 extends Cars {
+public class Saab951 extends Cars {
     public Saab951(){
         nrDoors = 2;
         color = Color.red;
@@ -91,13 +111,22 @@ class Saab951 extends Cars {
     public void setTurboOff(){
         turboOn = false;
     }
-
+    @Override
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
         return enginePower * 0.01 * turbo;
     }
+    @Override
+    public void incrementSpeed(double amount){
 
+        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+    }
+    @Override
+    public void decrementSpeed(double amount){
+
+        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+    }
 
 
 }
