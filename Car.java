@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Car {
+public abstract class Car implements Movable {
     protected  int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
@@ -47,5 +47,20 @@ public abstract class Car {
 
     public void brake(double amount) {
         decrementSpeed(amount);
+    }
+
+    /*Se till att era bilar implementerar interfacet Movable, med någon lämplig intern representation
+    av deras riktning och position. Metoden move ska fungera så att beroende på riktning ökas
+    (eller minskas) bilens x- eller y-koordinat med dess currentSpeed.*/
+
+    void move() {
+        
+        //Ändrar x eller y baserat på riktning
+    }
+    void turnLeft() {
+        //Ändrar riktning
+    }
+    void turnRight() {
+        //Ändrar riktning
     }
 }
