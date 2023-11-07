@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Saab95 newsaab = new Saab95();
         Volvo240 newvolvo = new Volvo240();
 
@@ -15,5 +16,7 @@ public class Main {
         newvolvo.turnLeft(Math.PI/6.0);
         newvolvo.move();
         System.out.println(Arrays.toString(newvolvo.getPosition()));
+        *\
+         */
     }
 }

@@ -39,7 +39,12 @@ public class TestCar {
     @Test
     public void testGetPosition() {
         double[] position = {testCar.xPosition,testCar.yPosition};
-        assert position == testCar.getPosition();
+        System.out.println(Arrays.toString(position));
+
+        double[] getPos = testCar.getPosition();
+        System.out.println(Arrays.toString(getPos));
+
+        assert position.equals(getPos);
     }
 
     @Test
