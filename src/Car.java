@@ -1,11 +1,14 @@
 import java.awt.*;
 
-public class Car {
+abstract public  class Car implements Movable {
     protected int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
     protected Color color; // Color of the car
     public String modelName; // The car model name
+    protected double direction;
+    protected double xPosition;
+    protected double yPosition;
 
     public int getNrDoors(){
         return nrDoors;
@@ -35,6 +38,10 @@ public class Car {
     public double getDirection(){return direction;}// Returns Direction
 
     public double[] getPosition(){return new double[]{xPosition,yPosition};}// Returns Posision
+
+    protected abstract void incrementSpeed(double amount);
+
+    protected abstract void decrementSpeed(double amount);
 
     public void move() {
         xPosition += currentSpeed * Math.cos(direction);

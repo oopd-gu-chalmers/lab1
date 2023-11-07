@@ -1,15 +1,18 @@
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-import java.util.List;
+import java.awt.*;
+import java.util.Arrays;
 
+@RunWith(Parameterized.class)
 public class TestCar {
-    private List<Car> testCars;
 
-    @Before
-    public void setup() {
-        testCars.add(new Saab95());
-        testCars.add(new Volvo240());
+    @Parameters
+    public static Iterable<Car> data() {
+
+        return Arrays.asList(new Saab95(), new Volvo240());
     }
 
     private Car testCar;
