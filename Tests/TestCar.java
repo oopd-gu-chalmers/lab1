@@ -37,6 +37,12 @@ public class TestCar {
     }
 
     @Test
+    public void testGetPosition() {
+        double[] position = {testCar.xPosition,testCar.yPosition};
+        assert position == testCar.getPosition();
+    }
+
+    @Test
     public void testGetColor() {
 
         assert testCar.color == testCar.getColor();

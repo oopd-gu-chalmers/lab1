@@ -37,7 +37,7 @@ abstract public  class Car implements Movable {
 
     public double getDirection(){return direction;}// Returns Direction
 
-    public double[] getPosition(){return new double[]{xPosition,yPosition};}// Returns Posision
+    public double[] getPosition(){return new double[]{xPosition,yPosition};}// Returns Position
 
     protected abstract void incrementSpeed(double amount);
 
