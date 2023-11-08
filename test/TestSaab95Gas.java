@@ -1,27 +1,37 @@
 import org.junit.*;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 public class TestSaab95Gas {
+    private Saab95 saab;
+    private double oldSpeed;
+
+    @Before
+    public void init() {
+        saab = new Saab95();
+        oldSpeed = saab.getCurrentSpeed();
+    }
+
     @Test
-    public void testIfGasWhenBelowZero() {
-        Saab95 saab = new Saab95();
+    public void testIfGasWhenAmountBelowZero() {
         saab.gas(-1);
-        assertFalse(saab.getCurrentSpeed() > 0);
+        assertEquals(oldSpeed, saab.getCurrentSpeed(), 0.01);
     }
 
     @Test
-    public void testIfGasWhenAboveOne() {
-        Saab95 saab = new Saab95();
+    public void testIfGasWhenAmountAboveOne() {
         saab.gas(1.1);
-        assertFalse(saab.getCurrentSpeed() > 0);
+        assertEquals(oldSpeed, saab.getCurrentSpeed(), 0.01);
     }
 
 
     @Test
-    public void testIfGasWhenBetweenZeroAndOne() { //Kanske köra loop genom hela intervallet?
-        Saab95 saab = new Saab95();
-        saab.gas(0.5);
-        assertTrue(saab.getCurrentSpeed() > 0);
+    public void testIfGasWhenBetweenZeroAndOne() {
+        for (double i = 1; i < 10; i++) {
+            oldSpeed = saab.getCurrentSpeed();
+            saab.gas(i / 10);
+            assertTrue(oldSpeed < saab.getCurrentSpeed());
+        }
     }
 }
