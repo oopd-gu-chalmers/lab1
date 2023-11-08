@@ -20,6 +20,9 @@ public abstract class Cars {
     public boolean turboOn;
     private double currentSpeed; // The current speed of the car
 
+    public void setCurrentSpeed(double amount){
+        this.currentSpeed = amount;
+    }
     public int getNrDoors(){
         return nrDoors;
     }
@@ -81,7 +84,8 @@ class Volvo2401 extends Cars {
     }
     @Override
     public double incrementSpeed(double amount){
-        return Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
+        super.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+        return 0;
     }   // Current speed not set
     @Override
     public double decrementSpeed(double amount){
@@ -134,6 +138,9 @@ class Main {
         //out.println(mySaab95.nrDoors);
         out.println(myVolvo240.getNrDoors());
         out.println(myVolvo240.speedFactor());
+        out.println(myVolvo240.getCurrentSpeed());
+        myVolvo240.incrementSpeed(2);
+        out.println(myVolvo240.getCurrentSpeed());
         //out.println(mySaab95.speedFactor());
     }
 }
