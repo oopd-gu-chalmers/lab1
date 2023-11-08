@@ -15,31 +15,60 @@ public class TestSaab95LeftTurn {
     }
 
     @Test
-    public void checkInitialDirection() {
-        assertEquals(saab.getPosition(), start);
+    public void checkInitialXDirection() {
+        assertEquals(saab.getDirection()[0], start[0], 0.01);
     }
 
     @Test
-    public void checkOneLeftTurn() {
-        assertEquals(saab.getDirection(), newDirection);
+    public void checkInitialYDirection() {
+        assertEquals(saab.getDirection()[1], start[1], 0.01);
     }
 
     @Test
-    public void checkFullCounterClockwiseRotation() {
-        saab.turnLeft();
-        saab.turnLeft();
-        saab.turnLeft();
-        saab.turnLeft();
-        assertEquals(saab.getDirection(), start);
+    public void checkXDirectionAfterOneLeftTurn() {
+        assertEquals(saab.getDirection()[0], newDirection[0], 0.01);
     }
 
     @Test
-    public void checkFullCounterClockwiseRotationPlusOneTurn() {
+    public void checkYDirectionAfterOneLeftTurn() {
+        assertEquals(saab.getDirection()[1], newDirection[1], 0.01);
+    }
+
+    @Test
+    public void checkXDirectionAfterFullCounterClockwiseRotation() {
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        assertEquals(saab.getDirection()[0], start[0], 0.01);
+    }
+
+    @Test
+    public void checkYDirectionAfterFullCounterClockwiseRotation() {
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        assertEquals(saab.getDirection()[0], start[0], 0.01);
+    }
+
+    @Test
+    public void checkXDirectionAfterFullCounterClockwiseRotationPlusOneTurn() {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
-        assertEquals(saab.getDirection(), newDirection);
+        assertEquals(saab.getDirection()[0], newDirection[0], 0.01);
+    }
+
+    @Test
+    public void checkYDirectionAfterFullCounterClockwiseRotationPlusOneTurn() {
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        saab.turnLeft();
+        assertEquals(saab.getDirection()[1], newDirection[1], 0.01);
     }
 }

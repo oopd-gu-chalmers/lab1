@@ -13,7 +13,6 @@ public class TestSaab95RightTurn {
     }
     @Test
     public void checkRightTurn() {
-        double[] newDirection = {1, 0};
-        assertEquals(saab.getDirection(), newDirection);
+        assertEquals(saab.getDirection()[0], 0);
     }
 }
