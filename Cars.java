@@ -14,8 +14,8 @@ public abstract class Cars {
         this.modelName = modelName;
     }
 
-    public abstract double incrementSpeed(double amount);
-    public abstract double decrementSpeed(double amount);
+    public abstract void incrementSpeed(double amount);
+    public abstract void decrementSpeed(double amount);
     public abstract double speedFactor();
     public boolean turboOn;
     private double currentSpeed; // The current speed of the car
@@ -83,16 +83,15 @@ class Volvo2401 extends Cars {
         return getEnginePower() * 0.01 * trimfactor;
     }
     @Override
-    public double incrementSpeed(double amount){
+    public void incrementSpeed(double amount){
         super.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
-        return 0;
     }   // Current speed not set
     @Override
-    public double decrementSpeed(double amount){
-        return Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    public void decrementSpeed(double amount){
+        super.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }   // Current speed not set
 }
-/*
+
 class Saab951 extends Cars {
     public Saab951(){
         nrDoors = 2;
@@ -128,7 +127,7 @@ class Saab951 extends Cars {
 
 
 }
-*/
+
 class Main {
     public static void main(String[] args) {
         //Cars myCars = new Cars();
@@ -138,6 +137,8 @@ class Main {
         //out.println(mySaab95.nrDoors);
         out.println(myVolvo240.getNrDoors());
         out.println(myVolvo240.speedFactor());
+        out.println(myVolvo240.getCurrentSpeed());
+        myVolvo240.incrementSpeed(2);
         out.println(myVolvo240.getCurrentSpeed());
         myVolvo240.incrementSpeed(2);
         out.println(myVolvo240.getCurrentSpeed());
