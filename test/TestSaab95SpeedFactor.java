@@ -5,13 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 public class TestSaab95SpeedFactor {
     @Test
-    public void testInitialSpeedFactor(){ //Kanske bara för när turbo off???
+    public void testInitialSpeedFactor() { //Kanske bara för när turbo off???
         Saab95 saab = new Saab95();
         //double factor = saab.speedFactor();
         assertTrue(saab.speedFactor() == saab.getEnginePower() * 0.01 * 1);
     }
 
-    public void testSpeedFactorWhenTurboOn(){
+    @Test
+    public void testSpeedFactorWhenTurboOn() {
         Saab95 saab = new Saab95();
         saab.setTurboOn();
         assertTrue(saab.speedFactor() == saab.getEnginePower() * 0.01 * 1.3);
