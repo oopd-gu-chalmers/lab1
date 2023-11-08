@@ -3,7 +3,6 @@ import org.junit.*;
 import src.Saab95;
 //import src.Car;
 //import static org.junit.Assert.assertTrue;
-//testar om jag kan pusha 
 
 public class TestStopEngineSaab95 {
     @Test
