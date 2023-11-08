@@ -39,9 +39,15 @@ abstract public  class Car implements Movable {
 
     public double[] getPosition(){return new double[]{xPosition,yPosition};}// Returns Position
 
-    protected abstract void incrementSpeed(double amount);
+    protected abstract double speedFactor();
 
-    protected abstract void decrementSpeed(double amount);
+    protected void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+    }
+
+    protected void decrementSpeed(double amount) {
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    }
 
     public void move() {
         xPosition += currentSpeed * Math.cos(direction);
