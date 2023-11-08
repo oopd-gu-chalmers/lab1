@@ -1,5 +1,4 @@
-import org.junit.Test;
-
+import org.junit.*;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -19,6 +18,7 @@ public class TestSaab95Gas {
     }
 
 
+    @Test
     public void testIfGasWhenBetweenZeroAndOne() { //Kanske köra loop genom hela intervallet?
         Saab95 saab = new Saab95();
         saab.gas(0.5);
