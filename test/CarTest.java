@@ -1,6 +1,6 @@
 import org.junit.*;
 
-public class Lab1Test {
+public class CarTest {
     @Test 
     public void getNrDoorsTest(){
         
