@@ -49,25 +49,6 @@ public abstract class Cars {
     public void stopEngine(){
         currentSpeed = 0;
     }
-    /*
-    public void incrementSpeedSaab(double amount){
-
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-    }
-
-    public void decrementSpeedSaab(double amount){
-
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
-    public void incrementSpeedVolvo(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor * amount,enginePower);
-    }
-
-    public void decrementSpeedVolvo(double amount){
-
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor * amount,0);
-    }
-    */
 }
 
 class Volvo2401 extends Cars {
@@ -93,18 +74,16 @@ class Volvo2401 extends Cars {
 }
 
 class Saab951 extends Cars {
+    private boolean turboOn;
     public Saab951(){
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
-        modelName = "Saab95";
+        super(2,125,Color.red,"Saab95");
+        // super(nrDoors,enginePower,color,modelName);
+        this.setTurboOff();
         super.stopEngine();
     }
-    protected boolean turboOn = false;
     public void setTurboOn(){
         turboOn = true;
     }
-
     public void setTurboOff(){
         turboOn = false;
     }
@@ -112,17 +91,15 @@ class Saab951 extends Cars {
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
-        return enginePower * 0.01 * turbo;
+        return getEnginePower() * 0.01 * turbo;
     }
     @Override
     public void incrementSpeed(double amount){
-
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        super.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
     }
     @Override
     public void decrementSpeed(double amount){
-
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        super.setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
     }
 
 
@@ -131,7 +108,7 @@ class Saab951 extends Cars {
 class Main {
     public static void main(String[] args) {
         //Cars myCars = new Cars();
-        //Saab951 mySaab95 = new Saab951();
+        Saab951 mySaab95 = new Saab951();
         Volvo2401 myVolvo240 = new Volvo2401();
         //out.println(mySaab95.getNrDoors());
         //out.println(mySaab95.nrDoors);
@@ -142,6 +119,8 @@ class Main {
         out.println(myVolvo240.getCurrentSpeed());
         myVolvo240.incrementSpeed(2);
         out.println(myVolvo240.getCurrentSpeed());
-        //out.println(mySaab95.speedFactor());
+        out.println(mySaab95.getCurrentSpeed());
+        mySaab95.setTurboOn();
+        out.println(mySaab95.speedFactor());
     }
 }
