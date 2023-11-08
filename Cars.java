@@ -1,17 +1,20 @@
 import java.awt.*;
 import static java.lang.System.out;
 
-public abstract class Cars {
+public abstract class Cars extends Movable {
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
+    private Point position;
 
     public Cars(int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.position = new Point(0,0);
+        // This.direction IDK HELP, use enum?????????!!!!!!!
     }
 
     public abstract void incrementSpeed(double amount);
@@ -19,6 +22,12 @@ public abstract class Cars {
     public abstract double speedFactor();
     public boolean turboOn;
     private double currentSpeed; // The current speed of the car
+    private enum direction {
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+    }
 
     public void setCurrentSpeed(double amount){
         this.currentSpeed = amount;
