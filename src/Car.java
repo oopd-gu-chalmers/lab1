@@ -1,6 +1,8 @@
 import java.awt.*;
 
 public abstract class Car implements Movable {
+    protected double[] position = {0, 0};
+    protected double[] direction = {0, 1};
     protected  int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
@@ -57,14 +59,23 @@ public abstract class Car implements Movable {
     av deras riktning och position. Metoden move ska fungera så att beroende på riktning ökas
     (eller minskas) bilens x- eller y-koordinat med dess currentSpeed.*/
 
-    void move() {
-        
+    public void move() {
         //Ändrar x eller y baserat på riktning
+        position[0] = position[0] + currentSpeed*direction[0];
+        position[1] = position[1] + currentSpeed*direction[1];
     }
-    void turnLeft() {
+    public void turnLeft() {
         //Ändrar riktning
+        double x = direction[0];
+        double y = direction[1];
+        direction[0] = -y;
+        direction[1] = x;
     }
-    void turnRight() {
+    public void turnRight() {
         //Ändrar riktning
+        double x = direction[0];
+        double y = direction[1];
+        direction[0] = y;
+        direction[1] = -x;
     }
 }
