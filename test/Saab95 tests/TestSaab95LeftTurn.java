@@ -11,27 +11,28 @@ public class TestSaab95LeftTurn {
     @Before
     public void init() {
         saab = new Saab95();
-        saab.turnLeft();
     }
 
     @Test
     public void checkInitialXDirection() {
-        assertEquals(saab.getDirection()[0], start[0], 0.01);
+        assertEquals(start[0], saab.getDirection()[0], 0.01);
     }
 
     @Test
     public void checkInitialYDirection() {
-        assertEquals(saab.getDirection()[1], start[1], 0.01);
+        assertEquals(start[1], saab.getDirection()[1], 0.01);
     }
 
     @Test
     public void checkXDirectionAfterOneLeftTurn() {
-        assertEquals(saab.getDirection()[0], newDirection[0], 0.01);
+        saab.turnLeft();
+        assertEquals(newDirection[0], saab.getDirection()[0], 0.01);
     }
 
     @Test
     public void checkYDirectionAfterOneLeftTurn() {
-        assertEquals(saab.getDirection()[1], newDirection[1], 0.01);
+        saab.turnLeft();
+        assertEquals(newDirection[1], saab.getDirection()[1], 0.01);
     }
 
     @Test
@@ -59,7 +60,7 @@ public class TestSaab95LeftTurn {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
-        assertEquals(saab.getDirection()[0], newDirection[0], 0.01);
+        assertEquals(newDirection[0], saab.getDirection()[0], 0.01);
     }
 
     @Test
@@ -69,6 +70,6 @@ public class TestSaab95LeftTurn {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
-        assertEquals(saab.getDirection()[1], newDirection[1], 0.01);
+        assertEquals(newDirection[1], saab.getDirection()[1], 0.01);
     }
 }

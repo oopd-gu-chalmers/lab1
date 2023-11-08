@@ -16,23 +16,23 @@ public class TestSaab95Move {
 
     @Test
     public void checkStartXPosition() {
-        assertEquals(saab.getPosition()[0], start[0], 0.01);
+        assertEquals(start[0], saab.getPosition()[0], 0.01);
     }
 
     @Test
     public void checkStartYPosition() {
-        assertEquals(saab.getPosition()[1], start[1], 0.01);
+        assertEquals(start[1], saab.getPosition()[1], 0.01);
     }
 
     @Test
     public void checkXPositionAfterOneMove() {
         saab.move();
-        assertEquals(saab.getPosition()[0], 0, 0.01);
+        assertEquals(0, saab.getPosition()[0], 0.01);
     }
 
     @Test
     public void checkYPositionAfterOneMove() {
         saab.move();
-        assertEquals(saab.getPosition()[1], saab.getCurrentSpeed(), 0.01);
+        assertEquals(saab.getCurrentSpeed(), saab.getPosition()[1], 0.01);
     }
 }
