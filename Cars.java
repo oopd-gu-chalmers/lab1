@@ -1,33 +1,90 @@
 import java.awt.*;
-import static java.lang.System.out;
+import java.awt.geom.Point2D;
 
-public abstract class Cars extends Movable {
+import static java.lang.System.out;
+import static java.lang.System.setOut;
+
+public abstract class Cars implements Movable{
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
-    private Point position;
+    private Point2D position;
+    public Direction direction;
+
 
     public Cars(int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-        this.position = new Point(0,0);
-        // This.direction IDK HELP, use enum?????????!!!!!!!
+        this.position = new Point2D.Double(0.0F,0.0F);
+        this.direction = Direction.NORTH;
+
     }
+    public void gas(double amount){incrementSpeed(amount);}
 
     public abstract void incrementSpeed(double amount);
     public abstract void decrementSpeed(double amount);
     public abstract double speedFactor();
     public boolean turboOn;
     private double currentSpeed; // The current speed of the car
-    private enum direction {
+    public enum Direction {
         NORTH,
         EAST,
         SOUTH,
         WEST
     }
+    public void move(){
+        switch(this.direction){
+            case NORTH:
+                this.position.setLocation(this.position.getX(),(this.position.getY()+getCurrentSpeed()));
+                break;
+            case EAST:
+                this.position.setLocation((this.position.getX()+getCurrentSpeed()),this.position.getY());
+                break;
+            case SOUTH:
+                this.position.setLocation(this.position.getX(),(this.position.getY()-getCurrentSpeed()));
+                break;
+            case WEST:
+                this.position.setLocation((this.position.getX()-getCurrentSpeed()),this.position.getY());
+                break;
+        }
+    }
+    public void turnLeft(){
+        switch(this.direction){
+            case NORTH:
+                this.direction = Direction.WEST;
+                break;
+            case WEST:
+                this.direction = Direction.SOUTH;
+                break;
+            case SOUTH:
+                this.direction = Direction.EAST;
+                break;
+            case EAST:
+                this.direction = Direction.NORTH;
+        }
+    }
+    public void turnRight(){
+        switch(this.direction){
+            case NORTH:
+                this.direction = Direction.EAST;
+                break;
+            case EAST:
+                this.direction = Direction.SOUTH;
+                break;
+            case SOUTH:
+                this.direction = Direction.WEST;
+                break;
+            case WEST:
+                this.direction = Direction.NORTH;
+        }
+
+    }
+    public double getPositionX(){return this.position.getX();}
+    public double getPositionY(){return this.position.getY();}
+
 
     public void setCurrentSpeed(double amount){
         this.currentSpeed = amount;
@@ -116,9 +173,11 @@ class Saab951 extends Cars {
 
 class Main {
     public static void main(String[] args) {
+
         //Cars myCars = new Cars();
         Saab951 mySaab95 = new Saab951();
         Volvo2401 myVolvo240 = new Volvo2401();
+        /*
         //out.println(mySaab95.getNrDoors());
         //out.println(mySaab95.nrDoors);
         out.println(myVolvo240.getNrDoors());
@@ -131,5 +190,15 @@ class Main {
         out.println(mySaab95.getCurrentSpeed());
         mySaab95.setTurboOn();
         out.println(mySaab95.speedFactor());
+        */
+        mySaab95.gas(40);
+        mySaab95.move();
+        mySaab95.turnLeft();
+        mySaab95.move();
+        mySaab95.gas(17.5);
+        mySaab95.turnRight();
+        mySaab95.move();
+        out.println(mySaab95.getPositionX());
+        out.println(mySaab95.getPositionY());
     }
 }
