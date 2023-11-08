@@ -13,11 +13,11 @@ public class Saab95 extends Car implements Movable{
         stopEngine();
     }
     
-    private void setTurboOn(){
+    public void setTurboOn(){
 	    turboOn = true;
     }
 
-    private void setTurboOff(){
+    public void setTurboOff(){
 	    turboOn = false;
     }
     

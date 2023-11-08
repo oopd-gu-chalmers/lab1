@@ -1,12 +1,20 @@
 import org.junit.*;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TestSaab95SpeedFactor {
     @Test
-    public void testInitialSpeedFactor(){
+    public void testInitialSpeedFactor(){ //Kanske bara för när turbo off???
         Saab95 saab = new Saab95();
-        saab.speedFactor();
-        assertTrue(saab.speedFactor() = saab.enginePower * 0.01 * 1);
+        //double factor = saab.speedFactor();
+        assertTrue(saab.speedFactor() == saab.getEnginePower() * 0.01 * 1);
+    }
+
+    public void testSpeedFactorWhenTurboOn(){
+        Saab95 saab = new Saab95();
+        saab.setTurboOn();
+        assertTrue(saab.speedFactor() == saab.getEnginePower() * 0.01 * 1.3);
     }
 }
 
