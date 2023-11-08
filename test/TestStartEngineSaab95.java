@@ -2,11 +2,10 @@ import org.junit.*;
 import static org.junit.Assert.assertTrue;
 
 public class TestStartEngineSaab95 {
-    private Saab95 saab;
-
     @Test
-    public void test(){
-        car.gas(-1);
-
+    public void testStartEngineSetsSpeed(){
+        Saab95 saab = new Saab95();
+        saab.startEngine();
+        assertTrue(saab.currentSpeed > 0);
     }
 }
