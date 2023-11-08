@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 import static java.lang.System.out;
-import static java.lang.System.setOut;
 
 public abstract class Cars implements Movable{
     private int nrDoors; // Number of doors on the car
@@ -117,9 +116,9 @@ public abstract class Cars implements Movable{
     }
 }
 
-class Volvo2401 extends Cars {
+class Volvo240 extends Cars {
     private final double trimfactor;
-    public Volvo2401(){
+    public Volvo240(){
         super(4,100,Color.black,"Volvo240");
         // super(nrDoors,enginePower,color,modelName);
         this.trimfactor = 1.25;
@@ -139,9 +138,9 @@ class Volvo2401 extends Cars {
     }   // Current speed not set
 }
 
-class Saab951 extends Cars {
+class Saab95 extends Cars {
     private boolean turboOn;
-    public Saab951(){
+    public Saab95(){
         super(2,125,Color.red,"Saab95");
         // super(nrDoors,enginePower,color,modelName);
         this.setTurboOff();
@@ -175,8 +174,8 @@ class Main {
     public static void main(String[] args) {
 
         //Cars myCars = new Cars();
-        Saab951 mySaab95 = new Saab951();
-        Volvo2401 myVolvo240 = new Volvo2401();
+        Saab95 mySaab95 = new Saab95();
+        Volvo240 myVolvo240 = new Volvo240();
         /*
         //out.println(mySaab95.getNrDoors());
         //out.println(mySaab95.nrDoors);
