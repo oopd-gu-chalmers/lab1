@@ -8,7 +8,12 @@ public abstract class Car implements Movable {
     protected double currentSpeed = 0; // The current speed of the car
     protected Color color; // Color of the car
     protected String modelName; // The car model name
-
+    public double[] getPosition() {
+        return position;
+    }
+    public double[] getDirection() {
+        return direction;
+    }
     public int getNrDoors(){
         return nrDoors;
     }
