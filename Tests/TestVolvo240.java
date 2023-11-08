@@ -5,12 +5,12 @@ public class TestVolvo240 {
     private Volvo240 newVolvo;
 
     @Before
-    public void Setup(){
+    public void Setup() {
         newVolvo = new Volvo240();
 
     }
     @Test
-    public void TestSpeedFactor(){
+    public void TestSpeedFactor() {
         double spf = newVolvo.speedFactor();
         assert spf == 1.25;
     }

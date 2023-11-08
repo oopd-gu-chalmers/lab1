@@ -3,9 +3,11 @@ import org.junit.Test;
 
 public class TestSaab95 {
     private Saab95 TestSaab;
+
     @Before
-    public void setup() {
+    public void Setup() {
         TestSaab = new Saab95();
+
     }
     @Test
     public void TestSetTurboOn(){
@@ -51,7 +53,7 @@ public class TestSaab95 {
 
     }
     @Test
-    public void TestdecrementSpeedTurboOn(){
+    public void TestDecrementSpeedTurboOn(){
         TestSaab.setTurboOn();
         TestSaab.incrementSpeed(10);
         TestSaab.decrementSpeed(5);
@@ -60,7 +62,7 @@ public class TestSaab95 {
 
     }
     @Test
-    public void TestdecrementSpeedTurboOff(){
+    public void TestDecrementSpeedTurboOff(){
         TestSaab.incrementSpeed(10);
         TestSaab.decrementSpeed(5);
         // (0 + 125 * 0.01 * 1.3 * 10) - (125 * 0.01 * 1.3 * 5)
