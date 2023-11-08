@@ -40,7 +40,7 @@ public class TestSaab95LeftTurn {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
-        assertEquals(saab.getDirection()[0], start[0], 0.01);
+        assertEquals(start[0], saab.getDirection()[0], 0.01);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class TestSaab95LeftTurn {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
-        assertEquals(saab.getDirection()[0], start[0], 0.01);
+        assertEquals(start[1], saab.getDirection()[1], 0.01);
     }
 
     @Test

@@ -1,8 +1,4 @@
-package test;
 import org.junit.*;
-import src.Saab95;
-//import src.Car;
-//import static org.junit.Assert.assertTrue;
 
 public class TestSaab95StopEngine {
     @Test
