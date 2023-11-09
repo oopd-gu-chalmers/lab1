@@ -12,6 +12,7 @@ public class TestSaab95Brake {
     public void init() {
         saab = new Saab95();
         saab.currentSpeed = saab.enginePower;
+        oldSpeed = saab.getCurrentSpeed();
     }
 
     @Test

@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Saab95 extends Car implements Movable{
 
-    private boolean turboOn; //egen variabel
+    protected boolean turboOn; //egen variabel
     
     public Saab95(){
         nrDoors = 2;
