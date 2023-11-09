@@ -44,11 +44,39 @@ public class TestCars {
         mySaab95.turnRight();
         assertEquals("EAST", mySaab95.direction.name());
     }
+
     @Test
-    public void test_if_incrementSpeed_and_decrementSpeed_changes_currentSpeed(){
+    public void test_if_setCurrentSpeed(){
+        mySaab95.setCurrentSpeed(40);
+        assertEquals(40, mySaab95.getCurrentSpeed(), 0.0F);
+        myVolvo240.setCurrentSpeed(40);
+        assertEquals(40,myVolvo240.getCurrentSpeed(),0.0F);
+    }
+
+    @Test
+    public void test_if_incrementSpeed_changes_currentSpeed(){
         mySaab95.incrementSpeed(40);
         assertEquals(50.0F,(mySaab95.getCurrentSpeed()), 0.0F);
+
+        myVolvo240.incrementSpeed(40);
+        assertEquals(50.0F,(myVolvo240.getCurrentSpeed()), 0.0F);
+
+        myVolvo240.incrementSpeed(356);
+        assertEquals(100.0F,(myVolvo240.getCurrentSpeed()), 0.0F);
+    }
+
+    @Test
+    public void test_if_decrementSpeed_changes_currentSpeed(){
+        mySaab95.setCurrentSpeed(50);
         mySaab95.decrementSpeed(40);
+        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
+
+        myVolvo240.setCurrentSpeed(50);
+        myVolvo240.decrementSpeed(40);
+        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
+
+        myVolvo240.setCurrentSpeed(100);
+        myVolvo240.decrementSpeed(7642);
         assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
     }
 
