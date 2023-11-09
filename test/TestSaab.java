@@ -4,17 +4,17 @@ import org.junit.Test;
 import java.awt.*;
 
 import static junit.framework.TestCase.assertTrue;
-public class Tests {
+public class TestSaab {
 
     private Saab95 saab;
-    private Volvo240 volvo;
 
-    private Cars car;
+
+
     @Before
     public void init(){
         saab = new Saab95();
-        volvo = new Volvo240();
-        car = new Cars(2,240, Color.red,"Peugeot206");
+
+
     }
 
     @Test
@@ -28,20 +28,20 @@ public class Tests {
 
     @Test
     public void testStartEngine(){
-        car.startEngine();
-        double speed=car.getCurrentSpeed();
+        saab.startEngine();
+        double speed=saab.getCurrentSpeed();
         assertTrue(speed==0.1);
     }
 
     @Test
     public void testGetNrDoors(){
-        int doors=car.getNrDoors();
+        int doors=saab.getNrDoors();
         assertTrue(doors==2);
     }
 
     @Test
     public void testGetSetColor(){
-        Color color = car.getColor();
+        Color color = saab.getColor();
         assertTrue(color == Color.red);
     }
 

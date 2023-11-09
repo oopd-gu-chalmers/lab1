@@ -26,14 +26,14 @@ public class Saab95 extends Cars{
         return enginePower * 0.01 * turbo;
     }
 
-    private void incrementSpeed(double amount){
+    public void incrementSpeed(double amount){
         while (currentSpeed < enginePower){
             currentSpeed = getCurrentSpeed() + speedFactor() * amount;
         }
 
     }
 
-    private void decrementSpeed(double amount){
+    public void decrementSpeed(double amount){
         if(amount == 0){
             System.out.println("NOT 0");
         }

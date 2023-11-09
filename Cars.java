@@ -53,9 +53,11 @@ public abstract class Cars implements Movable{
     public static void main(String[] args) {
 
     }
+    abstract public void incrementSpeed(double amount);
+    abstract public void decrementSpeed(double amount);
 
 
-    private void gas(double amount){
+    public void gas(double amount){
         if (amount <= 1 && amount >= 0){
             incrementSpeed(amount);
         }
