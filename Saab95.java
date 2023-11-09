@@ -12,15 +12,15 @@ public class Saab95 extends Cars{
 
     }
 
-    private void setTurboOn(){
+    public void setTurboOn(){
 	    turboOn = true;
     }
 
-    private void setTurboOff(){
+    public void setTurboOff(){
 	    turboOn = false;
-    }
+    }//används ej
     
-    private double speedFactor(){
+    private double speedFactor(){//public?
         double turbo = 1;
         if(turboOn) turbo = 1.3;
         return enginePower * 0.01 * turbo;
@@ -45,11 +45,6 @@ public class Saab95 extends Cars{
 
 
     }
-    
-    // TODO fix this method according to lab pm
-
-
-    // TODO fix this method according to lab pm
 
 
     public static void main(String[] args) {
@@ -58,7 +53,7 @@ public class Saab95 extends Cars{
         System.out.println(car.getColor());
         car.setTurboOn();
         if (car.turboOn){
-            System.out.println("OwO");
+            System.out.println("OwO");//owo
         }
         car.startEngine();
         car.turnLeft();
