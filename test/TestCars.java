@@ -46,6 +46,8 @@ public class TestCars {
     public void test_if_incrementSpeed_and_decrementSpeed_changes_currentSpeed(){
         mySaab95.incrementSpeed(40);
         assertEquals(50.0F,(mySaab95.getCurrentSpeed()), 0.0F);
+        mySaab95.decrementSpeed(40);
+        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
     }
 
     @Test

@@ -194,6 +194,7 @@ class Main {
         mySaab95.setTurboOn();
         out.println(mySaab95.speedFactor());
         */
+        /*
         mySaab95.gas(40);
         mySaab95.move();
         mySaab95.turnLeft();
@@ -203,5 +204,10 @@ class Main {
         mySaab95.move();
         out.println(mySaab95.getPositionX());
         out.println(mySaab95.getPositionY());
+        */
+        mySaab95.incrementSpeed(40);
+        mySaab95.incrementSpeed(40);
+        mySaab95.decrementSpeed(40);
+        out.println(mySaab95.getCurrentSpeed());
     }
 }
