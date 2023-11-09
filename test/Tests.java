@@ -16,6 +16,16 @@ public class Tests {
         volvo = new Volvo240();
         car = new Cars(2,240, Color.red,"Peugeot206");
     }
+
+    @Test
+    public void testThaThing(){
+        saab.gas(1);
+        assertTrue(saab.currentSpeed<=saab.enginePower);
+        //
+        saab.brake(0);
+        System.out.println(saab.currentSpeed);
+    }
+
     @Test
     public void testStartEngine(){
         car.startEngine();
@@ -34,4 +44,6 @@ public class Tests {
         Color color = car.getColor();
         assertTrue(color == Color.red);
     }
+
+
 }

@@ -23,7 +23,13 @@ public class Volvo240 extends Cars{
 
     // TODO fix this method according to lab pm
     private void gas(double amount){
-        incrementSpeed(amount);
+        if (amount <= 1 && amount >= 0){
+            incrementSpeed(amount);
+        }
+        else{
+            System.out.println("Amount outside Anders");
+        }
+
     }
 
     // TODO fix this method according to lab pm

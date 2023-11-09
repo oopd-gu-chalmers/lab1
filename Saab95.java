@@ -27,21 +27,44 @@ public class Saab95 extends Cars{
     }
 
     private void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        while (currentSpeed < enginePower){
+            currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        }
+
     }
 
     private void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        if(amount == 0){
+            System.out.println("NOT 0");
+        }
+        else{
+            while (currentSpeed > 0){
+                currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+            }
+        }
+
+
     }
     
     // TODO fix this method according to lab pm
-    private void gas(double amount){
-        incrementSpeed(amount);
+    protected void gas(double amount){
+        if (amount <= 1 && amount >= 0){
+            incrementSpeed(amount);
+        }
+        else{
+            System.out.println("Amount outside range");
+        }
     }
 
     // TODO fix this method according to lab pm
-    private void brake(double amount){
-        decrementSpeed(amount);
+    protected void brake(double amount){
+        if (amount <= 1 && amount >= 0){
+            decrementSpeed(amount);
+        }
+        else{
+            System.out.println("Amount outside range");
+        }
+
     }
 
     public static void main(String[] args) {
