@@ -107,6 +107,10 @@ public abstract class Cars implements Movable{
         color = clr;
     }
 
+    public String getmodelName(){
+        return modelName;
+    }
+
     public void startEngine(){
         currentSpeed = 0.1;
     }
