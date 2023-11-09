@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -76,12 +78,12 @@ public class TestCars {
     }
     @Test
     public void test_if_car_has_color_doors_and_modelName(){
-        myVolvo240.setColor("black");
-        mySaab95.setColor("red");
+        myVolvo240.setColor(Color.BLACK);
+        mySaab95.setColor(Color.RED);
         assertEquals("Volvo240", myVolvo240.getmodelName());
         assertEquals("Saab95", mySaab95.getmodelName());
-        assertEquals("black", myVolvo240.getColor());
-        assertEquals("red", mySaab95.getColor());
+        assertEquals(Color.BLACK, myVolvo240.getColor());
+        assertEquals(Color.RED, mySaab95.getColor());
         assertEquals(4, myVolvo240.getNrDoors());
         assertEquals(2, mySaab95.getNrDoors());
 

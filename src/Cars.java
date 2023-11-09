@@ -170,44 +170,4 @@ class Saab95 extends Cars {
     public void decrementSpeed(double amount){
         super.setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
     }
-
-
-}
-
-class Main {
-    public static void main(String[] args) {
-
-        //Cars myCars = new Cars();
-        Saab95 mySaab95 = new Saab95();
-        Volvo240 myVolvo240 = new Volvo240();
-        /*
-        //out.println(mySaab95.getNrDoors());
-        //out.println(mySaab95.nrDoors);
-        out.println(myVolvo240.getNrDoors());
-        out.println(myVolvo240.speedFactor());
-        out.println(myVolvo240.getCurrentSpeed());
-        myVolvo240.incrementSpeed(2);
-        out.println(myVolvo240.getCurrentSpeed());
-        myVolvo240.incrementSpeed(2);
-        out.println(myVolvo240.getCurrentSpeed());
-        out.println(mySaab95.getCurrentSpeed());
-        mySaab95.setTurboOn();
-        out.println(mySaab95.speedFactor());
-        */
-        /*
-        mySaab95.gas(40);
-        mySaab95.move();
-        mySaab95.turnLeft();
-        mySaab95.move();
-        mySaab95.gas(17.5);
-        mySaab95.turnRight();
-        mySaab95.move();
-        out.println(mySaab95.getPositionX());
-        out.println(mySaab95.getPositionY());
-        */
-        mySaab95.incrementSpeed(40);
-        mySaab95.incrementSpeed(40);
-        mySaab95.decrementSpeed(40);
-        out.println(mySaab95.getCurrentSpeed());
-    }
 }
