@@ -74,8 +74,6 @@ public abstract class Car implements Movable{
     public double[] getPosition(){
         return position;
     }
-
-
     public void startEngine(){
         currentSpeed = 0.1;
     }
@@ -84,4 +82,31 @@ public abstract class Car implements Movable{
         currentSpeed = 0;
     }
 
+    public abstract void incrementSpeed(double amount);
+
+    public abstract void decrementSpeed(double amount);
+
+    public void gas(double amount){
+        if (!valueBetween0And1(amount)) {
+            System.out.println("BAD INPUT");
+            return;
+        }
+        incrementSpeed(amount);
+    }
+
+    public void brake(double amount){
+        if (!valueBetween0And1(amount)) {
+            System.out.println("BAD INPUT");
+            return;
+        }
+        decrementSpeed(amount);
+    }
+
+    public boolean valueBetween0And1(double check){
+        if (check > 0 && check < 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
