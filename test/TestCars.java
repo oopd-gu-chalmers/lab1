@@ -89,7 +89,6 @@ public class TestCars {
 
     }
 
-
     @Test
     public void test_if_saab95_has_turbo(){
         mySaab95.startEngine();
@@ -103,5 +102,13 @@ public class TestCars {
         assertTrue(mySaab95.getCurrentSpeed() == 8.225);
     }
 
+    @Test
+    public void test_if_volvo240_has_trimfactor(){
+        myVolvo240.startEngine();
+        myVolvo240.gas(5);
+        assertTrue(myVolvo240.getCurrentSpeed() == 6.35);
 
+        myVolvo240.decrementSpeed(5);
+        assertTrue(myVolvo240.getCurrentSpeed() == 0.1);
+    }
 }
