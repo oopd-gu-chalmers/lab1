@@ -9,24 +9,23 @@ import static org.junit.Assert.*;
 
 public class TestCar {
     Volvo240 volvo;
-
     @Before
     public void before(){
         volvo = new Volvo240();
     }
 
     @Test
-    public void getNrDoors(){
+    public void testGetNrDoors(){
         assertEquals(volvo.getNrDoors(), 4);
     }
 
     @Test
-    public void getEnginePower(){
+    public void testGetEnginePower(){
         assertEquals(volvo.getEnginePower(), 100, 0);
     }
 
     @Test
-    public void getCurrentSpeed(){
+    public void testGetCurrentSpeed(){
         assertEquals(volvo.getCurrentSpeed(), 0, 0);
     }
 
@@ -39,6 +38,11 @@ public class TestCar {
     public void testSetColor(){
         volvo.setColor(Color.green);
         assertEquals(volvo.getColor(), Color.green);
+    }
+
+    @Test
+    public void testGetModelName(){
+        assertEquals(volvo.getModelName(), "Volvo240");
     }
 
     @Test

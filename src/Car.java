@@ -1,23 +1,24 @@
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Objects;
 
 public abstract class Car implements Movable{
     // Protected makes them visabel to sub-class and the packege but not public
-    protected int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
-    protected double currentSpeed; // The current speed of the car
-    protected Color color; // Color of the car
-    protected String modelName; // The car model name
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
 
-    protected String direction = "Forward";
+    private String direction = "Forward";
 
-    protected double[] position = {0,0};
+    private double[] position = {0,0};
 
-    public Car(int doors, Color col, double enginePow, String model){
-        nrDoors = doors;
-        color = col;
-        enginePower = enginePow;
-        modelName = model;
+    public Car(int nrDoors, Color color, double enginePower, String modelName){
+        this.nrDoors = nrDoors;
+        this.color = color;
+        this.enginePower = enginePower;
+        this.modelName = modelName;
         stopEngine();
     }
 
@@ -60,6 +61,10 @@ public abstract class Car implements Movable{
         return currentSpeed;
     }
 
+    public void setCurrentSpeed(double input){
+        currentSpeed = input;
+    }
+
     public Color getColor(){
         return color;
     }
@@ -68,12 +73,17 @@ public abstract class Car implements Movable{
         color = clr;
     }
 
+    public String getModelName() {
+        return modelName;
+    }
+
     public String getDirection(){
         return direction;
     }
     public double[] getPosition(){
         return position;
     }
+
     public void startEngine(){
         currentSpeed = 0.1;
     }
@@ -102,11 +112,27 @@ public abstract class Car implements Movable{
         decrementSpeed(amount);
     }
 
-    public boolean valueBetween0And1(double check){
+    protected boolean valueBetween0And1(double check){
         if (check > 0 && check < 1){
             return true;
         }else{
             return false;
         }
+    }
+
+
+    // not tested but is only for when trying porgram
+    // it returns nothing and changes nothing so nothing
+    // to test.
+    public void getInfo(){
+        System.out.println("Col: " + getColor());
+        System.out.println("Doors: " + getNrDoors());
+        System.out.println("Pow: " + getEnginePower());
+        System.out.println("Speed: " + getCurrentSpeed());
+
+        System.out.println("Dir: " + getDirection());
+        System.out.println("Pos: " + Arrays.toString(getPosition()));
+
+        System.out.println();
     }
 }
