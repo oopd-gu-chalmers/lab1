@@ -50,6 +50,16 @@ public class TestCars {
         assertEquals(50.0F,(mySaab95.getCurrentSpeed()), 0.0F);
         mySaab95.decrementSpeed(40);
         assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
+
+        myVolvo240.incrementSpeed(40);
+        assertEquals(50.0F,(myVolvo240.getCurrentSpeed()), 0.0F);
+        myVolvo240.decrementSpeed(40);
+        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
+
+        myVolvo240.incrementSpeed(356);
+        assertEquals(100.0F,(myVolvo240.getCurrentSpeed()), 0.0F);
+        myVolvo240.decrementSpeed(7642);
+        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
     }
 
     @Test
