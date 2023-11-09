@@ -22,12 +22,7 @@ public class Volvo240 extends Cars{
     }
 
     // TODO fix this method according to lab pm
-    private void gas(double amount){
-        incrementSpeed(amount);
-    }
+
 
     // TODO fix this method according to lab pm
-    private void brake(double amount){
-        decrementSpeed(amount);
-    }
-}
+
