@@ -14,29 +14,29 @@ public class TestSaab95LeftTurn {
     }
 
     @Test
-    public void checkInitialXDirection() {
+    public void testInitialXDirection() {
         assertEquals(start[0], saab.getDirection()[0], 0.01);
     }
 
     @Test
-    public void checkInitialYDirection() {
+    public void testInitialYDirection() {
         assertEquals(start[1], saab.getDirection()[1], 0.01);
     }
 
     @Test
-    public void checkXDirectionAfterOneLeftTurn() {
+    public void testXDirectionAfterOneLeftTurn() {
         saab.turnLeft();
         assertEquals(newDirection[0], saab.getDirection()[0], 0.01);
     }
 
     @Test
-    public void checkYDirectionAfterOneLeftTurn() {
+    public void testYDirectionAfterOneLeftTurn() {
         saab.turnLeft();
         assertEquals(newDirection[1], saab.getDirection()[1], 0.01);
     }
 
     @Test
-    public void checkXDirectionAfterFullCounterClockwiseRotation() {
+    public void testXDirectionAfterFullCounterClockwiseRotation() {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
@@ -45,7 +45,7 @@ public class TestSaab95LeftTurn {
     }
 
     @Test
-    public void checkYDirectionAfterFullCounterClockwiseRotation() {
+    public void testYDirectionAfterFullCounterClockwiseRotation() {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
@@ -54,7 +54,7 @@ public class TestSaab95LeftTurn {
     }
 
     @Test
-    public void checkXDirectionAfterFullCounterClockwiseRotationPlusOneTurn() {
+    public void testXDirectionAfterFullCounterClockwiseRotationPlusOneTurn() {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();
@@ -64,7 +64,7 @@ public class TestSaab95LeftTurn {
     }
 
     @Test
-    public void checkYDirectionAfterFullCounterClockwiseRotationPlusOneTurn() {
+    public void testYDirectionAfterFullCounterClockwiseRotationPlusOneTurn() {
         saab.turnLeft();
         saab.turnLeft();
         saab.turnLeft();

@@ -44,9 +44,13 @@ public abstract class Car implements Movable {
     //Är det meningen att vi ska ha massa abstrakta methods här?
     public abstract double speedFactor();
 
-    protected abstract void incrementSpeed(double amount);
+    protected void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+    }
 
-    protected abstract void decrementSpeed(double amount);
+    protected void decrementSpeed(double amount) {
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+    }
 
     public void gas(double amount) {
         if ((amount >= 0) && (amount <= 1)) {
