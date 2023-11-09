@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Cars implements Movable{
+public abstract class Cars implements Movable{
 
     protected int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
@@ -51,6 +51,26 @@ public class Cars implements Movable{
         currentSpeed = 0;
     }
     public static void main(String[] args) {
+
+    }
+
+
+    private void gas(double amount){
+        if (amount <= 1 && amount >= 0){
+            incrementSpeed(amount);
+        }
+        else{
+            System.out.println("Amount outside Anders");
+        }
+
+    }
+    protected void brake(double amount){
+        if (amount <= 1 && amount >= 0){
+            decrementSpeed(amount);
+        }
+        else{
+            System.out.println("Amount outside range");
+        }
 
     }
 

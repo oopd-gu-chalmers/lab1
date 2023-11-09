@@ -47,25 +47,10 @@ public class Saab95 extends Cars{
     }
     
     // TODO fix this method according to lab pm
-    protected void gas(double amount){
-        if (amount <= 1 && amount >= 0){
-            incrementSpeed(amount);
-        }
-        else{
-            System.out.println("Amount outside range");
-        }
-    }
+
 
     // TODO fix this method according to lab pm
-    protected void brake(double amount){
-        if (amount <= 1 && amount >= 0){
-            decrementSpeed(amount);
-        }
-        else{
-            System.out.println("Amount outside range");
-        }
 
-    }
 
     public static void main(String[] args) {
         Saab95 car = new Saab95();
