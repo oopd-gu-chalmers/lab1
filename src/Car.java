@@ -9,9 +9,7 @@ public abstract class Car implements Movable{
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
-
     private String direction = "Forward";
-
     private double[] position = {0,0};
 
     public Car(int nrDoors, Color color, double enginePower, String modelName){
@@ -32,7 +30,6 @@ public abstract class Car implements Movable{
     }
 
     public void turnLeft(){
-        // Intel sa att jag skulle göra det
         switch (direction) {
             case "Forward" -> direction = "Left";
             case "Right" -> direction = "Forward";
@@ -92,9 +89,15 @@ public abstract class Car implements Movable{
         currentSpeed = 0;
     }
 
-    public abstract void incrementSpeed(double amount);
+    public abstract double speedFactor();
 
-    public abstract void decrementSpeed(double amount);
+    public void incrementSpeed(double amount){
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
+    }
+
+    public void decrementSpeed(double amount){
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+    }
 
     public void gas(double amount){
         if (!valueBetween0And1(amount)) {
