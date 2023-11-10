@@ -1,14 +1,22 @@
 import java.awt.*;
 
-abstract public  class Car implements Movable {
-    protected int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
-    protected double currentSpeed; // The current speed of the car
-    protected Color color; // Color of the car
+abstract public class Car implements Movable {
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
     public String modelName; // The car model name
-    protected double direction;
-    protected double xPosition;
-    protected double yPosition;
+    private double direction;
+    private double xPosition;
+    private double yPosition;
+
+    public Car(int nrDoors, double enginePower, Color color, String modelName) {
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.color = color;
+        this.modelName = modelName;
+        stopEngine();
+    }
 
     public int getNrDoors(){
         return nrDoors;
@@ -41,11 +49,11 @@ abstract public  class Car implements Movable {
 
     protected abstract double speedFactor();
 
-    protected void incrementSpeed(double amount) {
+    private void incrementSpeed(double amount) {
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
 
-    protected void decrementSpeed(double amount) {
+    private void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
