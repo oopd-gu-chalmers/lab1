@@ -7,7 +7,7 @@ public abstract class Cars implements Movable {
     private Color color; // Color of the car
     private final String modelName; // The car model name
     private final Point2D position;
-    public Direction direction;
+    private Direction direction;
 
 
     public Cars(int nrDoors, double enginePower, Color color, String modelName) {

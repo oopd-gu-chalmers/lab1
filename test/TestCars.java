@@ -58,11 +58,11 @@ public class TestCars {
         mySaab95.turnLeft();
         assertEquals("WEST", mySaab95.direction.name());
         mySaab95.turnLeft();
-        assertEquals("SOUTH", mySaab95.direction.name());
+        assertEquals("SOUTH", mySaab95.getDirection());
         mySaab95.turnLeft();
-        assertEquals("EAST", mySaab95.direction.name());
+        assertEquals("EAST", mySaab95.getDirection());
         mySaab95.turnLeft();
-        assertEquals("NORTH", mySaab95.direction.name());
+        assertEquals("NORTH", mySaab95.getDirection());
         mySaab95.turnRight();
         assertEquals("EAST", mySaab95.direction.name());
     }
@@ -107,22 +107,22 @@ public class TestCars {
         mySaab95.startEngine();
         mySaab95.gas(1);
 
-        mySaab95.direction = Cars.Direction.NORTH;
+
         mySaab95.move();
         assertEquals(0.0D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(1.35D,(mySaab95.getPositionY()), 0.0D);
 
-        mySaab95.direction = Cars.Direction.EAST;
+        mySaab95.turnRight();
         mySaab95.move();
         assertEquals(1.35D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(1.35D,(mySaab95.getPositionY()), 0.0D);
 
-        mySaab95.direction = Cars.Direction.SOUTH;
+        mySaab95.turnRight();
         mySaab95.move();
         assertEquals(1.35D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(0.0D,(mySaab95.getPositionY()), 0.0D);
 
-        mySaab95.direction = Cars.Direction.WEST;
+        mySaab95.turnRight();
         mySaab95.move();
         assertEquals(0.0D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(0.0D,(mySaab95.getPositionY()), 0.0D);
