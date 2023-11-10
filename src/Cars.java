@@ -91,6 +91,9 @@ public abstract class Cars implements Movable {
     }
 
 
+    public String getDirection(){
+        return this.direction.name();
+    }
     public void setCurrentSpeed(double amount) {this.currentSpeed = amount;}
 
     public int getNrDoors() {return nrDoors;}

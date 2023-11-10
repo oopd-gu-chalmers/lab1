@@ -56,7 +56,7 @@ public class TestCars {
     @Test
     public void test_if_direction_is_changed_myCar_changes_direction(){
         mySaab95.turnLeft();
-        assertEquals("WEST", mySaab95.direction.name());
+        assertEquals("WEST", mySaab95.getDirection());
         mySaab95.turnLeft();
         assertEquals("SOUTH", mySaab95.getDirection());
         mySaab95.turnLeft();
@@ -64,7 +64,7 @@ public class TestCars {
         mySaab95.turnLeft();
         assertEquals("NORTH", mySaab95.getDirection());
         mySaab95.turnRight();
-        assertEquals("EAST", mySaab95.direction.name());
+        assertEquals("EAST", mySaab95.getDirection());
     }
 
     @Test
