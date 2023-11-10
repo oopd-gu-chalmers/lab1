@@ -2,10 +2,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public abstract class Cars implements Movable {
-    private final int nrDoors; // Number of doors on the car
-    private final double enginePower; // Engine power of the car
-    private final Color color; // Color of the car
-    private final String modelName; // The car model name
+    private final int nrDoors;
+    private final double enginePower;
+    private final Color color;
+    private final String modelName;
     private final Point2D position;
     private Direction direction;
 
@@ -27,7 +27,7 @@ public abstract class Cars implements Movable {
         }
     }
 
-    public void Break(double amount) {
+    public void brake(double amount) {
         if (0.0D <= amount && amount <= 1) {
             decrementSpeed(amount);
         }
@@ -36,7 +36,7 @@ public abstract class Cars implements Movable {
     public abstract double speedFactor();
 
 
-    private double currentSpeed; // The current speed of the car
+    private double currentSpeed;
 
     private enum Direction {
         NORTH,
@@ -114,7 +114,7 @@ public abstract class Cars implements Movable {
 
     private void incrementSpeed(double amount) {
         this.setCurrentSpeed(Math.min((getCurrentSpeed() + speedFactor() * amount), getEnginePower()));
-    }   // Current speed not set
+    }
 
     private void decrementSpeed(double amount) {
         this.setCurrentSpeed(Math.max((getCurrentSpeed() - speedFactor() * amount), 0));

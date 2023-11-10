@@ -27,7 +27,7 @@ public class TestCars {
         assertEquals(0.1, mySaab95.getCurrentSpeed(), 0.0);
     }
     @Test
-    public void test_gas() {
+    public void test_gas_and_break() {
 
         mySaab95.gas(1);
         mySaab95.gas(1);
@@ -39,23 +39,14 @@ public class TestCars {
         myVolvo240.gas(1);
         assertEquals(3.75D, myVolvo240.getCurrentSpeed(), 0.0D);
 
-        mySaab95.Break(1);
-        mySaab95.Break(1);
+        mySaab95.brake(1);
+        mySaab95.brake(1);
         assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
 
-        myVolvo240.Break(1);
-        myVolvo240.Break(1);
-        myVolvo240.Break(1);
+        myVolvo240.brake(1);
+        myVolvo240.brake(1);
+        myVolvo240.brake(1);
         assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
-    }
-    @Test
-    public void test_Break(){
-
-        mySaab95.Break(1);
-        mySaab95.Break(1);
-        assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
-
-
     }
 
     @Test
