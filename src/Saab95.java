@@ -19,11 +19,5 @@ public class Saab95 extends Cars {
         if(turboOn) turbo = 1.3;
         return getEnginePower() * 0.01 * turbo;
     }
-    public void incrementSpeed(double amount){
-        super.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
-    }
-    public void decrementSpeed(double amount){
-        super.setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
-    }
 }
 
