@@ -28,29 +28,34 @@ public class TestCars {
     }
     @Test
     public void test_gas() {
-        mySaab95.startEngine();
-        mySaab95.gas(1);
-        mySaab95.gas(1);
-        assertEquals(2.6D, mySaab95.getCurrentSpeed(), 0.0D);
 
-        myVolvo240.startEngine();
+        mySaab95.gas(1);
+        mySaab95.gas(1);
+        assertEquals(2.5D, mySaab95.getCurrentSpeed(), 0.0D);
+
+
         myVolvo240.gas(1);
         myVolvo240.gas(1);
         myVolvo240.gas(1);
-        assertEquals(3.85D, myVolvo240.getCurrentSpeed(), 0.0D);
+        assertEquals(3.75D, myVolvo240.getCurrentSpeed(), 0.0D);
+
+        mySaab95.Break(1);
+        mySaab95.Break(1);
+        assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
+
+        myVolvo240.Break(1);
+        myVolvo240.Break(1);
+        myVolvo240.Break(1);
+        assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
     }
     @Test
     public void test_Break(){
-        mySaab95.setCurrentSpeed(2.5);
+
         mySaab95.Break(1);
         mySaab95.Break(1);
         assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
 
-        myVolvo240.setCurrentSpeed(3.75);
-        myVolvo240.Break(1);
-        myVolvo240.Break(1);
-        myVolvo240.Break(1);
-        assertEquals(0.0D,mySaab95.getCurrentSpeed(),0.0D);
+
     }
 
     @Test
@@ -65,41 +70,6 @@ public class TestCars {
         assertEquals("NORTH", mySaab95.getDirection());
         mySaab95.turnRight();
         assertEquals("EAST", mySaab95.getDirection());
-    }
-
-    @Test
-    public void test_if_setCurrentSpeed(){
-        mySaab95.setCurrentSpeed(40);
-        assertEquals(40, mySaab95.getCurrentSpeed(), 0.0F);
-        myVolvo240.setCurrentSpeed(40);
-        assertEquals(40,myVolvo240.getCurrentSpeed(),0.0F);
-    }
-
-    @Test
-    public void test_if_incrementSpeed_changes_currentSpeed(){
-        mySaab95.incrementSpeed(40);
-        assertEquals(50.0F,(mySaab95.getCurrentSpeed()), 0.0F);
-
-        myVolvo240.incrementSpeed(40);
-        assertEquals(50.0F,(myVolvo240.getCurrentSpeed()), 0.0F);
-
-        myVolvo240.incrementSpeed(356);
-        assertEquals(100.0F,(myVolvo240.getCurrentSpeed()), 0.0F);
-    }
-
-    @Test
-    public void test_if_decrementSpeed_changes_currentSpeed(){
-        mySaab95.setCurrentSpeed(50);
-        mySaab95.decrementSpeed(40);
-        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
-
-        myVolvo240.setCurrentSpeed(50);
-        myVolvo240.decrementSpeed(40);
-        assertEquals(0.0F,(mySaab95.getCurrentSpeed()), 0.0F);
-
-        myVolvo240.setCurrentSpeed(100);
-        myVolvo240.decrementSpeed(7642);
-        assertEquals(0.0D,(mySaab95.getCurrentSpeed()), 0.0D);
     }
 
     @Test

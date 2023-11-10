@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 public abstract class Cars implements Movable {
     private final int nrDoors; // Number of doors on the car
     private final double enginePower; // Engine power of the car
-    private Color color; // Color of the car
+    private final Color color; // Color of the car
     private final String modelName; // The car model name
     private final Point2D position;
     private Direction direction;
@@ -38,7 +38,7 @@ public abstract class Cars implements Movable {
 
     private double currentSpeed; // The current speed of the car
 
-    public enum Direction {
+    private enum Direction {
         NORTH,
         EAST,
         SOUTH,
@@ -94,7 +94,7 @@ public abstract class Cars implements Movable {
     public String getDirection(){
         return this.direction.name();
     }
-    public void setCurrentSpeed(double amount) {this.currentSpeed = amount;}
+    private void setCurrentSpeed(double amount) {this.currentSpeed = amount;}
 
     public int getNrDoors() {return nrDoors;}
 
