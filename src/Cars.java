@@ -104,7 +104,7 @@ public abstract class Cars implements Movable {
 
     public Color getColor() {return color;}
 
-    public void setColor(Color clr) {color = clr;}
+    //private void setColor(Color clr) {color = clr;}
 
     public String getModelName() {return modelName;}
 
@@ -112,11 +112,11 @@ public abstract class Cars implements Movable {
 
     public void stopEngine() {currentSpeed = 0;}
 
-    public void incrementSpeed(double amount) {
+    private void incrementSpeed(double amount) {
         this.setCurrentSpeed(Math.min((getCurrentSpeed() + speedFactor() * amount), getEnginePower()));
     }   // Current speed not set
 
-    public void decrementSpeed(double amount) {
+    private void decrementSpeed(double amount) {
         this.setCurrentSpeed(Math.max((getCurrentSpeed() - speedFactor() * amount), 0));
     }
 }

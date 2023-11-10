@@ -96,13 +96,11 @@ public class TestCars {
         mySaab95.move();
         assertEquals(0.0D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(0.0D,(mySaab95.getPositionY()), 0.0D);
-
+        mySaab95.turnRight();
 
     }
     @Test
     public void test_if_car_has_color_doors_and_modelName(){
-        myVolvo240.setColor(Color.BLACK);
-        mySaab95.setColor(Color.RED);
         assertEquals("Volvo240", myVolvo240.getModelName());
         assertEquals("Saab95", mySaab95.getModelName());
         assertEquals(Color.BLACK, myVolvo240.getColor());
