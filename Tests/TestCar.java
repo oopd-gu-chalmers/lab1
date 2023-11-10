@@ -15,22 +15,22 @@ public class TestCar {
 
     @Test
     public void testGetNrDoors() {
-        assert testCar.nrDoors == testCar.getNrDoors();
+        assert 4 == testCar.getNrDoors();
     }
 
     @Test
     public void testGetEnginePower() {
-        assert testCar.enginePower == testCar.getEnginePower();
+        assert 100 == testCar.getEnginePower();
     }
 
     @Test
     public void testGetCurrentSpeed() {
-        assert testCar.currentSpeed == testCar.getCurrentSpeed();
+        assert 0 == testCar.getCurrentSpeed();
     }
 
     @Test
     public void testGetPosition() {
-        double[] position = {testCar.xPosition,testCar.yPosition};
+        double[] position = {0,0};
         double[] getPos = testCar.getPosition();
 
         assert Arrays.equals(getPos,position);
@@ -39,13 +39,13 @@ public class TestCar {
     @Test
     public void testGetColor() {
 
-        assert testCar.color == testCar.getColor();
+        assert Color.black == testCar.getColor();
     }
 
     @Test
     public void testSetColor() {
         testCar.setColor(Color.BLUE);
-        assert testCar.color == Color.BLUE;
+        assert testCar.getColor() == Color.BLUE;
 
     }
 
@@ -64,19 +64,17 @@ public class TestCar {
 
     @Test
     public void testGetDirection() {
-        assert testCar.direction == testCar.getDirection();
+        assert 0 == testCar.getDirection();
     }
 
     @Test
     public void testMove() {
-        testCar.incrementSpeed(10);
+        testCar.gas(1);
         double speed = testCar.getCurrentSpeed();
         double dir = testCar.getDirection();
         testCar.move();
-        assert (testCar.yPosition == speed * Math.sin(dir)) &&
-                (testCar.xPosition == speed * Math.cos(dir));
-
-
+        assert (testCar.getPosition()[1] == speed * Math.sin(dir)) &&
+                (testCar.getPosition()[0] == speed * Math.cos(dir));
     }
 
     @Test
@@ -108,19 +106,19 @@ public class TestCar {
         testCar.gas(20);
         double speed = testCar.getCurrentSpeed();
 
-        testCar.currentSpeed = 0;
+        testCar.stopEngine();
 
-        testCar.incrementSpeed(1);
+        testCar.gas(1);
 
         assert speed == testCar.getCurrentSpeed();
     }
 
     @Test
     public void testGasLegalValue() {
-        testCar.incrementSpeed(0.5);
+        testCar.gas(0.5);
         double speed = testCar.getCurrentSpeed();
 
-        testCar.currentSpeed = 0;
+        testCar.stopEngine();
 
         testCar.gas(0.5);
         assert speed == testCar.getCurrentSpeed();
@@ -128,28 +126,28 @@ public class TestCar {
 
     @Test
     public void testBrakeNegativeValues() {
-        testCar.currentSpeed = 20;
+        testCar.gas(1);
         testCar.brake(-10);
-        assert testCar.getCurrentSpeed() == 20;
+        assert testCar.getCurrentSpeed() == testCar.speedFactor();
 
     }
 
     @Test
     public void testBrakeTooHighValues() {
-        testCar.incrementSpeed(1);
+        testCar.gas(1);
         testCar.brake(20);
         assert testCar.getCurrentSpeed() == 0;
     }
 
     @Test
     public void testBrakeLegalValue() {
-        testCar.incrementSpeed(1);
+        testCar.gas(1);
         testCar.brake(0.5);
         double speed = testCar.getCurrentSpeed();
-        testCar.currentSpeed = 0;
-        // testCar.currentSpeed
-        testCar.incrementSpeed(0.5);
 
-        assert speed == testCar.currentSpeed;
+        testCar.stopEngine();
+        testCar.gas(0.5);
+
+        assert speed == testCar.getCurrentSpeed();
     }
 }

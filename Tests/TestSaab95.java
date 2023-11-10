@@ -39,7 +39,9 @@ public class TestSaab95 {
     @Test
     public void TestIncrementSpeedTurboOn(){
         TestSaab.setTurboOn();
-        TestSaab.incrementSpeed(10);
+        for (int i = 0; i<10; i++){
+            TestSaab.gas(1);
+        }
         // 0 + 125 * 0.01 * 1.3 * 10
         assert TestSaab.getCurrentSpeed() == 0 + 125 * 0.01 * 1.3 * 10;
 
@@ -47,26 +49,26 @@ public class TestSaab95 {
     @Test
     public void TestIncrementSpeedTurboOff(){
         TestSaab.setTurboOff();
-        TestSaab.incrementSpeed(10);
+        TestSaab.gas(1);
         // 0 + 125 * 0.01 * 1.0 * 10
-        assert TestSaab.getCurrentSpeed() == 0 + 125 * 0.01 * 1.0 * 10;
+        assert TestSaab.getCurrentSpeed() == 0 + 125 * 0.01 * 1.0 * 1;
 
     }
     @Test
     public void TestDecrementSpeedTurboOn(){
         TestSaab.setTurboOn();
-        TestSaab.incrementSpeed(10);
-        TestSaab.decrementSpeed(5);
-        // (0 + 125 * 0.01 * 1.3 * 10) - (125 * 0.01 * 1.3 * 5)
-        assert TestSaab.getCurrentSpeed() == (0 + 125 * 0.01 * 1.3 * 10) - (125 * 0.01 * 1.3 * 5);
+        TestSaab.gas(1);
+        TestSaab.brake(1);
+        // (0 + 125 * 0.01 * 1.3 * 1) - (125 * 0.01 * 1.3 * 1)
+        assert TestSaab.getCurrentSpeed() == (0 + 125 * 0.01 * 1.3 * 1) - (125 * 0.01 * 1.3 * 1);
 
     }
     @Test
     public void TestDecrementSpeedTurboOff(){
-        TestSaab.incrementSpeed(10);
-        TestSaab.decrementSpeed(5);
+        TestSaab.gas(1);
+        TestSaab.brake(1);
         // (0 + 125 * 0.01 * 1.3 * 10) - (125 * 0.01 * 1.3 * 5)
-        assert TestSaab.getCurrentSpeed() == (0 + 125 * 0.01 * 1.0 * 10) - (125 * 0.01 * 1.0 * 5);
+        assert TestSaab.getCurrentSpeed() == (0 + 125 * 0.01 * 1.0 * 1) - (125 * 0.01 * 1.0 * 1);
 
     }
 }

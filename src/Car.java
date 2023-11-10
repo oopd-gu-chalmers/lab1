@@ -25,9 +25,7 @@ abstract public class Car implements Movable {
         return enginePower;
     } //Get Engine Power
 
-    public double getCurrentSpeed(){
-        return currentSpeed;
-    }// Get Current Speed
+    public double getCurrentSpeed(){return currentSpeed;}// Get Current Speed
 
     public Color getColor(){
         return color;

@@ -17,44 +17,34 @@ public class TestVolvo240 {
 
     @Test
     public void TestIncrementSpeedLessThanEnginePower() {
-        newVolvo.incrementSpeed(10);
-        // enginePower = 100
-        // currentSpeed = 0 + 1.25*10 (12.5)
+        newVolvo.gas(1);
         double current = newVolvo.getCurrentSpeed();
-        assert current == 12.5;
+        assert current == 1.25;
 
     }
     @Test
     public void TestIncrementSpeedMoreThanEnginePower() {
-        newVolvo.incrementSpeed(100);
-        // enginePower = 100
-        // currentSpeed = 0 + 1.25*100 = (125)
+        for (int i = 0; i<100; i++){
+            newVolvo.gas(1);
+        }
+
         double current = newVolvo.getCurrentSpeed();
         assert current == 100;
-
     }
 
     @Test
     public void TestDecrementSpeed() {
-        newVolvo.incrementSpeed(10);
-        // enginePower = 100
-        // currentSpeed = 0 + 1.25*10  = 12.5
-        double before = newVolvo.getCurrentSpeed();
+        for (int i = 0; i<10; i++){
+            newVolvo.gas(1);
+        }
 
-        newVolvo.decrementSpeed(9);
-        // 0
-        // currentSpeed = 12.5 - 1.25*9 = 1.25
+        for (int i = 0; i<9; i++){
+            newVolvo.brake(1);
+        }
+
         double after = newVolvo.getCurrentSpeed();
 
         assert after == 1.25;
-    }
-    @Test
-    public void TestGas() {
-
-    }
-    @Test
-    public void TestBreak() {
-
     }
 
 }
