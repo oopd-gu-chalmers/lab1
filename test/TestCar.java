@@ -62,7 +62,7 @@ public class TestCar {
 
     @Test
     public void testStopEngine(){
-        volvo.incrementSpeed(0.1);
+        volvo.gas(0.1);
         volvo.stopEngine();
         assertEquals(volvo.getCurrentSpeed(), 0, 0);
     }

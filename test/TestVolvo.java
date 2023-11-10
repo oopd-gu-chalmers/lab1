@@ -19,25 +19,27 @@ public class TestVolvo {
     }
     @Test
     public void testIncrementSpeedBelowEnginePower(){
-        volvo.incrementSpeed(0.2);
+        volvo.gas(0.2);
         assertEquals(volvo.getCurrentSpeed(), 0 + 100 * 0.01 * 1.25 * 0.2, 0);
     }
     @Test
     public void testIncrementSpeedAboveEnginePower(){
         // Cheat to get speed over 100 but increment speed will never get
         // this high value form porgram
-        volvo.incrementSpeed(101);
+        for (int i = 0; i <= 100; i++){
+            volvo.gas(0.9);
+        }
         assertEquals(volvo.getCurrentSpeed(), volvo.getEnginePower(), 0);
     }
     @Test
     public void testDecrementSpeedBelowZero(){
-        volvo.decrementSpeed(0.1);
+        volvo.brake(0.1);
         assertEquals(volvo.getCurrentSpeed(), 0, 0);
     }
     @Test
     public void testDecrementSpeedAboveZero(){
-        volvo.incrementSpeed(0.5);
-        volvo.decrementSpeed(0.2);
-        assertEquals(volvo.getCurrentSpeed(), 0.375, 0);
+        volvo.gas(0.5);
+        volvo.gas(0.2);
+        assertEquals(volvo.getCurrentSpeed(), 0.875, 0);
     }
 }
