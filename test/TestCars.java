@@ -96,8 +96,8 @@ public class TestCars {
 
         mySaab95.direction = Cars.Direction.SOUTH;
         mySaab95.move();
-        assertEquals(18.75F, (mySaab95.getPositionX()), 0.0F);
-        assertEquals(0.0F,(mySaab95.getPositionY()), 0.0F);
+        assertEquals(1.35D, (mySaab95.getPositionX()), 0.0D);
+        assertEquals(0.0D,(mySaab95.getPositionY()), 0.0D);
 
         mySaab95.direction = Cars.Direction.WEST;
         mySaab95.move();
@@ -133,10 +133,8 @@ public class TestCars {
     @Test
     public void test_if_volvo240_has_trimfactor(){
         myVolvo240.startEngine();
-        myVolvo240.gas(5);
-        assertTrue(myVolvo240.getCurrentSpeed() == 6.35);
-
-        myVolvo240.decrementSpeed(5);
-        assertTrue(myVolvo240.getCurrentSpeed() == 0.1);
+        myVolvo240.gas(1);
+        assertTrue(myVolvo240.getCurrentSpeed() == 1.35D);
+        myVolvo240.stopEngine();
     }
 }

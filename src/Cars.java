@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+
 import static java.lang.System.out;
 
 public abstract class Cars implements Movable{
@@ -21,10 +22,17 @@ public abstract class Cars implements Movable{
         this.direction = Direction.NORTH;
 
     }
-    public void gas(double amount){incrementSpeed(amount);}
+    public void gas(double amount){
 
-    public abstract void incrementSpeed(double amount);
-    public abstract void decrementSpeed(double amount);
+        if(0.0D <= amount && amount <= 1){
+            incrementSpeed(amount);
+        }
+    }
+    public void Break(double amount) {
+        if(0.0D <= amount && amount <= 1){
+            decrementSpeed(amount);
+        }
+    }
     public abstract double speedFactor();
     public boolean turboOn;
     private double currentSpeed; // The current speed of the car
