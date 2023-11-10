@@ -1,4 +1,4 @@
-# oopd-gu-chalmers Lab 1
-Lab assignment 1 in the course Object-oriented Programming and Design, GU/Chalmers
+# One of the greates projects ever
+## By: Alfons Enelll, Anton Skoglund, Zuzanna Tarkowska 
 
-See Canvas for instructions.
+We have concured the first LAB and began work on the second.

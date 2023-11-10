@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,120 +7,153 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class TestCar {
+    private static class CursedCar extends Car{
+        private final double cursedSpeedFactor;
+        public CursedCar(double cursedSpeedFactor){
+            super(-1, Color.MAGENTA, 100, "😎");
+            this.cursedSpeedFactor = cursedSpeedFactor;
+        }
+        protected double speedFactor(){
+            return cursedSpeedFactor;
+        }
+    }
     Volvo240 volvo;
+    CursedCar carWithSpeedFactorNegative;
+    CursedCar carWithSpeedFactorVeryLarge;
     @Before
-    public void before(){
+    public void initCars(){
         volvo = new Volvo240();
+        carWithSpeedFactorNegative = new CursedCar(-69.420);
+        carWithSpeedFactorVeryLarge = new CursedCar(69420);
     }
 
     @Test
-    public void testGetNrDoors(){
-        assertEquals(volvo.getNrDoors(), 4);
+    public void volvoDoorNrShouldBe4(){
+        assertEquals(4, volvo.getNrDoors());
     }
 
     @Test
-    public void testGetEnginePower(){
-        assertEquals(volvo.getEnginePower(), 100, 0);
+    public void volvoEnginePowerShouldBe100(){
+        assertEquals(100, volvo.getEnginePower(), 0.001);
     }
 
     @Test
-    public void testGetCurrentSpeed(){
-        assertEquals(volvo.getCurrentSpeed(), 0, 0);
+    public void carSpeedShouldInitAt0(){
+        assertEquals(0, volvo.getCurrentSpeed(), 0.001);
     }
 
     @Test
-    public void testGetColor(){
-        assertEquals(volvo.getColor(), Color.black);
+    public void volvoColorShouldInitBlack(){
+        assertEquals(Color.black, volvo.getColor());
     }
 
     @Test
-    public void testSetColor(){
+    public void testCarSetColor(){
         volvo.setColor(Color.green);
-        assertEquals(volvo.getColor(), Color.green);
+        assertEquals(Color.green,volvo.getColor());
     }
 
     @Test
-    public void testGetModelName(){
-        assertEquals(volvo.getModelName(), "Volvo240");
+    public void testVolvoGetModelName(){
+        assertEquals( "Volvo240", volvo.getModelName());
     }
 
     @Test
-    public void testGetDirection(){
-        assertEquals(volvo.getDirection(), "Forward");
+    public void casRotationShouldInitAt0(){
+        assertEquals(0, volvo.getRotation(), 0.001);
     }
      @Test
-    public void testGetPosition(){
-
-        assertEquals(Arrays.toString(volvo.getPosition()), "[0.0, 0.0]");
+    public void carPositionShouldInitAtOrigin(){
+        assertEquals("[0.0, 0.0]", Arrays.toString(volvo.getPosition()));
      }
     @Test
-    public void testStartEngine(){
+    public void carStartEngineShouldSetSpeedTo0Point1(){
         volvo.startEngine();
-        assertEquals(volvo.getCurrentSpeed(), 0.1, 0);
+        assertEquals(0.1, volvo.getCurrentSpeed(), 0.001);
     }
 
     @Test
-    public void testStopEngine(){
-        volvo.gas(0.1);
+    public void carStopEngineShouldSetSpeedTo0(){
+        volvo.startEngine();
+        volvo.gas(1);
         volvo.stopEngine();
-        assertEquals(volvo.getCurrentSpeed(), 0, 0);
+        assertEquals(0, volvo.getCurrentSpeed(), 0.001);
     }
 
     @Test
-    public void testGasTrue(){
+    public void carGasShouldIncreaseSpeed(){
+        volvo.startEngine();
         volvo.gas(0.5);
-        assertEquals(volvo.getCurrentSpeed(), 0.625, 0);
+        assertTrue(volvo.getCurrentSpeed() > 0.2);
     }
 
     @Test
-    public void testGasFalse(){
+    public void carGasShouldNotGoAbove1(){
+        volvo.startEngine();
         volvo.gas(1.5);
-        assertEquals(volvo.getCurrentSpeed(), 0, 0.0);
+        assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
     }
 
     @Test
-    public void testBrakeTrue(){
+    public void carBrakeShouldDecreaseSpeed(){
+        volvo.startEngine();
+        volvo.gas(1);
+        double highSpeed = volvo.getCurrentSpeed();
         volvo.brake(0.5);
-        assertEquals(volvo.getCurrentSpeed(), 0, 0);
+        assertTrue(volvo.getCurrentSpeed() < highSpeed);
     }
 
     @Test
-    public void testBrakeFalse(){
+    public void carBrakeShouldNotGoAbove1(){
+        volvo.startEngine();
+        volvo.gas(1);
+        double highSpeed = volvo.getCurrentSpeed();
         volvo.brake(1.5);
-        assertEquals(volvo.getCurrentSpeed(), 0, 0);
+        assertEquals(highSpeed,volvo.getCurrentSpeed(), 0.001);
     }
-
-    @Test
-    public void testValueBetween0And1True(){
-        assertTrue(volvo.valueBetween0And1(0.4));
-    }
-
-    @Test
-    public void testValueBetween0And1FalseOver(){
-        assertFalse(volvo.valueBetween0And1(1.4));
-    }
-
-    @Test
-    public void testValueBetween0And1FalseUnder(){
-        assertFalse(volvo.valueBetween0And1(-0.4));
-    }
-
     @Test
     public void testTurnLeft(){
-        volvo.turnLeft();
-        assertEquals(volvo.getDirection(), "Left");
+        volvo.turnLeft(90);
+        assertEquals(270, volvo.getRotation(),0.001);
     }
 
     @Test
     public void testTurnRight(){
-        volvo.turnRight();
-        assertEquals(volvo.getDirection(), "Right");
+        volvo.turnRight(45);
+        assertEquals(45, volvo.getRotation(), 0.001);
     }
 
     @Test
-    public void testMove(){
-        double[] positionBefore = volvo.getPosition();
+    public void volvoShouldMoveToTheLeftAt90DegTurn(){
+        volvo.startEngine();
+        volvo.turnLeft(90);
         volvo.move();
-        Assert.assertArrayEquals(volvo.getPosition(), positionBefore, 0.0);
+        assertTrue(volvo.getPosition()[0] < 0 && Math.abs(volvo.getPosition()[1]) < 0.001);
+    }
+    @Test
+    public void testIncrementSpeedBelowEnginePower(){
+        volvo.startEngine();
+        volvo.gas(1);
+        assertTrue(volvo.getCurrentSpeed() > 0 && volvo.getCurrentSpeed() < volvo.getEnginePower());
+    }
+    @Test
+    public void testIncrementSpeedAboveEnginePower(){
+        carWithSpeedFactorVeryLarge.startEngine();
+        carWithSpeedFactorVeryLarge.gas(1);
+        assertEquals(carWithSpeedFactorVeryLarge.getEnginePower(), carWithSpeedFactorVeryLarge.getCurrentSpeed(), 0.001);
+    }
+
+    @Test
+    public void testDecrementSpeedBelowZero(){
+        volvo.brake(0.1);
+        assertEquals(0, volvo.getCurrentSpeed(), 0.001);
+    }
+    @Test
+    public void testDecrementSpeedAboveZero(){
+        volvo.startEngine();
+        volvo.gas(0.5);
+        double highSpeed = volvo.getCurrentSpeed();
+        volvo.brake(0.1);
+        assertTrue(volvo.getCurrentSpeed() > 0 && volvo.getCurrentSpeed() < highSpeed);
     }
 }
