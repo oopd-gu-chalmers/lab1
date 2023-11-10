@@ -1,5 +1,5 @@
-interface Movable {
-    public void move();
-    public void turnLeft();
-    public void turnRight();
+public interface Movable {
+    void move();
+    void turnLeft(double degrees);
+    void turnRight(double degrees);
 }
