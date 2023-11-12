@@ -1,16 +1,16 @@
+import elements.vehicles.Car;
+import elements.vehicles.passengerCars.Volvo240;
+
 import java.awt.*;
 import java.util.Arrays;
 
-public class Main {
-    public Main(){
-
-    }
+public class DebugGetInfo {
 
     public static void getInfo(Car car){
         System.out.println("Col: " + car.getColor());
         System.out.println("Doors: " + car.getNrDoors());
         System.out.println("Pow: " + car.getEnginePower());
-        System.out.println("Speed: " + car.getCurrentSpeed());
+        System.out.println("Speed: " + car.getSpeed());
 
         System.out.println("Rot: " + car.getRotation());
         System.out.println("Pos: " + Arrays.toString(car.getPosition()));
@@ -23,13 +23,13 @@ public class Main {
         getInfo(volvo);
         volvo.startEngine();
         volvo.gas(0.3);
-        volvo.move();
+        volvo.moveTick();
         getInfo(volvo);
         volvo.turnRight(90);
-        volvo.move();
+        volvo.moveTick();
         volvo.turnRight(12);
         volvo.gas(0.6);
-        volvo.move();
+        volvo.moveTick();
         volvo.setColor(Color.red);
         getInfo(volvo);
     }

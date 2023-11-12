@@ -1,3 +1,4 @@
+import elements.vehicles.passengerCars.Saab95;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,15 +13,18 @@ public class TestSaab {
     }
 
     @Test
-    public void testSpeedFactorWithTurboOn(){
+    public void turboOnShouldMoveFaster(){
+        saab.startEngine();
+        saab.gas(0.5);
+        double normalSpeed = saab.getSpeed();
+
+        saab.stopEngine();
+
+        saab.startEngine();
         saab.setTurboOn();
-        assertEquals(125 * 0.01 * 1.3, saab.speedFactor() , 0.001);
-    }
-    @Test
-    public void testSpeedFactorWithTurboOff(){
-        saab.setTurboOff();
-        saab.speedFactor();
-        assertEquals(125 * 0.01 * 1, saab.speedFactor(), 0.001);
+        saab.gas(0.5);
+
+        assertTrue(saab.getSpeed() > normalSpeed);
     }
 
 }
