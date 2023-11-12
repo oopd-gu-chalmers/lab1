@@ -6,11 +6,11 @@ import java.awt.*;
 
 /**
  * The Car class is the superclass of all cars and trucks
- * A car has:
- * <p>A door count</p>
- * <p>An engine which is ON or OFF, with specific engine power</p>
- * <p>A speed factor which may be intrinsic to each car</p>
- * <p>Any properties of {@link #Vehicle}</>
+ * <p>A Car has:</p>
+ * <p>-A door count</p>
+ * <p>-An engine which is ON or OFF, with specific engine power</p>
+ * <p>-A speed factor which may be intrinsic to each car</p>
+ * <p>-Any properties of {@link #Vehicle}</p>
  */
 public abstract class Car extends Vehicle {
     private final int nrDoors; // Number of doors on the car
@@ -25,21 +25,6 @@ public abstract class Car extends Vehicle {
      */
     public Car(int nrDoors, double enginePower, String modelName, Color color){
         super(modelName, color);
-        this.nrDoors = nrDoors;
-        this.enginePower = enginePower;
-    }
-
-    /**
-     *
-     * @param nrDoors number of doors of the car
-     * @param enginePower engine power of the car, a higher power increases acceleration and max speed
-     * @param modelName the name of the model
-     * @param color color of the car, can be changed with {@link #setColor}
-     * @param position the x,y position of the car
-     * @param rotation the rotation of the car in degrees
-     */
-    public Car(int nrDoors, double enginePower, String modelName, Color color, double[] position, double rotation){
-        super(modelName, color, position, rotation);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
     }

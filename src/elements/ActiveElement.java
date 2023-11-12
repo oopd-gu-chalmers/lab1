@@ -3,7 +3,7 @@ package elements;
 /**
  * An Element has a position and a rotation, it can also move
  */
-public abstract class Element implements Movable{
+public abstract class ActiveElement implements Movable{
     private double[] position;
     private double rotation;
     private double speed = 0;
@@ -11,7 +11,7 @@ public abstract class Element implements Movable{
     /**
      * An element at {@code 0,0} with rotation {@code 0} degrees
      */
-    public Element(){
+    public ActiveElement(){
         resetTransform();
     }
 
@@ -20,7 +20,7 @@ public abstract class Element implements Movable{
      * @param position the x,y position of the element
      * @param rotation the rotation of the element in degrees
      */
-    public Element(double[] position, double rotation){
+    public ActiveElement(double[] position, double rotation){
         this.position = position;
         this.rotation = rotation;
     }
@@ -41,6 +41,9 @@ public abstract class Element implements Movable{
     public void setPosition(double x, double y){
         position[0] = x;
         position[1] = y;
+    }
+    public void setPosition(double[] position){
+        this.position = position;
     }
 
     /**
@@ -73,11 +76,24 @@ public abstract class Element implements Movable{
         this.speed = speed;
     }
 
+    public void move(double distance){
+        double[] pos = getPosition();
+        pos[0] += distance * Math.sin(Math.toRadians(getRotation()));
+        pos[1] += distance * Math.cos(Math.toRadians(getRotation()));
+        setPosition(pos[0], pos[1]);
+    }
     public void moveTick(){
         double[] pos = getPosition();
         pos[0] += getSpeed() * Math.sin(Math.toRadians(getRotation()));
         pos[1] += getSpeed() * Math.cos(Math.toRadians(getRotation()));
         setPosition(pos[0], pos[1]);
     }
+
+    public double distanceTo(ActiveElement other){
+        double[] pos = getPosition();
+        double[] otherPos = other.getPosition();
+        return Math.sqrt(Math.pow((pos[0] - otherPos[0]), 2) + Math.pow((pos[1]- otherPos[1]),2));
+    }
+
 
 }

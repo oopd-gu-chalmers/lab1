@@ -13,10 +13,6 @@ public abstract class PassengerCar extends Car {
         this.nrSeats = nrSeats;
     }
 
-    public PassengerCar(int nrSeats, int nrDoors, int enginePower, String modelName, Color color, double[] position, double rotation) {
-        super(nrDoors, enginePower, modelName, color, position, rotation);
-        this.nrSeats = nrSeats;
-    }
 
     public int getNrSeats(){
         return nrSeats;
