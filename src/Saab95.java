@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends Car implements Movable{
+public class Saab95 extends Car {
 
     protected boolean turboOn; //egen variabel
 
