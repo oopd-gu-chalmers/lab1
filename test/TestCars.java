@@ -11,10 +11,12 @@ public class TestCars {
     Saab95 mySaab95;
     Volvo240 myVolvo240;
 
+    Scania myScania;
     @Before
     public void setup() {
         mySaab95 = new Saab95();
         myVolvo240 = new Volvo240();
+        myScania = new Scania();
     }
 
 
@@ -121,4 +123,28 @@ public class TestCars {
         assertEquals(1.35D, myVolvo240.getCurrentSpeed(), 0.0);
         myVolvo240.stopEngine();
     }
+
+    @Test
+    public void test_if_bedAngle_can_extend_limit_of_vehicle(){
+        myScania.lowerBedAngle(10);
+        assertEquals(0,myScania.getBedAngle(),0.0);
+        myScania.raiseBedAngle(90);
+        assertEquals(70, myScania.getBedAngle(), 0.0);
+
+    }
+    @Test
+    public void test_if_you_can_drive_truck_when_bed_is_raised(){
+        myScania.raiseBedAngle(10);
+        myScania.startEngine();
+        assertEquals(0, myScania.getCurrentSpeed(), 0.0);
+
+        myScania.lowerBedAngle(10);
+        myScania.startEngine();
+        myScania.raiseBedAngle(10);
+        assertEquals(0, myScania.getBedAngle(), 0.0);
+
+        myScania.gas(1);
+        assertEquals(0, myScania.getCurrentSpeed(), 0.0);
+    }
+
 }
