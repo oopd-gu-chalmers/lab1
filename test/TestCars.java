@@ -143,6 +143,8 @@ public class TestCars {
         myScania.raiseBedAngle(10);
         assertEquals(0, myScania.getBedAngle(), 0.0);
 
+        myScania.stopEngine();
+        myScania.raiseBedAngle(10);
         myScania.gas(1);
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
     }
