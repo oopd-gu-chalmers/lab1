@@ -1,6 +1,7 @@
-package elements.vehicles.trucks;
+package assets.elements.vehicles.cars.trucks;
 
-import elements.vehicles.Truck;
+import assets.elements.vehicles.Engine;
+import assets.elements.vehicles.cars.Truck;
 
 import java.awt.*;
 
@@ -10,7 +11,7 @@ public final class ScaniaL280 extends Truck {
     private static final double maxTrayAngle = 70;
     private double trayAngle;
     public ScaniaL280(){
-        super(2, 300, "ScaniaL280", Color.WHITE);
+        super(2, new Engine(300, 500), "ScaniaL280", Color.WHITE, 2.5, 20000);
     }
 
     public double getTrayAngle() {
@@ -30,7 +31,7 @@ public final class ScaniaL280 extends Truck {
         }
     }
     public void retractTray(double degrees){
-        if(isEngineOn()) {
+        if(isStarted()) {
             System.out.println("Engine must be OFF to move tray");
             return;
         }
@@ -42,7 +43,7 @@ public final class ScaniaL280 extends Truck {
     }
 
     public void extendTray(double degrees){
-        if(isEngineOn()) {
+        if(isStarted()) {
             System.out.println("Engine must be OFF to move tray");
             return;
         }
@@ -51,5 +52,12 @@ public final class ScaniaL280 extends Truck {
             return;
         }
         setTrayAngle(trayAngle + degrees);
+    }
+
+    @Override
+    public void start(){
+        if (isTrayRetracted()) {
+            super.start();
+        }
     }
 }

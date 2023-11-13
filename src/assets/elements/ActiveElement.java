@@ -1,14 +1,14 @@
-package elements;
+package assets.elements;
 
-import storages.Storage;
+import assets.Movable;
+import assets.storages.Storage;
 
 /**
  * An ActiveElement has a position and a rotation, and it can move.
- * An ActiveElement can be mounted onto a storage, and if so it will turn inactive follow the transform of the storage
+ * If an ActiveElement is mounted, it will turn inactive and not be controllable.
  */
-public abstract class ActiveElement extends Element implements Movable{
+public abstract class ActiveElement extends Element implements Movable {
     private double speed = 0;
-    private Element storageHolder;
     private boolean active;
 
     /**
@@ -30,25 +30,25 @@ public abstract class ActiveElement extends Element implements Movable{
         }
     }
 
+    @Override
     public double getSpeed(){
         return speed;
     }
 
+    @Override
     public void setSpeed(double speed){
         this.speed = speed;
     }
 
+    @Override
     public void moveTick(){
-        if (storageHolder != null){
-            setPosition(storageHolder.getPosition());
+        if (getStorageHolder() != null){
+            setPosition(getStorageHolder().getOwner().getPosition());
             return;
         }
         if (!active) return;
 
-        double[] pos = getPosition();
-        pos[0] += getSpeed() * Math.sin(Math.toRadians(getRotation()));
-        pos[1] += getSpeed() * Math.cos(Math.toRadians(getRotation()));
-        setPosition(pos[0], pos[1]);
+        setPosition(getRelativePosition(0, getSpeed()));
     }
 
 

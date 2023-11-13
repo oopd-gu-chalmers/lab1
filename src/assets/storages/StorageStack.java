@@ -1,5 +1,5 @@
-package storages;
-import elements.Element;
+package assets.storages;
+import assets.elements.Element;
 
 import java.util.Stack;
 

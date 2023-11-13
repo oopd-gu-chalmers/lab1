@@ -1,5 +1,5 @@
-import elements.vehicles.Car;
-import elements.vehicles.passengerCars.Volvo240;
+import assets.elements.vehicles.Car;
+import assets.elements.vehicles.cars.passengerCars.Volvo240;
 
 import java.awt.*;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
-package elements;
+package assets.elements;
 
-import storages.Storage;
+import assets.storages.Storage;
 
 public class Workshop<T extends Vehicle> extends Element{
 

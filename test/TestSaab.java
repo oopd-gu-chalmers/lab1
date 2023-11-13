@@ -1,4 +1,4 @@
-import elements.vehicles.passengerCars.Saab95;
+import assets.elements.vehicles.cars.passengerCars.Saab95;
 import org.junit.Before;
 import org.junit.Test;
 

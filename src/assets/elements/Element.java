@@ -1,14 +1,15 @@
-package elements;
+package assets.elements;
 
-import storages.Storage;
+import assets.storages.Storage;
 
 /**
  * An Element has an x,y position and a rotation in degrees.
+ * It can be mounted to a storage, and if so keep the position of the storage.
  */
 public class Element {
-    protected double[] position;
-    protected double rotation;
-    protected Storage<? extends Element> storageHolder;
+    private double[] position;
+    private double rotation;
+    private Storage<? extends Element> storageHolder;
 
     public Element(){
         resetTransform();

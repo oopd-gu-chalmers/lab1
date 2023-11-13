@@ -1,12 +1,11 @@
-package elements.vehicles.passengerCars;
+package assets.elements.vehicles.cars.passengerCars;
 
-import elements.vehicles.PassengerCar;
+import assets.elements.vehicles.cars.PassengerCar;
+import assets.elements.vehicles.engines.TrimmedEngine;
 
 import java.awt.*;
 
 public final class Volvo240 extends PassengerCar {
-
-    private static final double trimFactor = 1.25;
 
     /**
      * A Volvo240 has:
@@ -22,12 +21,6 @@ public final class Volvo240 extends PassengerCar {
      * A Volvo240 has an intrinsic trim factor of 1.25
      */
     public Volvo240(){
-        super(5, 4, 100, "Volvo240", Color.black);
-        stopEngine();
-    }
-
-    @Override
-    protected double intrinsicSpeedFactor(){
-        return trimFactor;
+        super(5, 4, new TrimmedEngine(100, 1.25, 90), "Volvo240", Color.black, 1.4, 1300);
     }
 }

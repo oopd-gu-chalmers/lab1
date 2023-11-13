@@ -1,4 +1,4 @@
-package elements;
+package assets;
 
 /**
  * A Movable has a speed, and can move over time

@@ -1,14 +1,12 @@
-package storages;
+package assets.storages;
 
-import elements.Element;
+import assets.elements.Element;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Stack;
 
 public class Storage<T extends Element> {
-    protected final Collection<T> storageItems;
+    private final Collection<T> storageItems;
     private final Element owner;
     private final int size;
     protected Storage(Collection<T> storageItems, Element owner, int size){
@@ -24,7 +22,10 @@ public class Storage<T extends Element> {
     }
 
     public void add(T element){
-        if (storageItems.size() >= size) return;
+        if (storageItems.size() >= size){
+            System.out.printf("%s is full", getOwner());
+            return;
+        }
         storageItems.add(element);
         element.mount(this);
     }
@@ -48,7 +49,7 @@ public class Storage<T extends Element> {
         return storageItems.size();
     }
 
-    protected Collection<T> getStorageItems(){
+    public Collection<T> getStorageItems(){
         return storageItems;
     }
 }

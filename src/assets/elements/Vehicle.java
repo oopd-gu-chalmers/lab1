@@ -1,18 +1,30 @@
-package elements;
+package assets.elements;
+
+import assets.Colorable;
+import assets.Drivable;
 
 import java.awt.*;
 
+/**
+ *
+ */
 public abstract class Vehicle extends ActiveElement implements Drivable, Colorable {
     private final String modelName;
     private Color color;
+    private final double height;
+    private double weight;
 
-
-    public Vehicle(String modelName, Color color) {
+    public Vehicle(String modelName, Color color, double height, double weight) {
         super();
+        this.height = height;
         this.color = color;
         this.modelName = modelName;
     }
 
+    public double getHeight() {
+        return height;
+    }
+    public double getWeight(){return weight;}
 
     public String getModelName() {
         return modelName;
