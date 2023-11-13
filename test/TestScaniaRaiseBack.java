@@ -33,7 +33,7 @@ public class TestScaniaRaiseBack {
     }
 
     @Test
-    public void testExcessiveTilt() {
+    public void testExcessiveRaise() {
        scania.raiseBack(80);
        assertEquals(70, scania.getTilt(), 0.01);
     }
