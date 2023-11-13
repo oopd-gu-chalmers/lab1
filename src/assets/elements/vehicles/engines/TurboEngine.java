@@ -1,8 +1,5 @@
 package assets.elements.vehicles.engines;
 
-import assets.elements.Element;
-import assets.elements.vehicles.Engine;
-
 public class TurboEngine extends Engine{
     private final double turboFactor;
     private boolean turboOn;

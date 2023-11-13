@@ -1,8 +1,7 @@
 package assets.elements.vehicles.boats;
 
 import assets.Startable;
-import assets.elements.Vehicle;
-import assets.elements.vehicles.Engine;
+import assets.elements.vehicles.engines.Engine;
 
 import java.awt.*;
 

@@ -1,6 +1,6 @@
 package assets.elements.vehicles.cars;
 import assets.elements.vehicles.Car;
-import assets.elements.vehicles.Engine;
+import assets.elements.vehicles.engines.Engine;
 
 import java.awt.*;
 

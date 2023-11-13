@@ -1,7 +1,7 @@
 package assets.elements.vehicles.boats.motorizedBoats;
 
 import assets.elements.vehicles.Car;
-import assets.elements.vehicles.Engine;
+import assets.elements.vehicles.engines.Engine;
 import assets.elements.vehicles.boats.MotorizedBoat;
 import assets.storages.Storage;
 import assets.storages.StorageQueue;
@@ -14,7 +14,7 @@ public class Ferry2000 extends MotorizedBoat {
     private final int laneCount;
     private static final double reach = 5;
     public Ferry2000(int laneCount, int laneSize) {
-        super(new Engine(2500, 3500), "Ferry500", Color.CYAN, 10, 50000, 10);
+        super(new Engine(2000, 3500), "Ferry2000", Color.CYAN, 10, 50000, 10);
         lanes = new ArrayList<>();
         this.laneCount = laneCount;
         for(int i = 0; i < laneCount; i++){
@@ -41,7 +41,7 @@ public class Ferry2000 extends MotorizedBoat {
             System.out.println("That lane number does not exist!");
             return;
         }
-        lanes.get(laneNr).poll(getRelativePosition(0, 5));
+        lanes.get(laneNr - 1).poll(getRelativePosition(0, 5));
     }
 
     @Override

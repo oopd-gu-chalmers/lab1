@@ -2,6 +2,7 @@ package assets.elements.vehicles;
 
 import assets.Startable;
 import assets.elements.Vehicle;
+import assets.elements.vehicles.engines.Engine;
 
 import java.awt.*;
 
