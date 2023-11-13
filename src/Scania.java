@@ -20,6 +20,14 @@ public class Scania extends Car implements Movable{
     }
 
     public void raiseBack(double amount) {
+        if (amount >= 0) {
+            tilt = Math.min(tilt + amount, 70);
+        }
+    }
 
+    public void lowerBack(double amount) {
+        if (amount >= 0){
+            tilt = Math.max(tilt - amount, 0);
+        }
     }
 }
