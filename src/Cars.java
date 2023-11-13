@@ -15,7 +15,7 @@ public abstract class Cars implements Movable {
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-        this.position = new Point2D.Double(0.0F, 0.0F);
+        this.position = new Point2D.Double(0.0D, 0.0D);
         this.direction = Direction.NORTH;
 
     }
