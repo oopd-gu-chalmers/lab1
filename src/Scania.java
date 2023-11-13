@@ -20,7 +20,7 @@ public class Scania extends Car{
     }
 
     public void raiseBack(double amount) {
-        if (amount >= 0) {
+        if ((amount >= 0) && (getCurrentSpeed() == 0)) {
             tilt = Math.min(tilt + amount, 70);
         }
     }
