@@ -30,4 +30,9 @@ public class Scania extends Car{
             tilt = Math.max(tilt - amount, 0);
         }
     }
+
+    @Override
+    public void gas() {
+        if (tilt == 0) super.gas();
+    }
 }
