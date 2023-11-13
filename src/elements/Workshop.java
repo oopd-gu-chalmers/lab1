@@ -1,25 +1,26 @@
 package elements;
 
-import java.util.Set;
+import storages.Storage;
 
-public class Workshop<T extends Vehicle> implements StorageSet<T>{
+public class Workshop<T extends Vehicle> extends Element{
 
+    private final Storage<T> storage;
+    private final int maxVehicleCount;
 
-    public Workshop(Set<T> acceptedVehicles, int maxVehicleCount){
-
-    }
-    @Override
-    public int getStorageSize() {
-        return 0;
-    }
-
-    @Override
-    public void addElement(T element) {
-
+    public Workshop(int maxVehicleCount){
+        this.maxVehicleCount = maxVehicleCount;
+        this.storage = new Storage<>(this, maxVehicleCount);
     }
 
-    @Override
-    public void removeElement(T element) {
+    public void submit(T vehicle){
+        storage.add(vehicle);
+    }
 
+    public void retrieve(T vehicle){
+        storage.remove(vehicle, getRelativePosition(0, 5));
+    }
+
+    public int getMaxVehicleCount() {
+        return maxVehicleCount;
     }
 }

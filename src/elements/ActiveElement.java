@@ -1,71 +1,33 @@
 package elements;
 
+import storages.Storage;
+
 /**
- * An Element has a position and a rotation, it can also move
+ * An ActiveElement has a position and a rotation, and it can move.
+ * An ActiveElement can be mounted onto a storage, and if so it will turn inactive follow the transform of the storage
  */
-public abstract class ActiveElement implements Movable{
-    private double[] position;
-    private double rotation;
+public abstract class ActiveElement extends Element implements Movable{
     private double speed = 0;
+    private Element storageHolder;
+    private boolean active;
 
     /**
      * An element at {@code 0,0} with rotation {@code 0} degrees
      */
     public ActiveElement(){
-        resetTransform();
+        super();
+        this.demount();
     }
 
-    /**
-     * An element with specified transform
-     * @param position the x,y position of the element
-     * @param rotation the rotation of the element in degrees
-     */
-    public ActiveElement(double[] position, double rotation){
-        this.position = position;
-        this.rotation = rotation;
+    public boolean isInactive() {
+        return !active;
     }
 
-    /**
-     * Sets the position to {@code 0,0} and the rotation to {@code 0} degrees
-     */
-    public void resetTransform(){
-        position = new double[]{0,0};
-        rotation = 0;
-    }
-
-    /**
-     * Change the position of the element
-     * @param x x-coordinate
-     * @param y y-coordinate
-     */
-    public void setPosition(double x, double y){
-        position[0] = x;
-        position[1] = y;
-    }
-    public void setPosition(double[] position){
-        this.position = position;
-    }
-
-    /**
-     * Change the rotation of the element
-     * @param rotation rotation in degrees
-     */
-    public void setRotation(double rotation){
-        this.rotation = rotation;
-    }
-
-    /**
-     * @return rotation in degrees
-     */
-    public double getRotation(){
-        return rotation;
-    }
-
-    /**
-     * @return x,y coordinate-pair
-     */
-    public double[] getPosition(){
-        return position;
+    public void setActive(boolean bool){
+        active = bool;
+        if (!bool) {
+            setSpeed(0);
+        }
     }
 
     public double getSpeed(){
@@ -76,23 +38,36 @@ public abstract class ActiveElement implements Movable{
         this.speed = speed;
     }
 
-    public void move(double distance){
-        double[] pos = getPosition();
-        pos[0] += distance * Math.sin(Math.toRadians(getRotation()));
-        pos[1] += distance * Math.cos(Math.toRadians(getRotation()));
-        setPosition(pos[0], pos[1]);
-    }
     public void moveTick(){
+        if (storageHolder != null){
+            setPosition(storageHolder.getPosition());
+            return;
+        }
+        if (!active) return;
+
         double[] pos = getPosition();
         pos[0] += getSpeed() * Math.sin(Math.toRadians(getRotation()));
         pos[1] += getSpeed() * Math.cos(Math.toRadians(getRotation()));
         setPosition(pos[0], pos[1]);
     }
 
-    public double distanceTo(ActiveElement other){
-        double[] pos = getPosition();
-        double[] otherPos = other.getPosition();
-        return Math.sqrt(Math.pow((pos[0] - otherPos[0]), 2) + Math.pow((pos[1]- otherPos[1]),2));
+
+    @Override
+    public void mount(Storage<? extends Element> storageToMount){
+        super.mount(storageToMount);
+        active = false;
+    }
+
+    @Override
+    public void demount(double[] position){
+        super.demount(position);
+        active = true;
+    }
+
+    @Override
+    public void demount(){
+        super.demount();
+        active = true;
     }
 
 

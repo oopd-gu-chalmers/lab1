@@ -2,19 +2,15 @@ package elements;
 
 import java.awt.*;
 
-public abstract class Vehicle extends ActiveElement implements Drivable, Colorable, Mountable {
+public abstract class Vehicle extends ActiveElement implements Drivable, Colorable {
     private final String modelName;
     private Color color;
-    private ActiveElement mountedOn;
-    private boolean active;
 
 
     public Vehicle(String modelName, Color color) {
         super();
         this.color = color;
         this.modelName = modelName;
-        this.demount();
-        this.setActive(true);
     }
 
 
@@ -34,53 +30,15 @@ public abstract class Vehicle extends ActiveElement implements Drivable, Colorab
 
     @Override
     public void turnLeft(double degrees){
-        if (!active) return;
-        double new_rotation = getRotation();
-        new_rotation -= degrees;
-        new_rotation = ((360 + new_rotation % 360) % 360); // Limit value to range [0, 360)
-        setRotation(new_rotation);
-
+        if (isInactive()) return;
+        double newRotation = getRotation();
+        setRotation(newRotation - degrees);
     }
 
     @Override
     public void turnRight(double degrees){
-        if (!active) return;
-        double new_rotation = getRotation();
-        new_rotation += degrees;
-        new_rotation = ((360 + new_rotation % 360) % 360); // Limit value to range [0, 360)
-        setRotation(new_rotation);
+        if (isInactive()) return;
+        double newRotation = getRotation();
+        setRotation(newRotation + degrees);
     }
-
-    public void setActive(boolean bool){
-        active = bool;
-        if (!bool) {
-            setSpeed(0);
-        }
-    }
-    @Override
-    public void mount(ActiveElement vehicleToMount){
-        mountedOn = vehicleToMount;
-        active = false;
-    }
-    @Override
-    public void demount(){
-        mountedOn = null;
-        active = true;
-    }
-
-    @Override
-    public boolean isMounted() {
-        return mountedOn != null;
-    }
-
-    @Override
-    public void moveTick(){
-        if (mountedOn != null){
-            setPosition(mountedOn.getPosition());
-            return;
-        }
-        if (!active) return;
-        super.moveTick();
-    }
-
 }

@@ -1,20 +1,17 @@
 package elements.vehicles.trucks;
-import elements.Storage;
-import elements.StorageStack;
-import elements.Vehicle;
+import storages.StorageStack;
 import elements.vehicles.Car;
 import elements.vehicles.Truck;
-import elements.vehicles.passengerCars.Volvo240;
+
 
 import java.awt.*;
-import java.util.Stack;
 
-public final class ManTGX extends Truck implements StorageStack<Car> {
-
-    Stack<Car> storage = new Stack<>();
+public final class ManTGX extends Truck {
+    private final StorageStack<Car> storage;
     private static final int maxStorageSize = 6;
     public ManTGX(){
         super(2, 450, "ManTGX", Color.RED);
+        this.storage = new StorageStack<>(this, maxStorageSize);
     }
 
 
@@ -30,8 +27,7 @@ public final class ManTGX extends Truck implements StorageStack<Car> {
         setTrayRetracted(false);
     }
 
-    @Override
-    public void addElement(Car car) {
+    public void loadCar(Car car) {
         final double reach = 5;
 
         if (car instanceof ManTGX) {
@@ -43,25 +39,11 @@ public final class ManTGX extends Truck implements StorageStack<Car> {
             return;
         }
 
-        storage.addElement(car);
-        car.mount(this);
+        storage.add(car);
     }
 
-    @Override
-    public void removeElement() {
-        if (getStorageElementCount() == 0) return;
+    public void unloadCar() {
         if (!isTrayRetracted()) return;
-        Car car = storage.pop();
-        car.demount();
-        car.setPosition(getPosition());
-        car.move(-1);
-    }
-
-    @Override
-    public int getStorageSize(){
-        return maxStorageSize;
-    }
-    public int getStorageElementCount(){
-        return storage.size();
+        storage.pop(getRelativePosition(180, -2));
     }
 }

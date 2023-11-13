@@ -1,3 +1,4 @@
+
 import elements.vehicles.PassengerCar;
 import elements.vehicles.passengerCars.Volvo240;
 import org.junit.Before;
@@ -19,6 +20,7 @@ public class TestCar {
             return cursedSpeedFactor;
         }
     }
+
     Volvo240 volvo;
     CursedCar carWithSpeedFactorNegative;
     CursedCar carWithSpeedFactorVeryLarge;
