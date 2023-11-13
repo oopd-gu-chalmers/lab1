@@ -41,7 +41,6 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
-    //Är det meningen att vi ska ha massa abstrakta methods här?
     public abstract double speedFactor();
 
     protected void incrementSpeed(double amount) {
