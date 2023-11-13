@@ -1,6 +1,6 @@
 import java.awt.*;
-
-public class TransportTruck extends Scania { // WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+/*
+public class TransportTruck extends Cars{ // WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
     public TransportTruck(){
         super(2,70, Color.GREEN,"Scania");
@@ -10,17 +10,7 @@ public class TransportTruck extends Scania { // WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
     }
 
 
-    @Override
-    public void raiseBedAngle() {
-        if (getCurrentSpeed() == 0) {
-            getBedAngle() = 70;
-        }
-    }
-    @Override
-    public void lowerBedAngle() {
-        if (getCurrentSpeed() == 0) {
-            bedAngle = 0;
-        }
-    }
+
+
 }
 */

@@ -15,6 +15,7 @@ public class Scania extends Cars {
             return getEnginePower() * 0.01;
         }
         else
+
             return 0;
     }
     @Override
