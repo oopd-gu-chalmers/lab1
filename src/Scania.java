@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Car implements Movable{
+public class Scania extends Car{
 
     private double tilt = 0;
 
