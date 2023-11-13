@@ -35,7 +35,7 @@ public class Engine {
         return enginePower;
     }
     public double getGeneratedPower() {
-        return getEnginePower();
+        return getEnginePower() * 0.01;
     }
 
     public double getWeight() {

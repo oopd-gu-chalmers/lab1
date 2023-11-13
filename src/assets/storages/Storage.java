@@ -23,7 +23,7 @@ public class Storage<T extends Element> {
 
     public void add(T element){
         if (storageItems.size() >= size){
-            System.out.printf("%s is full", getOwner());
+            System.out.printf("%s is full%n", getOwner());
             return;
         }
         storageItems.add(element);
@@ -31,7 +31,10 @@ public class Storage<T extends Element> {
     }
 
     public void remove(T element){
-        if (!storageItems.remove(element)) return;
+        if (!storageItems.remove(element)) {
+            System.out.printf("%s does not contain %s%n", getOwner(), element);
+            return;
+        }
         element.demount();
     }
     public void remove(T element, double[] position){

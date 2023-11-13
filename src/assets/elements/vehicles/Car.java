@@ -58,8 +58,8 @@ public abstract class Car extends Vehicle implements Startable {
      * @param amount gas amount between 0 and 1
      */
     public void gas(double amount){
-        if (!engine.isEngineOn()){
-            System.out.println("Engine must be ON to use gas");
+        if (!isStarted()){
+            System.out.println("Car must be started to use gas!");
             return;
         }
         if (amount < 0 || amount > 1) {

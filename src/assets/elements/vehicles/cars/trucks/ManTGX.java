@@ -38,12 +38,12 @@ public final class ManTGX extends Truck {
             return;
         }
         if (car.getHeight() > maxHeight) {
-            System.out.printf("%s is too high", car);
+            System.out.printf("%s is too high%n", car);
             return;
         }
 
         if (distanceTo(car) > reach) {
-            System.out.printf("%s is too far away", car);
+            System.out.printf("%s is too far away%n", car);
             return;
         }
 

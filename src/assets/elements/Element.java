@@ -6,7 +6,7 @@ import assets.storages.Storage;
  * An Element has an x,y position and a rotation in degrees.
  * It can be mounted to a storage, and if so keep the position of the storage.
  */
-public class Element {
+public abstract class Element {
     private double[] position;
     private double rotation;
     private Storage<? extends Element> storageHolder;
