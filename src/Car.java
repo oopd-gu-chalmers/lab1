@@ -63,9 +63,6 @@ public abstract class Car implements Movable {
         }
     }
 
-    /*Se till att era bilar implementerar interfacet Movable, med någon lämplig intern representation
-    av deras riktning och position. Metoden move ska fungera så att beroende på riktning ökas
-    (eller minskas) bilens x- eller y-koordinat med dess currentSpeed.*/
 
     public void move() {
         //Ändrar x eller y baserat på riktning
