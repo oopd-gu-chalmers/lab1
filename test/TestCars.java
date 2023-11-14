@@ -12,11 +12,13 @@ public class TestCars {
     Volvo240 myVolvo240;
 
     Scania myScania;
+    TransportTruck myTransportTruck;
     @Before
     public void setup() {
         mySaab95 = new Saab95();
         myVolvo240 = new Volvo240();
         myScania = new Scania();
+        myTransportTruck = new TransportTruck();
     }
 
 
@@ -126,27 +128,33 @@ public class TestCars {
 
     @Test
     public void test_if_bedAngle_can_extend_limit_of_vehicle(){
-        myScania.truckBed.lowerBedAngle(10);
-        assertEquals(0,myScania.truckBed.getBedAngle(),0.0);
-        myScania.truckBed.raiseBedAngle(90);
-        assertEquals(70, myScania.truckBed.getBedAngle(), 0.0);
+        myScania.lowerBedAngle(10);
+        assertEquals(0,myScania.getBedAngle(),0.0);
+        myScania.raiseBedAngle(90);
+        assertEquals(70, myScania.getBedAngle(), 0.0);
 
     }
     @Test
     public void test_if_you_can_drive_truck_when_bed_is_raised(){
-        myScania.truckBed.raiseBedAngle(10);
+        myScania.raiseBedAngle(10);
         myScania.startEngine();
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
 
-        myScania.truckBed.lowerBedAngle(10);
+        myScania.lowerBedAngle(10);
         myScania.startEngine();
-        myScania.truckBed.raiseBedAngle(10);
-        //assertEquals(0, myScania.truckBed.getBedAngle(), 0.0); TODO raisebedangle tittar inte om currentspeed inte är 0
+        myScania.raiseBedAngle(10);
+        //assertEquals(0, myScania.getBedAngle(), 0.0);
 
         myScania.stopEngine();
-        myScania.truckBed.raiseBedAngle(10);
+        myScania.raiseBedAngle(10);
         myScania.gas(1);
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
     }
 
+    @Test
+    public void test_if_transportTruck_moves_loaded_car_moves() {
+        myTransportTruck.loadCar(mySaab95);
+        myTransportTruck.loadCar(myVolvo240);
+        myTransportTruck.loadCar(myScania);
+    }
 }
