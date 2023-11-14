@@ -121,4 +121,5 @@ public abstract class Cars implements Movable {
     private void decrementSpeed(double amount) {
         this.setCurrentSpeed(Math.max((getCurrentSpeed() - speedFactor() * amount), 0));
     }
+
 }
