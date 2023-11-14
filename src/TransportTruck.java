@@ -12,7 +12,8 @@ public class TransportTruck extends Cars{
         super(2,70, Color.GREEN,"Transport Truck");
         // super(nrDoors,enginePower,color,modelName);
         super.stopEngine();
-
+        ramp = true;
+        maxLoadAmount = 2;
     }
 
     public double speedFactor() {
