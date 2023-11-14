@@ -31,5 +31,8 @@ class CarTest {
 
     @Test
     void brake() {
+        double initialSpeed = car.getCurrentSpeed();
+        car.brake(1);
+        assertFalse(initialSpeed < car.getCurrentSpeed());
     }
 }
