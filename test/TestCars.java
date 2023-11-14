@@ -10,7 +10,6 @@ public class TestCars {
 
     Saab95 mySaab95;
     Volvo240 myVolvo240;
-
     Scania myScania;
     TransportTruck myTransportTruck;
     @Before
@@ -36,7 +35,6 @@ public class TestCars {
         mySaab95.gas(1);
         mySaab95.gas(1);
         assertEquals(2.5D, mySaab95.getCurrentSpeed(), 0.0D);
-
 
         myVolvo240.gas(1);
         myVolvo240.gas(1);
@@ -72,7 +70,6 @@ public class TestCars {
         mySaab95.startEngine();
         mySaab95.gas(1);
 
-
         mySaab95.move();
         assertEquals(0.0D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(1.35D,(mySaab95.getPositionY()), 0.0D);
@@ -92,7 +89,6 @@ public class TestCars {
         assertEquals(0.0D, (mySaab95.getPositionX()), 0.0D);
         assertEquals(0.0D,(mySaab95.getPositionY()), 0.0D);
         mySaab95.turnRight();
-
     }
     @Test
     public void test_if_car_has_color_doors_and_modelName(){
@@ -102,7 +98,6 @@ public class TestCars {
         assertEquals(Color.RED, mySaab95.getColor());
         assertEquals(4, myVolvo240.getNrDoors());
         assertEquals(2, mySaab95.getNrDoors());
-
     }
 
     @Test
@@ -132,7 +127,6 @@ public class TestCars {
         assertEquals(0,myScania.getBedAngle(),0.0);
         myScania.raiseBedAngle(90);
         assertEquals(70, myScania.getBedAngle(), 0.0);
-
     }
     @Test
     public void test_if_you_can_drive_truck_when_bed_is_raised(){

@@ -19,9 +19,7 @@ public abstract class Cars implements Movable {
         this.direction = Direction.NORTH;
 
     }
-
     // TODO kanske skapa en ny kostruktor för lastbilar
-
     public void gas(double amount) {
 
         if (0.0D <= amount && amount <= 1) {
@@ -34,12 +32,8 @@ public abstract class Cars implements Movable {
             decrementSpeed(amount);
         }
     }
-
     public abstract double speedFactor();
-
-
     private double currentSpeed;
-
     private enum Direction {
         NORTH,
         EAST,
