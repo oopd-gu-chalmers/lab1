@@ -143,7 +143,7 @@ public class TestCars {
         myScania.lowerBedAngle(10);
         myScania.startEngine();
         myScania.raiseBedAngle(10);
-        //assertEquals(0, myScania.getBedAngle(), 0.0);
+        assertEquals(0, myScania.getBedAngle(), 0.0);
 
         myScania.stopEngine();
         myScania.raiseBedAngle(10);
