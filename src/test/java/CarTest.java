@@ -16,6 +16,8 @@ class CarTest {
 
     @org.junit.jupiter.api.Test
     void stopEngine() {
+        car.stopEngine();
+        assertFalse(car.engineIsRunning());
     }
 
     @org.junit.jupiter.api.Test
