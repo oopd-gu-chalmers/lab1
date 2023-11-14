@@ -22,6 +22,9 @@ class CarTest {
 
     @org.junit.jupiter.api.Test
     void gas() {
+        double initialSpeed = car.getCurrentSpeed();
+        car.gas(1);
+        assertFalse(initialSpeed > car.getCurrentSpeed());
     }
 
     @org.junit.jupiter.api.Test
