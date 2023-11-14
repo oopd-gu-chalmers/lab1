@@ -10,7 +10,8 @@ class CarTest {
 
     @org.junit.jupiter.api.Test
     void startEngine() {
-
+        car.startEngine();
+        assertTrue(car.engineIsRunning());
     }
 
     @org.junit.jupiter.api.Test
