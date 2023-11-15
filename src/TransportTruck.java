@@ -12,9 +12,10 @@ public class TransportTruck extends Cars{
         super(2,70, Color.GREEN,"Transport Truck");
         // super(nrDoors,enginePower,color,modelName);
         super.stopEngine();
-        ramp = true;
-        maxLoadAmount = 2;
-        List<Cars> storage = new ArrayList<>();
+        rampUp = true;
+        maxLoadAmount = 2+(1);
+        storage = new ArrayList<>();
+        storage.add(this);
     }
 
     public double speedFactor() {
@@ -36,7 +37,7 @@ public class TransportTruck extends Cars{
 
 
     public void loadCar(Cars car){
-        if(storage== null || storage.size() < maxLoadAmount && !ramp && overlaps(car)) {
+        if(storage.size() < maxLoadAmount && !rampUp && overlaps(car)) {
             storage.add(car);
             System.out.println(car.getModelName() + " is on the transport");
         }

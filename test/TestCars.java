@@ -20,8 +20,6 @@ public class TestCars {
         myTransportTruck = new TransportTruck();
     }
 
-
-
     @Test
     public void test_if_startEngine_sets_current_speed(){
         myVolvo240.startEngine();
@@ -146,9 +144,35 @@ public class TestCars {
     }
 
     @Test
-    public void test_if_transportTruck_moves_loaded_car_moves() {
+    public void test_if_transportTruck_can_contain_more_cars_than_max() {
+        myTransportTruck.lowerRamp();
         myTransportTruck.loadCar(mySaab95);
         myTransportTruck.loadCar(myVolvo240);
         myTransportTruck.loadCar(myScania);
+
+        //assertEquals(3, myTransportTruck.);
+        myTransportTruck.raiseRamp();
+        myTransportTruck.lowerRamp();
+        myTransportTruck.unloadCar();
+        myTransportTruck.unloadCar();
+        myTransportTruck.unloadCar();
+    }
+    @Test
+    public void test_if_car_moves_with_transportTruck(){
+        myTransportTruck.lowerRamp();
+        myTransportTruck.loadCar(myScania);
+        myTransportTruck.loadCar(myVolvo240);
+        myTransportTruck.raiseRamp();
+        myTransportTruck.gas(1);
+        myTransportTruck.move();
+        assertEquals(myTransportTruck.getPositionY(),myScania.getPositionY(),0.0D);
+        assertEquals(myTransportTruck.getPositionY(),myVolvo240.getPositionY(),0.0D);
+        myTransportTruck.lowerRamp();
+        myTransportTruck.unloadCar();
+        System.out.println(myTransportTruck.getCurrentSpeed());
+        myTransportTruck.raiseRamp();
+        myTransportTruck.move();
+        assertNotEquals(myScania.getPositionY(),myVolvo240.getPositionY(),0.0D);
+
     }
 }

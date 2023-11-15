@@ -33,6 +33,8 @@ public class Scania extends Cars {
         }
     }
     public void lowerBedAngle(double amount) {
-        this.bedAngle = Math.max(bedAngle - amount, 0);
+        if (getCurrentSpeed() == 0) {
+            this.bedAngle = Math.max(bedAngle - amount, 0);
+        }
     }
 }
