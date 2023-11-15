@@ -1,46 +1,19 @@
 import java.awt.*;
 
-public class Truck extends Car implements Back{
+public abstract class Truck extends Car {
 
-    private double tilt = 0;
-
-    public Truck(){
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
-        modelName = "Scania";
-    }
-
-    public double getTilt() {
-        return tilt;
-    }
+    protected boolean backIsClosed = true;
 
     public double speedFactor() {
         return 1; //TODO: Fixa värden
     }
 
-    public void raiseBack() {
-        raiseBack(10);
-    }
+    public abstract void raiseBack();
 
-    public void lowerBack() {
-        lowerBack(10);
-    }
-
-    public void raiseBack(double amount) {
-        if ((amount >= 0) && (currentSpeed == 0)) {
-            tilt = Math.min(tilt + amount, 70);
-        }
-    }
-
-    public void lowerBack(double amount) {
-        if (amount >= 0){
-            tilt = Math.max(tilt - amount, 0);
-        }
-    }
+    public abstract void lowerBack();
 
     @Override
     public void gas() {
-        if (tilt == 0) super.gas();
+        if (!backIsClosed) super.gas();
     }
 }

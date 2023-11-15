@@ -1,7 +1,6 @@
 import java.util.Stack;
 
-public class MercedesCarTransport extends Car implements Back{
-    private boolean rampIsRaised = true;
+public class MercedesCarTransport extends Truck {
     private Stack cars;
     private int maxCars;
 
@@ -10,7 +9,7 @@ public class MercedesCarTransport extends Car implements Back{
     }
 
     public void addCar() {
-        if (!rampIsRaised) {
+        if (!backIsClosed) {
 
         }
     }
@@ -20,13 +19,12 @@ public class MercedesCarTransport extends Car implements Back{
     }
 
     public void raiseBack() {
-
-        rampIsRaised = true;
+        backIsClosed = true;
     }
 
     public void lowerBack() {
         if (currentSpeed == 0) {
-            rampIsRaised = false;
+            backIsClosed = false;
         }
     }
 

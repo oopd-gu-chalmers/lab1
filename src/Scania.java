@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Car implements Back{
+public class Scania extends Truck{
 
     private double tilt = 0;
 
