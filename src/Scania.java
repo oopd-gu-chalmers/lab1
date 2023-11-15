@@ -5,6 +5,7 @@ public class Scania extends Truck{
     private double tilt = 0;
 
     public Scania(){
+        super();
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;

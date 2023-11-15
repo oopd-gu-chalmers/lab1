@@ -3,7 +3,9 @@ import java.awt.*;
 public abstract class Truck extends Car {
     protected boolean backIsClosed = true;
 
-
+    public Truck() {
+        isLoadable = false;
+    }
 
     public double speedFactor() {
         return 1; //TODO: Fixa värden

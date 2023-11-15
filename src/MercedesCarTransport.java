@@ -1,21 +1,26 @@
-import java.util.Stack;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class MercedesCarTransport extends Truck {
-    private CarStack cars;
+    private final CarStack cars;
 
-    public MercedesCarTransport(int maxCars) {
-        cars = new CarStack(maxCars);
+    public MercedesCarTransport(int maxCars, int maxDoors) {
+        super();
+        cars = new CarStack(maxCars, maxDoors);
     }
 
-    public void addCar() {
-        if (!backIsClosed) {
-            //cars.add();
+    public void addCar(Car car) {
+        if (!backIsClosed && Arrays.equals(car.position, new double[]{this.position[0] - this.getDirection()[0],
+                this.position[1] - this.getDirection()[1]})) {
+            cars.addCar(car);
         }
     }
 
     public Car removeCar() {
         Car car = cars.removeCar();
-        car.position = this.position;
+        car.position = new double[]{this.position[0] - this.getDirection()[0],
+                                    this.position[1] - this.getDirection()[1]};
+        return car;
     }
 
     public void raiseBack() {
@@ -26,5 +31,25 @@ public class MercedesCarTransport extends Truck {
         if (currentSpeed == 0) {
             backIsClosed = false;
         }
+    }
+    
+    @Override
+    public void move() {
+       super.move();
+        for (Car car: cars) {
+            car.setPosition(this.position);
+        }
+    }
+
+    @Override
+    public void turnLeft() {
+        super.turnLeft();
+        cars.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        super.turnRight();
+        cars.turnRight();
     }
 }
