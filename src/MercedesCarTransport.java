@@ -13,8 +13,9 @@ public class MercedesCarTransport extends Truck {
         }
     }
 
-    public void removeCar() {
-
+    public Car removeCar() {
+        Car car = cars.removeCar();
+        car.position = this.position;
     }
 
     public void raiseBack() {

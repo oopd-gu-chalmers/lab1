@@ -6,10 +6,13 @@ public class CarStack extends Stack {
         this.maxCars = maxCars;
     }
     public void addCar(Car car) {
-
+        if(this.size() <= maxCars) {
+            this.push(car);
+        }
     }
 
-    public void removeCar() {
-
+    public Car removeCar() {
+        if (this.size() > 0) return (Car) this.pop();
+        return null;
     }
 }
