@@ -55,4 +55,9 @@ public class Car implements ICar {
     public void brake(double amount) {
 
     }
+
+    @Override
+    public boolean engineIsRunning() {
+        return false;
+    }
 }
