@@ -5,7 +5,7 @@ import java.util.List;
 import static java.lang.Math.abs;
 
 public class TransportTruck extends Cars{
-    private boolean ramp;
+    private boolean rampUp;
     private List<Cars> storage;
     private final int maxLoadAmount;
     public TransportTruck(){
@@ -49,17 +49,18 @@ public class TransportTruck extends Cars{
             System.out.println("The truck is full");
         }
     }
-    /*
-    public void unloadCar(){
-        if(!storage.isEmpty() && !ramp){
 
+    public void unloadCar(){
+        if(storage.size() > 1 && !rampUp){
+            System.out.println("This car was unloaded: "+storage.getLast());
+            storage.removeLast();
         }
         else {
-
+            System.out.println("There is no car on the transporttruck");
         }
-        //TODO
+
     }
-*/
+
     private boolean overlaps(Cars car){
         return (abs(this.getPositionX() - car.getPositionX()) < 1) && (abs(this.getPositionY() - car.getPositionY()) < 1);
     }
