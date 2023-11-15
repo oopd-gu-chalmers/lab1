@@ -11,6 +11,7 @@ import java.awt.*;
  */
 public abstract class Car extends Vehicle implements Startable {
     private final int nrDoors; // Number of doors on the car
+
     private Engine engine;
     private boolean started;
 
@@ -72,7 +73,7 @@ public abstract class Car extends Vehicle implements Startable {
 
     /**
      * The brake method is used to decrease the speed of the car
-     * @param amount gas amount between 0 and 1
+     * @param amount between 0 and 1
      */
     public void brake(double amount) {
         if (amount < 0 || amount > 1) {
@@ -82,6 +83,9 @@ public abstract class Car extends Vehicle implements Startable {
         decrementSpeed(amount);
     }
 
+    public Engine getEngine() {
+        return engine;
+    }
     public void setEngine(Engine engine){
         this.engine = engine;
     }

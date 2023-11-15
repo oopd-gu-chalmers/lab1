@@ -12,17 +12,24 @@ public abstract class ActiveElement extends Element implements Movable {
     private boolean active;
 
     /**
-     * An element at {@code 0,0} with rotation {@code 0} degrees
+     * An element at 0,0 with rotation 0 degrees
      */
     public ActiveElement(){
         super();
         this.demount();
     }
 
+    /**
+     * @return true if element is not active, false otherwise
+     */
     public boolean isInactive() {
         return !active;
     }
 
+    /**
+     * Set the element to be active or inactive
+     * @param bool true or false
+     */
     public void setActive(boolean bool){
         active = bool;
         if (!bool) {
@@ -55,19 +62,21 @@ public abstract class ActiveElement extends Element implements Movable {
     @Override
     public void mount(Storage<? extends Element> storageToMount){
         super.mount(storageToMount);
-        active = false;
+        setActive(false);
     }
 
     @Override
     public void demount(double[] position){
         super.demount(position);
-        active = true;
+        setActive(true);
+        setSpeed(0);
     }
 
     @Override
     public void demount(){
         super.demount();
-        active = true;
+        setActive(true);
+        setSpeed(0);
     }
 
 

@@ -36,12 +36,12 @@ public class Ferry2000 extends MotorizedBoat {
         lanes.get(laneNr - 1).add(car);
     }
 
-    public void unloadCar(int laneNr){
+    public Car unloadCar(int laneNr){
         if (laneNr <= 0 | laneNr > laneCount){
             System.out.println("That lane number does not exist!");
-            return;
+            return null;
         }
-        lanes.get(laneNr - 1).poll(getRelativePosition(0, 5));
+        return lanes.get(laneNr - 1).poll(getRelativePosition(0, 5));
     }
 
     @Override

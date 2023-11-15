@@ -6,8 +6,6 @@ import assets.elements.vehicles.cars.Truck;
 import java.awt.*;
 
 public final class ScaniaL280 extends Truck {
-
-    private static final double traySpeed = 10;
     private static final double maxTrayAngle = 70;
     private double trayAngle;
     public ScaniaL280(){
@@ -35,20 +33,12 @@ public final class ScaniaL280 extends Truck {
             System.out.println("Engine must be OFF to move tray");
             return;
         }
-        if (degrees < 0 || degrees > traySpeed){
-            System.out.printf("Angle must be between 0 and %s", maxTrayAngle);
-            return;
-        }
         setTrayAngle(trayAngle - degrees);
     }
 
     public void extendTray(double degrees){
         if(isStarted()) {
             System.out.println("Engine must be OFF to move tray");
-            return;
-        }
-        if (degrees < 0 || degrees > traySpeed){
-            System.out.printf("Angle must be between 0 and %s", maxTrayAngle);
             return;
         }
         setTrayAngle(trayAngle + degrees);

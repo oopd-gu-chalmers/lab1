@@ -14,13 +14,13 @@ public class TestSaab {
 
     @Test
     public void turboOnShouldMoveFaster(){
-        saab.startEngine();
+        saab.start();
         saab.gas(0.5);
         double normalSpeed = saab.getSpeed();
 
-        saab.stopEngine();
+        saab.stop();
 
-        saab.startEngine();
+        saab.start();
         saab.setTurboOn();
         saab.gas(0.5);
 
