@@ -10,19 +10,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarTest {
     Car car = new Car();
     @Test
-    void setColor() {
+    void settingColorToBlue() {
         car.setColor(Color.BLUE);
         assertEquals(Color.BLUE, car.getColor());
     }
 
     @Test
-    void startEngine() {
+    void engineShouldBeRunningAfterStartingIt() {
         car.startEngine();
         assertTrue(car.engineIsRunning());
     }
 
     @Test
-    void stopEngine() {
+    void engineShouldNotBeRunningAfterStoppingIt() {
         car.stopEngine();
         assertFalse(car.engineIsRunning());
     }
