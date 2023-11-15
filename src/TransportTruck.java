@@ -6,7 +6,7 @@ import static java.lang.Math.abs;
 
 public class TransportTruck extends Cars{
     private boolean rampUp;
-    private List<Cars> storage;
+    private final List<Cars> storage;
     private final int maxLoadAmount;
     public TransportTruck(){
         super(2,70, Color.GREEN,"Transport Truck");
@@ -25,20 +25,23 @@ public class TransportTruck extends Cars{
         else
             return 0;
     }
+
     public void raiseRamp(){
-        if (super.getCurrentSpeed() == 0){
+        if (getCurrentSpeed() == 0){
             rampUp = true;
-            System.out.println(super.getCurrentSpeed());
+        }
+        else {
+            System.out.println("Ramp didn't raise, currentspeed: "+ getCurrentSpeed());
         }
     }
     public void lowerRamp(){
-        if (super.getCurrentSpeed() == 0) {
+        if (getCurrentSpeed() == 0) {
             rampUp = false;
-            System.out.println(getCurrentSpeed());
+        }
+        else {
+            System.out.println("Ramp didn't lower, currentspeed: "+ getCurrentSpeed());
         }
     }
-
-
 
     public void loadCar(Cars car){
         if(storage.size() < maxLoadAmount && !rampUp && overlaps(car)) {
@@ -56,7 +59,7 @@ public class TransportTruck extends Cars{
             storage.removeLast();
         }
         else {
-            System.out.println("There is no car on the transporttruck");
+            System.out.println("There is no Vehicles on the truck");
         }
 
     }
@@ -66,7 +69,10 @@ public class TransportTruck extends Cars{
     }
 
     public void getStorage(){
-        for (int i = 0; i<3; i++){
+        if (storage.size() == 1){
+            System.out.println("There is no Vehicles on the truck");
+        }
+        for (int i = 1; i < storage.size(); i++){
             System.out.println("This Vehicle is on the truck: " + storage.get(i));
         }
     }

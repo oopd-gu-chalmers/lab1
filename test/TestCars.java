@@ -144,25 +144,30 @@ public class TestCars {
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
     }
     @Test
-    public void test_if_truck_can_put_down_ramp_while_moving(){
+    public void test_if_ramp_can_be_adjusted_while_moving(){
         myTransportTruck.gas(1);
         myTransportTruck.lowerRamp();
         myTransportTruck.loadCar(myScania);
+        myTransportTruck.stopEngine();
+        myTransportTruck.raiseRamp();
+        myTransportTruck.startEngine();
+
     }
 
     @Test
-    public void test_if_transportTruck_can_contain_more_cars_than_max() {
+    public void test_if_transportTruck_can_contain_more_cars_than_max_and_not_delete_itself() {
         myTransportTruck.lowerRamp();
+        myTransportTruck.getStorage();
         myTransportTruck.loadCar(mySaab95);
         myTransportTruck.loadCar(myVolvo240);
         myTransportTruck.loadCar(myScania);
-
+        myTransportTruck.getStorage();
         //assertEquals(3, myTransportTruck.);
-        myTransportTruck.raiseRamp();
-        myTransportTruck.lowerRamp();
-        myTransportTruck.unloadCar();
-        myTransportTruck.unloadCar();
-        myTransportTruck.unloadCar();
+
+        for (int i = 0; i < 3; i++) {
+            myTransportTruck.unloadCar();
+            myTransportTruck.getStorage();
+        }
     }
     @Test
     public void test_if_car_moves_with_transportTruck(){
@@ -174,12 +179,14 @@ public class TestCars {
         myTransportTruck.move();
         assertEquals(myTransportTruck.getPositionY(),myScania.getPositionY(),0.0D);
         assertEquals(myTransportTruck.getPositionY(),myVolvo240.getPositionY(),0.0D);
+        myTransportTruck.stopEngine();
         myTransportTruck.lowerRamp();
         myTransportTruck.unloadCar();
-        System.out.println(myTransportTruck.getCurrentSpeed());
         myTransportTruck.raiseRamp();
+        myTransportTruck.gas(1);
         myTransportTruck.move();
         assertNotEquals(myScania.getPositionY(),myVolvo240.getPositionY(),0.0D);
+        assertEquals(myTransportTruck.getPositionY(),myScania.getPositionY(),0.0D);
 
     }
 }
