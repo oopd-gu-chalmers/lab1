@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class MercedesCarTransport extends Scania {
+public class MercedesCarTransport extends Car{
     private boolean rampIsRaised = true;
     private Stack cars;
     private int maxCars;
@@ -17,12 +17,8 @@ public class MercedesCarTransport extends Scania {
 
     }
 
-    public void raiseBack() {
-
-    }
-
     @Override
-    public void lowerBack() {
-
+    public double speedFactor() {
+        return 0;
     }
 }
