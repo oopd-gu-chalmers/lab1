@@ -5,6 +5,7 @@ public class Car implements ICar {
     private int nrOfDoors;
     private double enginePower;
     private double currentSpeed;
+    private String modelName;
     @Override
     public int getNrDoors() {
         return 0;
@@ -28,6 +29,11 @@ public class Car implements ICar {
     @Override
     public void setColor(Color clr) {
 
+    }
+
+    @Override
+    public String getModelName() {
+        return null;
     }
 
     @Override
