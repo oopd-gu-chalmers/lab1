@@ -1,6 +1,7 @@
 import java.awt.*;
 
 public abstract class Car implements Movable {
+    protected boolean isLoadable = true;
     protected double[] position = {0, 0};
     protected double[] direction = {0, 1};
     protected  int nrDoors; // Number of doors on the car

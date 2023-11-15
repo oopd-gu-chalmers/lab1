@@ -1,11 +1,10 @@
 import java.util.Stack;
 
 public class MercedesCarTransport extends Truck {
-    private Stack cars;
-    private int maxCars;
+    private CarStack cars;
 
     public MercedesCarTransport(int maxCars) {
-        this.maxCars = maxCars;
+        cars = new CarStack(maxCars);
     }
 
     public void addCar() {
@@ -26,10 +25,5 @@ public class MercedesCarTransport extends Truck {
         if (currentSpeed == 0) {
             backIsClosed = false;
         }
-    }
-
-    @Override
-    public double speedFactor() {
-        return 0;
     }
 }
