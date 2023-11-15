@@ -27,17 +27,51 @@ class CarTest {
         assertFalse(car.engineIsRunning());
     }
 
-    @Test
-    void gas() {
+    @ParameterizedTest
+    @ValueSource(doubles = {-1e-10, -0.5, -1, -50})
+    void gasWithAmountBelowZeroShouldThrowIllegalArgumentException(double amount) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            car.gas(amount);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {1+1e-10, 1.5, 2, 50})
+    void gasWithAmountAboveOneShouldThrowIllegalArgumentException(double amount) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            car.gas(amount);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {-1e-10, -0.5, -1, -50})
+    void brakeWithAmountBelowZeroShouldThrowIllegalArgumentException(double amount) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            car.brake(amount);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {1+1e-10, 1.5, 2, 50})
+    void brakeWithAmountAboveOneShouldThrowIllegalArgumentException(double amount) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            car.brake(amount);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0, 0.5, 1})
+    void gasMustNotDecreaseCurrentSpeed(double amount) {
         double initialSpeed = car.getCurrentSpeed();
-        car.gas(1);
+        car.gas(amount);
         assertFalse(initialSpeed > car.getCurrentSpeed());
     }
 
-    @Test
-    void brake() {
+    @ParameterizedTest
+    @ValueSource(doubles = {0, 0.5, 1})
+    void brakeMustNotIncreaseCurrentSpeed(double amount) {
         double initialSpeed = car.getCurrentSpeed();
-        car.brake(1);
+        car.brake(amount);
         assertFalse(initialSpeed < car.getCurrentSpeed());
     }
 }
