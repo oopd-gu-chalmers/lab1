@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 
 public class TestCars {
@@ -141,6 +142,12 @@ public class TestCars {
         myScania.raiseBedAngle(10);
         myScania.gas(1);
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
+    }
+    @Test
+    public void test_if_truck_can_put_down_ramp_while_moving(){
+        myTransportTruck.gas(1);
+        myTransportTruck.lowerRamp();
+        myTransportTruck.loadCar(myScania);
     }
 
     @Test

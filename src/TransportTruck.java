@@ -19,19 +19,23 @@ public class TransportTruck extends Cars{
     }
 
     public double speedFactor() {
-        if (ramp) {
+        if (rampUp) {
             return getEnginePower() * 0.01;
         }
         else
             return 0;
     }
     public void raiseRamp(){
-        if (getCurrentSpeed() == 0){
-            ramp = true;
+        if (super.getCurrentSpeed() == 0){
+            rampUp = true;
+            System.out.println(super.getCurrentSpeed());
         }
     }
     public void lowerRamp(){
-        ramp = false;
+        if (super.getCurrentSpeed() == 0) {
+            rampUp = false;
+            System.out.println(getCurrentSpeed());
+        }
     }
 
 
@@ -58,5 +62,18 @@ public class TransportTruck extends Cars{
 */
     private boolean overlaps(Cars car){
         return (abs(this.getPositionX() - car.getPositionX()) < 1) && (abs(this.getPositionY() - car.getPositionY()) < 1);
+    }
+
+    public void getStorage(){
+        for (int i = 0; i<3; i++){
+            System.out.println("This Vehicle is on the truck: " + storage.get(i));
+        }
+    }
+    @Override
+    public void move(){
+        super.move();
+        for (int i = 1; i < storage.size(); i++){
+            storage.get(i).getPosition().setLocation(this.getPositionX(),this.getPositionY());
+        }
     }
 }

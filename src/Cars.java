@@ -19,6 +19,9 @@ public abstract class Cars implements Movable {
         this.direction = Direction.NORTH;
 
     }
+    public Point2D getPosition(){
+        return position;
+    }
     // TODO kanske skapa en ny kostruktor för lastbilar
     public void gas(double amount) {
 
