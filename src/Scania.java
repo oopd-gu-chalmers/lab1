@@ -30,7 +30,7 @@ public class Scania extends Car implements Back{
     }
 
     public void raiseBack(double amount) {
-        if ((amount >= 0) && (getCurrentSpeed() == 0)) {
+        if ((amount >= 0) && (currentSpeed == 0)) {
             tilt = Math.min(tilt + amount, 70);
         }
     }
