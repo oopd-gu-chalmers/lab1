@@ -9,7 +9,7 @@ public class MercedesCarTransport extends Truck {
 
     public void addCar() {
         if (!backIsClosed) {
-
+            //cars.add();
         }
     }
 
