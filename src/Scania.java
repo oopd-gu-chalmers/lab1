@@ -15,10 +15,6 @@ public class Scania extends Truck{
         return tilt;
     }
 
-    public double speedFactor() {
-        return 1; //TODO: Fixa värden
-    }
-
     public void raiseBack() {
         raiseBack(10);
     }
@@ -30,17 +26,14 @@ public class Scania extends Truck{
     public void raiseBack(double amount) {
         if ((amount >= 0) && (currentSpeed == 0)) {
             tilt = Math.min(tilt + amount, 70);
+            backIsClosed = false;
         }
     }
 
     public void lowerBack(double amount) {
         if (amount >= 0){
             tilt = Math.max(tilt - amount, 0);
+            if (tilt == 0) backIsClosed = true;
         }
-    }
-
-    @Override
-    public void gas() {
-        if (tilt == 0) super.gas();
     }
 }
