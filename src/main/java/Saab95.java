@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95{
+public class Saab95 implements ICar {
 
     public boolean turboOn;
     public int nrDoors; // Number of doors on the car
@@ -37,6 +37,11 @@ public class Saab95{
 	    color = clr;
     }
 
+    @Override
+    public String getModelName() {
+        return null;
+    }
+
     public void startEngine(){
 	    currentSpeed = 0.1;
     }
@@ -66,7 +71,12 @@ public class Saab95{
     public void decrementSpeed(double amount){
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
-    
+
+    @Override
+    public boolean engineIsRunning() {
+        return false;
+    }
+
     // TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);

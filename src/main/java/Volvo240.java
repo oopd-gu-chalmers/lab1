@@ -42,6 +42,11 @@ public class Volvo240 implements ICar {
     }
 
     @Override
+    public String getModelName() {
+        return null;
+    }
+
+    @Override
     public void startEngine(){
 	    currentSpeed = 0.1;
     }
@@ -73,5 +78,10 @@ public class Volvo240 implements ICar {
     @Override
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    @Override
+    public boolean engineIsRunning() {
+        return false;
     }
 }
