@@ -19,14 +19,12 @@ public class Scania extends Car implements Back{
         return 1; //TODO: Fixa värden
     }
 
-    @Override
     public void raiseBack() {
-
+        raiseBack(10);
     }
 
-    @Override
     public void lowerBack() {
-
+        lowerBack(10);
     }
 
     public void raiseBack(double amount) {
