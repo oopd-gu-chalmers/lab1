@@ -9,7 +9,7 @@ public class DebugGetInfo {
     public static void getInfo(Car car){
         System.out.println("Col: " + car.getColor());
         System.out.println("Doors: " + car.getNrDoors());
-        System.out.println("Pow: " + car.getEngine().getEnginePower());
+        System.out.println("Pow: " + car.getEngine().getMaxEnginePower());
         System.out.println("Speed: " + car.getSpeed());
 
         System.out.println("Rot: " + car.getRotation());

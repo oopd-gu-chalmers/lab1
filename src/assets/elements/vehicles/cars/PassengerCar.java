@@ -16,7 +16,9 @@ public abstract class PassengerCar extends Car {
         this.nrSeats = nrSeats;
     }
 
-
+    /**
+     * @return the number of seats of the PassengerCar
+     */
     public int getNrSeats(){
         return nrSeats;
     }

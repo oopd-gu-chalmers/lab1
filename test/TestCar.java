@@ -32,7 +32,7 @@ public class TestCar {
 
     @Test
     public void volvoEnginePowerShouldBe100(){
-        assertEquals(100, volvo.getEngine().getEnginePower(), 0.001);
+        assertEquals(100, volvo.getEngine().getMaxEnginePower(), 0.001);
     }
 
     @Test
@@ -120,13 +120,13 @@ public class TestCar {
     public void testIncrementSpeedBelowEnginePower(){
         volvo.start();
         volvo.gas(1);
-        assertTrue(volvo.getSpeed() > 0 && volvo.getSpeed() < volvo.getEngine().getEnginePower());
+        assertTrue(volvo.getSpeed() > 0 && volvo.getSpeed() < volvo.getEngine().getMaxEnginePower());
     }
     @Test
     public void testIncrementSpeedAboveEnginePower(){
         carWithTrimFactorVeryLarge.start();
         carWithTrimFactorVeryLarge.gas(1);
-        assertEquals(carWithTrimFactorVeryLarge.getEngine().getEnginePower(), carWithTrimFactorVeryLarge.getSpeed(), 0.001);
+        assertEquals(carWithTrimFactorVeryLarge.getEngine().getMaxEnginePower(), carWithTrimFactorVeryLarge.getSpeed(), 0.001);
     }
 
     @Test

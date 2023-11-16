@@ -9,10 +9,30 @@ import assets.storages.StorageQueue;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * A Ferry2000 is a MotorizedBoat which has a number of lanes.
+ * Each lane can store a number of cars.
+ * A car can only be loaded to the back of the Ferry2000, and unloaded from the front.
+ */
 public class Ferry2000 extends MotorizedBoat {
     private final ArrayList<StorageQueue<Car>> lanes;
     private final int laneCount;
     private static final double reach = 5;
+
+    /**
+     * The Ferry2000 has:
+     * <i><p>
+     * <p>Engine: Normal Engine</p>
+     * <p>Model Name: Ferry2000</p>
+     * <p>Color: Cyan</p>
+     * <p>Height: 10 meters</p>
+     * <p>Weight: 50000 kg</p>
+     * <p>Maximum Swing: 10 degrees</p>
+     *
+     * <p></i>
+     * @param laneCount amount of lanes on the Ferry2000
+     * @param laneSize size of each lane
+     */
     public Ferry2000(int laneCount, int laneSize) {
         super(new Engine(2000, 3500), "Ferry2000", Color.CYAN, 10, 50000, 10);
         lanes = new ArrayList<>();
@@ -22,6 +42,11 @@ public class Ferry2000 extends MotorizedBoat {
         }
     }
 
+    /**
+     * Load a car to a lane
+     * @param car car to load
+     * @param laneNr lane to load car to
+     */
     public void loadCar(Car car, int laneNr){
         if (laneNr <= 0 | laneNr > laneCount){
             System.out.println("That lane number does not exist!");
@@ -36,6 +61,11 @@ public class Ferry2000 extends MotorizedBoat {
         lanes.get(laneNr - 1).add(car);
     }
 
+    /**
+     * Unload a car from a lane
+     * @param laneNr lane to unload car from
+     * @return the unloaded car
+     */
     public Car unloadCar(int laneNr){
         if (laneNr <= 0 | laneNr > laneCount){
             System.out.println("That lane number does not exist!");
@@ -44,6 +74,9 @@ public class Ferry2000 extends MotorizedBoat {
         return lanes.get(laneNr - 1).poll(getRelativePosition(0, 5));
     }
 
+    /**
+     * @return The weight of the boat, including engine and storage.
+     */
     @Override
     public double getWeight() {
         double w = 0;
