@@ -8,6 +8,7 @@ public abstract class Cars implements Movable {
     private final String modelName;
     private final Point2D position;
     private Direction direction;
+    private Object position;
 
 
     public Cars(int nrDoors, double enginePower, Color color, String modelName) {
@@ -15,9 +16,8 @@ public abstract class Cars implements Movable {
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-        this.position = new Point2D.Double(0.0D, 0.0D);
         this.direction = Direction.NORTH;
-
+        this.position = new Object();
     }
     public Point2D getPosition(){
         return position;
@@ -28,6 +28,7 @@ public abstract class Cars implements Movable {
         if (0.0D <= amount && amount <= 1) {
             incrementSpeed(amount);
         }
+
     }
 
     public void brake(double amount) {

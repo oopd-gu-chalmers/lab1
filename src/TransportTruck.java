@@ -5,21 +5,20 @@ import java.util.List;
 import static java.lang.Math.abs;
 
 public class TransportTruck extends Cars{
-    private boolean rampUp;
-    private final List<Cars> storage;
     private final int maxLoadAmount;
+    private final Ramp ramp;
+    private Storage<Cars> transportedCars;
     public TransportTruck(){
         super(2,70, Color.GREEN,"Transport Truck");
         // super(nrDoors,enginePower,color,modelName);
         super.stopEngine();
-        rampUp = true;
         maxLoadAmount = 2+(1);
-        storage = new ArrayList<>();
-        storage.add(this);
+        this.ramp = new Ramp(1);
+        transportedCars = new Storage<Cars>(2);
     }
 
     public double speedFactor() {
-        if (rampUp) {
+        if (ramp.getRampAngle() == 0) {
             return getEnginePower() * 0.01;
         }
         else
@@ -28,23 +27,17 @@ public class TransportTruck extends Cars{
 
     public void raiseRamp(){
         if (getCurrentSpeed() == 0){
-            rampUp = true;
-        }
-        else {
-            System.out.println("Ramp didn't raise, currentspeed: "+ getCurrentSpeed());
+            ramp.raiseRamp();
         }
     }
     public void lowerRamp(){
         if (getCurrentSpeed() == 0) {
-            rampUp = false;
-        }
-        else {
-            System.out.println("Ramp didn't lower, currentspeed: "+ getCurrentSpeed());
+            ramp.lowerRamp();
         }
     }
 
     public void loadCar(Cars car){
-        if(storage.size() < maxLoadAmount && !rampUp && overlaps(car)) {
+        if(storage.size() < maxLoadAmount && ramp.getRampAngle() == 1 && overlaps(car)) {
             storage.add(car);
             System.out.println(car.getModelName() + " is on the transport");
         }
@@ -54,7 +47,7 @@ public class TransportTruck extends Cars{
     }
 
     public void unloadCar(){
-        if(storage.size() > 1 && !rampUp){
+        if(storage.size() > 1 && ramp.getRampAngle() == 1){
             System.out.println("This car was unloaded: "+storage.getLast());
             storage.removeLast();
         }

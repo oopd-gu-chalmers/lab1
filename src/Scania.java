@@ -1,40 +1,39 @@
 import java.awt.*;
 
 public class Scania extends Cars {
-    public double bedAngle;
+    private final Ramp ramp;
     public Scania(){
         super(2,70, Color.GREEN,"Scania");
         // super(nrDoors,enginePower,color,modelName);
+        this.ramp = new Ramp(70);
         super.stopEngine();
     }
     @Override
     public void startEngine() {
-        if (getBedAngle() == 0){
+        if (ramp.getRampAngle() == 0){
             super.startEngine();
         }
     }
 
     public double speedFactor() {
-        if (getBedAngle() == 0) {
+        if (ramp.getRampAngle() == 0) {
             return getEnginePower() * 0.01;
         }
         else
-
             return 0;
     }
-    public double getBedAngle() {
-        return bedAngle;
-    }
-    private void setBedAngle(double angle){ this.bedAngle = angle;}
 
-    public void raiseBedAngle(double amount) {
+    public void raiseBedAngle(int amount) {
         if (getCurrentSpeed() == 0) {
-            setBedAngle(Math.min(bedAngle + amount, 70));
+            ramp.raiseRamp(amount);
         }
     }
-    public void lowerBedAngle(double amount) {
+    public void lowerBedAngle(int amount) {
         if (getCurrentSpeed() == 0) {
-            setBedAngle(Math.max(bedAngle - amount, 0));
+            ramp.lowerRamp(amount);
         }
     }
+     public int getRampAngle(){
+        return ramp.getRampAngle();
+     }
 }

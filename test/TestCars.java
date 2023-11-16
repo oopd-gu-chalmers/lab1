@@ -22,6 +22,10 @@ public class TestCars {
     }
 
     @Test
+    public void test(){
+        System.out.println(mySaab95.getPosition());
+    }
+    @Test
     public void test_if_startEngine_sets_current_speed(){
         myVolvo240.startEngine();
         assertEquals(0.1, myVolvo240.getCurrentSpeed(), 0.0);
@@ -122,24 +126,24 @@ public class TestCars {
 
     @Test
     public void test_if_bedAngle_can_extend_limit_of_vehicle(){
-        myScania.lowerBedAngle(10);
-        assertEquals(0,myScania.getBedAngle(),0.0);
-        myScania.raiseBedAngle(90);
-        assertEquals(70, myScania.getBedAngle(), 0.0);
+        myScania.raiseBedAngle(10);
+        assertEquals(0,myScania.getRampAngle(),0.0);
+        myScania.lowerBedAngle(90);
+        assertEquals(70, myScania.getRampAngle(), 0.0);
     }
     @Test
     public void test_if_you_can_drive_truck_when_bed_is_raised(){
-        myScania.raiseBedAngle(10);
+        myScania.lowerBedAngle(10);
         myScania.startEngine();
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
 
-        myScania.lowerBedAngle(10);
-        myScania.startEngine();
         myScania.raiseBedAngle(10);
-        assertEquals(0, myScania.getBedAngle(), 0.0);
+        myScania.startEngine();
+        myScania.lowerBedAngle(10);
+        assertEquals(0, myScania.getRampAngle(), 0.0);
 
         myScania.stopEngine();
-        myScania.raiseBedAngle(10);
+        myScania.lowerBedAngle(10);
         myScania.gas(1);
         assertEquals(0, myScania.getCurrentSpeed(), 0.0);
     }
