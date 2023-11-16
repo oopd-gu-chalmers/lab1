@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Car implements ICar {
+public class Car implements ICar, Movable {
     private Color color;
     private int nrOfDoors;
     private double enginePower;
@@ -89,5 +89,20 @@ public class Car implements ICar {
 
     public void decrementSpeed(double amount, double speedFactor) {
         setCurrentSpeed(getCurrentSpeed() - amount * speedFactor);
+    }
+
+    @Override
+    public void move() {
+        setPosition(getNextPosition());
+    }
+
+    @Override
+    public void turnRight() {
+        setDirection(getDirection().getNext());
+    }
+
+    @Override
+    public void turnLeft() {
+        setDirection(getDirection().getPrevious());
     }
 }
