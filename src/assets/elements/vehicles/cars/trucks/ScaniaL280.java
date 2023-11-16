@@ -5,9 +5,27 @@ import assets.elements.vehicles.cars.Truck;
 
 import java.awt.*;
 
+/**
+ * A ScaniaL280 is a Truck with a tray that can extend and retract to a specific angle between 0 and 70 degrees.
+ */
 public final class ScaniaL280 extends Truck {
     private static final double maxTrayAngle = 70;
     private double trayAngle;
+
+    /**
+     * A ScaniaL280 has:
+     * <i><p>
+     *
+     * <p>Doors: 2</p>
+     * <p>Engine: Normal Engine</p>
+     * <p>Model Name: ScaniaL280</p>
+     * <p>Color: White</p>
+     * <p>Height: 2.5 meters</p>
+     * <p>Weight: 20000 kg</p>
+     *
+     * <p></i>
+     *
+     */
     public ScaniaL280(){
         super(2, new Engine(300, 500), "ScaniaL280", Color.WHITE, 2.5, 20000);
     }

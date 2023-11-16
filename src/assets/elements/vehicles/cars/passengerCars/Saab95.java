@@ -5,7 +5,13 @@ import assets.elements.vehicles.engines.TurboEngine;
 
 import java.awt.*;
 
+/**
+ * A Saab95 is a PassengerCar with a TurboEngine
+ */
 public final class Saab95 extends PassengerCar {
+
+    private static final TurboEngine turboEngine = new TurboEngine(125, 1.3, 100);
+
     /**
      * A Saab95 has:
      * <i><p>
@@ -15,12 +21,10 @@ public final class Saab95 extends PassengerCar {
      * <p>Engine: Turbo engine with power 125, and turbo factor 1.3</p>
      * <p>Model Name: Saab95</p>
      * <p>Color: Red</p>
-     * <p>Height: 1.5 meter</p>
+     * <p>Height: 1.5 meters</p>
      * <p>Weight: 1400 kg</p>
      * <p></i>
      */
-
-    private static final TurboEngine turboEngine = new TurboEngine(125, 1.3, 100);
     public Saab95(){
         super(5,2, turboEngine, "Saab95", Color.red, 1.5, 1400);
     }

@@ -1,7 +1,10 @@
 package assets.elements.vehicles.engines;
 
-import assets.elements.Element;
-
+/**
+ * An Engine is an Element which can generate power.
+ * It can be started and stopped.
+ * An Engine has a weight.
+ */
 public class Engine {
     private final double enginePower;
     private final double weight;
@@ -11,33 +14,44 @@ public class Engine {
         this.weight = weight;
     }
 
+    /**
+     * @return true if engine is on, false otherwise
+     */
     public boolean isEngineOn() {
         return engineOn;
     }
 
+    /**
+     * Start the engine
+     */
     public void start(){
-        if (engineOn) {
-            System.out.println("Engine is already ON");
-            return;
-        }
         engineOn = true;
     }
 
+    /**
+     * Stop the engine
+     */
     public void stop(){
-        if (!engineOn) {
-            System.out.println("Engine is already OFF");
-            return;
-        }
         engineOn = false;
     }
 
-    public double getEnginePower(){
+    /**
+     * @return the maximum power of the engine
+     */
+    public double getMaxEnginePower(){
         return enginePower;
     }
+
+    /**
+     * @return The generated power of the engine
+     */
     public double getGeneratedPower() {
-        return getEnginePower() * 0.01;
+        return getMaxEnginePower() * 0.01;
     }
 
+    /**
+     * @return the weight of the engine
+     */
     public double getWeight() {
         return weight;
     }

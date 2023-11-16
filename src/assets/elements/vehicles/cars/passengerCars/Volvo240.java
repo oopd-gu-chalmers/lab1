@@ -5,6 +5,9 @@ import assets.elements.vehicles.engines.TrimmedEngine;
 
 import java.awt.*;
 
+/**
+ * A Volvo240 is a PassengerCar with a TrimmedEngine
+ */
 public final class Volvo240 extends PassengerCar {
 
     /**
@@ -13,12 +16,14 @@ public final class Volvo240 extends PassengerCar {
      *
      * <p>Seats: 5</p>
      * <p>Doors: 4</p>
-     * <p>Color: Black</p>
-     * <p>Engine Power: 100</p>
+     * <p>Engine: Trimmed engine with trim factor 1.25</p>
      * <p>Model Name: Volvo240</p>
+     * <p>Color: Black</p>
+     * <p>Height: 1.4 meters</p>
+     * <p>Weight: 1300 kg</p>
      *
      * <p></i>
-     * A Volvo240 has an intrinsic trim factor of 1.25
+     *
      */
     public Volvo240(){
         super(5, 4, new TrimmedEngine(100, 1.25, 90), "Volvo240", Color.black, 1.4, 1300);
