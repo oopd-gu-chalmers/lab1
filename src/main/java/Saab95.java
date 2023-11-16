@@ -4,11 +4,10 @@ public class Saab95 implements ICar {
     private Car parent;
     public boolean turboOn;
 
-    public Saab95(){
+    public Saab95() {
         parent = new Car(Color.RED, 2, 125, "Saab95");
-	    turboOn = false;
-        modelName = "Saab95";
-        stopEngine();
+        turboOn = false;
+        parent.stopEngine();
     }
     
     public int getNrDoors(){
