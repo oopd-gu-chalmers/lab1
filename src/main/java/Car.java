@@ -34,7 +34,7 @@ public class Car implements ICar, Movable {
     }
 
     private void setCurrentSpeed(double speed) {
-        currentSpeed = speed;
+        currentSpeed = Math.max(Math.min(speed, getEnginePower()), 0);
     }
 
     @Override

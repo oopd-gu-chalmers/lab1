@@ -74,4 +74,19 @@ class CarTest {
         car.brake(amount);
         assertFalse(initialSpeed < car.getCurrentSpeed());
     }
+
+    @Test
+    void currentSpeedCanNotBeOverEnginePower() {
+        for (int i = 0; i < 10000; i++) {
+            car.gas(1);
+        }
+        assertTrue(car.getCurrentSpeed() <= car.getEnginePower());
+    }
+    @Test
+    void currentSpeedCanNotBeBelowZero() {
+        for (int i = 0; i < 10000; i++) {
+            car.brake(1);
+        }
+        assertTrue(car.getCurrentSpeed() >= 0);
+    }
 }
