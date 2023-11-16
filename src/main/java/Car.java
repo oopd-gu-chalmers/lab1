@@ -81,4 +81,12 @@ public class Car implements ICar {
     public boolean engineIsRunning() {
         return engineIsRunning;
     }
+
+    public void incrementSpeed(double amount, double speedFactor) {
+        setCurrentSpeed(getCurrentSpeed() + amount * speedFactor);
+    }
+
+    public void decrementSpeed(double amount, double speedFactor) {
+        setCurrentSpeed(getCurrentSpeed() - amount * speedFactor);
+    }
 }
