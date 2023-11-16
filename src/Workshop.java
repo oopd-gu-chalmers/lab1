@@ -8,13 +8,18 @@ public class Workshop {
     private final String modelName;
     public Vector<Car> cars = new Vector<>();
 
+
+    public Workshop(int maxCars) {
+        this.maxCars = maxCars;
+        this.modelName = "Null";
+    }
     public Workshop(String modelName, int maxCars) {
         this.modelName = modelName;
         this.maxCars = maxCars;
     }
 
     public void addCar(Car car) {
-        if (Objects.equals(car.modelName, this.modelName) && cars.size() < maxCars) {
+        if ((Objects.equals(car.modelName, this.modelName) || Objects.equals(this.modelName, "Null")) && cars.size() < maxCars) {
             cars.add(car);
         }
     }
