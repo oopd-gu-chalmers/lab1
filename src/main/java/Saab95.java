@@ -50,11 +50,11 @@ public class Saab95 implements ICar {
     public void setTurboOff() {
         turboOn = false;
     }
-    
-    public double speedFactor(){
+
+    private double speedFactor() {
         double turbo = 1;
-        if(turboOn) turbo = 1.3;
-        return enginePower * 0.01 * turbo;
+        if (turboOn) turbo = 1.3;
+        return parent.getEnginePower() * 0.01 * turbo;
     }
 
     public void incrementSpeed(double amount){
