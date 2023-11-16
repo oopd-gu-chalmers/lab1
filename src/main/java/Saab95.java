@@ -57,14 +57,6 @@ public class Saab95 implements ICar {
         return parent.getEnginePower() * 0.01 * turbo;
     }
 
-    public void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-    }
-
-    public void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
-
     @Override
     public boolean engineIsRunning() {
         return parent.engineIsRunning();
