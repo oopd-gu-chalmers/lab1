@@ -2,20 +2,12 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Car implements ICar, Movable {
-    private Color color;
+    private final Vehicle vehicle;
     private int nrOfDoors;
-    private double enginePower;
-    private double currentSpeed;
-    private String modelName;
-    private boolean engineIsRunning;
-    private Direction direction;
-    private Point2D.Double position;
 
     public Car(Color color, int nrOfDoors, double enginePower, String modelName) {
-        this.color = color;
+        this.vehicle = new Vehicle(color, enginePower, modelName);
         this.nrOfDoors = nrOfDoors;
-        this.enginePower = enginePower;
-        this.modelName = modelName;
     }
 
     @Override
@@ -25,117 +17,98 @@ public class Car implements ICar, Movable {
 
     @Override
     public double getEnginePower() {
-        return enginePower;
+        return vehicle.getEnginePower();
     }
 
     @Override
     public double getCurrentSpeed() {
-        return currentSpeed;
+        return vehicle.getCurrentSpeed();
     }
 
     private void setCurrentSpeed(double speed) {
-        currentSpeed = Math.max(Math.min(speed, getEnginePower()), 0);
+        vehicle.setCurrentSpeed(speed);
     }
 
     @Override
     public Color getColor() {
-        return color;
+        return vehicle.getColor();
     }
 
     @Override
     public void setColor(Color clr) {
-        color = clr;
+        vehicle.setColor(clr);
     }
 
     @Override
     public String getModelName() {
-        return modelName;
+        return vehicle.getModelName();
     }
 
     public Direction getDirection() {
-        return direction;
+        return vehicle.getDirection();
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        vehicle.setDirection(direction);
     }
 
     public Point2D.Double getPosition() {
-        return position;
+        return vehicle.getPosition();
     }
 
     public void setPosition(Point2D.Double position) {
-        this.position = position;
+        vehicle.setPosition(position);
     }
 
     @Override
     public void startEngine() {
-        setCurrentSpeed(0.1);
-        engineIsRunning = true;
+        vehicle.startEngine();
     }
 
     @Override
     public void stopEngine() {
-        setCurrentSpeed(0);
-        engineIsRunning = false;
+        vehicle.stopEngine();
     }
 
     @Override
     public void gas(double amount) {
-        if (amount < 0 || amount > 1) {
-            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
-        }
-        incrementSpeed(amount, 1);
+        vehicle.gas(amount);
     }
 
     @Override
     public void brake(double amount) {
-        if (amount < 0 || amount > 1) {
-            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
-        }
-        decrementSpeed(amount, 1);
+        vehicle.brake(amount);
     }
 
     @Override
     public boolean engineIsRunning() {
-        return engineIsRunning;
+        return vehicle.engineIsRunning();
     }
 
     public void incrementSpeed(double amount, double speedFactor) {
-        if (speedFactor < 0) {
-            throw new IllegalArgumentException("speedFactor must be positive");
-        }
-        setCurrentSpeed(getCurrentSpeed() + amount * speedFactor);
+        vehicle.incrementSpeed(amount, speedFactor);
     }
 
     public void decrementSpeed(double amount, double speedFactor) {
-        if (speedFactor < 0) {
-            throw new IllegalArgumentException("speedFactor must be positive");
-        }
-        setCurrentSpeed(getCurrentSpeed() - amount * speedFactor);
+        vehicle.decrementSpeed(amount, speedFactor);
     }
 
     @Override
     public void move() {
-        setPosition(getNextPosition());
+        vehicle.move();
     }
 
     private Point2D.Double getNextPosition() {
-        return switch (direction) {
-            case Direction.NORTH -> new Point2D.Double(getPosition().x, getPosition().y + getCurrentSpeed());
-            case Direction.EAST -> new Point2D.Double(getPosition().x + getCurrentSpeed(), getPosition().y);
-            case Direction.SOUTH -> new Point2D.Double(getPosition().x, getPosition().y - getCurrentSpeed());
-            case Direction.WEST -> new Point2D.Double(getPosition().x - getCurrentSpeed(), getPosition().y);
-        };
+        return vehicle.getNextPosition();
     }
 
     @Override
     public void turnRight() {
-        setDirection(getDirection().getNext());
+        vehicle.turnRight();
     }
 
     @Override
     public void turnLeft() {
-        setDirection(getDirection().getPrevious());
+        vehicle.turnLeft();
     }
 }
