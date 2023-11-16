@@ -8,6 +8,8 @@ public class Car implements ICar, Movable {
     private double currentSpeed;
     private String modelName;
     private boolean engineIsRunning;
+    private Direction direction;
+    private Point2D.Double position;
 
     public Car(Color color, int nrOfDoors, double enginePower, String modelName) {
         this.color = color;
@@ -48,6 +50,22 @@ public class Car implements ICar, Movable {
     @Override
     public String getModelName() {
         return modelName;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public Point2D.Double getPosition() {
+        return position;
+    }
+
+    public void setPosition(Point2D.Double position) {
+        this.position = position;
     }
 
     @Override
@@ -94,6 +112,15 @@ public class Car implements ICar, Movable {
     @Override
     public void move() {
         setPosition(getNextPosition());
+    }
+
+    private Point2D.Double getNextPosition() {
+        return switch (direction) {
+            case Direction.NORTH -> new Point2D.Double(getPosition().x, getPosition().y + getCurrentSpeed());
+            case Direction.EAST -> new Point2D.Double(getPosition().x + getCurrentSpeed(), getPosition().y);
+            case Direction.SOUTH -> new Point2D.Double(getPosition().x, getPosition().y - getCurrentSpeed());
+            case Direction.WEST -> new Point2D.Double(getPosition().x - getCurrentSpeed(), getPosition().y);
+        };
     }
 
     @Override
