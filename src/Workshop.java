@@ -6,7 +6,7 @@ import java.util.Vector;
 public class Workshop {
     private final int maxCars;
     private final String modelName;
-    private Vector<Car> cars = new Vector<>();
+    public Vector<Car> cars = new Vector<>();
 
     public Workshop(String modelName, int maxCars) {
         this.modelName = modelName;
