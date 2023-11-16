@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Vector;
 
 
@@ -13,7 +14,7 @@ public class Workshop {
     }
 
     public void addCar(Car car) {
-        if (car.modelName == this.modelName && cars.size() < maxCars) {
+        if (Objects.equals(car.modelName, this.modelName) && cars.size() < maxCars) {
             cars.add(car);
         }
     }
