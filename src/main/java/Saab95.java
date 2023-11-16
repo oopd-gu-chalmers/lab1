@@ -5,9 +5,7 @@ public class Saab95 implements ICar {
     public boolean turboOn;
 
     public Saab95(){
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
+        parent = new Car(Color.RED, 2, 125, "Saab95");
 	    turboOn = false;
         modelName = "Saab95";
         stopEngine();

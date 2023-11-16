@@ -6,6 +6,15 @@ public class Car implements ICar {
     private double enginePower;
     private double currentSpeed;
     private String modelName;
+    private boolean engineIsRunning;
+
+    public Car(Color color, int nrOfDoors, double enginePower, String modelName) {
+        this.color = color;
+        this.nrOfDoors = nrOfDoors;
+        this.enginePower = enginePower;
+        this.modelName = modelName;
+    }
+
     @Override
     public int getNrDoors() {
         return 0;

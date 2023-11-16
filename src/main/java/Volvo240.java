@@ -5,11 +5,7 @@ public class Volvo240 implements ICar {
     public final static double trimFactor = 1.25;
 
     public Volvo240(){
-        nrDoors = 4;
-        color = Color.black;
-        enginePower = 100;
-        modelName = "Volvo240";
-        stopEngine();
+        parent = new Car(Color.BLACK, 4, 100, "Volvo240");
     }
     
     @Override
