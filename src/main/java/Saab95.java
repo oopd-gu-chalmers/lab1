@@ -43,12 +43,12 @@ public class Saab95 implements ICar {
         parent.stopEngine();
     }
 
-    public void setTurboOn(){
-	    turboOn = true;
+    public void setTurboOn() {
+        turboOn = true;
     }
 
-    public void setTurboOff(){
-	    turboOn = false;
+    public void setTurboOff() {
+        turboOn = false;
     }
     
     public double speedFactor(){
