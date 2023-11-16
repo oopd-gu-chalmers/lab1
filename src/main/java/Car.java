@@ -17,56 +17,67 @@ public class Car implements ICar {
 
     @Override
     public int getNrDoors() {
-        return 0;
+        return nrOfDoors;
     }
 
     @Override
     public double getEnginePower() {
-        return 0;
+        return enginePower;
     }
 
     @Override
     public double getCurrentSpeed() {
         return 0;
+        return currentSpeed;
+    }
     }
 
     @Override
     public Color getColor() {
-        return null;
+        return color;
     }
 
     @Override
     public void setColor(Color clr) {
-
+        color = clr;
     }
 
     @Override
     public String getModelName() {
-        return null;
+        return modelName;
     }
 
     @Override
     public void startEngine() {
 
+        setCurrentSpeed(0.1);
+        engineIsRunning = true;
     }
 
     @Override
     public void stopEngine() {
-
+        setCurrentSpeed(0);
+        engineIsRunning = false;
     }
 
     @Override
     public void gas(double amount) {
-
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
+        }
+        incrementSpeed(amount, 1);
     }
 
     @Override
     public void brake(double amount) {
-
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
+        }
+        decrementSpeed(amount, 1);
     }
 
     @Override
     public boolean engineIsRunning() {
-        return false;
+        return engineIsRunning;
     }
 }
