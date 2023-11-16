@@ -35,6 +35,8 @@ public class TransportTruck extends Cars{
             ramp.lowerRamp();
         }
     }
+    /*
+
 
     public void loadCar(Cars car){
         if(storage.size() < maxLoadAmount && ramp.getRampAngle() == 1 && overlaps(car)) {
@@ -68,12 +70,5 @@ public class TransportTruck extends Cars{
         for (int i = 1; i < storage.size(); i++){
             System.out.println("This Vehicle is on the truck: " + storage.get(i));
         }
-    }
-    @Override
-    public void move(){
-        super.move();
-        for (int i = 1; i < storage.size(); i++){
-            storage.get(i).getPosition().setLocation(this.getPositionX(),this.getPositionY());
-        }
-    }
+        */
 }

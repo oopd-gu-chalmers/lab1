@@ -6,7 +6,6 @@ public abstract class Cars implements Movable {
     private final double enginePower;
     private final Color color;
     private final String modelName;
-    private final Point2D position;
     private Direction direction;
     private Object position;
 
@@ -19,10 +18,9 @@ public abstract class Cars implements Movable {
         this.direction = Direction.NORTH;
         this.position = new Object();
     }
-    public Point2D getPosition(){
-        return position;
-    }
+
     // TODO kanske skapa en ny kostruktor för lastbilar
+
     public void gas(double amount) {
 
         if (0.0D <= amount && amount <= 1) {
@@ -48,14 +46,16 @@ public abstract class Cars implements Movable {
     public void move() {
         switch (this.direction) {
             case NORTH:
-                this.position.setLocation(this.position.getX(), (this.position.getY() + getCurrentSpeed())); break;
+                this.position.setPosition(this.position.getPositionX(), (this.position.getPositionY() + getCurrentSpeed())); break;
             case EAST:
-                this.position.setLocation((this.position.getX() + getCurrentSpeed()), this.position.getY()); break;
+                this.position.setPosition(this.position.getPositionX() + getCurrentSpeed(), this.position.getPositionY()); break;
             case SOUTH:
-                this.position.setLocation(this.position.getX(), (this.position.getY() - getCurrentSpeed())); break;
+                this.position.setPosition(this.position.getPositionX(), (this.position.getPositionY() - getCurrentSpeed())); break;
             case WEST:
-                this.position.setLocation((this.position.getX() - getCurrentSpeed()), this.position.getY()); break;
+                this.position.setPosition(this.position.getPositionX() - getCurrentSpeed(), this.position.getPositionY()); break;
         }
+
+
     }
 
     public void turnLeft() {
@@ -83,11 +83,6 @@ public abstract class Cars implements Movable {
                 this.direction = Direction.NORTH; break;
         }
 
-    }
-    public double getPositionX() {return this.position.getX();
-    }
-
-    public double getPositionY() {return this.position.getY();
     }
 
 
