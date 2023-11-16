@@ -12,13 +12,13 @@ public class CarStack implements Iterable<Car>, Movable {
     }
 
     public void addCar(Car car) {
-        if((cars.size() <= maxCars) && car.isLoadable && (car.getNrDoors() <= maxDoors)) {
+        if((cars.size() < maxCars) && car.isLoadable && (car.getNrDoors() <= maxDoors)) {
             cars.push(car);
         }
     }
 
     public Car removeCar() {
-        if (!cars.isEmpty()) return (Car) cars.pop();
+        if (!cars.isEmpty()) return (Car) cars.pop(); //Säger att (Car) är redundant
         return null;
     }
 
