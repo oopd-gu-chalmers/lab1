@@ -1,5 +1,8 @@
 import java.util.Vector;
-public class CarWorkshop {
+
+
+
+public class Workshop {
     private Vector cars;
 
     public void addCar(Car car) {
