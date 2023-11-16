@@ -1,6 +1,8 @@
 # Batle of the Code Realmz
 ## By: Alfons Enell, Anton Skogglund, Zuzanna Tarkovska
 
+<i> "The supreme art of subtype polymorphism is to unify classes without imposing constraints. In the harmony of shared traits, achieve software elegance and functionality without the need for intricate battles." </i> -Sun Tzu
+
 
 ## The Chroniclez of the Code War
 In the relm of Java, Alfons Enell, Anton Skogglund, and Zuzanna Tarkovska unitd their coding legions to embark on an epc journey. The battelgrounds were laid out with assests, eleements, and vehicless - each class a feerless warrior ready for the impending code skirrmishes.
@@ -24,3 +26,4 @@ In the fellowship of Drivable.java, Moveable.java, Startable.java, and Colorable
 The Storrage.java, StorageQueue.java, and StorageStack.java played a piviotal role in organizing and stratigizing, ensuring that our code warriors were well-equippped and organized for the rellentless code wars.
 
 The Batle of the Code Realmz continues, and as our heroes Alfons Enell, Anton Skogglund, and Zuzanna Tarkovska navigate the complex terrains of Java, they leave an indelibl mark on the code history. May their codebase be forevr bug-free, and their deployments swift and victorius!
+
