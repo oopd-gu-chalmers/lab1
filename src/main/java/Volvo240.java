@@ -4,10 +4,11 @@ public class Volvo240 implements ICar {
     private Car parent;
     public final static double trimFactor = 1.25;
 
-    public Volvo240(){
+    public Volvo240() {
         parent = new Car(Color.BLACK, 4, 100, "Volvo240");
+        stopEngine();
     }
-    
+
     @Override
     public int getNrDoors() {
         return parent.getNrDoors();
