@@ -49,8 +49,8 @@ public class Volvo240 implements ICar {
         parent.stopEngine();
     }
 
-    public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    private double speedFactor() {
+        return parent.getEnginePower() * 0.01 * trimFactor;
     }
 
     // TODO fix this method according to lab pm
