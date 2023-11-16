@@ -102,10 +102,16 @@ public class Car implements ICar, Movable {
     }
 
     public void incrementSpeed(double amount, double speedFactor) {
+        if (speedFactor < 0) {
+            throw new IllegalArgumentException("speedFactor must be positive");
+        }
         setCurrentSpeed(getCurrentSpeed() + amount * speedFactor);
     }
 
     public void decrementSpeed(double amount, double speedFactor) {
+        if (speedFactor < 0) {
+            throw new IllegalArgumentException("speedFactor must be positive");
+        }
         setCurrentSpeed(getCurrentSpeed() - amount * speedFactor);
     }
 
