@@ -9,37 +9,38 @@ public class Saab95 implements ICar {
         turboOn = false;
         parent.stopEngine();
     }
-    
-    public int getNrDoors(){
-        return nrDoors;
-    }
-    public double getEnginePower(){
-        return enginePower;
+
+    public int getNrDoors() {
+        return parent.getNrDoors();
     }
 
-    public double getCurrentSpeed(){
-        return currentSpeed;
+    public double getEnginePower() {
+        return parent.getEnginePower();
     }
 
-    public Color getColor(){
-        return color;
+    public double getCurrentSpeed() {
+        return parent.getCurrentSpeed();
     }
 
-    public void setColor(Color clr){
-	    color = clr;
+    public Color getColor() {
+        return parent.getColor();
+    }
+
+    public void setColor(Color clr) {
+        parent.setColor(clr);
     }
 
     @Override
     public String getModelName() {
-        return null;
+        return parent.getModelName();
     }
 
-    public void startEngine(){
-	    currentSpeed = 0.1;
+    public void startEngine() {
+        parent.startEngine();
     }
 
-    public void stopEngine(){
-	    currentSpeed = 0;
+    public void stopEngine() {
+        parent.stopEngine();
     }
 
     public void setTurboOn(){
@@ -66,16 +67,16 @@ public class Saab95 implements ICar {
 
     @Override
     public boolean engineIsRunning() {
-        return false;
+        return parent.engineIsRunning();
     }
 
     // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    public void gas(double amount) {
+        parent.incrementSpeed(amount, speedFactor());
     }
 
     // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    public void brake(double amount) {
+        parent.decrementSpeed(amount, speedFactor());
     }
 }

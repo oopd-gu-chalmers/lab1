@@ -9,50 +9,43 @@ public class Volvo240 implements ICar {
     }
     
     @Override
-    public int getNrDoors(){
-        return nrDoors;
-    }
-    @Override
-    public double getEnginePower(){
-        return enginePower;
+    public int getNrDoors() {
+        return parent.getNrDoors();
     }
 
     @Override
-    public double getCurrentSpeed(){
-        return currentSpeed;
+    public double getEnginePower() {
+        return parent.getEnginePower();
     }
 
     @Override
-    public Color getColor(){
-        return color;
+    public double getCurrentSpeed() {
+        return parent.getCurrentSpeed();
     }
 
     @Override
-    public void setColor(Color clr){
-	    color = clr;
+    public Color getColor() {
+        return parent.getColor();
+    }
+
+    @Override
+    public void setColor(Color clr) {
+        parent.setColor(clr);
     }
 
     @Override
     public String getModelName() {
-        return null;
+        return parent.getModelName();
     }
 
     @Override
-    public void startEngine(){
-	    currentSpeed = 0.1;
+    public void startEngine() {
+        parent.startEngine();
     }
 
     @Override
-    public void stopEngine(){
-	    currentSpeed = 0;
-    }
-    
-    public double speedFactor(){
-        return enginePower * 0.01 * trimFactor;
-    }
-
-    public void incrementSpeed(double amount){
-	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+    public void stopEngine() {
+        parent.stopEngine();
     }
 
     public void decrementSpeed(double amount){
@@ -61,18 +54,18 @@ public class Volvo240 implements ICar {
 
     // TODO fix this method according to lab pm
     @Override
-    public void gas(double amount){
-        incrementSpeed(amount);
+    public void gas(double amount) {
+        parent.incrementSpeed(amount, speedFactor());
     }
 
     // TODO fix this method according to lab pm
     @Override
-    public void brake(double amount){
-        decrementSpeed(amount);
+    public void brake(double amount) {
+        parent.decrementSpeed(amount, speedFactor());
     }
 
     @Override
     public boolean engineIsRunning() {
-        return false;
+        return parent.engineIsRunning();
     }
 }
