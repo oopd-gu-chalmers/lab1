@@ -27,9 +27,11 @@ public class Car implements ICar {
 
     @Override
     public double getCurrentSpeed() {
-        return 0;
         return currentSpeed;
     }
+
+    private void setCurrentSpeed(double speed) {
+        currentSpeed = speed;
     }
 
     @Override
@@ -49,7 +51,6 @@ public class Car implements ICar {
 
     @Override
     public void startEngine() {
-
         setCurrentSpeed(0.1);
         engineIsRunning = true;
     }
