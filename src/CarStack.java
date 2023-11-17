@@ -18,7 +18,7 @@ public class CarStack implements Iterable<Car>, Movable { //Vad gör iterable?
     }
 
     public Car removeCar() {
-        if (!cars.isEmpty()) return (Car) cars.pop(); //Säger att (Car) är redundant
+        if (!cars.isEmpty()) return cars.pop(); //Säger att (Car) är redundant
         return null;
     }
 
