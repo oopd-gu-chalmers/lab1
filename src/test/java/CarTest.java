@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-    Car car = new Car(Color.ORANGE, 5, 100, "TestCar");
+    Car car = new Car(Color.ORANGE, 100, "TestCar", 5);
     @Test
     void settingColorToBlue() {
         car.setColor(Color.BLUE);

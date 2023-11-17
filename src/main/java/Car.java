@@ -5,9 +5,7 @@ public class Car implements ICar, Movable {
     private final Vehicle vehicle;
     private int nrOfDoors;
 
-    public Car(Color color, int nrOfDoors, double enginePower, String modelName) {
-        this.vehicle = new Vehicle(color, enginePower, modelName);
-        this.nrOfDoors = nrOfDoors;
+    public Car(Color color, double enginePower, String modelName, int nrOfDoors) {
         this.vehicle = new Vehicle(color, enginePower, modelName, nrOfDoors);
     }
 
