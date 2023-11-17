@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public abstract class Truck extends Car {
     protected boolean backIsClosed = true;
 
@@ -8,7 +6,7 @@ public abstract class Truck extends Car {
     }
 
     public double speedFactor() {
-        return 1; //TODO: Fixa värden
+        return 1;
     }
 
     public abstract void raiseBack();
