@@ -100,6 +100,11 @@ public class Vehicle implements IVehicle, Movable {
         return engineIsRunning;
     }
 
+    @Override
+    public int getNrDoors() {
+        return nrOfDoors;
+    }
+
     public void incrementSpeed(double amount, double speedFactor) {
         if (speedFactor < 0) {
             throw new IllegalArgumentException("speedFactor must be positive");
