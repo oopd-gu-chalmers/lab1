@@ -14,7 +14,6 @@ public class Vehicle implements IVehicle, Movable {
     public Vehicle(Color color, double enginePower, String modelName, int nrOfDoors) {
         this.color = color;
         this.enginePower = enginePower;
-        this.currentSpeed = currentSpeed;
         this.modelName = modelName;
         this.nrOfDoors = nrOfDoors;
         this.currentSpeed = 0;
