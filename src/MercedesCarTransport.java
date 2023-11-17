@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Objects;
 
 public class MercedesCarTransport extends Truck {
     private final CarStack cars;
