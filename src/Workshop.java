@@ -13,15 +13,17 @@ public class Workshop<C> {
         //this.modelName = "Null";
     }
 
-    public Workshop(String modelName, int maxCars) {
+    //public Workshop(String modelName, int maxCars) {
         //this.modelName = modelName;
-        this.maxCars = maxCars;
-    }
+    //    this.maxCars = maxCars;
+   // }
 
 
     public void addCar(C car) {
-        cars.add(car);
+        if (cars.size() < maxCars)
+            cars.add(car);
     }
+
     /*
     public void addCar(Volvo240 volvo) {
         cars.add(volvo);

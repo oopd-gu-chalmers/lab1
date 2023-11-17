@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Truck{
+public class Scania extends Truck {
 
     private double tilt = 0;
 
@@ -36,5 +36,10 @@ public class Scania extends Truck{
             tilt = Math.max(tilt - amount, 0);
             if (tilt == 0) backIsClosed = true;
         }
+    }
+
+    @Override
+    public void move() {
+        super.move();
     }
 }
