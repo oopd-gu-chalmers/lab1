@@ -3,6 +3,7 @@ import java.util.Objects;
 
 public class MercedesCarTransport extends Truck {
     private final CarStack cars;
+//Är det tänkt att vi ska ha array istället?
 
     public MercedesCarTransport(int maxCars, int maxDoors) {
         super();
