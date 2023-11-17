@@ -34,7 +34,7 @@ public class Scania extends Truck {
     public void lowerBack(double amount) {
         if (amount >= 0){
             tilt = Math.max(tilt - amount, 0);
-            if (tilt == 0) backIsClosed = true;
+            if (tilt == 0) backIsClosed = true; //Borde kanske ha att den är closed tills den är 70???
         }
     }
 
