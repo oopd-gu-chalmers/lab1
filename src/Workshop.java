@@ -10,14 +10,7 @@ public class Workshop<C> {
 
     public Workshop(int maxCars) {
         this.maxCars = maxCars;
-        //this.modelName = "Null";
     }
-
-    //public Workshop(String modelName, int maxCars) {
-        //this.modelName = modelName;
-    //    this.maxCars = maxCars;
-   // }
-
 
     public void addCar(C car) {
         if (cars.size() < maxCars)
