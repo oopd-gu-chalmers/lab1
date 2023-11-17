@@ -22,4 +22,6 @@ public interface IVehicle {
     void brake(double amount);
 
     boolean engineIsRunning();
+
+    int getNrDoors();
 }

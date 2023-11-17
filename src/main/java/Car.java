@@ -8,6 +8,7 @@ public class Car implements ICar, Movable {
     public Car(Color color, int nrOfDoors, double enginePower, String modelName) {
         this.vehicle = new Vehicle(color, enginePower, modelName);
         this.nrOfDoors = nrOfDoors;
+        this.vehicle = new Vehicle(color, enginePower, modelName, nrOfDoors);
     }
 
     @Override

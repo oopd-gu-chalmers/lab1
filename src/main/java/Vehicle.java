@@ -2,19 +2,22 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Vehicle implements IVehicle, Movable {
-    Color color;
-    double enginePower;
-    double currentSpeed;
-    String modelName;
-    boolean engineIsRunning;
-    Direction direction;
-    Point2D.Double position;
+    private Color color;
+    private double enginePower;
+    private double currentSpeed;
+    private String modelName;
+    private boolean engineIsRunning;
+    private Direction direction;
+    private Point2D.Double position;
+    private int nrOfDoors;
 
-    public Vehicle(Color color, double enginePower, String modelName) {
+    public Vehicle(Color color, double enginePower, String modelName, int nrOfDoors) {
         this.color = color;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
         this.modelName = modelName;
+        this.nrOfDoors = nrOfDoors;
+        this.currentSpeed = 0;
         this.direction = Direction.NORTH;
         this.position = new Point2D.Double(0, 0);
         stopEngine();
