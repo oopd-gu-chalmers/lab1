@@ -11,7 +11,7 @@ public class Workshop<C> {
     }
 
     public void addCar(C car) {
-        if (cars.size() < maxCars)
+        if (cars.size() < maxCars && !cars.contains(car))
             cars.add(car);
     }
 
