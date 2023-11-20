@@ -3,8 +3,8 @@ import java.awt.geom.Point2D;
 
 public class Scania implements ITruck, Movable, TiltablePlatform {
 
-    private Truck truck;
-    private TiltablePlatformHelper platformHelper;
+    private final Truck truck;
+    private final TiltablePlatformHelper platformHelper;
 
     public Scania() {
         truck = new Truck(Color.LIGHT_GRAY, 90, "Scania", 2);

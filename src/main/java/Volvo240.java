@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Volvo240 implements ICar {
-    private Car parent;
+    private final Car parent;
     public final static double trimFactor = 1.25;
 
     public Volvo240() {

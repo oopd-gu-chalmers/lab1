@@ -3,13 +3,13 @@ import java.awt.geom.Point2D;
 
 public class Vehicle implements IVehicle, Movable {
     private Color color;
-    private double enginePower;
+    private final double enginePower;
     private double currentSpeed;
-    private String modelName;
+    private final String modelName;
     private boolean engineIsRunning;
     private Direction direction;
     private Point2D.Double position;
-    private int nrOfDoors;
+    private final int nrOfDoors;
 
     public Vehicle(Color color, double enginePower, String modelName, int nrOfDoors) {
         this.color = color;
