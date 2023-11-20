@@ -67,12 +67,10 @@ public class Saab95 implements ICar, Movable, Loadable {
         return car.engineIsRunning();
     }
 
-    // TODO fix this method according to lab pm
     public void gas(double amount) {
         car.incrementSpeed(amount, speedFactor());
     }
 
-    // TODO fix this method according to lab pm
     public void brake(double amount) {
         car.decrementSpeed(amount, speedFactor());
     }
