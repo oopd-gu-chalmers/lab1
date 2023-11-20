@@ -127,9 +127,9 @@ public class Vehicle implements IVehicle, Movable {
 
     private Point2D.Double getNextPosition() {
         Point2D.Double unitDirectionPoint = getDirection().getUnitDirectionPoint();
-        double deltaX = unitDirectionPoint.x * getCurrentSpeed();
-        double deltaY = unitDirectionPoint.y * getCurrentSpeed();
-        return new Point2D.Double(getPosition().x + deltaX, getPosition().y + deltaY);
+        double deltaX = unitDirectionPoint.getX() * getCurrentSpeed();
+        double deltaY = unitDirectionPoint.getY() * getCurrentSpeed();
+        return new Point2D.Double(getPosition().getX() + deltaX, getPosition().getY() + deltaY);
     }
 
     @Override
