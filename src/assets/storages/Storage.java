@@ -58,7 +58,7 @@ public class Storage<T extends Element> {
     }
 
     /**
-     * Remove an element from the storage at a given position
+     * Remove an element from the storage and set its position
      * @param element element to remove
      * @param position new position of the element
      */

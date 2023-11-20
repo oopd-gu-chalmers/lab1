@@ -34,7 +34,7 @@ public abstract class MotorizedBoat extends Boat implements Startable {
 
     public void setThrottle(double level){
         if (!isStarted()){
-            System.out.println("Boat must be started to uses throttle!");
+            System.out.println("Boat must be started to use throttle!");
             return;
         }
         if (level < 0 || level > 1){

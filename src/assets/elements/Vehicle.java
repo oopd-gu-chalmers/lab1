@@ -15,7 +15,7 @@ public abstract class Vehicle extends ActiveElement implements Drivable, Colorab
     private final String modelName;
     private Color color;
     private final double height;
-    private double weight;
+    private final double weight;
 
     /**
      *
