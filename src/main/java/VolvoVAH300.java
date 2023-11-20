@@ -54,8 +54,6 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
         return loadedItems.add(item);
     }
 
-    // TODO:
-    //  Put item "close" to the truck when unloading
     @Override
     public Loadable unloadLast() {
         Loadable item = loadedItems.removeLast();
