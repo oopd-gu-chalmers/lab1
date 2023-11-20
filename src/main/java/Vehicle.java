@@ -59,6 +59,7 @@ public class Vehicle implements IVehicle, Movable {
         this.direction = direction;
     }
 
+    @Override
     public Point2D.Double getPosition() {
         return position;
     }
