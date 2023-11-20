@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
-public class Scania implements ITruck, TiltablePlatform {
+public class Scania implements ITruck, Movable, TiltablePlatform {
 
     private Truck truck;
     private TiltablePlatformHelper platformHelper;
@@ -106,5 +107,25 @@ public class Scania implements ITruck, TiltablePlatform {
 
     public void openPlatform(double angle) {
         platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() + angle);
+    }
+
+    @Override
+    public void move() {
+        truck.move();
+    }
+
+    @Override
+    public void turnRight() {
+        truck.turnRight();
+    }
+
+    @Override
+    public void turnLeft() {
+        truck.turnLeft();
+    }
+
+    @Override
+    public Point2D.Double getPosition() {
+        return truck.getPosition();
     }
 }
