@@ -23,10 +23,6 @@ public class Car implements ICar, Movable {
         return vehicle.getCurrentSpeed();
     }
 
-    private void setCurrentSpeed(double speed) {
-        vehicle.setCurrentSpeed(speed);
-    }
-
     @Override
     public Color getColor() {
         return vehicle.getColor();
@@ -44,10 +40,6 @@ public class Car implements ICar, Movable {
 
     public Direction getDirection() {
         return vehicle.getDirection();
-    }
-
-    public void setDirection(Direction direction) {
-        vehicle.setDirection(direction);
     }
 
     @Override
