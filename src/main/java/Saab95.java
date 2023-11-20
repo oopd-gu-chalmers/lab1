@@ -1,15 +1,17 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
-public class Saab95 implements ICar {
-    private Car parent;
+public class Saab95 implements ICar, Movable, Loadable {
     public boolean turboOn;
     private final Car car;
+    private CanLoad loader;
+    private final int unitSize;
 
     public Saab95() {
         car = new Car(Color.RED, 125, "Saab95", 2);
         turboOn = false;
-        parent.stopEngine();
         loader = null;
+        unitSize = UnitSize.SMALL_CAR_UNIT_SIZE;
         car.stopEngine();
     }
 
@@ -72,7 +74,61 @@ public class Saab95 implements ICar {
 
     // TODO fix this method according to lab pm
     public void brake(double amount) {
-        parent.decrementSpeed(amount, speedFactor());
         car.decrementSpeed(amount, speedFactor());
+    }
+
+    @Override
+    public int getUnitSize() {
+        return unitSize;
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return loader != null;
+    }
+
+    @Override
+    public void load(CanLoad loader) {
+        setLoader(loader);
+    }
+
+    @Override
+    public void unload() {
+        setLoader(null);
+    }
+
+    @Override
+    public void setLoader(CanLoad loader) {
+        this.loader = loader;
+    }
+
+    @Override
+    public CanLoad getLoader() {
+        return loader;
+    }
+
+    @Override
+    public Point2D.Double getPosition() {
+        return car.getPosition();
+    }
+
+    @Override
+    public void updatePosition(Point2D.Double loaderPosition) {
+        car.setPosition(loaderPosition);
+    }
+
+    @Override
+    public void move() {
+        car.move();
+    }
+
+    @Override
+    public void turnRight() {
+        car.turnRight();
+    }
+
+    @Override
+    public void turnLeft() {
+        car.turnLeft();
     }
 }
