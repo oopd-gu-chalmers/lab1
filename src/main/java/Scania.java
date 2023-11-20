@@ -1,13 +1,13 @@
 import java.awt.*;
 
-public class Scania implements ITruck, Platform {
+public class Scania implements ITruck, TiltablePlatform {
 
     private Truck truck;
-    private PlatformHelper platformHelper;
+    private TiltablePlatformHelper platformHelper;
 
     public Scania() {
         truck = new Truck(Color.LIGHT_GRAY, 90, "Scania", 2);
-        platformHelper = new PlatformHelper();
+        platformHelper = new TiltablePlatformHelper(0, 70);
     }
 
     @Override
@@ -76,12 +76,35 @@ public class Scania implements ITruck, Platform {
     }
 
     @Override
+    public double getPlatformAngle() {
+        return platformHelper.getPlatformAngle();
+    }
+
+    @Override
+    public double getMaximumAngle() {
+        return platformHelper.getMaximumAngle();
+    }
+
+    @Override
+    public double getMinimumAngle() {
+        return platformHelper.getMinimumAngle();
+    }
+
+    @Override
     public void closePlatform() {
         platformHelper.closePlatform();
+    }
+
+    public void closePlatform(double angle) {
+        platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() - angle);
     }
 
     @Override
     public void openPlatform() {
         platformHelper.openPlatform();
+    }
+
+    public void openPlatform(double angle) {
+        platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() + angle);
     }
 }
