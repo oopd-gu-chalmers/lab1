@@ -93,7 +93,8 @@ public class Saab95 implements ICar, Movable, Loadable {
     }
 
     @Override
-    public void unload() {
+    public void unload(Point2D.Double unloadingPosition) {
+        car.setPosition(unloadingPosition);
         setLoader(null);
     }
 
