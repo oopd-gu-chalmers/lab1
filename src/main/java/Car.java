@@ -50,6 +50,7 @@ public class Car implements ICar, Movable {
         vehicle.setDirection(direction);
     }
 
+    @Override
     public Point2D.Double getPosition() {
         return vehicle.getPosition();
     }
