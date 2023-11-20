@@ -1,56 +1,61 @@
 public class TiltablePlatformHelper implements TiltablePlatform {
 
-    private final PlatformHelper platformHelper;
+    private final double minimumAngle;
+    private final double maximumAngle;
+    private double platformAngle;
+
     public TiltablePlatformHelper(double minimumAngle, double maximumAngle) {
-        this.platformHelper = new PlatformHelper(minimumAngle, maximumAngle);
+        this.minimumAngle = minimumAngle;
+        this.maximumAngle = maximumAngle;
+        this.platformAngle = minimumAngle;
     }
 
     public void setPlatformAngle(double platformAngle) {
-        platformHelper.setPlatformAngle(platformAngle);
+        this.platformAngle = Math.max(getMinimumAngle(), Math.min(getMaximumAngle(), platformAngle));
     }
 
     @Override
     public boolean platformIsFullyClosed() {
-        return platformHelper.platformIsFullyClosed();
+        return getPlatformAngle() == getMinimumAngle();
     }
 
     @Override
     public boolean platformIsFullyOpened() {
-        return platformHelper.platformIsFullyOpened();
+        return getPlatformAngle() == getMaximumAngle();
     }
 
     @Override
     public double getPlatformAngle() {
-        return platformHelper.getPlatformAngle();
-    }
-
-    @Override
-    public double getMaximumAngle() {
-        return platformHelper.getMaximumAngle();
+        return platformAngle;
     }
 
     @Override
     public double getMinimumAngle() {
-        return platformHelper.getMinimumAngle();
+        return minimumAngle;
     }
 
     @Override
-    public void closePlatform() {
-        platformHelper.closePlatform();
+    public double getMaximumAngle() {
+        return maximumAngle;
     }
 
     @Override
     public void openPlatform() {
-        platformHelper.openPlatform();
-    }
-
-    @Override
-    public void closePlatform(double angle) {
-        setPlatformAngle(getPlatformAngle() - angle);
+        setPlatformAngle(getMaximumAngle());
     }
 
     @Override
     public void openPlatform(double angle) {
         setPlatformAngle(getPlatformAngle() + angle);
+    }
+
+    @Override
+    public void closePlatform() {
+        setPlatformAngle(getMinimumAngle());
+    }
+
+    @Override
+    public void closePlatform(double angle) {
+        setPlatformAngle(getPlatformAngle() - angle);
     }
 }

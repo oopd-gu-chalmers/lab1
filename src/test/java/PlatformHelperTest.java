@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlatformHelperTest {
-    PlatformHelper platformHelper = new PlatformHelper(0, 100);
+    PlatformHelper platformHelper = new PlatformHelper();
 
     @Test
     void closePlatform() {

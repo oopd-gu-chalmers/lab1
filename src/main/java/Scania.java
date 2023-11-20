@@ -7,7 +7,7 @@ public class Scania implements ITruck, Platform {
 
     public Scania() {
         truck = new Truck(Color.LIGHT_GRAY, 90, "Scania", 2);
-        platformHelper = new PlatformHelper(0, 70);
+        platformHelper = new PlatformHelper();
     }
 
     @Override
@@ -73,21 +73,6 @@ public class Scania implements ITruck, Platform {
     @Override
     public boolean platformIsFullyOpened() {
         return platformHelper.platformIsFullyOpened();
-    }
-
-    @Override
-    public double getPlatformAngle() {
-        return platformHelper.getPlatformAngle();
-    }
-
-    @Override
-    public double getMaximumAngle() {
-        return platformHelper.getMaximumAngle();
-    }
-
-    @Override
-    public double getMinimumAngle() {
-        return platformHelper.getMinimumAngle();
     }
 
     @Override
