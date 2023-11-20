@@ -1,72 +1,72 @@
 import java.awt.*;
 
 public class Volvo240 implements ICar {
-    private final Car parent;
+    private final Car car;
     public final static double trimFactor = 1.25;
 
     public Volvo240() {
-        parent = new Car(Color.BLACK, 100, "Volvo240", 4);
+        car = new Car(Color.BLACK, 100, "Volvo240", 4);
         stopEngine();
     }
 
     @Override
     public int getNrDoors() {
-        return parent.getNrDoors();
+        return car.getNrDoors();
     }
 
     @Override
     public double getEnginePower() {
-        return parent.getEnginePower();
+        return car.getEnginePower();
     }
 
     @Override
     public double getCurrentSpeed() {
-        return parent.getCurrentSpeed();
+        return car.getCurrentSpeed();
     }
 
     @Override
     public Color getColor() {
-        return parent.getColor();
+        return car.getColor();
     }
 
     @Override
     public void setColor(Color clr) {
-        parent.setColor(clr);
+        car.setColor(clr);
     }
 
     @Override
     public String getModelName() {
-        return parent.getModelName();
+        return car.getModelName();
     }
 
     @Override
     public void startEngine() {
-        parent.startEngine();
+        car.startEngine();
     }
 
     @Override
     public void stopEngine() {
-        parent.stopEngine();
+        car.stopEngine();
     }
 
     private double speedFactor() {
-        return parent.getEnginePower() * 0.01 * trimFactor;
+        return car.getEnginePower() * 0.01 * trimFactor;
     }
 
     // TODO fix this method according to lab pm
     @Override
     public void gas(double amount) {
-        parent.incrementSpeed(amount, speedFactor());
+        car.incrementSpeed(amount, speedFactor());
     }
 
     // TODO fix this method according to lab pm
     @Override
     public void brake(double amount) {
-        parent.decrementSpeed(amount, speedFactor());
+        car.decrementSpeed(amount, speedFactor());
     }
 
     @Override
     public boolean engineIsRunning() {
-        return parent.engineIsRunning();
+        return car.engineIsRunning();
     }
 }
