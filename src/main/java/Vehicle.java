@@ -124,13 +124,11 @@ public class Vehicle implements IVehicle, Movable {
         setPosition(getNextPosition());
     }
 
-    Point2D.Double getNextPosition() {
-        return switch (direction) {
-            case Direction.NORTH -> new Point2D.Double(getPosition().x, getPosition().y + getCurrentSpeed());
-            case Direction.EAST -> new Point2D.Double(getPosition().x + getCurrentSpeed(), getPosition().y);
-            case Direction.SOUTH -> new Point2D.Double(getPosition().x, getPosition().y - getCurrentSpeed());
-            case Direction.WEST -> new Point2D.Double(getPosition().x - getCurrentSpeed(), getPosition().y);
-        };
+    private Point2D.Double getNextPosition() {
+        Point2D.Double unitDirectionPoint = getDirection().getUnitDirectionPoint();
+        double deltaX = unitDirectionPoint.x * getCurrentSpeed();
+        double deltaY = unitDirectionPoint.y * getCurrentSpeed();
+        return new Point2D.Double(getPosition().x + deltaX, getPosition().y + deltaY);
     }
 
     @Override
