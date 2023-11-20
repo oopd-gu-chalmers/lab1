@@ -3,7 +3,6 @@ import java.awt.geom.Point2D;
 
 public class Car implements ICar, Movable {
     private final Vehicle vehicle;
-    private int nrOfDoors;
 
     public Car(Color color, double enginePower, String modelName, int nrOfDoors) {
         this.vehicle = new Vehicle(color, enginePower, modelName, nrOfDoors);
@@ -11,7 +10,7 @@ public class Car implements ICar, Movable {
 
     @Override
     public int getNrDoors() {
-        return nrOfDoors;
+        return vehicle.getNrDoors();
     }
 
     @Override
