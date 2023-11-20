@@ -4,7 +4,6 @@ public interface Loadable {
     int getUnitSize();
     boolean isLoaded();
     void load(CanLoad loader);
-    void setLoader(CanLoad loader);
     void unload(Point2D.Double unloadingPosition);
     CanLoad getLoader();
     Point2D.Double getPosition();
