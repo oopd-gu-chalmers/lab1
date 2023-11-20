@@ -96,10 +96,6 @@ public class Car implements ICar, Movable {
         vehicle.move();
     }
 
-    private Point2D.Double getNextPosition() {
-        return vehicle.getNextPosition();
-    }
-
     @Override
     public void turnRight() {
         vehicle.turnRight();
