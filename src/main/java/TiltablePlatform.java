@@ -1,11 +1,4 @@
-public interface TiltablePlatform {
-    boolean platformIsFullyClosed();
-    boolean platformIsFullyOpened();
-    double getPlatformAngle();
-    double getMaximumAngle();
-    double getMinimumAngle();
-    void closePlatform();
-    void openPlatform();
+public interface TiltablePlatform extends Platform {
     void closePlatform(double angle);
     void openPlatform(double angle);
 }
