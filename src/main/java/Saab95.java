@@ -3,44 +3,47 @@ import java.awt.*;
 public class Saab95 implements ICar {
     private Car parent;
     public boolean turboOn;
+    private final Car car;
 
     public Saab95() {
-        parent = new Car(Color.RED, 125, "Saab95", 2);
+        car = new Car(Color.RED, 125, "Saab95", 2);
         turboOn = false;
         parent.stopEngine();
+        loader = null;
+        car.stopEngine();
     }
 
     public int getNrDoors() {
-        return parent.getNrDoors();
+        return car.getNrDoors();
     }
 
     public double getEnginePower() {
-        return parent.getEnginePower();
+        return car.getEnginePower();
     }
 
     public double getCurrentSpeed() {
-        return parent.getCurrentSpeed();
+        return car.getCurrentSpeed();
     }
 
     public Color getColor() {
-        return parent.getColor();
+        return car.getColor();
     }
 
     public void setColor(Color clr) {
-        parent.setColor(clr);
+        car.setColor(clr);
     }
 
     @Override
     public String getModelName() {
-        return parent.getModelName();
+        return car.getModelName();
     }
 
     public void startEngine() {
-        parent.startEngine();
+        car.startEngine();
     }
 
     public void stopEngine() {
-        parent.stopEngine();
+        car.stopEngine();
     }
 
     public void setTurboOn() {
@@ -54,21 +57,22 @@ public class Saab95 implements ICar {
     private double speedFactor() {
         double turbo = 1;
         if (turboOn) turbo = 1.3;
-        return parent.getEnginePower() * 0.01 * turbo;
+        return car.getEnginePower() * 0.01 * turbo;
     }
 
     @Override
     public boolean engineIsRunning() {
-        return parent.engineIsRunning();
+        return car.engineIsRunning();
     }
 
     // TODO fix this method according to lab pm
     public void gas(double amount) {
-        parent.incrementSpeed(amount, speedFactor());
+        car.incrementSpeed(amount, speedFactor());
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount) {
         parent.decrementSpeed(amount, speedFactor());
+        car.decrementSpeed(amount, speedFactor());
     }
 }
