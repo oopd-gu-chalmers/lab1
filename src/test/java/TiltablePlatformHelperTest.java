@@ -2,8 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PlatformHelperTest {
-    PlatformHelper platformHelper = new PlatformHelper();
+class TiltablePlatformHelperTest {
+    TiltablePlatformHelper platformHelper = new TiltablePlatformHelper(0, 70);
 
     @Test
     void closePlatform() {
