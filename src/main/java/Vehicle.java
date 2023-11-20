@@ -83,17 +83,11 @@ public class Vehicle implements IVehicle, Movable {
 
     @Override
     public void gas(double amount) {
-        if (amount < 0 || amount > 1) {
-            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
-        }
         incrementSpeed(amount, 1);
     }
 
     @Override
     public void brake(double amount) {
-        if (amount < 0 || amount > 1) {
-            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
-        }
         decrementSpeed(amount, 1);
     }
 
@@ -108,17 +102,22 @@ public class Vehicle implements IVehicle, Movable {
     }
 
     public void incrementSpeed(double amount, double speedFactor) {
-        if (speedFactor < 0) {
-            throw new IllegalArgumentException("speedFactor must be positive");
-        }
-        setCurrentSpeed(getCurrentSpeed() + amount * speedFactor);
+        alterSpeed(amount, speedFactor, true);
     }
 
     public void decrementSpeed(double amount, double speedFactor) {
+        alterSpeed(amount, speedFactor, false);
+    }
+
+    private void alterSpeed(double amount, double speedFactor, boolean increment) {
         if (speedFactor < 0) {
             throw new IllegalArgumentException("speedFactor must be positive");
         }
-        setCurrentSpeed(getCurrentSpeed() - amount * speedFactor);
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException("Amount must not be less than 0 or greater than 1");
+        }
+        double deltaSpeed = amount * speedFactor * (increment ? 1 : -1);
+        setCurrentSpeed(getCurrentSpeed() + deltaSpeed);
     }
 
     @Override
