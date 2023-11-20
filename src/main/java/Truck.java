@@ -79,6 +79,11 @@ public class Truck implements ITruck, Movable {
     }
 
     @Override
+    public Direction getDirection() {
+        return vehicle.getDirection();
+    }
+
+    @Override
     public Point2D.Double getPosition() {
         return vehicle.getPosition();
     }

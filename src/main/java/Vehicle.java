@@ -51,6 +51,7 @@ public class Vehicle implements IVehicle, Movable {
         return modelName;
     }
 
+    @Override
     public Direction getDirection() {
         return direction;
     }

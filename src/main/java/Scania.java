@@ -125,6 +125,11 @@ public class Scania implements ITruck, Movable, TiltablePlatform {
     }
 
     @Override
+    public Direction getDirection() {
+        return truck.getDirection();
+    }
+
+    @Override
     public Point2D.Double getPosition() {
         return truck.getPosition();
     }

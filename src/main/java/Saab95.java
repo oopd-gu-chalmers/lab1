@@ -131,4 +131,9 @@ public class Saab95 implements ICar, Movable, Loadable {
     public void turnLeft() {
         car.turnLeft();
     }
+
+    @Override
+    public Direction getDirection() {
+        return car.getDirection();
+    }
 }
