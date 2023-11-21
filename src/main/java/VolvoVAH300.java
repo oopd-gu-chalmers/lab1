@@ -49,11 +49,16 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
 
     @Override
     public boolean load(Loadable item) {
-        if (truck.getPosition().distance(item.getPosition()) > getMaximumLoadingDistance()) return false;
-        if (item.getUnitSize() > getMaximumUnitSize()) return false;
-        if (!(item instanceof ICar)) return false;
+        if (canLoadItem(item)) return false;
         item.load(this);
         return loadedItems.add(item);
+    }
+
+    private boolean canLoadItem(Loadable item) {
+        if (truck.getPosition().distance(item.getPosition()) > getMaximumLoadingDistance()) return true;
+        if (item.getUnitSize() > getMaximumUnitSize()) return true;
+        if (!(item instanceof ICar)) return true;
+        return false;
     }
 
     @Override
