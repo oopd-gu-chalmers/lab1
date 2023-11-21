@@ -59,6 +59,11 @@ public class Volvo240 implements ICar, Movable, Loadable {
     }
 
     @Override
+    public boolean engineIsRunning() {
+        return car.engineIsRunning();
+    }
+
+    @Override
     public void gas(double amount) {
         car.incrementSpeed(amount, speedFactor());
     }
@@ -69,8 +74,6 @@ public class Volvo240 implements ICar, Movable, Loadable {
     }
 
     @Override
-    public boolean engineIsRunning() {
-        return car.engineIsRunning();
     public int getUnitSize() {
         return unitSize;
     }

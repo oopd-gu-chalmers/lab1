@@ -2,8 +2,8 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Saab95 implements ICar, Movable, Loadable {
-    public boolean turboOn;
     private final Car car;
+    public boolean turboOn;
     private CanLoad loader;
     private final int unitSize;
 
