@@ -1,11 +1,16 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
-public class Volvo240 implements ICar {
+public class Volvo240 implements ICar, Movable, Loadable {
     private final Car car;
     public final static double trimFactor = 1.25;
+    private CanLoad loader;
+    private final int unitSize;
 
     public Volvo240() {
         car = new Car(Color.BLACK, 100, "Volvo240", 4);
+        loader = null;
+        unitSize = UnitSize.SMALL_CAR_UNIT_SIZE;
         stopEngine();
     }
 
@@ -68,5 +73,62 @@ public class Volvo240 implements ICar {
     @Override
     public boolean engineIsRunning() {
         return car.engineIsRunning();
+    public int getUnitSize() {
+        return unitSize;
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return loader != null;
+    }
+
+    @Override
+    public void load(CanLoad loader) {
+        setLoader(loader);
+    }
+
+    @Override
+    public void unload(Point2D.Double unloadingPosition) {
+        car.setPosition(unloadingPosition);
+        setLoader(null);
+    }
+
+    private void setLoader(CanLoad loader) {
+        this.loader = loader;
+    }
+
+    @Override
+    public CanLoad getLoader() {
+        return loader;
+    }
+
+    @Override
+    public Point2D.Double getPosition() {
+        return car.getPosition();
+    }
+
+    @Override
+    public void updatePosition(Point2D.Double loaderPosition) {
+        car.setPosition(loaderPosition);
+    }
+
+    @Override
+    public void move() {
+        car.move();
+    }
+
+    @Override
+    public void turnRight() {
+        car.turnRight();
+    }
+
+    @Override
+    public void turnLeft() {
+        car.turnLeft();
+    }
+
+    @Override
+    public Direction getDirection() {
+        return car.getDirection();
     }
 }
