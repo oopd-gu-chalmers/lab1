@@ -48,6 +48,10 @@ public class Truck implements ITruck, Movable {
         return vehicle.getPosition();
     }
 
+    public void setPosition(Point2D.Double position) {
+        vehicle.setPosition(position);
+    }
+
     @Override
     public void startEngine() {
         vehicle.startEngine();
