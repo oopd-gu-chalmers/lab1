@@ -71,9 +71,8 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     @Override
     public Point2D.Double getUnloadingPosition() {
         Point2D.Double unitDirectionPoint = truck.getDirection().getUnitDirectionPoint();
-        double unloadingDistance = 4;
-        double deltaX = unitDirectionPoint.getX() * unloadingDistance;
-        double deltaY = unitDirectionPoint.getY() * unloadingDistance;
+        double deltaX = unitDirectionPoint.getX() * maximumLoadingDistance;
+        double deltaY = unitDirectionPoint.getY() * maximumLoadingDistance;
         return new Point2D.Double(truck.getPosition().getX() - deltaX, truck.getPosition().getY() - deltaY);
     }
 
