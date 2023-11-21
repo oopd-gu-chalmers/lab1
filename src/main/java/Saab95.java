@@ -105,7 +105,7 @@ public class Saab95 implements ICar, Movable, Loadable {
         setLoader(null);
     }
 
-    public void setLoader(CanLoad loader) {
+    private void setLoader(CanLoad loader) {
         this.loader = loader;
     }
 
