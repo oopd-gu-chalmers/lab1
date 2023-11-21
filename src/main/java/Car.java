@@ -38,6 +38,7 @@ public class Car implements ICar, Movable {
         return vehicle.getModelName();
     }
 
+    @Override
     public Direction getDirection() {
         return vehicle.getDirection();
     }
