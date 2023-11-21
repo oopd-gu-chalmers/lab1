@@ -58,13 +58,11 @@ public class Volvo240 implements ICar, Movable, Loadable {
         return car.getEnginePower() * 0.01 * trimFactor;
     }
 
-    // TODO fix this method according to lab pm
     @Override
     public void gas(double amount) {
         car.incrementSpeed(amount, speedFactor());
     }
 
-    // TODO fix this method according to lab pm
     @Override
     public void brake(double amount) {
         car.decrementSpeed(amount, speedFactor());
