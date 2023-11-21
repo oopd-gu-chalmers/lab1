@@ -109,7 +109,7 @@ public class Volvo240 implements ICar, Movable, Loadable {
     }
 
     @Override
-    public void updatePosition(Point2D.Double loaderPosition) {
+    public void setPositionToLoaderPosition(Point2D.Double loaderPosition) {
         car.setPosition(loaderPosition);
     }
 

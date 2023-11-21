@@ -7,5 +7,5 @@ public interface Loadable {
     void unload(Point2D.Double unloadingPosition);
     CanLoad getLoader();
     Point2D.Double getPosition();
-    void updatePosition(Point2D.Double loaderPosition);
+    void setPositionToLoaderPosition(Point2D.Double loaderPosition);
 }
