@@ -83,12 +83,20 @@ public class Vehicle implements IVehicle, Movable {
 
     @Override
     public void gas(double amount) {
-        incrementSpeed(amount, 1);
+        gas(amount, 1);
+    }
+
+    public void gas(double amount, double speedFactor) {
+        incrementSpeed(amount, speedFactor);
     }
 
     @Override
     public void brake(double amount) {
-        decrementSpeed(amount, 1);
+        brake(amount, 1);
+    }
+
+    public void brake(double amount, double speedFactor) {
+        decrementSpeed(amount, speedFactor);
     }
 
     @Override
@@ -101,11 +109,11 @@ public class Vehicle implements IVehicle, Movable {
         return nrOfDoors;
     }
 
-    public void incrementSpeed(double amount, double speedFactor) {
+    private void incrementSpeed(double amount, double speedFactor) {
         alterSpeed(amount, speedFactor, true);
     }
 
-    public void decrementSpeed(double amount, double speedFactor) {
+    private void decrementSpeed(double amount, double speedFactor) {
         alterSpeed(amount, speedFactor, false);
     }
 

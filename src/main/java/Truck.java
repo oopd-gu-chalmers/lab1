@@ -45,12 +45,20 @@ public class Truck implements ITruck, Movable {
 
     @Override
     public void gas(double amount) {
-        vehicle.incrementSpeed(amount, 1);
+        gas(amount, 1);
+    }
+
+    public void gas(double amount, double speedFactor) {
+        vehicle.gas(amount, speedFactor);
     }
 
     @Override
     public void brake(double amount) {
-        vehicle.decrementSpeed(amount, 1);
+        brake(amount, 1);
+    }
+
+    public void brake(double amount, double speedFactor) {
+        vehicle.brake(amount, speedFactor);
     }
 
     @Override

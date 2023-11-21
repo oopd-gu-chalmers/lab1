@@ -65,12 +65,12 @@ public class Volvo240 implements ICar, Movable, Loadable {
 
     @Override
     public void gas(double amount) {
-        car.incrementSpeed(amount, speedFactor());
+        car.gas(amount, speedFactor());
     }
 
     @Override
     public void brake(double amount) {
-        car.decrementSpeed(amount, speedFactor());
+        car.brake(amount, speedFactor());
     }
 
     @Override

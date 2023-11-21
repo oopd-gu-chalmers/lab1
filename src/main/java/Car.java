@@ -64,25 +64,25 @@ public class Car implements ICar, Movable {
 
     @Override
     public void gas(double amount) {
-        vehicle.gas(amount);
+        gas(amount, 1);
+    }
+
+    public void gas(double amount, double speedFactor) {
+        vehicle.gas(amount, speedFactor);
     }
 
     @Override
     public void brake(double amount) {
-        vehicle.brake(amount);
+        brake(amount, 1);
+    }
+
+    public void brake(double amount, double speedFactor) {
+        vehicle.brake(amount, speedFactor);
     }
 
     @Override
     public boolean engineIsRunning() {
         return vehicle.engineIsRunning();
-    }
-
-    public void incrementSpeed(double amount, double speedFactor) {
-        vehicle.incrementSpeed(amount, speedFactor);
-    }
-
-    public void decrementSpeed(double amount, double speedFactor) {
-        vehicle.decrementSpeed(amount, speedFactor);
     }
 
     @Override
