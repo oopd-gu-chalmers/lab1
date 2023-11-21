@@ -9,6 +9,11 @@ public class Truck implements ITruck, Movable {
     }
 
     @Override
+    public int getNrDoors() {
+        return vehicle.getNrDoors();
+    }
+
+    @Override
     public double getEnginePower() {
         return vehicle.getEnginePower();
     }
@@ -31,6 +36,16 @@ public class Truck implements ITruck, Movable {
     @Override
     public String getModelName() {
         return vehicle.getModelName();
+    }
+
+    @Override
+    public Direction getDirection() {
+        return vehicle.getDirection();
+    }
+
+    @Override
+    public Point2D.Double getPosition() {
+        return vehicle.getPosition();
     }
 
     @Override
@@ -67,11 +82,6 @@ public class Truck implements ITruck, Movable {
     }
 
     @Override
-    public int getNrDoors() {
-        return vehicle.getNrDoors();
-    }
-
-    @Override
     public void move() {
         vehicle.move();
     }
@@ -84,15 +94,5 @@ public class Truck implements ITruck, Movable {
     @Override
     public void turnLeft() {
         vehicle.turnLeft();
-    }
-
-    @Override
-    public Direction getDirection() {
-        return vehicle.getDirection();
-    }
-
-    @Override
-    public Point2D.Double getPosition() {
-        return vehicle.getPosition();
     }
 }
