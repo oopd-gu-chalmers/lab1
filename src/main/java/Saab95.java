@@ -12,7 +12,7 @@ public class Saab95 implements ICar, Movable, Loadable {
         turboOn = false;
         loader = null;
         unitSize = UnitSize.SMALL_CAR_UNIT_SIZE;
-        car.stopEngine();
+        stopEngine();
     }
 
     @Override
