@@ -26,11 +26,11 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
 
     @Override
     public int getAvailableCapacity() {
-        int loadedItemsCapacity = 0;
+        int usedCapacity = 0;
         for (Loadable loadedItem : loadedItems) {
-            loadedItemsCapacity += loadedItem.getUnitSize();
+            usedCapacity += loadedItem.getUnitSize();
         }
-        return getTotalCapacity() - loadedItemsCapacity;
+        return getTotalCapacity() - usedCapacity;
     }
 
     @Override
