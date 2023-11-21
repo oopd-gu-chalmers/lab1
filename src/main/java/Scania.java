@@ -1,14 +1,13 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Scania implements ITruck, Movable, TiltablePlatform {
-
+public class Scania implements ITruck, TiltablePlatform, Movable {
     private final Truck truck;
     private final TiltablePlatformHelper platformHelper;
 
     public Scania() {
-        truck = new Truck(Color.LIGHT_GRAY, 90, "Scania", 2);
-        platformHelper = new TiltablePlatformHelper(0, 70);
+        this.truck = new Truck(Color.LIGHT_GRAY, 90, "Scania", 2);
+        this.platformHelper = new TiltablePlatformHelper(0, 70);
     }
 
     @Override

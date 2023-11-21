@@ -132,6 +132,26 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     }
 
     @Override
+    public boolean platformIsFullyClosed() {
+        return platformHelper.platformIsFullyClosed();
+    }
+
+    @Override
+    public boolean platformIsFullyOpened() {
+        return platformHelper.platformIsFullyOpened();
+    }
+
+    @Override
+    public void closePlatform() {
+        platformHelper.closePlatform();
+    }
+
+    @Override
+    public void openPlatform() {
+        platformHelper.openPlatform();
+    }
+
+    @Override
     public void move() {
         truck.move();
     }
@@ -154,25 +174,5 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     @Override
     public Point2D.Double getPosition() {
         return truck.getPosition();
-    }
-
-    @Override
-    public boolean platformIsFullyClosed() {
-        return platformHelper.platformIsFullyClosed();
-    }
-
-    @Override
-    public boolean platformIsFullyOpened() {
-        return platformHelper.platformIsFullyOpened();
-    }
-
-    @Override
-    public void closePlatform() {
-        platformHelper.closePlatform();
-    }
-
-    @Override
-    public void openPlatform() {
-        platformHelper.openPlatform();
     }
 }
