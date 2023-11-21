@@ -15,22 +15,27 @@ public class Saab95 implements ICar, Movable, Loadable {
         car.stopEngine();
     }
 
+    @Override
     public int getNrDoors() {
         return car.getNrDoors();
     }
 
+    @Override
     public double getEnginePower() {
         return car.getEnginePower();
     }
 
+    @Override
     public double getCurrentSpeed() {
         return car.getCurrentSpeed();
     }
 
+    @Override
     public Color getColor() {
         return car.getColor();
     }
 
+    @Override
     public void setColor(Color clr) {
         car.setColor(clr);
     }
@@ -40,10 +45,12 @@ public class Saab95 implements ICar, Movable, Loadable {
         return car.getModelName();
     }
 
+    @Override
     public void startEngine() {
         car.startEngine();
     }
 
+    @Override
     public void stopEngine() {
         car.stopEngine();
     }
@@ -67,10 +74,12 @@ public class Saab95 implements ICar, Movable, Loadable {
         return car.engineIsRunning();
     }
 
+    @Override
     public void gas(double amount) {
         car.incrementSpeed(amount, speedFactor());
     }
 
+    @Override
     public void brake(double amount) {
         car.decrementSpeed(amount, speedFactor());
     }
