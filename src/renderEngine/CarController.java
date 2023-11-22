@@ -41,7 +41,19 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
+                if (car.getPosition()[1] > 500 || car.getPosition()[1] < 0){
+                    double rot = car.getRotation();
+                    car.setRotation(180 - rot);
+                }
+
+                if (car.getPosition()[0] > 650 || car.getPosition()[0] < 0){
+                    System.out.println(car.getPosition()[0]);
+                    double rot = car.getRotation();
+                    car.setRotation(0 - rot);
+                }
+
                 car.moveTick();
+
                 int x = (int) Math.round(car.getPosition()[0]);
                 int y = (int) Math.round(car.getPosition()[1]);
                 frame.drawPanel.moveit(x, y);
@@ -58,6 +70,13 @@ public class CarController {
         for (Car car : cars
                 ) {
             car.gas(gasAmount);
+            car.turnLeft(2);
+        }
+    }
+    void brake(int amount) {
+        double brakeAmount = ((double) amount) / 100;
+        for (Car car : cars) {
+            car.brake(brakeAmount);
         }
     }
 
