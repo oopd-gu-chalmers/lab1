@@ -43,8 +43,8 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad<ICar> {
 
     @Override
     public boolean load(ICar item) {
-        item.load(this);
         if (!canLoadItem(item)) return false;
+        return getLoadedItems().add(item);
     }
 
     private boolean canLoadItem(ICar item) {
