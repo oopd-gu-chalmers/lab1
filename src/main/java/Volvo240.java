@@ -76,26 +76,6 @@ public class Volvo240 implements ICar, Movable {
 
     @Override
     public boolean isLoaded() {
-    }
-
-    @Override
-    public void load(CanLoad loader) {
-        setLoader(loader);
-    }
-
-    @Override
-    public void unload(Point2D.Double unloadingPosition) {
-        car.setPosition(unloadingPosition);
-        setLoader(null);
-    }
-
-    private void setLoader(CanLoad loader) {
-        this.loader = loader;
-    }
-
-    @Override
-    public CanLoad getLoader() {
-        return loader;
         return car.isLoaded();
     }
 
