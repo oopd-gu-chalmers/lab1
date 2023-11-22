@@ -3,9 +3,13 @@ import java.awt.geom.Point2D;
 
 public class Car implements ICar, Movable {
     private final Vehicle vehicle;
+    private final int unitSize;
+    private boolean isLoaded;
 
-    public Car(Color color, double enginePower, String modelName, int nrOfDoors) {
+    public Car(Color color, double enginePower, String modelName, int nrOfDoors, int unitSize) {
         this.vehicle = new Vehicle(color, enginePower, modelName, nrOfDoors);
+        this.unitSize = unitSize;
+        this.isLoaded = false;
     }
 
     @Override
@@ -44,8 +48,23 @@ public class Car implements ICar, Movable {
     }
 
     @Override
+    public int getUnitSize() {
+        return unitSize;
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return isLoaded;
+    }
+
+    @Override
     public Point2D.Double getPosition() {
         return vehicle.getPosition();
+    }
+
+    @Override
+    public void setPositionToLoaderPosition(Point2D.Double loaderPosition) {
+        vehicle.setPosition(loaderPosition);
     }
 
     public void setPosition(Point2D.Double position) {

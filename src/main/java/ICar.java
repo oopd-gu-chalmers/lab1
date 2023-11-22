@@ -1,3 +1,3 @@
-public interface ICar extends IVehicle {
+public interface ICar extends IVehicle, Loadable {
 
 }

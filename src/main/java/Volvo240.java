@@ -1,16 +1,12 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Volvo240 implements ICar, Movable, Loadable {
+public class Volvo240 implements ICar, Movable {
     private final Car car;
     public final static double trimFactor = 1.25;
-    private CanLoad loader;
-    private final int unitSize;
 
     public Volvo240() {
-        car = new Car(Color.BLACK, 100, "Volvo240", 4);
-        loader = null;
-        unitSize = UnitSize.SMALL_CAR_UNIT_SIZE;
+        car = new Car(Color.BLACK, 100, "Volvo240", 4, UnitSize.SMALL_CAR_UNIT_SIZE);
         stopEngine();
     }
 
@@ -75,12 +71,11 @@ public class Volvo240 implements ICar, Movable, Loadable {
 
     @Override
     public int getUnitSize() {
-        return unitSize;
+        return car.getUnitSize();
     }
 
     @Override
     public boolean isLoaded() {
-        return loader != null;
     }
 
     @Override
@@ -101,6 +96,7 @@ public class Volvo240 implements ICar, Movable, Loadable {
     @Override
     public CanLoad getLoader() {
         return loader;
+        return car.isLoaded();
     }
 
     @Override
@@ -110,7 +106,7 @@ public class Volvo240 implements ICar, Movable, Loadable {
 
     @Override
     public void setPositionToLoaderPosition(Point2D.Double loaderPosition) {
-        car.setPosition(loaderPosition);
+        car.setPositionToLoaderPosition(loaderPosition);
     }
 
     @Override
