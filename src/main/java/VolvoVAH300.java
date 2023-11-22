@@ -5,46 +5,40 @@ import java.util.ArrayList;
 public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     private final Truck truck;
     private final PlatformHelper platformHelper;
-    private final ArrayList<Loadable> loadedItems;
-    private final int totalCapacity;
-    private final int maximumUnitSize;
-    private final double maximumLoadingDistance;
+    private final LoaderHelper<ICar> loaderHelper;
 
     public VolvoVAH300() {
         this.truck = new Truck(Color.WHITE, 70, "VolvoVAH300", 2);
         this.platformHelper = new PlatformHelper();
-        this.loadedItems = new ArrayList<>();
-        this.totalCapacity = 120;
-        this.maximumUnitSize = 13;
-        this.maximumLoadingDistance = 10;
+        this.loaderHelper = new LoaderHelper<>(12, 13, 10, null);
     }
 
     @Override
-    public int getTotalCapacity() {
-        return totalCapacity;
+    public int getMaxNrOfItems() {
+        return loaderHelper.getMaxNrOfItems();
     }
 
     @Override
-    public int getAvailableCapacity() {
+    public int getNrOfAvailableSlots() {
         int usedCapacity = 0;
         for (Loadable loadedItem : loadedItems) {
             usedCapacity += loadedItem.getUnitSize();
         }
-        return getTotalCapacity() - usedCapacity;
+        return getMaxNrOfItems() - usedCapacity;
     }
 
     @Override
     public ArrayList<Loadable> getLoadedItems() {
-        return loadedItems;
+        return loaderHelper.getLoadedItems();
     }
 
     @Override
     public int getMaximumUnitSize() {
-        return maximumUnitSize;
+        return loaderHelper.getMaximumUnitSize();
     }
 
     private double getMaximumLoadingDistance() {
-        return maximumLoadingDistance;
+        return loaderHelper.getMaximumLoadingDistance();
     }
 
     @Override
