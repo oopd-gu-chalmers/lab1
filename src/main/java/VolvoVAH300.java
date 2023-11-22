@@ -20,11 +20,7 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
 
     @Override
     public int getNrOfAvailableSlots() {
-        int usedCapacity = 0;
-        for (Loadable loadedItem : getLoadedItems()) {
-            usedCapacity += loadedItem.getUnitSize();
-        }
-        return getMaxNrOfItems() - usedCapacity;
+        return loaderHelper.getNrOfAvailableSlots();
     }
 
     @Override
