@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad<ICar> {
+public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
     private final Truck truck;
     private final PlatformHelper platformHelper;
     private final LoaderHelper<ICar> loaderHelper;

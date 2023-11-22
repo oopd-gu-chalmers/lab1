@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Scania implements ITruck, TiltablePlatform, Movable {
+public class Scania implements ITruck, TiltablePlatform {
     private final Truck truck;
     private final TiltablePlatformHelper platformHelper;
 

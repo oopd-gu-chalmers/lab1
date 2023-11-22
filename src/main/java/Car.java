@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Car implements ICar, Movable {
+public class Car implements ICar {
     private final Vehicle vehicle;
     private final int unitSize;
     private boolean isLoaded;

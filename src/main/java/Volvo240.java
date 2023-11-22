@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Volvo240 implements ICar, Movable {
+public class Volvo240 implements ICar {
     private final Car car;
     public final static double trimFactor = 1.25;
 
