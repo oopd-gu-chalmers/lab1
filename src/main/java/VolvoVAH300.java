@@ -55,12 +55,16 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     }
 
     private boolean canLoadItem(Loadable item) {
+    // TODO:
+    //  Only load if platform is down
         if (truck.getPosition().distance(item.getPosition()) > getMaximumLoadingDistance()) return true;
         if (item.getUnitSize() > getMaximumUnitSize()) return true;
         if (!(item instanceof ICar)) return true;
         return false;
     }
 
+    // TODO:
+    //  Only unload if platform is down
     @Override
     public Loadable unloadLast() {
         Loadable item = loadedItems.removeLast();
@@ -146,11 +150,15 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
         platformHelper.closePlatform();
     }
 
+    // TODO:
+    //  Only open platform if standing still
     @Override
     public void openPlatform() {
         platformHelper.openPlatform();
     }
 
+    // TODO:
+    //  Only move if platform is closed
     @Override
     public void move() {
         truck.move();
