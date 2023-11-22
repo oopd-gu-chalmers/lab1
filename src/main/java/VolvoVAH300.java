@@ -21,14 +21,14 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     @Override
     public int getNrOfAvailableSlots() {
         int usedCapacity = 0;
-        for (Loadable loadedItem : loadedItems) {
+        for (Loadable loadedItem : getLoadedItems()) {
             usedCapacity += loadedItem.getUnitSize();
         }
         return getMaxNrOfItems() - usedCapacity;
     }
 
     @Override
-    public ArrayList<Loadable> getLoadedItems() {
+    public ArrayList<ICar> getLoadedItems() {
         return loaderHelper.getLoadedItems();
     }
 
@@ -45,7 +45,6 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     public boolean load(Loadable item) {
         if (canLoadItem(item)) return false;
         item.load(this);
-        return loadedItems.add(item);
     }
 
     private boolean canLoadItem(Loadable item) {
