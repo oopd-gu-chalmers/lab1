@@ -46,9 +46,9 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
     private boolean canLoadItem(ICar item) {
     // TODO:
     //  Only load if platform is down
-        if (truck.getPosition().distance(item.getPosition()) > getMaxLoadingDistance()) return true;
-        if (item.getUnitSize() > getMaxUnitSize()) return true;
-        return false;
+        if (truck.getPosition().distance(item.getPosition()) > getMaxLoadingDistance()) return false;
+        if (item.getUnitSize() > getMaxUnitSize()) return false;
+        return true;
     }
 
     @Override
