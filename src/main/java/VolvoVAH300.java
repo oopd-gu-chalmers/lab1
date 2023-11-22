@@ -55,13 +55,11 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad<ICar> {
         return false;
     }
 
-    // TODO:
-    //  Only unload if platform is down
     @Override
-    public Loadable unloadLast() {
-        Loadable item = loadedItems.removeLast();
-        item.unload(getUnloadingPosition());
-        return item;
+    public ICar unload() {
+        if (!platformIsFullyOpened()) return null;
+        setUnloadingPosition();
+        return getLoadedItems().removeLast();
     }
 
     @Override
