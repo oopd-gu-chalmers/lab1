@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
+public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad<ICar> {
     private final Truck truck;
     private final PlatformHelper platformHelper;
     private final LoaderHelper<ICar> loaderHelper;
@@ -42,17 +42,16 @@ public class VolvoVAH300 implements ITruck, Platform, Movable, CanLoad {
     }
 
     @Override
-    public boolean load(Loadable item) {
+    public boolean load(ICar item) {
         if (canLoadItem(item)) return false;
         item.load(this);
     }
 
-    private boolean canLoadItem(Loadable item) {
+    private boolean canLoadItem(ICar item) {
     // TODO:
     //  Only load if platform is down
         if (truck.getPosition().distance(item.getPosition()) > getMaximumLoadingDistance()) return true;
         if (item.getUnitSize() > getMaximumUnitSize()) return true;
-        if (!(item instanceof ICar)) return true;
         return false;
     }
 
