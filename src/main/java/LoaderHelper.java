@@ -23,11 +23,7 @@ public class LoaderHelper<T extends Loadable> implements CanLoad<T> {
 
     @Override
     public int getNrOfAvailableSlots() {
-        int usedCapacity = 0;
-        for (T loadedItem : getLoadedItems()) {
-            usedCapacity += loadedItem.getUnitSize();
-        }
-        return getMaxNrOfItems() - usedCapacity;
+        return getMaxNrOfItems() - getLoadedItems().size();
     }
 
     @Override
