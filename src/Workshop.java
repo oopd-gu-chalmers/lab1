@@ -2,20 +2,20 @@ import java.util.Vector;
 
 
 
-public class Workshop<C> {
+public class Workshop<CarBrand> {
     private final int maxCars;
-    public Vector<C> cars = new Vector<>();
+    public Vector<CarBrand> cars = new Vector<>();
 
     public Workshop(int maxCars) {
         this.maxCars = maxCars;
     }
 
-    public void addCar(C car) {
+    public void addCar(CarBrand car) {
         if (cars.size() < maxCars && !cars.contains(car))
             cars.add(car);
     }
 
-    public void removeCar(C car) {
+    public void removeCar(CarBrand car) {
         cars.remove(car);
     }
 }
