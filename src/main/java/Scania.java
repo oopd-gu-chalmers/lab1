@@ -105,8 +105,7 @@ public class Scania implements ITruck, TiltablePlatform {
     }
 
     public void openPlatform(double angle) {
-        if (getCurrentSpeed() == 0) platformHelper.openPlatform();
-        platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() + angle);
+        if (getCurrentSpeed() == 0) platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() + angle);
     }
 
     @Override
