@@ -47,7 +47,7 @@ public class Scania implements ITruck, TiltablePlatform {
 
     @Override
     public void gas(double amount) {
-        truck.gas(amount);
+        if (platformIsFullyClosed()) truck.gas(amount);
     }
 
     @Override
