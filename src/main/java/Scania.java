@@ -81,13 +81,13 @@ public class Scania implements ITruck, TiltablePlatform {
     }
 
     @Override
-    public double getMaximumAngle() {
-        return platformHelper.getMaximumAngle();
+    public double getMaxAngle() {
+        return platformHelper.getMaxAngle();
     }
 
     @Override
-    public double getMinimumAngle() {
-        return platformHelper.getMinimumAngle();
+    public double getMinAngle() {
+        return platformHelper.getMinAngle();
     }
 
     @Override

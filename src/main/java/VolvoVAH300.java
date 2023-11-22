@@ -33,12 +33,12 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
     }
 
     @Override
-    public int getMaximumUnitSize() {
-        return loaderHelper.getMaximumUnitSize();
+    public int getMaxUnitSize() {
+        return loaderHelper.getMaxUnitSize();
     }
 
-    private double getMaximumLoadingDistance() {
-        return loaderHelper.getMaximumLoadingDistance();
+    private double getMaxLoadingDistance() {
+        return loaderHelper.getMaxLoadingDistance();
     }
 
     @Override
@@ -50,8 +50,8 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
     private boolean canLoadItem(ICar item) {
     // TODO:
     //  Only load if platform is down
-        if (truck.getPosition().distance(item.getPosition()) > getMaximumLoadingDistance()) return true;
-        if (item.getUnitSize() > getMaximumUnitSize()) return true;
+        if (truck.getPosition().distance(item.getPosition()) > getMaxLoadingDistance()) return true;
+        if (item.getUnitSize() > getMaxUnitSize()) return true;
         return false;
     }
 
@@ -69,8 +69,8 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
 
     private void setUnloadingPosition() {
         Point2D.Double unitDirectionPoint = truck.getDirection().getUnitDirectionPoint();
-        double deltaX = unitDirectionPoint.getX() * loaderHelper.getMaximumLoadingDistance();
-        double deltaY = unitDirectionPoint.getY() * loaderHelper.getMaximumLoadingDistance();
+        double deltaX = unitDirectionPoint.getX() * loaderHelper.getMaxLoadingDistance();
+        double deltaY = unitDirectionPoint.getY() * loaderHelper.getMaxLoadingDistance();
         loaderHelper.setUnloadingPosition(new Point2D.Double(truck.getPosition().getX() - deltaX, truck.getPosition().getY() - deltaY));
     }
 

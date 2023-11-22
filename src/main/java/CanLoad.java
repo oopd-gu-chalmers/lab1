@@ -5,7 +5,7 @@ public interface CanLoad<T extends Loadable> {
     ArrayList<T> getLoadedItems();
     int getMaxNrOfItems();
     int getNrOfAvailableSlots();
-    int getMaximumUnitSize();
+    int getMaxUnitSize();
     boolean load(T item); // Return true if item could be loaded, else false.
     T unload();
     Point2D.Double getUnloadingPosition();

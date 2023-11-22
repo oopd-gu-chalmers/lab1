@@ -3,15 +3,15 @@ import java.util.ArrayList;
 
 public class LoaderHelper<T extends Loadable> implements CanLoad<T> {
     private final int maxNrOfItems;
-    private final int maximumUnitSize;
-    private final int maximumLoadingDistance;
+    private final int maxUnitSize;
+    private final int maxLoadingDistance;
     private Point2D.Double unloadingPosition;
     private ArrayList<T> loadedItems;
 
-    public LoaderHelper(int maxNrOfItems, int maximumUnitSize, int maximumLoadingDistance, Point2D.Double unloadingPosition) {
+    public LoaderHelper(int maxNrOfItems, int maxUnitSize, int maxLoadingDistance, Point2D.Double unloadingPosition) {
         this.maxNrOfItems = maxNrOfItems;
-        this.maximumUnitSize = maximumUnitSize;
-        this.maximumLoadingDistance = maximumLoadingDistance;
+        this.maxUnitSize = maxUnitSize;
+        this.maxLoadingDistance = maxLoadingDistance;
         setUnloadingPosition(unloadingPosition);
     }
 
@@ -35,8 +35,8 @@ public class LoaderHelper<T extends Loadable> implements CanLoad<T> {
     }
 
     @Override
-    public int getMaximumUnitSize() {
-        return maximumUnitSize;
+    public int getMaxUnitSize() {
+        return maxUnitSize;
     }
     @Override
     public boolean load(T item) {
@@ -57,7 +57,7 @@ public class LoaderHelper<T extends Loadable> implements CanLoad<T> {
         this.unloadingPosition = unloadingPosition;
     }
 
-    public int getMaximumLoadingDistance() {
-        return maximumLoadingDistance;
+    public int getMaxLoadingDistance() {
+        return maxLoadingDistance;
     }
 }

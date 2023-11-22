@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class WorkshopHelper<T extends ICar> implements Workshop<T> {
     private final LoaderHelper<T> loaderHelper;
 
-    public WorkshopHelper(int maxNrOfItems, int maximumUnitSize, int maximumLoadingDistance, Point2D.Double unloadingPosition) {
-        loaderHelper = new LoaderHelper<>(maxNrOfItems, maximumUnitSize, maximumLoadingDistance, unloadingPosition);
+    public WorkshopHelper(int maxNrOfItems, int maxUnitSize, int maxLoadingDistance, Point2D.Double unloadingPosition) {
+        loaderHelper = new LoaderHelper<>(maxNrOfItems, maxUnitSize, maxLoadingDistance, unloadingPosition);
     }
 
     @Override
@@ -19,8 +19,8 @@ public class WorkshopHelper<T extends ICar> implements Workshop<T> {
     }
 
     @Override
-    public int getMaximumUnitSize() {
-        return loaderHelper.getMaximumUnitSize();
+    public int getMaxUnitSize() {
+        return loaderHelper.getMaxUnitSize();
     }
 
     @Override

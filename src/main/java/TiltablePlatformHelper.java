@@ -1,27 +1,27 @@
 public class TiltablePlatformHelper implements TiltablePlatform {
 
-    private final double minimumAngle;
-    private final double maximumAngle;
+    private final double minAngle;
+    private final double maxAngle;
     private double platformAngle;
 
-    public TiltablePlatformHelper(double minimumAngle, double maximumAngle) {
-        this.minimumAngle = minimumAngle;
-        this.maximumAngle = maximumAngle;
-        this.platformAngle = minimumAngle;
+    public TiltablePlatformHelper(double minAngle, double maxAngle) {
+        this.minAngle = minAngle;
+        this.maxAngle = maxAngle;
+        this.platformAngle = minAngle;
     }
 
     public void setPlatformAngle(double platformAngle) {
-        this.platformAngle = Math.max(getMinimumAngle(), Math.min(getMaximumAngle(), platformAngle));
+        this.platformAngle = Math.max(getMinAngle(), Math.min(getMaxAngle(), platformAngle));
     }
 
     @Override
     public boolean platformIsFullyClosed() {
-        return getPlatformAngle() == getMinimumAngle();
+        return getPlatformAngle() == getMinAngle();
     }
 
     @Override
     public boolean platformIsFullyOpened() {
-        return getPlatformAngle() == getMaximumAngle();
+        return getPlatformAngle() == getMaxAngle();
     }
 
     @Override
@@ -30,18 +30,18 @@ public class TiltablePlatformHelper implements TiltablePlatform {
     }
 
     @Override
-    public double getMinimumAngle() {
-        return minimumAngle;
+    public double getMinAngle() {
+        return minAngle;
     }
 
     @Override
-    public double getMaximumAngle() {
-        return maximumAngle;
+    public double getMaxAngle() {
+        return maxAngle;
     }
 
     @Override
     public void openPlatform() {
-        setPlatformAngle(getMaximumAngle());
+        setPlatformAngle(getMaxAngle());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class TiltablePlatformHelper implements TiltablePlatform {
 
     @Override
     public void closePlatform() {
-        setPlatformAngle(getMinimumAngle());
+        setPlatformAngle(getMinAngle());
     }
 
     @Override
