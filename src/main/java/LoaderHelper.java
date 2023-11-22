@@ -12,6 +12,7 @@ public class LoaderHelper<T extends Loadable> implements CanLoad<T> {
         this.maxNrOfItems = maxNrOfItems;
         this.maxUnitSize = maxUnitSize;
         this.maxLoadingDistance = maxLoadingDistance;
+        this.loadedItems = new ArrayList<>();
         setUnloadingPosition(unloadingPosition);
     }
 
