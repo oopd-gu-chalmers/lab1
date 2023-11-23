@@ -87,6 +87,14 @@ class VolvoVAH300Test {
     }
 
     @Test
+    void unloadWhenPlatformIsNotOpenShouldReturnNull() {
+        volvoVAH300.openPlatform();
+        volvoVAH300.load(new Volvo240());
+        volvoVAH300.closePlatform();
+        assertNull(volvoVAH300.unload());
+    }
+
+    @Test
     void unloadingCarShouldPlaceItCloseToTruck() {
         Volvo240 volvo240 = new Volvo240();
         volvoVAH300.load(volvo240);
