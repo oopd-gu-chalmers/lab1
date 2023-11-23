@@ -147,7 +147,7 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
     //  Only open platform if standing still
     @Override
     public void openPlatform() {
-        platformHelper.openPlatform();
+        if (getCurrentSpeed() == 0) platformHelper.openPlatform();
     }
 
     // TODO:
