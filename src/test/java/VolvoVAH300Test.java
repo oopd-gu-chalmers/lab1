@@ -61,6 +61,13 @@ class VolvoVAH300Test {
     }
 
     @Test
+    void shouldNotBeAbleToLoadCarsThatAreTooBig() {
+        Car car = new Car(Color.BLACK, 130, "TestCar", 4, UnitSize.LARGE_CAR_UNIT_SIZE);
+        volvoVAH300.openPlatform();
+        assertFalse(volvoVAH300.load(car));
+    }
+
+    @Test
     void platformCanNotBeOpenedWhenCurrentSpeedIsNotZero() {
         do {
             volvoVAH300.gas(1);
