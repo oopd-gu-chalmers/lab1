@@ -110,7 +110,7 @@ public class VolvoVAH300 implements ITruck, Platform, CanLoad<ICar> {
 
     @Override
     public void gas(double amount) {
-        truck.gas(amount);
+        if (platformIsFullyClosed()) truck.gas(amount);
     }
 
     @Override
