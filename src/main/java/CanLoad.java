@@ -1,12 +1,12 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public interface CanLoad<T extends Loadable> {
-    ArrayList<T> getLoadedItems();
-    int getMaxNrOfItems();
-    int getNrOfAvailableSlots();
-    int getMaxUnitSize();
-    boolean load(T item); // Return true if item could be loaded, else false.
-    T unload();
+public interface CanLoad {
+    int getTotalCapacity();
+    int getAvailableCapacity();
+    ArrayList<Loadable> getLoadedItems();
+    int getMaximumUnitSize();
+    boolean load(Loadable item); // Return true if item could be loaded, else false.
+    Loadable unloadLast();
     Point2D.Double getUnloadingPosition();
 }

@@ -1,8 +1,8 @@
 public interface TiltablePlatform extends Platform {
 
     double getPlatformAngle();
-    double getMaxAngle();
-    double getMinAngle();
+    double getMaximumAngle();
+    double getMinimumAngle();
     void closePlatform(double angle);
     void openPlatform(double angle);
 }

@@ -1,13 +1,17 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Saab95 implements ICar {
+public class Saab95 implements ICar, Movable, Loadable {
     private final Car car;
     public boolean turboOn;
+    private CanLoad loader;
+    private final int unitSize;
 
     public Saab95() {
-        car = new Car(Color.RED, 125, "Saab95", 2, UnitSize.SMALL_CAR_UNIT_SIZE);
+        car = new Car(Color.RED, 125, "Saab95", 2);
         turboOn = false;
+        loader = null;
+        unitSize = UnitSize.SMALL_CAR_UNIT_SIZE;
         stopEngine();
     }
 
@@ -82,12 +86,32 @@ public class Saab95 implements ICar {
 
     @Override
     public int getUnitSize() {
-        return car.getUnitSize();
+        return unitSize;
     }
 
     @Override
     public boolean isLoaded() {
-        return car.isLoaded();
+        return loader != null;
+    }
+
+    @Override
+    public void load(CanLoad loader) {
+        setLoader(loader);
+    }
+
+    @Override
+    public void unload(Point2D.Double unloadingPosition) {
+        car.setPosition(unloadingPosition);
+        setLoader(null);
+    }
+
+    private void setLoader(CanLoad loader) {
+        this.loader = loader;
+    }
+
+    @Override
+    public CanLoad getLoader() {
+        return loader;
     }
 
     @Override
@@ -97,7 +121,7 @@ public class Saab95 implements ICar {
 
     @Override
     public void setPositionToLoaderPosition(Point2D.Double loaderPosition) {
-        car.setPositionToLoaderPosition(loaderPosition);
+        car.setPosition(loaderPosition);
     }
 
     @Override

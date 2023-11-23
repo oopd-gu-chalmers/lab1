@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Scania implements ITruck, TiltablePlatform {
+public class Scania implements ITruck, TiltablePlatform, Movable {
     private final Truck truck;
     private final TiltablePlatformHelper platformHelper;
 
@@ -47,7 +47,7 @@ public class Scania implements ITruck, TiltablePlatform {
 
     @Override
     public void gas(double amount) {
-        if (platformIsFullyClosed()) truck.gas(amount);
+        truck.gas(amount);
     }
 
     @Override
@@ -81,13 +81,13 @@ public class Scania implements ITruck, TiltablePlatform {
     }
 
     @Override
-    public double getMaxAngle() {
-        return platformHelper.getMaxAngle();
+    public double getMaximumAngle() {
+        return platformHelper.getMaximumAngle();
     }
 
     @Override
-    public double getMinAngle() {
-        return platformHelper.getMinAngle();
+    public double getMinimumAngle() {
+        return platformHelper.getMinimumAngle();
     }
 
     @Override
@@ -101,11 +101,11 @@ public class Scania implements ITruck, TiltablePlatform {
 
     @Override
     public void openPlatform() {
-        openPlatform(getMaxAngle());
+        platformHelper.openPlatform();
     }
 
     public void openPlatform(double angle) {
-        if (getCurrentSpeed() == 0) platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() + angle);
+        platformHelper.setPlatformAngle(platformHelper.getPlatformAngle() + angle);
     }
 
     @Override

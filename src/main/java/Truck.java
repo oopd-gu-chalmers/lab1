@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Truck implements ITruck {
+public class Truck implements ITruck, Movable {
     private final Vehicle vehicle;
 
     public Truck(Color color, double enginePower, String modelName, int nrOfDoors) {
