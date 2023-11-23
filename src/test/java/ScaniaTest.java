@@ -6,11 +6,13 @@ class ScaniaTest {
     private final Scania scania = new Scania();
 
     @Test
-    void gasShouldNotAffectSpeedWhenPlatformIsOpen() {
+    void currentSpeedMustStayZeroWhilePlatformIsOpened() {
+        do {
+            scania.brake(1);
+        } while (scania.getCurrentSpeed() != 0);
         scania.openPlatform();
-        double initialSpeed = scania.getCurrentSpeed();
         scania.gas(1);
-        assertEquals(initialSpeed, scania.getCurrentSpeed());
+        assertEquals(0, scania.getCurrentSpeed());
     }
 
     @Test
