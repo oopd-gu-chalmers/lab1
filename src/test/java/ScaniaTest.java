@@ -53,4 +53,18 @@ class ScaniaTest {
         scania.openPlatform(angle);
         assertEquals(scania.getMinAngle() + angle, scania.getPlatformAngle());
     }
+
+    @Test
+    void platformAngleShouldNeverBeSetAboveMaxAngle() {
+        scania.openPlatform();
+        scania.openPlatform(20);
+        assertEquals(scania.getMaxAngle(), scania.getPlatformAngle());
+    }
+
+    @Test
+    void platformAngleShouldNeverBeSetBelowMinAngle() {
+        scania.closePlatform();
+        scania.closePlatform(20);
+        assertEquals(scania.getMinAngle(), scania.getPlatformAngle());
+    }
 }
