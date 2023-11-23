@@ -16,6 +16,15 @@ class ScaniaTest {
     }
 
     @Test
+    void platformShouldNotBeAbleToBeOpenedWhenCurrentSpeedIsNotZero() {
+        do {
+            scania.gas(1);
+        } while (scania.getCurrentSpeed() == 0);
+        scania.openPlatform();
+        assertEquals(scania.getMinAngle(), scania.getPlatformAngle());
+    }
+
+    @Test
     void closePlatformShouldSetAngleToMinAngle() {
         scania.openPlatform(20);
         scania.closePlatform();
