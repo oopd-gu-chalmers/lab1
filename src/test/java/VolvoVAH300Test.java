@@ -50,6 +50,15 @@ class VolvoVAH300Test {
         volvoVAH300.closePlatform();
         assertFalse(volvoVAH300.load(volvo240));
     }
+    
+    @Test
+    void shouldNotBeAbleToLoadMoreThanMaxNrOfItems() {
+        volvoVAH300.openPlatform();
+        for (int i = 0; i < volvoVAH300.getMaxNrOfItems(); i++) {
+            volvoVAH300.load(new Volvo240());
+        }
+        assertFalse(volvoVAH300.load(new Volvo240()));
+    }
 
     @Test
     void platformCanNotBeOpenedWhenCurrentSpeedIsNotZero() {
