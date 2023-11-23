@@ -16,6 +16,7 @@ class VolvoVAH300Test {
 
     @Test
     void getNrOfAvailableSlots() {
+        volvoVAH300.openPlatform();
         for (ICar car : cars) {
             volvoVAH300.load(car);
         }
@@ -24,6 +25,7 @@ class VolvoVAH300Test {
 
     @Test
     void getLoadedItemsShouldReturnListOfAllLoadedCars() {
+        volvoVAH300.openPlatform();
         for (ICar car : cars) {
             volvoVAH300.load(car);
         }
@@ -37,6 +39,7 @@ class VolvoVAH300Test {
             volvo240.gas(1);
             volvo240.move();
         } while (volvo240.getPosition().distance(volvoVAH300.getPosition()) < 20);
+        volvoVAH300.openPlatform();
         assertFalse(volvoVAH300.load(volvo240));
     }
 
@@ -77,6 +80,7 @@ class VolvoVAH300Test {
     @Test
     void carPositionShouldBeTheSameAsTruckPositionWhenItIsLoaded() {
         Saab95 saab95 = new Saab95();
+        volvoVAH300.openPlatform();
         volvoVAH300.load(saab95);
         assertSame(saab95.getPosition(), volvoVAH300.getPosition());
     }
