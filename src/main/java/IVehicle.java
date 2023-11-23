@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public interface IVehicle {
+public interface IVehicle extends Movable {
     double getEnginePower();
 
     double getCurrentSpeed();
