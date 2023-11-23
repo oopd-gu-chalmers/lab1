@@ -95,6 +95,16 @@ class VolvoVAH300Test {
     }
 
     @Test
+    void unloadShouldRemoveLastLoadedCar() {
+        volvoVAH300.openPlatform();
+        for (ICar car : cars) {
+            volvoVAH300.load(car);
+        }
+        ICar unloadedCar = volvoVAH300.unload();
+        assertSame(cars.getLast(), unloadedCar);
+    }
+
+    @Test
     void unloadingCarShouldPlaceItCloseToTruck() {
         Volvo240 volvo240 = new Volvo240();
         volvoVAH300.load(volvo240);
