@@ -16,9 +16,7 @@ public class Scania extends Truck {
         return tilt;
     }
 
-    public void raiseBack() {
-        raiseBack(10);
-    }
+    public void raiseBack() { raiseBack(10); }
 
     public void lowerBack() {
         lowerBack(10);
