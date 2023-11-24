@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /*
 * This class represents the Controller part in the MVC pattern.
-* It's responsibilities is to listen to the View and responds in a appropriate manner by
+* It's responsibilities is to listen to the View and responds in an appropriate manner by
 * modifying the model state and the updating the view.
  */
 
@@ -45,8 +45,21 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) { //Zeldia: Från ACar --> Car
                 car.move();
-                int x = (int) Math.round(car.getPosition()[0]); //Zeldia: Från .getX() --> [0]
-                int y = (int) Math.round(car.getPosition()[1]);
+                //int temp = 200;
+                //if (car.getPosition()[1] > temp) {
+                //    int x = (int) Math.min(car.getPosition()[1], 200);
+                //} else {
+                //    int x = (int) Math.round(car.getPosition()[0]); //Zeldia: Från .getX() --> [0]
+                //}
+
+                int x = (int) Math.min(Math.round(car.getPosition()[0]), (800-100));
+                int y = (int) Math.min(Math.round(car.getPosition()[1]), (800-240-60));
+                if (car.getPosition()[1] >= (800-240-60)) {
+                    car.turnLeft();
+                    car.turnLeft();
+                    //car.setPosition(new double[]{car.getPosition()[0], (800 - 240 - 60-1)});
+                    //vad gör new double????
+                }
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
