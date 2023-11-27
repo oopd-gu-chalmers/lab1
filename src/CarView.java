@@ -135,12 +135,13 @@ public class CarView extends JFrame{
             }
         });
 
-        /*turboOnButton.addActionListener(new ActionListener() {
+        turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Car car : carC.cars) {
                     if (car instanceof Saab95) {
-                        ((Saab95) car).setTurboOn(); //huh???
+                        car.stopEngine();
+                        //((Saab95) car).setTurboOn(); //huh???
                     }
                 }
             }

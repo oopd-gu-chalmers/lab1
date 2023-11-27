@@ -60,24 +60,24 @@ public class    CarController {
 
                 int x = (int) Math.min(Math.round(car.getPosition()[0]), (800-100));
                 int y = (int) Math.min(Math.round(car.getPosition()[1]), (800-240-60));
-                if (car.getPosition()[1] >= (800-240-60)) {
+                if (car.getPosition()[1] > (800-240-60)) {
                     car.turnLeft();
                     car.turnLeft();
                     //car.setPosition(new double[]{car.getPosition()[0], (800 - 240 - 60)});
                     //vad gör new double????
                 }
-                if (car.getPosition()[1] <= (0)) {
+                if (car.getPosition()[1] < (0)) {
                     car.turnLeft();
                     car.turnLeft();
                     //car.setPosition(new double[]{car.getPosition()[0], 0});
                     //vad gör new double????
                 }
-                if (car.getPosition()[0] >= (800-100)) {
+                if (car.getPosition()[0] > (800-100)) {
                     car.turnLeft();
                     car.turnLeft();
                     //car.setPosition(new double[]{(800 - 100),car.getPosition()[1]});
                 }
-                if (car.getPosition()[0] <= (0)) {
+                if (car.getPosition()[0] < (0)) {
                     car.turnLeft();
                     car.turnLeft();
                     //car.setPosition(new double[]{(0),car.getPosition()[1]});
