@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Volvo240 extends Car {
 
-    protected final static double trimFactor = 1.25; //Gjorde private
+    protected final static double trimFactor = 1.25;
 
     public Volvo240() {
         nrDoors = 4;
@@ -12,7 +12,7 @@ public class Volvo240 extends Car {
         stopEngine();
     }
 
-    public double speedFactor() { //Annorlunda mellan bilarna
-        return enginePower * 0.01 * trimFactor; //Skillnad i trimfactor, är turbo i Saab
+    public double speedFactor() {
+        return enginePower * 0.01 * trimFactor;
     }
 }

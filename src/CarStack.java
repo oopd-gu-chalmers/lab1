@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.Stack;
 
-public class CarStack implements Iterable<Car>, Movable { //Vad gör iterable?
+public class CarStack implements Iterable<Car>, Movable {
     private final int maxCars;
     private final int maxDoors;
     private Stack<Car> cars = new Stack<>();
@@ -18,7 +18,7 @@ public class CarStack implements Iterable<Car>, Movable { //Vad gör iterable?
     }
 
     public Car removeCar() {
-        if (!cars.isEmpty()) return cars.pop(); //Säger att (Car) är redundant
+        if (!cars.isEmpty()) return cars.pop();
         return null;
     }
 
