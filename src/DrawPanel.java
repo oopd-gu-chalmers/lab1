@@ -10,9 +10,8 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
-    ArrayList<Car> cars;
-    ArrayList<BufferedImage> images;
+    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<BufferedImage> images = new ArrayList<>();
     // To keep track of a singel cars position
     Point carPoint = new Point();
 
@@ -37,7 +36,7 @@ public class DrawPanel extends JPanel{
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
             for(Car car: this.cars){
-                this.images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + car.modelName)));
+                this.images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + car.modelName + ".jpg")));
             }
         } catch (IOException ex)
         {
