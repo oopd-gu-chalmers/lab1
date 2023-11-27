@@ -29,11 +29,15 @@ public class    CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
+        Car[] carsToBeAdded = {new Volvo240(), new Saab95(), new Scania()};
 
-        cc.cars.add(new Saab95());
-
-        cc.cars.add(new Scania());
+        int carIndex = 0;
+        for(Car car: carsToBeAdded) {
+           double[] position = {100 * carIndex, 0};
+            car.setPosition(position);
+            cc.cars.add(car);
+            carIndex++;
+        }
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
