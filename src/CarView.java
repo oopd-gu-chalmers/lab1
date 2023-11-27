@@ -43,7 +43,7 @@ public class CarView extends JFrame{
     // Constructor
     public CarView(String framename, CarController cc){
         this.carC = cc;
-        this.drawPanel = new DrawPanel(X, Y-240, cc.cars);;
+        this.drawPanel = new DrawPanel(X, Y-240, cc.cars);
         initComponents(framename);
     }
 
@@ -135,23 +135,25 @@ public class CarView extends JFrame{
             }
         });
 
-        turboOnButton.addActionListener(new ActionListener() {
+        /*turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Car car : carC.cars) {
-                    if ()
+                    if (car instanceof Saab95) {
+                        ((Saab95) car).setTurboOn(); //huh???
+                    }
                 }
             }
         });
 
-        turboOffButton.addActionListener(new ActionListener() {
+        /*turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
-        });
+        });*/
 
-        liftBedButton.addActionListener(new ActionListener() {
+        /*liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -163,7 +165,7 @@ public class CarView extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
             }
-        });
+        });*/
 
 
 
