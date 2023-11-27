@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -50,7 +51,12 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for(int image = 0; image < images.size(); image++)
-        g.drawImage(images[image], (image + 1) * carPoint.x, carPoint.y, null); // see javadoc for more info on the parameters
+        Iterator<BufferedImage> imageIterator = this.images.iterator();
+        int imageIndex = 0;
+        while(imageIterator.hasNext()) {
+            BufferedImage image = imageIterator.next();
+            g.drawImage(image, (imageIndex + 1) * carPoint.x, carPoint.y, null); // see javadoc for more info on the parameters
+            imageIndex++;
+        }
     }
 }
