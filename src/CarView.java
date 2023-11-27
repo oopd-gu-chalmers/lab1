@@ -135,7 +135,7 @@ public class CarView extends JFrame{
             }
         });
 
-        turboOnButton.addActionListener(new ActionListener() {
+        /*turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Car car : carC.cars) {
@@ -154,19 +154,27 @@ public class CarView extends JFrame{
             }
         });*/
 
-        /*liftBedButton.addActionListener(new ActionListener() {
+        liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for (Car car : carC.cars) {
+                    if (car instanceof Scania) {
+                        car.stopEngine();
+                    }
+                }
             }
         });
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for (Car car : carC.cars) {
+                    if (car instanceof Scania) {
+                        car.stopEngine();
+                    }
+                }
             }
-        });*/
+        });
 
 
 
