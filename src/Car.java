@@ -29,10 +29,6 @@ public abstract class Car implements Movable {
         return currentSpeed;
     }
 
-    public void setCurrentSpeed(int amount) { //Added this
-        currentSpeed = 0;
-    }
-
     public Color getColor(){
         return color;
     }
