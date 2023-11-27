@@ -52,6 +52,8 @@ public class CarController {
                 //    int x = (int) Math.round(car.getPosition()[0]); //Zeldia: Från .getX() --> [0]
                 //}
 
+
+
                 int x = (int) Math.min(Math.round(car.getPosition()[0]), (800-100));
                 int y = (int) Math.min(Math.round(car.getPosition()[1]), (800-240-60));
                 if (car.getPosition()[1] >= (800-240-60)) {
