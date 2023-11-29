@@ -15,7 +15,7 @@ public abstract class Vehicle extends ActiveElement implements Drivable, Colorab
     private final String modelName;
     private Color color;
     private final double height;
-    private double weight;
+    private final double weight;
 
     /**
      *
@@ -65,13 +65,13 @@ public abstract class Vehicle extends ActiveElement implements Drivable, Colorab
     public void turnLeft(double degrees){
         if (isInactive()) return;
         double newRotation = getRotation();
-        setRotation(newRotation - degrees);
+        setRotation(newRotation + degrees);
     }
 
     @Override
     public void turnRight(double degrees){
         if (isInactive()) return;
         double newRotation = getRotation();
-        setRotation(newRotation + degrees);
+        setRotation(newRotation - degrees);
     }
 }
