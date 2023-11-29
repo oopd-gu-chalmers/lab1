@@ -21,7 +21,7 @@ public class    CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>(); //Zeldia: Från ACar --> Car
+    ArrayList<Car> cars = new ArrayList<>();
 
     //methods:
 
@@ -33,7 +33,7 @@ public class    CarController {
 
         int carIndex = 0;
         for(Car car: carsToBeAdded) {
-           double[] position = {100 * carIndex, 0};
+           double[] position = {0, 100 * carIndex};
             car.setPosition(position);
             cc.cars.add(car);
             carIndex++;

@@ -135,7 +135,7 @@ public class CarView extends JFrame{
             }
         });
 
-        /*turboOnButton.addActionListener(new ActionListener() {
+        turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Car car : carC.cars) {
@@ -152,7 +152,7 @@ public class CarView extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
             }
-        });*/
+        });
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
@@ -174,7 +174,7 @@ public class CarView extends JFrame{
                     }
                 }
             }
-        });
+        });*/
 
 
 
