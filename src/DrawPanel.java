@@ -55,7 +55,8 @@ public class DrawPanel extends JPanel{
         while(imageIterator.hasNext()) {
             BufferedImage image = imageIterator.next();
             g.drawImage(image, vehiclePoint.x, vehiclePoint.y, null); // see javadoc for more info on the parameters
-            imageIndex++;
+            //System.out.println(vehiclePoint.x + vehiclePoint.y);
+            imageIndex += 100;
         }
     }
 }

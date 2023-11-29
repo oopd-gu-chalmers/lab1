@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -33,10 +34,13 @@ public class VehicleController {
 
         int vehicleIndex = 0;
         for(Vehicle vehicle: vehiclesToBeAdded) {
-           double[] position = {100 * vehicleIndex, 0};
+           double[] position = {0, 100 * vehicleIndex};
+
             vehicle.setPosition(position);
+            System.out.println(vehicle.modelName + Arrays.toString(vehicle.position));
             cc.vehicles.add(vehicle);
             vehicleIndex++;
+            System.out.println(vehicleIndex);
         }
 
         // Start a new view and send a reference of self
