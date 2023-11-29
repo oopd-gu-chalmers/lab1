@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Car> cars;
     ArrayList<BufferedImage> images = new ArrayList<>();
     // To keep track of a singel cars position
     Point carPoint = new Point();
