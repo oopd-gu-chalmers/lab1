@@ -158,12 +158,13 @@ public class VehicleView extends JFrame{
 
         });
 
-        /*liftBedButton.addActionListener(new ActionListener() {
+        liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle: vehicleC.vehicles) {
                     if (vehicle instanceof Scania) {
-                        vehicle.stopEngine();
+                        ((Scania) vehicle).raiseBack();
+                        System.out.println("back is raised");
                     }
                 }
             }
@@ -174,11 +175,12 @@ public class VehicleView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicleC.vehicles) {
                     if (vehicle instanceof Scania) {
-                        vehicle.stopEngine();
+                        ((Scania) vehicle).lowerBack();
+                        System.out.println("back is lowered");
                     }
                 }
             }
-        });*/
+        });
 
 
 
