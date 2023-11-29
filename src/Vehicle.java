@@ -87,6 +87,6 @@ public abstract class Vehicle implements Movable{
         direction[1] = -x;
     }
 
-    public void gas() {
-    }
+    //public void gas() {
+    //}
 }

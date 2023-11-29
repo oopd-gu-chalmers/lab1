@@ -8,6 +8,8 @@ public class TestWorkshopAdd {
     private final Volvo240 r = new Volvo240();
     private final Saab95 q = new Saab95();
 
+    private final Scania s = new Scania();
+
 
 
     @Test
@@ -40,6 +42,7 @@ public class TestWorkshopAdd {
         Workshop<Car> workshop = new Workshop<>(2);
         workshop.addCar(p);
         workshop.addCar(q);
+        //workshop.addCar(s);
         assertEquals(2, workshop.cars.size(),0.01);
     }
 }
