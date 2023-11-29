@@ -1,7 +1,11 @@
 package renderEngine;
 
+import assets.elements.ActiveElement;
+import assets.elements.Element;
 import assets.elements.vehicles.Car;
+import assets.elements.vehicles.cars.passengerCars.Saab95;
 import assets.elements.vehicles.cars.passengerCars.Volvo240;
+import assets.elements.vehicles.cars.trucks.ScaniaL280;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,12 +29,16 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
-    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Element> cars = new ArrayList<>();
 
     public static void main(String[] args) {
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
+        cc.cars.add(new ScaniaL280());
+        cc.cars.get(1).setPosition(200, 0);
+        cc.cars.get(2).setPosition(400,0);
         cc.frame = new CarView("DrivingSim 1.0", cc);
         cc.timer.start();
     }
@@ -40,26 +48,25 @@ public class CarController {
     **/
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
-                if (car.getPosition()[1] > 500 || car.getPosition()[1] < 0){
-                    double rot = car.getRotation();
-                    car.setRotation(180 - rot);
+            for (Element car : cars) {
+                if (car instanceof ActiveElement) {
+                    if (car.getPosition()[1] > 500 || car.getPosition()[1] < 0) {
+                        double rot = car.getRotation();
+                        car.setRotation(180 - rot);
+                    }
+
+                    if (car.getPosition()[0] > 650 || car.getPosition()[0] < 0) {
+                        System.out.println(car.getPosition()[0]);
+                        double rot = car.getRotation();
+                        car.setRotation(0 - rot);
+                    }
+
+
+                    ((ActiveElement) car).moveTick();
                 }
 
-                if (car.getPosition()[0] > 650 || car.getPosition()[0] < 0){
-                    System.out.println(car.getPosition()[0]);
-                    double rot = car.getRotation();
-                    car.setRotation(0 - rot);
-                }
-
-                car.moveTick();
-
-                int x = (int) Math.round(car.getPosition()[0]);
-                int y = (int) Math.round(car.getPosition()[1]);
-                frame.drawPanel.moveit(x, y);
-
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
+                    // repaint() calls the paintComponent method of the panel
+                    frame.drawPanel.repaint();
             }
         }
     }
@@ -67,23 +74,44 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gasAmount = ((double) amount) / 100;
-        for (Car car : cars
-                ) {
-            car.gas(gasAmount);
-            car.turnLeft(2);
+        for (Element car : cars) {
+            if (car instanceof Car) {
+                ((Car) car).gas(gasAmount);
+                ((Car) car).turnLeft(2);
+            }
         }
     }
     void brake(int amount) {
         double brakeAmount = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.brake(brakeAmount);
+        for (Element car : cars) {
+            if (car instanceof Car){
+                ((Car) car).brake(brakeAmount);
+            }
+        }
+    }
+
+    void turboOn() {
+        for (Element car : cars){
+            if (car instanceof Saab95){
+                ((Saab95) car).setTurboOn();
+            }
+        }
+    }
+
+    void turboOff() {
+        for (Element car : cars){
+            if (car instanceof Saab95){
+                ((Saab95) car).setTurboOff();
+            }
         }
     }
 
     void start() {
-        for (Car car : cars
+        for (Element car : cars
         ) {
-            car.start();
+            if (car instanceof Car) {
+                ((Car) car).start();
+            }
         }
     }
 }

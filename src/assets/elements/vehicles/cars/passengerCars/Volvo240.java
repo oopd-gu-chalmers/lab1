@@ -28,4 +28,5 @@ public final class Volvo240 extends PassengerCar {
     public Volvo240(){
         super(5, 4, new TrimmedEngine(100, 1.25, 90), "Volvo240", Color.black, 1.4, 1300);
     }
+
 }
