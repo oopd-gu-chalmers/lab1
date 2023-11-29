@@ -72,7 +72,7 @@ public class VehicleController {
                     vehicle.turnLeft();
                     vehicle.turnLeft();
                 }
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveit(x, y, vehicles.indexOf(vehicle));
                 frame.drawPanel.repaint();
             }
         }
