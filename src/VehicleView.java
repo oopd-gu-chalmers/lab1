@@ -140,21 +140,25 @@ public class VehicleView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicleC.vehicles) {
                     if (vehicle instanceof Saab95) {
-                        vehicle.stopEngine();
-                        //((Saab95) vehicle).setTurboOn(); //huh???
+                        ((Saab95) vehicle).setTurboOn();
                     }
                 }
             }
         });
 
-        /*turboOffButton.addActionListener(new ActionListener() {
+        turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for (Vehicle vehicle : vehicleC.vehicles) {
+                    if (vehicle instanceof Saab95) {
+                        ((Saab95) vehicle).setTurboOff();
+                    }
+                }
             }
+
         });
 
-        liftBedButton.addActionListener(new ActionListener() {
+        /*liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle: vehicleC.vehicles) {
