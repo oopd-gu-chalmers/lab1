@@ -11,14 +11,15 @@ import javax.swing.*;
 public class DrawPanel extends JPanel{
 
     ArrayList<Vehicle> vehicles;
-    ArrayList<BufferedImage> images = new ArrayList<>();
+    ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
     // To keep track of a singel vehicles position
-    Point vehiclePoint = new Point();
+    ArrayList<Point> vehiclePoints = new ArrayList<>();
 
     // TODO: Make this genereal for all vehicles
-    void moveit(int x, int y){
-        vehiclePoint.x = x;
-        vehiclePoint.y = y;
+    void moveit(int x, int y, int index){
+        Point point = vehiclePoints.get(index);
+        point.x = x;
+        point.y = y;
     }
 
     // Initializes the panel and reads the images
@@ -37,6 +38,7 @@ public class DrawPanel extends JPanel{
             // if you are starting in IntelliJ.
             for(Vehicle vehicle: this.vehicles){
                 this.images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle.modelName + ".jpg")));
+                this.vehiclePoints.add(new Point(0, 0));
             }
         } catch (IOException ex)
         {
@@ -50,13 +52,9 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Iterator<BufferedImage> imageIterator = this.images.iterator();
-        int imageIndex = 0;
-        while(imageIterator.hasNext()) {
-            BufferedImage image = imageIterator.next();
-            g.drawImage(image, vehiclePoint.x, vehiclePoint.y, null); // see javadoc for more info on the parameters
-            //System.out.println(vehiclePoint.x + vehiclePoint.y);
-            imageIndex += 100;
+        for(BufferedImage image: images) {
+            Point point = vehiclePoints.get(images.indexOf(image));
+            g.drawImage(image, point.x, point.y, null); // see javadoc for more info on the parameters
         }
     }
 }
