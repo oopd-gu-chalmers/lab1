@@ -37,10 +37,4 @@ public class Scania extends Truck {
             }
         }
     }
-
-    @Override
-    public void move() {
-        super.move();
-    }
-
 }

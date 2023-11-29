@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public abstract class Truck extends Vehicle{
     protected boolean backIsOpen = false;
 
@@ -18,7 +16,4 @@ public abstract class Truck extends Vehicle{
             }
         }
     }
-    /*public void gas() {
-        if (!backIsOpen) super.gas();
-    }*/
 }
