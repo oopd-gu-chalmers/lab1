@@ -2,7 +2,7 @@ import java.util.Vector;
 
 
 
-public class Workshop<CarBrand> {
+public class Workshop<CarBrand extends Car> {
     private final int maxCars;
     public Vector<CarBrand> cars = new Vector<>();
 

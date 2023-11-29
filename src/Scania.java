@@ -25,14 +25,16 @@ public class Scania extends Truck {
     public void raiseBack(double amount) {
         if ((amount >= 0) && (currentSpeed == 0)) {
             tilt = Math.min(tilt + amount, 70);
-            backIsClosed = false;
+            backIsOpen = true;
         }
     }
 
     public void lowerBack(double amount) {
         if (amount >= 0) {
             tilt = Math.max(tilt - amount, 0);
-            if (tilt == 0) backIsClosed = true;
+            if (tilt == 0) {
+                backIsOpen = false;
+            }
         }
     }
 
@@ -40,4 +42,5 @@ public class Scania extends Truck {
     public void move() {
         super.move();
     }
+
 }

@@ -1,7 +1,5 @@
-import java.awt.*;
-
 public abstract class Truck extends Vehicle{
-    protected boolean backIsClosed = true;
+    protected boolean backIsOpen = false;
 
     public double speedFactor() {
         return 1;
@@ -10,7 +8,19 @@ public abstract class Truck extends Vehicle{
 
     public abstract void lowerBack();
 
-    public void gas() {
-        if (!backIsClosed) super.gas();
+    @Override
+    public void gas(double amount) {
+        if (!backIsOpen) {
+            if ((amount >= 0) && (amount <= 1)) {
+                incrementSpeed(amount);
+            }
+        }
     }
+
+   /* public void gas() {
+        System.out.println(backIsOpen);
+        if (!backIsOpen) {
+            super.gas();
+        }
+    }*/
 }

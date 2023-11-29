@@ -60,6 +60,7 @@ public class VehicleController {
 
                 int x = (int) Math.min(Math.round(vehicle.getPosition()[0]), (800-100));
                 int y = (int) Math.min(Math.round(vehicle.getPosition()[1]), (800-240-60));
+
                 if (vehicle.getPosition()[1] > (800-240-60)) {
                     vehicle.turnLeft();
                     vehicle.turnLeft();
@@ -87,6 +88,7 @@ public class VehicleController {
         double gas = ((double) amount) / 100;
         for (Vehicle vehicle : vehicles) {
             vehicle.gas(gas);
+            System.out.println(vehicle.getCurrentSpeed());
         }
     }
 

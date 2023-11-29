@@ -9,7 +9,7 @@ public class MercedesCarTransport extends Truck {
     }
 
     public void addCar(Car car) {
-        if (!backIsClosed && Arrays.equals(car.position, new double[]{this.position[0] - this.getDirection()[0],
+        if (!backIsOpen && Arrays.equals(car.position, new double[]{this.position[0] - this.getDirection()[0],
                 this.position[1] - this.getDirection()[1]})) {
             cars.addCar(car);
         }
@@ -23,12 +23,12 @@ public class MercedesCarTransport extends Truck {
     }
 
     public void raiseBack() {
-        backIsClosed = true;
+        backIsOpen = false;
     }
 
     public void lowerBack() {
         if (currentSpeed == 0) {
-            backIsClosed = false;
+            backIsOpen = true;
         }
     }
     
