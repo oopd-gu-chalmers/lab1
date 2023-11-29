@@ -12,7 +12,7 @@ public class CarStack implements Iterable<Car>, Movable {
     }
 
     public void addCar(Car car) {
-        if((cars.size() < maxCars) && car.isLoadable && (car.getNrDoors() <= maxDoors) && !cars.contains(car)) {
+        if((cars.size() < maxCars) && (car.getNrDoors() <= maxDoors) && !cars.contains(car)) {
             cars.push(car);
         }
     }

@@ -4,7 +4,7 @@ public class MercedesCarTransport extends Truck {
     private final CarStack cars;
 
     public MercedesCarTransport(int maxCars, int maxDoors) {
-        super();
+        modelName = "Mercedes";
         cars = new CarStack(maxCars, maxDoors);
     }
 
