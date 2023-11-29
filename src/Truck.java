@@ -11,6 +11,6 @@ public abstract class Truck extends Vehicle{
     public abstract void lowerBack();
 
     public void gas() {
-        if (!backIsClosed) super.gas();
+        if (backIsClosed) super.gas();
     }
 }
