@@ -34,7 +34,7 @@ public class VehicleController {
 
         int vehicleIndex = 0;
         for(Vehicle vehicle: vehiclesToBeAdded) {
-           double[] position = {0, 100 * vehicleIndex};
+           double[] position = {0, 160 * vehicleIndex};
 
             vehicle.setPosition(position);
             System.out.println(vehicle.modelName + Arrays.toString(vehicle.position));
