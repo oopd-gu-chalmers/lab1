@@ -6,19 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * This class represents the full view of the MVC pattern of your car simulator.
+ * This class represents the full view of the MVC pattern of your vehicle simulator.
  * It initializes with being center on the screen and attaching it's controller in it's state.
  * It communicates with the Controller by calling methods of it when an action fires of in
  * each of it's components.
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
-public class CarView extends JFrame{
+public class VehicleView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
 
     // The controller member
-    CarController carC;
+    VehicleController vehicleC;
 
     DrawPanel drawPanel;
 
@@ -37,13 +37,13 @@ public class CarView extends JFrame{
     JButton liftBedButton = new JButton("Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
 
-    JButton startButton = new JButton("Start all cars");
-    JButton stopButton = new JButton("Stop all cars");
+    JButton startButton = new JButton("Start all vehicles");
+    JButton stopButton = new JButton("Stop all vehicles");
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
-        this.drawPanel = new DrawPanel(X, Y-240, cc.cars);
+    public VehicleView(String framename, VehicleController cc){
+        this.vehicleC = cc;
+        this.drawPanel = new DrawPanel(X, Y-240, cc.vehicles);
         initComponents(framename);
     }
 
@@ -106,22 +106,22 @@ public class CarView extends JFrame{
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                vehicleC.gas(gasAmount);
             }
         });
 
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(gasAmount);
+                vehicleC.brake(gasAmount);
             }
         });
 
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Car car : carC.cars) {
-                    car.startEngine();
+                for (Vehicle vehicle : vehicleC.vehicles) {
+                    vehicle.startEngine();
                 }
             }
         });
@@ -129,8 +129,8 @@ public class CarView extends JFrame{
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Car car : carC.cars) {
-                    car.stopEngine();
+                for (Vehicle vehicle : vehicleC.vehicles) {
+                    vehicle.stopEngine();
                 }
             }
         });
@@ -138,10 +138,10 @@ public class CarView extends JFrame{
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Car car : carC.cars) {
-                    if (car instanceof Saab95) {
-                        car.stopEngine();
-                        //((Saab95) car).setTurboOn(); //huh???
+                for (Vehicle vehicle : vehicleC.vehicles) {
+                    if (vehicle instanceof Saab95) {
+                        vehicle.stopEngine();
+                        //((Saab95) vehicle).setTurboOn(); //huh???
                     }
                 }
             }
@@ -157,9 +157,9 @@ public class CarView extends JFrame{
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Car car : carC.cars) {
-                    if (car instanceof Scania) {
-                        car.stopEngine();
+                for (Vehicle vehicle: vehicleC.vehicles) {
+                    if (vehicle instanceof Scania) {
+                        vehicle.stopEngine();
                     }
                 }
             }
@@ -168,9 +168,9 @@ public class CarView extends JFrame{
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Car car : carC.cars) {
-                    if (car instanceof Scania) {
-                        car.stopEngine();
+                for (Vehicle vehicle : vehicleC.vehicles) {
+                    if (vehicle instanceof Scania) {
+                        vehicle.stopEngine();
                     }
                 }
             }

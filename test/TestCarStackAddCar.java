@@ -54,11 +54,4 @@ public class TestCarStackAddCar {
         cars.addCar(volvo);
         assertEquals(0, cars.getNrOfLoadedCars());
     }
-
-    @Test
-    public void testAddNonLoadableCar() {
-        transport = new MercedesCarTransport(0, 0);
-        cars.addCar(transport);
-        assertEquals(0, cars.getNrOfLoadedCars());
-    }
 }

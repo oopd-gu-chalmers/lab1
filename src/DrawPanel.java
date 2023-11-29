@@ -6,27 +6,27 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-// This panel represent the animated part of the view with the car cars.
+// This panel represent the animated part of the view with the vehicle vehicles.
 
 public class DrawPanel extends JPanel{
 
-    ArrayList<Car> cars;
+    ArrayList<Vehicle> vehicles;
     ArrayList<BufferedImage> images = new ArrayList<>();
-    // To keep track of a singel cars position
-    Point carPoint = new Point();
+    // To keep track of a singel vehicles position
+    Point vehiclePoint = new Point();
 
-    // TODO: Make this genereal for all cars
+    // TODO: Make this genereal for all vehicles
     void moveit(int x, int y){
-        carPoint.x = x;
-        carPoint.y = y;
+        vehiclePoint.x = x;
+        vehiclePoint.y = y;
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<Car> cars) {
+    public DrawPanel(int x, int y, ArrayList<Vehicle> vehicles) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.cars = cars;
+        this.vehicles = vehicles;
         // Print an error message in case file is not found with a try/catch block
         try {
             // You can remove the "pics" part if running outside of IntelliJ and
@@ -35,8 +35,8 @@ public class DrawPanel extends JPanel{
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            for(Car car: this.cars){
-                this.images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + car.modelName + ".jpg")));
+            for(Vehicle vehicle: this.vehicles){
+                this.images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle.modelName + ".jpg")));
             }
         } catch (IOException ex)
         {
@@ -54,7 +54,7 @@ public class DrawPanel extends JPanel{
         int imageIndex = 0;
         while(imageIterator.hasNext()) {
             BufferedImage image = imageIterator.next();
-            g.drawImage(image, carPoint.x, carPoint.y, null); // see javadoc for more info on the parameters
+            g.drawImage(image, vehiclePoint.x, vehiclePoint.y, null); // see javadoc for more info on the parameters
             imageIndex++;
         }
     }
