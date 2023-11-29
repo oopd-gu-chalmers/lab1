@@ -121,7 +121,15 @@ public class VehicleView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicleC.vehicles) {
-                    vehicle.startEngine();
+                    if (vehicle.getCurrentSpeed() == 0) {
+                        if (vehicle instanceof Scania) {
+                            if (!((Scania) vehicle).backIsOpen) {
+                                vehicle.startEngine();
+                            }
+                        } else {
+                            vehicle.startEngine();
+                        }
+                    }
                 }
             }
         });
