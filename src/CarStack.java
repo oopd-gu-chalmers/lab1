@@ -34,21 +34,18 @@ public class CarStack implements Iterable<Car>, Movable {
         return cars.iterator();
     }
 
-    @Override
     public void move() {
         for (Car car: cars) {
             car.move();
         }
     }
 
-    @Override
     public void turnLeft() {
         for (Car car: cars) {
            car.turnLeft();
         }
     }
 
-    @Override
     public void turnRight() {
         for(Car car: cars) {
             car.turnRight();
