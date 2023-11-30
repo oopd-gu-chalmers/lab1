@@ -3,11 +3,11 @@ import java.awt.*;
 public abstract class Vehicle implements Movable{
     protected double[] position = {0, 0};
     protected double[] direction = {1, 0};
-    protected  int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
-    protected double currentSpeed = 0; // The current speed of the car
-    protected Color color; // Color of the car
-    protected String modelName; // The car model name
+    protected  int nrDoors;
+    protected double enginePower;
+    protected double currentSpeed = 0;
+    protected Color color;
+    protected String modelName;
     public double[] getPosition() {
         return position;
     }
@@ -73,20 +73,17 @@ public abstract class Vehicle implements Movable{
         position[1] = position[1] + currentSpeed*direction[1];
     }
     public void turnLeft() {
-        //Ändrar riktning
+        //Roterar den 90 grader åt vänster
         double x = direction[0];
         double y = direction[1];
         direction[0] = -y;
         direction[1] = x;
     }
     public void turnRight() {
-        //Ändrar riktning
+        //Roterar den 90 grader åt höger
         double x = direction[0];
         double y = direction[1];
         direction[0] = y;
         direction[1] = -x;
     }
-
-    //public void gas() {
-    //}
 }
