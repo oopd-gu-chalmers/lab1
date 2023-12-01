@@ -103,7 +103,7 @@ class "Vehicle" {
     + brake(amount : double) : void
 }
 '/
-class "Vehicle<T implements Movable & Engine>" {
+class "Vehicle<T extends Movable & Engine>" {
     + vehicle : T
     
     + move() : void
@@ -158,9 +158,11 @@ DrawPanel <-- VehicleView
 
 Engine <.. Car
 Engine <.. Truck
+Engine <.. "Vehicle<T extends Movable & Engine>"
 
 Movable <|.. CarStack
 Movable <|.. Movement
+Movable <.. "Vehicle<T extends Movable & Engine>"
 
 Movement <-- Car
 Movement <-- Truck
@@ -168,11 +170,9 @@ Movement <-- Truck
 Truck <|-- Scania
 Truck <|-- MercedesCarTransport
 
-Vehicle <|-- Car
-Vehicle <|-- Truck
-Vehicle <.. DrawPanel
-Vehicle <.. VehicleView
-Vehicle <.. VehicleController
+"Vehicle<T extends Movable & Engine>" <-- VehicleController
+"Vehicle<T extends Movable & Engine>" <-- VehicleView
+"Vehicle<T extends Movable & Engine>" <-- DrawPanel
 
 VehicleController <-- VehicleView
 
