@@ -179,12 +179,16 @@ Engine <|.. Truck
 Engine <|.. Scania
 Engine <|.. MercedesCarTransport
 Engine <|.. "Vehicle<T extends Movable & Engine>"
+Engine <|.. Saab95
+Engine <|.. Volvo240
 
 Movable <|.. CarStack
 Movable <|.. Movement
 Movable <|.. Scania
 Movable <|.. MercedesCarTransport
 Movable <.. "Vehicle<T extends Movable & Engine>"
+Movable <|.. Saab95
+Movable <|.. Volvo240
 
 Movement <-- Car
 Movement <-- Truck
