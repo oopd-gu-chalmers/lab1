@@ -62,24 +62,25 @@ public class VehicleController {
                 int y = (int) Math.min(Math.round(vehicle.getPosition()[1]), (800-240-60));
 
                 if (vehicle.getPosition()[1] > (800-240-60)) {
-                    vehicle.turnLeft();
-                    vehicle.turnLeft();
+                    turnVehicleAround(vehicle);
                 }
                 if (vehicle.getPosition()[1] < (0)) {
-                    vehicle.turnLeft();
-                    vehicle.turnLeft();
+                    turnVehicleAround(vehicle);
                 }
                 if (vehicle.getPosition()[0] > (800-100)) {
-                    vehicle.turnLeft();
-                    vehicle.turnLeft();
+                    turnVehicleAround(vehicle);
                 }
                 if (vehicle.getPosition()[0] < (0)) {
-                    vehicle.turnLeft();
-                    vehicle.turnLeft();
+                    turnVehicleAround(vehicle);
                 }
                 frame.drawPanel.moveit(x, y, vehicles.indexOf(vehicle));
                 frame.drawPanel.repaint();
             }
+        }
+
+        private static void turnVehicleAround(Vehicle vehicle) {
+            vehicle.turnLeft();
+            vehicle.turnLeft();
         }
     }
 
