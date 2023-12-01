@@ -35,6 +35,7 @@ interface "Engine" {
 
 class "MercedesCarTransport" {
     - cars : Carstack
+    - truck : Truck
     
     + addCar(car : Car) : void
     + removeCar() : Car
@@ -70,6 +71,7 @@ class "Saab95" {
 
 class "Scania" {
     - tilt : double
+    - truck : Truck
     
     + raiseBack() : void
     + raiseBack(amount : double) : void
@@ -77,7 +79,7 @@ class "Scania" {
     + lowerBack(amount : double) : void
 }
 
-abstract class "Truck" {
+class "Truck" {
     # backIsClosed : boolean
     - movement : Movement
     
@@ -156,19 +158,23 @@ CarStack <-- MercedesCarTransport
 
 DrawPanel <-- VehicleView
 
-Engine <.. Car
-Engine <.. Truck
-Engine <.. "Vehicle<T extends Movable & Engine>"
+Engine <|.. Car
+Engine <|.. Truck
+Engine <|.. Scania
+Engine <|.. MercedesCarTransport
+Engine <|.. "Vehicle<T extends Movable & Engine>"
 
 Movable <|.. CarStack
 Movable <|.. Movement
+Movable <|.. Scania
+Movable <|.. MercedesCarTransport
 Movable <.. "Vehicle<T extends Movable & Engine>"
 
 Movement <-- Car
 Movement <-- Truck
 
-Truck <|-- Scania
-Truck <|-- MercedesCarTransport
+Truck <-- Scania
+Truck <-- MercedesCarTransport
 
 "Vehicle<T extends Movable & Engine>" <-- VehicleController
 "Vehicle<T extends Movable & Engine>" <-- VehicleView
