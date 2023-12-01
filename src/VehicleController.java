@@ -37,10 +37,8 @@ public class VehicleController {
            double[] position = {0, 160 * vehicleIndex};
 
             vehicle.setPosition(position);
-            System.out.println(vehicle.modelName + Arrays.toString(vehicle.position));
             cc.vehicles.add(vehicle);
             vehicleIndex++;
-            System.out.println(vehicleIndex);
         }
 
         // Start a new view and send a reference of self
@@ -89,7 +87,6 @@ public class VehicleController {
         double gas = ((double) amount) / 100;
         for (Vehicle vehicle : vehicles) {
             vehicle.gas(gas);
-            System.out.println(vehicle.getCurrentSpeed());
         }
     }
 
