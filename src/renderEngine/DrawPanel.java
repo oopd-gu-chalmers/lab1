@@ -1,11 +1,23 @@
 package renderEngine;
 
+import assets.elements.ActiveElement;
+import assets.elements.Element;
+import assets.elements.Vehicle;
+import assets.elements.vehicles.cars.passengerCars.Saab95;
+import assets.elements.vehicles.cars.passengerCars.Volvo240;
+import assets.elements.vehicles.cars.trucks.ScaniaL280;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import static java.util.Map.entry;
 
 // This panel represent the animated part of the view with the car images.
 
@@ -14,33 +26,27 @@ public class DrawPanel extends JPanel{
     // Just a single image, TODO: Generalize
     BufferedImage backgroundImage;
     BufferedImage volvoImage;
-    // To keep track of a single car's position
-    Point volvoPoint = new Point();
+    Map<Class<? extends Element>, BufferedImage> imagePaths = Map.ofEntries(
+            entry(Volvo240.class, getImage("pics/Volvo240.jpg")),
+            entry(Saab95.class, getImage("pics/Saab95.jpg")),
+            entry(ScaniaL280.class, getImage("pics/Scania.jpg")
+            ));;
+    ArrayList<Element> elementsOnScreen;
+        // TODO: Make this general for all cars
 
-    // TODO: Make this general for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
-    }
-
-    // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
-        this.setDoubleBuffered(true);
-        this.setPreferredSize(new Dimension(x, y));
-        // Print an error message in case file is not found with a try/catch block
-        try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
-
-            // Remember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
-            backgroundImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/background.jpg"));
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-        } catch (IOException ex)
-        {
+    private BufferedImage getImage(String path){
+        try{
+            return ImageIO.read(DrawPanel.class.getResourceAsStream(path));
+        } catch (IOException ex){
             ex.printStackTrace();
         }
+        return null;
+    }
+    // Initializes the panel and reads the images
+    public DrawPanel(int x, int y, ArrayList<Element> elementsOnScreen) {
+        this.elementsOnScreen = elementsOnScreen;
+        this.setDoubleBuffered(true);
+        this.setPreferredSize(new Dimension(x, y));
 
     }
 
@@ -49,7 +55,8 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(backgroundImage, 0, 0, null);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+        for (Element element : elementsOnScreen){
+            g.drawImage(imagePaths.get(element.getClass()), (int)element.getPosition()[0], (int)element.getPosition()[1], null); // see javadoc for more info on the parameters
+        }
     }
 }
