@@ -4,6 +4,7 @@ public abstract class Truck extends Vehicle{
     public double speedFactor() {
         return 1;
     }
+
     public abstract void raiseBack();
 
     public abstract void lowerBack();

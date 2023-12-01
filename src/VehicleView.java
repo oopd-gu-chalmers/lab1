@@ -172,7 +172,6 @@ public class VehicleView extends JFrame{
                 for (Vehicle vehicle: vehicleC.vehicles) {
                     if (vehicle instanceof Scania) {
                         ((Scania) vehicle).raiseBack();
-                        System.out.println(((Scania) vehicle).backIsOpen+"!");
                     }
                 }
             }
@@ -184,7 +183,6 @@ public class VehicleView extends JFrame{
                 for (Vehicle vehicle : vehicleC.vehicles) {
                     if (vehicle instanceof Scania) {
                         ((Scania) vehicle).lowerBack();
-                        System.out.println(((Scania) vehicle).backIsOpen+"!");
                     }
                 }
             }
