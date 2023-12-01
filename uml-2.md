@@ -29,6 +29,8 @@ class "DrawPanel" {
 interface "Engine" {
     + startEngine() : void
     + stopEngine() : void
+    + gas() : void
+    + brake() : void
 }
 
 class "MercedesCarTransport" {
@@ -37,7 +39,7 @@ class "MercedesCarTransport" {
     + addCar(car : Car) : void
     + removeCar() : Car
     + raiseBack() : void
-    + lowerBack : void
+    + lowerBack() : void
     + move() : void
     + turnLeft() : void
     + turnRight() : void
@@ -86,8 +88,8 @@ abstract class "Truck" {
     + stopEngine() : void
     + gas() : void
 }
-
-abstract class "Vehicle" {
+/'
+class "Vehicle" {
     # nrDoors : int
     # enginePower : double
     # currentSpeed : double
@@ -99,6 +101,17 @@ abstract class "Vehicle" {
     # decrementSpeed(amount : double) : void
     + gas(amount : double) : void
     + brake(amount : double) : void
+}
+'/
+class "Vehicle<T implements Movable & Engine>" {
+    + vehicle : T
+    
+    + move() : void
+    + turnLeft() : void
+    + turnRight() : void
+    + gas() : void
+    + break () : void
+    
 }
 
 class "VehicleController" {
