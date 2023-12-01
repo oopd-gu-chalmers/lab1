@@ -77,7 +77,6 @@ public class CarController {
         for (Element car : cars) {
             if (car instanceof Car) {
                 ((Car) car).gas(gasAmount);
-                ((Car) car).turnLeft(2);
             }
         }
     }
