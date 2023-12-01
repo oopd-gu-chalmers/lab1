@@ -1,6 +1,11 @@
 ```puml
 @startuml
-abstract class "Car"
+abstract class "Car" {
+    # movement : Movement
+    
+    + startEngine() : void
+    + stopEngine() : void
+}
 skinparam classAttributeIconSize 0
 class "CarStack" {
     - maxCars : int
@@ -21,6 +26,11 @@ class "DrawPanel" {
     # paintComponent(g : Graphics) : void
 }
 
+interface "Engine" {
+    + startEngine() : void
+    + stopEngine() : void
+}
+
 class "MercedesCarTransport" {
     - cars : Carstack
     
@@ -37,6 +47,15 @@ interface "Movable" {
     ~ move() : void
     ~ turnLeft() : void
     ~ turnRight() : void
+}
+
+class "Movement" {
+    + position : double[]
+    + direction : double[]
+    
+    move() : void
+    turnLeft() : void
+    turnRight() : void
 }
 
 class "Saab95" {
@@ -58,32 +77,28 @@ class "Scania" {
 
 abstract class "Truck" {
     # backIsClosed : boolean
+    - movement : Movement
     
     + speedFactor() : double
     {abstract} + raiseBack() : void
     {abstract} + lowerBack() : void
+    + startEngine() : void
+    + stopEngine() : void
     + gas() : void
 }
 
 abstract class "Vehicle" {
-    # position : double[]
-    # direction : double[]
     # nrDoors : int
     # enginePower : double
     # currentSpeed : double
     # color : Color
     # modelName : String
     
-    + startEngine() : void
-    + stopEngine() : void
     {abstract} + speedFactor() : double
     # incrementSpeed(amount : double) : void
     # decrementSpeed(amount : double) : void
     + gas(amount : double) : void
     + brake(amount : double) : void
-    + move() : void
-    + turnLeft() : void
-    + turnRight() : void
 }
 
 class "VehicleController" {
@@ -128,8 +143,14 @@ CarStack <-- MercedesCarTransport
 
 DrawPanel <-- VehicleView
 
+Engine <.. Car
+Engine <.. Truck
+
 Movable <|.. CarStack
-Movable <|.. Vehicle
+Movable <|.. Movement
+
+Movement <-- Car
+Movement <-- Truck
 
 Truck <|-- Scania
 Truck <|-- MercedesCarTransport
