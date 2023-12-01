@@ -1,7 +1,7 @@
 ```puml
 @startuml
-abstract class "Car" {
-    # movement : Movement
+class "Car" {
+    - movement : Movement
     
     + startEngine() : void
     + stopEngine() : void
@@ -47,26 +47,34 @@ class "MercedesCarTransport" {
 }
 
 interface "Movable" {
-    ~ move() : void
-    ~ turnLeft() : void
-    ~ turnRight() : void
+    + move() : void
+    + turnLeft() : void
+    + turnRight() : void
 }
 
 class "Movement" {
     + position : double[]
     + direction : double[]
     
-    move() : void
-    turnLeft() : void
-    turnRight() : void
+    + move() : void
+    + turnLeft() : void
+    + turnRight() : void
 }
 
 class "Saab95" {
     # turboOn : boolean
+    - car : Car
     
     + setTurboOn() : void
     + setTurboOff() : void
     + speedFactor() : double 
+    + startEngine() : void
+    + stopEngine() : void
+    + gas() : void
+    + brake() : void
+    + move() : void
+    + turnLeft() : void
+    + turnRight() : void
 }
 
 class "Scania" {
@@ -136,8 +144,16 @@ class "VehicleView" {
 
 class "Volvo240" {
     {static} # trimFactor : double
+    - car : Car
     
     + speedFactor() : double
+    + startEngine() : void
+    + stopEngine() : void
+    + gas() : void
+    + brake() : void
+    + move() : void
+    + turnLeft() : void
+    + turnRight() : void   
 }
 
 class "Workshop<CarBrand>" {
@@ -148,8 +164,8 @@ class "Workshop<CarBrand>" {
     + removeCar(car : CarBrand) : void
 }
 
-Car <|-- Saab95
-Car <|-- Volvo240
+Car <-- Saab95
+Car <-- Volvo240
 Car <.. CarStack
 Car <.. MercedesCarTransport
 Car <.. "Workshop<CarBrand>"
