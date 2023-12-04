@@ -1,4 +1,8 @@
-public abstract class Truck extends Vehicle{
+public abstract class Truck implements Engine{
+    private final Movement movement = new Movement();
+
+    protected double enginePower;
+
     protected boolean backIsOpen = false;
 
     public double speedFactor() {
@@ -9,11 +13,10 @@ public abstract class Truck extends Vehicle{
 
     public abstract void lowerBack();
 
-    @Override
     public void gas(double amount) {
         if (!backIsOpen) {
             if ((amount >= 0) && (amount <= 1)) {
-                incrementSpeed(amount);
+                movement.setCurrentSpeed(Math.min(movement.getCurrentSpeed() + speedFactor() * amount, enginePower));
             }
         }
     }
