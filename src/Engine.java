@@ -1,6 +1,6 @@
 public interface Engine {
     void startEngine();
     void stopEngine();
-    void gas();
-    void brake();
+    void gas(double amount);
+    void brake(double amount);
 }
