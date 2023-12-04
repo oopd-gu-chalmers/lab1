@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
-public class MercedesCarTransport extends Truck {
+public class MercedesCarTransport{
+    private final Truck truck = new Truck();
     private final CarStack cars;
 
     public MercedesCarTransport(int maxCars, int maxDoors) {
