@@ -1,10 +1,9 @@
 import java.awt.*;
 
-public class Scania implements Movable{
+public class Scania implements Movable, Engine{
 
     private double tilt = 0;
-    private Truck truck;
-
+    private final Truck truck = new Truck();
     public Scania(){
     }
 
@@ -44,5 +43,21 @@ public class Scania implements Movable{
 
     public void turnRight() {
         truck.turnRight();
+    }
+
+    public void startEngine() {
+
+    }
+
+    public void stopEngine() {
+
+    }
+
+    public void gas(double amount) {
+
+    }
+
+    public void brake(double amount) {
+
     }
 }

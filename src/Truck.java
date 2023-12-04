@@ -1,9 +1,9 @@
 public class Truck implements Engine{
     private final Movement movement = new Movement();
 
-    protected double enginePower;
+    private double enginePower;
 
-    protected boolean backIsOpen = false;
+    private boolean backIsOpen = false;
 
     public double speedFactor() {
         return 1;
