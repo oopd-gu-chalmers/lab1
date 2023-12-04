@@ -9,10 +9,6 @@ public class Truck implements Engine{
         return 1;
     }
 
-    public abstract void raiseBack();
-
-    public abstract void lowerBack();
-
     public void gas(double amount) {
         if (!backIsOpen) {
             if ((amount >= 0) && (amount <= 1)) {

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania {
+public class Scania implements Movable{
 
     private double tilt = 0;
     private Truck truck;
@@ -32,5 +32,17 @@ public class Scania {
                 backIsOpen = false;
             }
         }
+    }
+
+    public void move() {
+        truck.move();
+    }
+
+    public void turnLeft() {
+        truck.turnLeft();
+    }
+
+    public void turnRight() {
+        truck.turnRight();
     }
 }
