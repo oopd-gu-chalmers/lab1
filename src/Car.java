@@ -1,2 +1,4 @@
-public abstract class Car extends Vehicle{
+public abstract class Car implements Engine{
+    Movement movement = new Movement();
+
 }

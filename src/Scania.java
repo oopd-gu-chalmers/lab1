@@ -1,15 +1,11 @@
 import java.awt.*;
 
-public class Scania extends Truck {
+public class Scania {
 
     private double tilt = 0;
+    private Truck truck;
 
     public Scania(){
-        super();
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
-        modelName = "Scania";
     }
 
     public double getTilt() {

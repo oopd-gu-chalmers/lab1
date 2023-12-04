@@ -1,4 +1,4 @@
-public abstract class Truck implements Engine{
+public class Truck implements Engine{
     private final Movement movement = new Movement();
 
     protected double enginePower;
