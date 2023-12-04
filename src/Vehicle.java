@@ -1,8 +1,7 @@
 import java.awt.*;
 
 public abstract class Vehicle implements Movable{
-    protected double[] position = {0, 0};
-    protected double[] direction = {1, 0};
+    private Movement movement;
     protected  int nrDoors;
     protected double enginePower;
     protected double currentSpeed = 0;
@@ -67,23 +66,5 @@ public abstract class Vehicle implements Movable{
     }
 
 
-    public void move() {
-        //Ändrar x eller y baserat på riktning
-        position[0] = position[0] + currentSpeed*direction[0];
-        position[1] = position[1] + currentSpeed*direction[1];
-    }
-    public void turnLeft() {
-        //Roterar den 90 grader åt vänster
-        double x = direction[0];
-        double y = direction[1];
-        direction[0] = -y;
-        direction[1] = x;
-    }
-    public void turnRight() {
-        //Roterar den 90 grader åt höger
-        double x = direction[0];
-        double y = direction[1];
-        direction[0] = y;
-        direction[1] = -x;
-    }
+
 }
