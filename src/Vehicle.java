@@ -1,7 +1,6 @@
 import java.awt.*;
 
 public abstract class Vehicle implements Movable{
-    private Movement movement;
     protected  int nrDoors;
     protected double enginePower;
     protected double currentSpeed = 0;
