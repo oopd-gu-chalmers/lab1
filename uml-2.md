@@ -1,6 +1,6 @@
 ```puml
 @startuml
-class "Car" {
+abstract class "Car" {
     - movement : Movement
     
     + startEngine() : void
@@ -63,18 +63,10 @@ class "Movement" {
 
 class "Saab95" {
     # turboOn : boolean
-    - car : Car
     
     + setTurboOn() : void
     + setTurboOff() : void
     + speedFactor() : double 
-    + startEngine() : void
-    + stopEngine() : void
-    + gas() : void
-    + brake() : void
-    + move() : void
-    + turnLeft() : void
-    + turnRight() : void
 }
 
 class "Scania" {
@@ -147,13 +139,6 @@ class "Volvo240" {
     - car : Car
     
     + speedFactor() : double
-    + startEngine() : void
-    + stopEngine() : void
-    + gas() : void
-    + brake() : void
-    + move() : void
-    + turnLeft() : void
-    + turnRight() : void   
 }
 
 class "Workshop<CarBrand>" {
@@ -164,8 +149,8 @@ class "Workshop<CarBrand>" {
     + removeCar(car : CarBrand) : void
 }
 
-Car <-- Saab95
-Car <-- Volvo240
+Car <|-- Saab95
+Car <|-- Volvo240
 Car <.. CarStack
 Car <.. MercedesCarTransport
 Car <.. "Workshop<CarBrand>"
@@ -179,16 +164,12 @@ Engine <|.. Truck
 Engine <|.. Scania
 Engine <|.. MercedesCarTransport
 Engine <|.. "Vehicle<T extends Movable & Engine>"
-Engine <|.. Saab95
-Engine <|.. Volvo240
 
 Movable <|.. CarStack
 Movable <|.. Movement
 Movable <|.. Scania
 Movable <|.. MercedesCarTransport
 Movable <.. "Vehicle<T extends Movable & Engine>"
-Movable <|.. Saab95
-Movable <|.. Volvo240
 
 Movement <-- Car
 Movement <-- Truck
