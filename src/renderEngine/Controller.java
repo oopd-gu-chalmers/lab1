@@ -20,7 +20,10 @@ import java.util.ArrayList;
  **/
 
 public class Controller implements Channel{
-    ArrayList<Element> cars = new ArrayList<>();
+    ArrayList<Element> cars;
+    public Controller(ArrayList<Element> cars) {
+        this.cars = cars;
+    }
 
     @Override
     public void update(){

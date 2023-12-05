@@ -20,6 +20,8 @@ public class View extends JFrame implements Channel{
 
     public View(String frameName, Controller controller){
         this.controller = controller;
+        //TODO
+        // - controller.cars???
         this.gameView = new GameView(X, Y-240, controller.cars);
         setupView(frameName);
         this.add(gameView);
