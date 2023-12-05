@@ -31,16 +31,8 @@ public class CarController {
     CarView frame;
     ArrayList<Element> cars = new ArrayList<>();
 
-    public static void main(String[] args) {
-        CarController cc = new CarController();
-
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new ScaniaL280());
-        cc.cars.get(1).setPosition(200, 0);
-        cc.cars.get(2).setPosition(400,0);
-        cc.frame = new CarView("DrivingSim 1.0", cc);
-        cc.timer.start();
+    public void startTimer(){
+        this.timer.start();
     }
 
     /** Each step the TimerListener moves all the cars in the list and tells the
