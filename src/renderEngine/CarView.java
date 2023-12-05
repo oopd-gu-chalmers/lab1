@@ -15,10 +15,10 @@ import java.awt.event.ActionListener;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 //TEST
-public class CarView extends JFrame{
+public class CarView extends JFrame implements Channel{
     private static final int X = 800;
     private static final int Y = 800;
-
+    JFrame frame = new JFrame();
     // The controller member
     CarController carC;
     DrawPanel drawPanel;
@@ -132,5 +132,11 @@ public class CarView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void update() {
+        //System.out.println("(CARVIEW) UPDATE IN");
+        this.drawPanel.repaint();
     }
 }
