@@ -18,7 +18,7 @@ public class CarController implements Channel{
 
     @Override
     public void update(){
-        //System.out.println("(CARCONTROLLER) UPDATE IN");
+        //System.out.println("(CAR CONTROLLER) UPDATE IN");
         for (Element car : cars) {
             if (car instanceof ActiveElement) {
                 if (car.getPosition()[1] > 500 || car.getPosition()[1] < 0) {
