@@ -15,18 +15,18 @@ import java.awt.event.ActionListener;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 //TEST
-public class CarView extends JFrame implements Channel{
+public class View extends JFrame implements Channel{
     private static final int X = 800;
     private static final int Y = 800;
     // The controller member
-    private DrawPanel drawPanel;
-    private CarController carC;
+    private GameView gameView;
+    private Controller controller;
     private JPanel controlPanel = new JPanel();
 
     private JPanel gasPanel = new JPanel();
     private JSpinner amountSpinner = new JSpinner();
     private int amount = 0;
-    private JLabel gasLabel = new JLabel("Gas/Brake Amount");
+    private JLabel gasLabel = new JLabel("Gas/Brake #");
     private JButton gasButton = new JButton("Gas");
     private JButton brakeButton = new JButton("Brake");
     private JButton turboOnButton = new JButton("Saab Turbo on");
@@ -37,50 +37,30 @@ public class CarView extends JFrame implements Channel{
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
 
-    public CarView(String frameName, CarController cc){
-        this.carC = cc;
-        this.drawPanel= new DrawPanel(X, Y-240, cc.cars);
-        initComponents(frameName);
-        addComponents();
+    public View(String frameName, Controller controller){
+        this.controller = controller;
+        this.gameView = new GameView(X, Y-240, controller.cars);
+        setupView(frameName);
+
+        this.add(gameView);
+
+        initControlPanel();
+        this.add(controlPanel);
     }
 
     @Override
     public void update() {
         //System.out.println("(CAR VIEW) UPDATE IN");
-        this.drawPanel.repaint();
+        this.gameView.repaint();
     }
 
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title) {
+    private void setupView(String title) {
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        this.add(drawPanel);
-
-        createSpinnerModel();
-        createGasPanel();
-        createControlPanel();
-        createButton(startButton, Color.blue, Color.green);
-        createButton(stopButton, Color.red, Color.black);
-        addActionListenerToAllButtons();
-
         setUpFrame();
-    }
-
-    private void createSpinnerModel() {
-        SpinnerModel spinnerModel =
-                new SpinnerNumberModel(0, //initial value
-                        0, //min
-                        100, //max
-                        1);//step
-        amountSpinner = new JSpinner(spinnerModel);
-        amountSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                amount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
     }
 
     private void setUpFrame() {
@@ -96,30 +76,34 @@ public class CarView extends JFrame implements Channel{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void addActionListenerToAllButtons() {
-        //TODO
-        // - Can probably make lambda function for it or some shit
 
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.gas(amount);
-            }
-        });
+    // ---- CONTROLLER -----
 
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.brake(amount);
-            }
-        });
+    private void initControlPanel() {
+        createSpinnerModel();
+        createGasPanel();
+        createControlPanel();
+        createButton(startButton, Color.blue, Color.green);
+        createButton(stopButton, Color.red, Color.black);
+        addActionListenerToAllButtons();
+    }
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.start();
-            }
-        });
+    private void createControlPanel() {
+        controlPanel.setLayout(new GridLayout(2,5));
+        controlPanel.add(gasPanel, 0);
+        controlPanel.add(gasButton, 1);
+        controlPanel.add(turboOnButton, 2);
+        controlPanel.add(extendTrayButton, 3);
+        controlPanel.add(startButton, 4);
+
+        controlPanel.add(new JPanel(), 5);
+        controlPanel.add(brakeButton, 6);
+        controlPanel.add(turboOffButton, 7);
+        controlPanel.add(retractTrayButton, 8);
+        controlPanel.add(stopButton, 9);
+
+        controlPanel.setPreferredSize(new Dimension((X)-100, 200));
+        controlPanel.setBackground(Color.CYAN);
     }
 
     private void createButton(JButton startButton, Color blue, Color green) {
@@ -128,24 +112,31 @@ public class CarView extends JFrame implements Channel{
         startButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
     }
 
-    private void createControlPanel() {
-        controlPanel.setLayout(new GridLayout(2,4));
 
-        controlPanel.add(gasButton, 0);
-        controlPanel.add(turboOnButton, 1);
-        controlPanel.add(extendTrayButton, 2);
-        controlPanel.add(brakeButton, 3);
-        controlPanel.add(turboOffButton, 4);
-        controlPanel.add(retractTrayButton, 5);
-        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
-        controlPanel.setBackground(Color.CYAN);
-    }
+    private void addActionListenerToAllButtons() {
+        //TODO
+        // - Can probably make lambda function for it or some shit
 
-    private void addComponents(){
-        this.add(gasPanel);
-        this.add(controlPanel);
-        this.add(startButton);
-        this.add(stopButton);
+        gasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.gas(amount);
+            }
+        });
+
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.brake(amount);
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.start();
+            }
+        });
     }
 
 
@@ -153,5 +144,20 @@ public class CarView extends JFrame implements Channel{
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(amountSpinner, BorderLayout.PAGE_END);
+    }
+
+
+    private void createSpinnerModel() {
+        SpinnerModel spinnerModel =
+                new SpinnerNumberModel(0, //initial value
+                        0, //min
+                        100, //max
+                        1);//step
+        amountSpinner = new JSpinner(spinnerModel);
+        amountSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                amount = (int) ((JSpinner)e.getSource()).getValue();
+            }
+        });
     }
 }

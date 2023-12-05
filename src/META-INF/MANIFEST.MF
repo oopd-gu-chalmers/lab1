@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: renderEngine.CarController
+Main-Class: renderEngine.Controller
 

@@ -1,8 +1,6 @@
 package renderEngine;
 
-import assets.elements.ActiveElement;
 import assets.elements.Element;
-import assets.elements.Vehicle;
 import assets.elements.vehicles.cars.passengerCars.Saab95;
 import assets.elements.vehicles.cars.passengerCars.Volvo240;
 import assets.elements.vehicles.cars.trucks.ScaniaL280;
@@ -10,10 +8,7 @@ import assets.elements.vehicles.cars.trucks.ScaniaL280;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,7 +16,7 @@ import static java.util.Map.entry;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class GameView extends JPanel{
 
     // Just a single image, TODO: Generalize
     BufferedImage backgroundImage;
@@ -36,14 +31,14 @@ public class DrawPanel extends JPanel{
 
     private BufferedImage getImage(String path){
         try{
-            return ImageIO.read(DrawPanel.class.getResourceAsStream(path));
+            return ImageIO.read(GameView.class.getResourceAsStream(path));
         } catch (IOException ex){
             ex.printStackTrace();
         }
         return null;
     }
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<Element> elementsOnScreen) {
+    public GameView(int x, int y, ArrayList<Element> elementsOnScreen) {
         this.elementsOnScreen = elementsOnScreen;
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));

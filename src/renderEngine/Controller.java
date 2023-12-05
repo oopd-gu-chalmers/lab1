@@ -13,7 +13,7 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  **/
 
-public class CarController implements Channel{
+public class Controller implements Channel{
     ArrayList<Element> cars = new ArrayList<>();
 
     @Override
