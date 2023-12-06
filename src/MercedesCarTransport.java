@@ -10,7 +10,7 @@ public class MercedesCarTransport{
     }
 
     public void addCar(Car car) {
-        if (!truck.getBackIsOpen() && Arrays.equals(car.position, new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
+        if (!truck.getBackIsOpen() && Arrays.equals(car.getPosition(), new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
                 this.truck.getPosition()[1] - this.truck.getDirection()[1]})) {
             cars.addCar(car);
         }
@@ -18,8 +18,8 @@ public class MercedesCarTransport{
 
     public Car removeCar() {
         Car car = cars.removeCar();
-        car.position = new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
-                                    this.truck.getPosition()[1] - this.truck.getDirection()[1]};
+        car.setPosition(new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
+                                    this.truck.getPosition()[1] - this.truck.getDirection()[1]});
         return car;
     }
 
@@ -32,24 +32,21 @@ public class MercedesCarTransport{
             truck.setBackIsOpen(true);
         }
     }
-    
-    @Override
+
     public void move() {
-       super.move();
+       truck.move();
         for (Car car: cars) {
             car.setPosition(this.truck.getPosition());
         }
     }
 
-    @Override
     public void turnLeft() {
-        super.turnLeft();
+        truck.turnLeft();
         cars.turnLeft();
     }
 
-    @Override
     public void turnRight() {
-        super.turnRight();
+        truck.turnRight();
         cars.turnRight();
     }
 }
