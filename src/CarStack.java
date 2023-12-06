@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.Stack;
 
-public class CarStack implements Iterable<Car>, Movable {
+public class CarStack implements Iterable<Car>{
     private final int maxCars;
     private final int maxDoors;
     private Stack<Car> cars = new Stack<>();

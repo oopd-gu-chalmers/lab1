@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Car implements Engine{
+public abstract class Car implements Engine, Movable {
     private final Movement movement = new Movement();
 
     protected  int nrDoors;

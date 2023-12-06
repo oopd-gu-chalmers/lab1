@@ -1,69 +1,40 @@
-import java.awt.*;
-
-public abstract class Vehicle implements Movable{
-    protected  int nrDoors;
-    protected double enginePower;
-    protected double currentSpeed = 0;
-    protected Color color;
-    protected String modelName;
-    public double[] getPosition() {
-        return position;
+public class Vehicle<T extends Movable & Engine> {
+    public T vehicle;
+    public Vehicle(T vehicle) {
+        this.vehicle = vehicle;
     }
+
     public void setPosition(double[] position) {
-        this.position = position;
+        vehicle.setPosition(position);
     }
-    public double[] getDirection() {
-        return direction;
+    public double[] getPosition() {
+        return vehicle.getPosition();
     }
-    public int getNrDoors(){
-        return nrDoors;
+    public void setCurrentSpeed(double currentSpeed) {
+        vehicle.setCurrentSpeed(currentSpeed);
     }
-    public double getEnginePower(){
-        return enginePower;
+    public double getCurrentSpeed() {
+        return vehicle.getCurrentSpeed();
     }
-
-    public double getCurrentSpeed(){
-        return currentSpeed;
+    public void move() {
+        vehicle.move();
     }
-
-    public Color getColor(){
-        return color;
+    public void turnLeft() {
+        vehicle.turnLeft();
     }
-
-    public void setColor(Color clr){
-        color = clr;
+    public void turnRight() {
+        vehicle.turnRight();
     }
-
-    public void startEngine(){
-        currentSpeed = 0.1;
+    public void startEngine() {
+        vehicle.startEngine();
     }
-
-    public void stopEngine(){
-        currentSpeed = 0;
+    public void stopEngine() {
+        vehicle.stopEngine();
     }
-
-    public abstract double speedFactor();
-
-    protected void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
-    }
-
-    protected void decrementSpeed(double amount) {
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
-    }
-
     public void gas(double amount) {
-        if ((amount >= 0) && (amount <= 1)) {
-            incrementSpeed(amount);
-        }
+        vehicle.gas(amount);
     }
-
     public void brake(double amount) {
-        if ((amount >= 0) && (amount <= 1)) {
-            decrementSpeed(amount);
-        }
+        vehicle.brake(amount);
     }
-
-
-
 }

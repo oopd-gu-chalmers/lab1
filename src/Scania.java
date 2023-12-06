@@ -33,6 +33,22 @@ public class Scania implements Movable, Engine{
         }
     }
 
+    public void setPosition(double[] position) {
+        truck.setPosition(position);
+    }
+
+    public double[] getPosition() {
+        return truck.getPosition();
+    }
+
+    public void setCurrentSpeed(double currentSpeed) {
+        truck.setCurrentSpeed(currentSpeed);
+    }
+
+    public double getCurrentSpeed() {
+        return truck.getCurrentSpeed();
+    }
+
     public void move() {
         truck.move();
     }
@@ -44,18 +60,18 @@ public class Scania implements Movable, Engine{
     }
 
     public void startEngine() {
-
+        truck.startEngine();
     }
 
     public void stopEngine() {
-
+        truck.stopEngine();
     }
 
     public void gas(double amount) {
-
+        truck.gas(amount);
     }
 
     public void brake(double amount) {
-
+        truck.brake(amount);
     }
 }
