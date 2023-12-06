@@ -37,7 +37,7 @@ public class MercedesCarTransport{
     public void move() {
        super.move();
         for (Car car: cars) {
-            car.setPosition(this.position);
+            car.setPosition(this.truck.getPosition());
         }
     }
 

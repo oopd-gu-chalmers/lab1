@@ -37,9 +37,7 @@ public class Scania implements Movable, Engine{
         truck.move();
     }
 
-    public void turnLeft() {
-        truck.turnLeft();
-    }
+    public void turnLeft() {truck.turnLeft();}
 
     public void turnRight() {
         truck.turnRight();
