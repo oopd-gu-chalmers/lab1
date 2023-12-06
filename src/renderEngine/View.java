@@ -1,7 +1,12 @@
 package renderEngine;
 
+import assets.elements.Element;
+import assets.elements.vehicles.boats.MotorizedBoat;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -17,15 +22,14 @@ public class View extends JFrame implements ModelObserver {
     // The controller member
     private GameView gameView;
     private Controller controller;
+    private ArrayList<Element> motorVehicles;
 
-    public View(String frameName, Controller controller){
+    public View(String frameName, Controller controller, ArrayList<Element> motorVehicles){
         this.controller = controller;
-        //TODO
-        // - controller.cars???
-        this.gameView = new GameView(X, Y-240, controller.motorVehicles);
+        this.motorVehicles = motorVehicles;
+        this.gameView = new GameView(X, Y-240, motorVehicles);
         setupView(frameName);
         this.add(gameView);
-        controller.initControlPanel(this);
         controller.addControlPanelToFrame(this);
     }
 
