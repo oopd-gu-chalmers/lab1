@@ -5,31 +5,31 @@ public class MercedesCarTransport{
     private final CarStack cars;
 
     public MercedesCarTransport(int maxCars, int maxDoors) {
-        modelName = "Mercedes";
+        truck.setModelName("Mercedes");
         cars = new CarStack(maxCars, maxDoors);
     }
 
     public void addCar(Car car) {
-        if (!backIsOpen && Arrays.equals(car.position, new double[]{this.position[0] - this.getDirection()[0],
-                this.position[1] - this.getDirection()[1]})) {
+        if (!truck.getBackIsOpen() && Arrays.equals(car.position, new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
+                this.truck.getPosition()[1] - this.truck.getDirection()[1]})) {
             cars.addCar(car);
         }
     }
 
     public Car removeCar() {
         Car car = cars.removeCar();
-        car.position = new double[]{this.position[0] - this.getDirection()[0],
-                                    this.position[1] - this.getDirection()[1]};
+        car.position = new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
+                                    this.truck.getPosition()[1] - this.truck.getDirection()[1]};
         return car;
     }
 
     public void raiseBack() {
-        backIsOpen = false;
+        truck.setBackIsOpen(false);
     }
 
     public void lowerBack() {
-        if (currentSpeed == 0) {
-            backIsOpen = true;
+        if (truck.getCurrentSpeed()==0) {
+            truck.setBackIsOpen(true);
         }
     }
     

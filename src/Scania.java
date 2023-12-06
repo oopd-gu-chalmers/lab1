@@ -18,9 +18,9 @@ public class Scania implements Movable, Engine{
     }
 
     public void raiseBack(double amount) {
-        if ((amount >= 0) && (currentSpeed == 0)) {
+        if ((amount >= 0) && (truck.getCurrentSpeed() == 0)) {
             tilt = Math.min(tilt + amount, 70);
-            backIsOpen = true;
+            truck.setBackIsOpen(true);
         }
     }
 
@@ -28,7 +28,7 @@ public class Scania implements Movable, Engine{
         if (amount >= 0) {
             tilt = Math.max(tilt - amount, 0);
             if (tilt == 0) {
-                backIsOpen = false;
+                truck.setBackIsOpen(false);
             }
         }
     }

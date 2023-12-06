@@ -1,5 +1,20 @@
+import java.awt.*;
+
 public class Truck implements Engine{
     private final Movement movement = new Movement();
+
+    protected  int nrDoors;
+    protected Color color;
+    protected String modelName;
+
+    public int getNrDoors() {return nrDoors;}
+    public void setNrDoors(int nrDoors) {this.nrDoors = nrDoors;}
+    public Color getColor() {return color;}
+    public void setColor(Color color) {this.color = color;}
+    public String getModelName() {return modelName;}
+    public void setModelName(String modelName) {this.modelName = modelName;}
+
+
 
     private double enginePower;
 
