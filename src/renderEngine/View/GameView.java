@@ -1,4 +1,4 @@
-package renderEngine;
+package renderEngine.View;
 
 import assets.elements.Element;
 import assets.elements.vehicles.cars.passengerCars.Saab95;
@@ -22,10 +22,10 @@ public class GameView extends JPanel{
     BufferedImage backgroundImage;
     BufferedImage volvoImage;
     Map<Class<? extends Element>, BufferedImage> imagePaths = Map.ofEntries(
-            entry(Volvo240.class, getImage("pics/Volvo240.jpg")),
-            entry(Saab95.class, getImage("pics/Saab95.jpg")),
-            entry(ScaniaL280.class, getImage("pics/Scania.jpg")
-            ));;
+            entry(Volvo240.class, getImage("../pics/Volvo240.jpg")),
+            entry(Saab95.class, getImage("../pics/Saab95.jpg")),
+            entry(ScaniaL280.class, getImage("../pics/Scania.jpg")
+            ));
     ArrayList<Element> elementsOnScreen;
         // TODO: Make this general for all cars
 

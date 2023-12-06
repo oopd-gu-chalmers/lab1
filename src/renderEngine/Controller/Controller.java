@@ -1,16 +1,12 @@
-package renderEngine;
+package renderEngine.Controller;
 
 import assets.elements.ActiveElement;
 import assets.elements.Element;
 import assets.elements.vehicles.motorVehicles;
 import assets.elements.vehicles.cars.passengerCars.Saab95;
+import renderEngine.ModelObserver;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +17,6 @@ import java.util.ArrayList;
 
 public class Controller implements ModelObserver {
     ArrayList<Element> motorVehicles;
-
-    // ---- CONTROLLER UI -----
 
     private ControllerUI UI = new ControllerUI();
 

@@ -1,4 +1,4 @@
-package renderEngine;
+package renderEngine.Controller;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

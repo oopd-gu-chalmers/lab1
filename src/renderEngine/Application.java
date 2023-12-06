@@ -4,6 +4,8 @@ import assets.elements.Element;
 import assets.elements.vehicles.cars.passengerCars.Saab95;
 import assets.elements.vehicles.cars.passengerCars.Volvo240;
 import assets.elements.vehicles.cars.trucks.ScaniaL280;
+import renderEngine.Controller.Controller;
+import renderEngine.View.View;
 
 import java.util.ArrayList;
 

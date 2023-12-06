@@ -1,12 +1,12 @@
-package renderEngine;
+package renderEngine.View;
 
 import assets.elements.Element;
-import assets.elements.vehicles.boats.MotorizedBoat;
+import renderEngine.Controller.Controller;
+import renderEngine.ModelObserver;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
