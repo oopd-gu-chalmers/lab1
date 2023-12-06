@@ -125,6 +125,11 @@ class "VehicleApplication" {
     ~ brake(amount : int) : void
 }
 
+
+class "VehicleController" {
+
+}
+
 class "VehicleView" {
     {static} - X : int
     {static} - Y : int
