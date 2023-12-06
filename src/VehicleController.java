@@ -29,8 +29,7 @@ public class VehicleController {
     public static void main(String[] args) {
         // Instance of this class
         VehicleController cc = new VehicleController();
-
-        Vehicle[] vehiclesToBeAdded = {new Volvo240(), new Saab95(), new Scania()};
+        Vehicle[] vehiclesToBeAdded = {new Volvo240(), new Saab95(), new Scania()}; //Lite väl inte bred????
 
         int vehicleIndex = 0;
         for(Vehicle vehicle: vehiclesToBeAdded) {
