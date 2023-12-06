@@ -2,7 +2,7 @@ package renderEngine;
 
 import assets.elements.ActiveElement;
 import assets.elements.Element;
-import assets.elements.vehicles.Car;
+import assets.elements.vehicles.motorVehicles;
 import assets.elements.vehicles.cars.passengerCars.Saab95;
 
 import javax.swing.*;
@@ -19,77 +19,10 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  **/
 
-public class Controller implements Channel{
-    ArrayList<Element> cars;
-    public Controller(ArrayList<Element> cars) {
-        this.cars = cars;
-    }
+public class Controller implements ModelObserver {
+    ArrayList<Element> motorVehicles;
 
-    @Override
-    public void update(){
-        //System.out.println("(CAR CONTROLLER) UPDATE IN");
-        for (Element car : cars) {
-            if (car instanceof ActiveElement) {
-                if (car.getPosition()[1] > 500 || car.getPosition()[1] < 0) {
-                    double rot = car.getRotation();
-                    car.setRotation(180 - rot);
-                }
-
-                if (car.getPosition()[0] > 650 || car.getPosition()[0] < 0) {
-                    System.out.println(car.getPosition()[0]);
-                    double rot = car.getRotation();
-                    car.setRotation(0 - rot);
-                }
-                ((ActiveElement) car).moveTick();
-            }
-        }
-    }
-
-
-    // Calls the gas method for each car once
-    void gas(int amount) {
-        double gasAmount = ((double) amount) / 100;
-        for (Element car : cars) {
-            if (car instanceof Car) {
-                ((Car) car).gas(gasAmount);
-            }
-        }
-    }
-    void brake(int amount) {
-        double brakeAmount = ((double) amount) / 100;
-        for (Element car : cars) {
-            if (car instanceof Car){
-                ((Car) car).brake(brakeAmount);
-            }
-        }
-    }
-
-    void turboOn() {
-        for (Element car : cars){
-            if (car instanceof Saab95){
-                ((Saab95) car).setTurboOn();
-            }
-        }
-    }
-
-    void turboOff() {
-        for (Element car : cars){
-            if (car instanceof Saab95){
-                ((Saab95) car).setTurboOff();
-            }
-        }
-    }
-
-    void start() {
-        for (Element car : cars
-        ) {
-            if (car instanceof Car) {
-                ((Car) car).start();
-            }
-        }
-    }
-
-    // ---- CONTROLLER -----
+    // ---- CONTROLLER UI -----
 
     private JPanel controlPanel = new JPanel();
 
@@ -106,6 +39,77 @@ public class Controller implements Channel{
 
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
+
+
+    public Controller(ArrayList<Element> motorVehicles) {
+        this.motorVehicles = motorVehicles;
+    }
+
+    @Override
+    public void update(){
+        //System.out.println("(CAR CONTROLLER) UPDATE IN");
+        for (Element motorVehicle : motorVehicles) {
+            if (motorVehicle instanceof ActiveElement) {
+                if (motorVehicle.getPosition()[1] > 500 || motorVehicle.getPosition()[1] < 0) {
+                    double rot = motorVehicle.getRotation();
+                    motorVehicle.setRotation(180 - rot);
+                }
+
+                if (motorVehicle.getPosition()[0] > 650 || motorVehicle.getPosition()[0] < 0) {
+                    System.out.println(motorVehicle.getPosition()[0]);
+                    double rot = motorVehicle.getRotation();
+                    motorVehicle.setRotation(0 - rot);
+                }
+                ((ActiveElement) motorVehicle).moveTick();
+            }
+        }
+    }
+
+
+    // Calls the gas method for each car once
+    void gas(int amount) {
+        double gasAmount = ((double) amount) / 100;
+        for (Element motorVehicle : motorVehicles) {
+            if (motorVehicle instanceof motorVehicles) {
+                ((motorVehicles) motorVehicle).gas(gasAmount);
+            }
+        }
+    }
+    void brake(int amount) {
+        double brakeAmount = ((double) amount) / 100;
+        for (Element motorVehicle : motorVehicles) {
+            if (motorVehicle instanceof motorVehicles){
+                ((motorVehicles) motorVehicle).brake(brakeAmount);
+            }
+        }
+    }
+
+    void turboOn() {
+        for (Element motorVehicle : motorVehicles){
+            if (motorVehicle instanceof Saab95){
+                ((Saab95) motorVehicle).setTurboOn();
+            }
+        }
+    }
+
+    void turboOff() {
+        for (Element motorVehicle : motorVehicles){
+            if (motorVehicle instanceof Saab95){
+                ((Saab95) motorVehicle).setTurboOff();
+            }
+        }
+    }
+
+    void start() {
+        for (Element motorVehicle : motorVehicles
+        ) {
+            if (motorVehicle instanceof motorVehicles) {
+                ((motorVehicles) motorVehicle).start();
+            }
+        }
+    }
+
+    // -- CONTROLLER UI --
 
     public void addControlPanelToFrame(JFrame frame){
         frame.add(controlPanel);

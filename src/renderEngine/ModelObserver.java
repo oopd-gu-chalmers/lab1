@@ -1,5 +1,5 @@
 package renderEngine;
 
-public interface Channel {
+public interface ModelObserver {
     public void update();
 }

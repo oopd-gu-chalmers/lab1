@@ -11,7 +11,7 @@ import java.awt.*;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 //TEST
-public class View extends JFrame implements Channel{
+public class View extends JFrame implements ModelObserver {
     private static final int X = 800;
     private static final int Y = 800;
     // The controller member
@@ -22,7 +22,7 @@ public class View extends JFrame implements Channel{
         this.controller = controller;
         //TODO
         // - controller.cars???
-        this.gameView = new GameView(X, Y-240, controller.cars);
+        this.gameView = new GameView(X, Y-240, controller.motorVehicles);
         setupView(frameName);
         this.add(gameView);
         controller.initControlPanel(this);

@@ -12,19 +12,19 @@ public class Application {
 
     public static void main(String[] args) {
         SimulationTimer simulationTimer = new SimulationTimer();
-        ArrayList<Element> cars = new ArrayList<>();
+        ArrayList<Element> motorVehicles = new ArrayList<>();
 
-        Controller controller = new Controller(cars);
+        Controller controller = new Controller(motorVehicles);
         View view = new View("DrivingSim 1.0", controller);
 
         simulationTimer.addObserver(controller);
         simulationTimer.addObserver(view);
 
-        cars.add(new Volvo240());
-        cars.add(new Saab95());
-        cars.add(new ScaniaL280());
-        cars.get(1).setPosition(200, 0);
-        cars.get(2).setPosition(400,0);
+        motorVehicles.add(new Volvo240());
+        motorVehicles.add(new Saab95());
+        motorVehicles.add(new ScaniaL280());
+        motorVehicles.get(1).setPosition(200, 0);
+        motorVehicles.get(2).setPosition(400,0);
         simulationTimer.timer.start();
     }
 }

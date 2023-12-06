@@ -1,8 +1,5 @@
 package renderEngine;
 
-import assets.elements.ActiveElement;
-import assets.elements.Element;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,34 +15,28 @@ public class SimulationTimer {
     //TODO
     // BAD PUBLIC
     public Timer timer = new Timer(delay, new TimerListener());
-
-    private String news;
-    private List<Channel> channels = new ArrayList<>();
+    private List<ModelObserver> modelObservers = new ArrayList<>();
 
     /** Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      **/
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            setNews();
-            //System.out.println("UPDATE OUT");
+            modelUpdate();
         }
     }
 
-
-    public void addObserver(Channel channel) {
-        this.channels.add(channel);
+    public void addObserver(ModelObserver modelObserver) {
+        this.modelObservers.add(modelObserver);
     }
 
-    public void removeObserver(Channel channel) {
-        this.channels.remove(channel);
+    public void removeObserver(ModelObserver modelObserver) {
+        this.modelObservers.remove(modelObserver);
     }
 
-    public void setNews() {
-        this.news = news;
-        for (Channel channel : this.channels) {
-            channel.update();
+    public void modelUpdate() {
+        for (ModelObserver modelObserver : this.modelObservers) {
+            modelObserver.update();
         }
     }
-
 }
