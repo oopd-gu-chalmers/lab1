@@ -14,20 +14,15 @@ public class Application {
 
     public static void main(String[] args) {
         SimulationTimer simulationTimer = new SimulationTimer();
-        ArrayList<Element> motorVehicles = new ArrayList<>();
         //TODO
         // - STUPID BOTH HAVE MOTOR VEHICLES
-        Controller controller = new Controller(motorVehicles);
-        View view = new View("DrivingSim 1.0", controller, motorVehicles);
-
-        simulationTimer.addObserver(controller);
+        ArrayList<Element> elementsOnScreen = new ArrayList<>();
+        Controller controller = new Controller(elementsOnScreen);
+        View view = new View("DrivingSim 1.0", controller, elementsOnScreen);
+        ModelUpdate modelUpdate = new ModelUpdate(elementsOnScreen);
+        simulationTimer.addObserver(modelUpdate);
         simulationTimer.addObserver(view);
 
-        motorVehicles.add(new Volvo240());
-        motorVehicles.add(new Saab95());
-        motorVehicles.add(new ScaniaL280());
-        motorVehicles.get(1).setPosition(200, 0);
-        motorVehicles.get(2).setPosition(400,0);
         simulationTimer.timer.start();
     }
 }

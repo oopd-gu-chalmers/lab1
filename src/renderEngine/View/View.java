@@ -17,17 +17,15 @@ import java.util.ArrayList;
  **/
 //TEST
 public class View extends JFrame implements ModelObserver {
-    private static final int X = 800;
-    private static final int Y = 800;
+    private static final int width = 800;
+    private static final int height = 800;
     // The controller member
     private GameView gameView;
     private Controller controller;
-    private ArrayList<Element> motorVehicles;
 
-    public View(String frameName, Controller controller, ArrayList<Element> motorVehicles){
+    public View(String frameName, Controller controller, ArrayList<Element> elementsOnScreen){
         this.controller = controller;
-        this.motorVehicles = motorVehicles;
-        this.gameView = new GameView(X, Y-240, motorVehicles);
+        this.gameView = new GameView(width, height - 240, elementsOnScreen);
         setupView(frameName);
         this.add(gameView);
         controller.addControlPanelToFrame(this);
@@ -39,18 +37,18 @@ public class View extends JFrame implements ModelObserver {
         this.gameView.repaint();
     }
 
-    public int getX(){
-        return X;
+    public int getWidth(){
+        return width;
     }
-    public int getY(){
-        return Y;
+    public int getHeight(){
+        return height;
     }
 
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
     private void setupView(String title) {
         this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
+        this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         setUpFrame();
     }

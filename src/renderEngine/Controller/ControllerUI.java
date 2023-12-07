@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class ControllerUI extends JPanel {
     private JPanel gasPanel = new JPanel();
     private JSpinner amountSpinner = new JSpinner();
@@ -14,8 +15,11 @@ public class ControllerUI extends JPanel {
     private JLabel gasLabel = new JLabel("Gas/Brake #");
     private JButton gasButton = new JButton("Gas");
     private JButton brakeButton = new JButton("Brake");
-    private JButton turboOnButton = new JButton("Saab Turbo on");
-    private JButton turboOffButton = new JButton("Saab Turbo off");
+    private JButton addCar = new JButton("Add Car");
+    private JButton removeCar = new JButton("Remove Car 😎");
+
+    private JSpinner carSpinner = new JSpinner(new SpinnerListModel(CarType.values()));
+    private CarType selectedCarType = CarType.NO_CAR;
     private JButton extendTrayButton = new JButton("Scania Extend Tray");
     private JButton retractTrayButton = new JButton("Retract Tray");
 
@@ -36,24 +40,26 @@ public class ControllerUI extends JPanel {
         this.setLayout(new GridLayout(2,5));
         this.add(gasPanel, 0);
         this.add(gasButton, 1);
-        this.add(turboOnButton, 2);
+        this.add(addCar, 2);
         this.add(extendTrayButton, 3);
         this.add(startButton, 4);
 
         this.add(new JPanel(), 5);
         this.add(brakeButton, 6);
-        this.add(turboOffButton, 7);
+        this.add(removeCar, 7);
         this.add(retractTrayButton, 8);
         this.add(stopButton, 9);
+        this.add(carSpinner, 10);
 
-        this.setPreferredSize(new Dimension((frame.getX())-100, 200));
+        this.setPreferredSize(new Dimension((frame.getWidth())-100, 200));
         this.setBackground(Color.CYAN);
     }
+
 
     private void createButton(JFrame frame, JButton startButton, Color blue, Color green) {
         startButton.setBackground(blue);
         startButton.setForeground(green);
-        startButton.setPreferredSize(new Dimension(frame.getX() / 5 - 15, 200));
+        startButton.setPreferredSize(new Dimension(frame.getWidth() / 5 - 15, 200));
     }
 
 
@@ -61,26 +67,17 @@ public class ControllerUI extends JPanel {
         //TODO
         // - Can probably make lambda function for it or some shit
 
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.gas(amount);
-            }
-        });
+        gasButton.addActionListener(e -> controller.gas(amount));
 
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.brake(amount);
-            }
-        });
+        brakeButton.addActionListener(e -> controller.brake(amount));
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.start();
-            }
+        startButton.addActionListener(e -> controller.start());
+
+        addCar.addActionListener(e -> {
+            CarType selectedCarType = (CarType) carSpinner.getValue();
+            controller.addCar(selectedCarType);
         });
+        addCar.addActionListener(e -> controller.removeCar());
     }
 
 
@@ -98,11 +95,6 @@ public class ControllerUI extends JPanel {
                         100, //max
                         1);//step
         amountSpinner = new JSpinner(spinnerModel);
-        amountSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                amount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
+        amountSpinner.addChangeListener(e -> amount = (int) ((JSpinner)e.getSource()).getValue());
     }
-
 }
