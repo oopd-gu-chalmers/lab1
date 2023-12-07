@@ -14,7 +14,7 @@ public class DrawPanel extends JPanel {
 
     HashMap<BufferedImage, Point> vehiclePoints = new HashMap<>();
 
-    void moveit(int x, int y, BufferedImage vehicle){
+    void moveit(int x, int y, BufferedImage vehicle) {
         this.vehiclePoints.put(vehicle, new Point(x, y));
     }
 

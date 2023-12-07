@@ -1,5 +1,10 @@
 ```puml
 @startuml
+
+class "Application" {
+    {static} + main(args : String[]) : void
+}
+
 abstract class "Car" {
     - movement : Movement
     
@@ -18,7 +23,7 @@ class "CarStack" {
 }
 
 class "DrawPanel" {
-    ~ vehicles : ArrayList<Vehicle>
+    /' ~ vehicles : ArrayList<Vehicle> '/
     ~ images : ArrayList<BufferedImage>
     ~ vehiclePoints : ArrayList<Point>
 
@@ -59,6 +64,10 @@ class "Movement" {
     + move() : void
     + turnLeft() : void
     + turnRight() : void
+}
+
+interface "MovementListener" {
+    + update() : void
 }
 
 class "Saab95" {
@@ -116,27 +125,26 @@ class "Vehicle<T extends Movable & Engine>" {
     
 }
 
-class "VehicleApplication" {
+class "VehicleController" {
     ~ frame : VehicleView
     ~ vehicles : ArrayList<Vehicle>
     
-    {static} + main(args : String[]) : void
+
     ~ gas(amount : int) : void
     ~ brake(amount : int) : void
 }
 
 
-class "VehicleController" {
-
-}
 
 class "VehicleView" {
     {static} - X : int
     {static} - Y : int
-    ~ vehicleC : VehicleController
+    /' ~ vehicleC : VehicleController '/
     ~ DrawPanel : drawPanel
     
     - initComponents(String title) : void
+    + addListener(ActionListener listener) : void
+    + update(double x, double y, Vehicle vehicles) : void
 }
 
 class "Volvo240" {
@@ -179,14 +187,21 @@ Movable <.. "Vehicle<T extends Movable & Engine>"
 Movement <-- Car
 Movement <-- Truck
 
+/' MovementListener <.. VehicleController '/
+MovementListener <|.. VehicleView
+
 Truck <-- Scania
 Truck <-- MercedesCarTransport
 
-"Vehicle<T extends Movable & Engine>" <-- VehicleApplication
-"Vehicle<T extends Movable & Engine>" <-- VehicleView
-"Vehicle<T extends Movable & Engine>" <-- DrawPanel
+/' "Vehicle<T extends Movable & Engine>" <.. VehicleController
+"Vehicle<T extends Movable & Engine>" <-- DrawPanel '/
+"Vehicle<T extends Movable & Engine>" <-- Application
+"Vehicle<T extends Movable & Engine>" <.. VehicleView
 
-VehicleApplication <-- VehicleView
+VehicleController <-- Application
+/' VehicleController <-- VehicleView '/
 
-VehicleView <-- VehicleApplication
+VehicleView <-- Application
+/' VehicleView <-- VehicleController '/
+
 @enduml
