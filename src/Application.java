@@ -1,5 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -8,8 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Application {
+public class Application extends JFrame{
     public static void main(String[] args) {
+        int X = 800;
+        int Y = 800;
         Vehicle[] vehicles = {
                 new Vehicle<Car>(new Volvo240()),
                 new Vehicle<Car>(new Saab95()),
@@ -25,10 +30,8 @@ public class Application {
             }
         }
 
-
-
-
         VehicleController vc = new VehicleController();
+        JFrame frame = vc.createFrameWithButtons(X, Y);
         int vehicleIndex = 0;
         for(Vehicle vehicle: vehicles) {
             double[] position = {0, 160 * vehicleIndex};
@@ -43,11 +46,9 @@ public class Application {
             vehicleBufferedImageHashMap.put(vehicles[i], images.get(i));
         }
 
-        VehicleView frame = new VehicleView("CarSim 1.0", vehicleBufferedImageHashMap);
-        frame.addListener(vc);
-        vc.addListener(frame);
+        VehicleView vv = new VehicleView(frame, "Car Sim 1.0", vehicleBufferedImageHashMap, X, Y);
 
-
+        vc.addListener(vv);
 
         // Start the timer
         vc.timer.start();
