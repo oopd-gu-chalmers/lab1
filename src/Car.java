@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Car implements Engine, Movable {
+public abstract class Car implements Engine, Movable, HasName {
     private final Movement movement = new Movement();
 
     protected  int nrDoors;
@@ -17,6 +17,10 @@ public abstract class Car implements Engine, Movable {
 
 
     protected double enginePower;
+
+    public String getName() {
+        return this.modelName;
+    }
 
     public double getEnginePower() {return enginePower;}
 

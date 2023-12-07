@@ -1,4 +1,4 @@
-public class Vehicle<T extends Movable & Engine> {
+public class Vehicle<T extends Movable & Engine & HasName> {
     public T vehicle;
     public Vehicle(T vehicle) {
         this.vehicle = vehicle;
@@ -36,5 +36,8 @@ public class Vehicle<T extends Movable & Engine> {
     }
     public void brake(double amount) {
         vehicle.brake(amount);
+    }
+    public String getName() {
+        return vehicle.getName();
     }
 }

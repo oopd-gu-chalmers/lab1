@@ -4,6 +4,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * This class represents the full view of the MVC pattern of your vehicle simulator.
@@ -12,13 +14,11 @@ import java.awt.event.ActionListener;
  * each of it's components.
  **/
 
-public class VehicleView extends JFrame{
+public class VehicleView extends JFrame implements MovementListener{
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
-    VehicleController vehicleC;
-
+    ArrayList<ActionListener> listeners = new ArrayList<ActionListener>();
     DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
@@ -40,9 +40,8 @@ public class VehicleView extends JFrame{
     JButton stopButton = new JButton("Stop all vehicles");
 
     // Constructor
-    public VehicleView(String framename, VehicleController cc){
-        this.vehicleC = cc;
-        this.drawPanel = new DrawPanel(X, Y-240, cc.vehicles);
+    public VehicleView(String framename, ArrayList<BufferedImage> images){
+        this.drawPanel = new DrawPanel(X, Y-240, images);
         initComponents(framename);
     }
 
@@ -99,85 +98,6 @@ public class VehicleView extends JFrame{
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
-        // This actionListener is for the gas button only
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.gas(gasAmount);
-            }
-        });
-
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.brake(gasAmount);
-            }
-        });
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicleC.vehicles) {
-                    if (vehicle.getCurrentSpeed() == 0) {
-                            vehicle.startEngine();
-                    }
-                }
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicleC.vehicles) {
-                    vehicle.stopEngine();
-                }
-            }
-        });
-
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicleC.vehicles) {
-                    if (vehicle instanceof Saab95) {
-                        ((Saab95) vehicle).setTurboOn();
-                    }
-                }
-            }
-        });
-
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicleC.vehicles) {
-                    if (vehicle instanceof Saab95) {
-                        ((Saab95) vehicle).setTurboOff();
-                    }
-                }
-            }
-
-        });
-
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle: vehicleC.vehicles) {
-                    if (vehicle instanceof Scania) {
-                        ((Scania) vehicle).raiseBack();
-                    }
-                }
-            }
-        });
-
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicleC.vehicles) {
-                    if (vehicle instanceof Scania) {
-                        ((Scania) vehicle).lowerBack();
-                    }
-                }
-            }
-        });
 
 
 
@@ -192,5 +112,26 @@ public class VehicleView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void addListener(ActionListener listener) {
+        listeners.add(listener);
+
+        gasButton.addActionListener(listener);
+        brakeButton.addActionListener(listener);
+
+        startButton.addActionListener(listener);
+        stopButton.addActionListener(listener);
+
+        turboOnButton.addActionListener(listener);
+        turboOffButton.addActionListener(listener);
+
+        liftBedButton.addActionListener(listener);
+        lowerBedButton.addActionListener(listener);
+    }
+
+    @Override
+    public void update(double x, double y, Vehicle vehicle) {
+
     }
 }

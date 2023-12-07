@@ -1,9 +1,10 @@
 import java.awt.*;
 
-public class Scania implements Movable, Engine{
+public class Scania implements Movable, Engine, HasName{
 
     private double tilt = 0;
     private final Truck truck = new Truck();
+    private final String modelName = "Scania";
     public Scania(){
     }
 
@@ -73,5 +74,9 @@ public class Scania implements Movable, Engine{
 
     public void brake(double amount) {
         truck.brake(amount);
+    }
+
+    public String getName() {
+        return this.modelName;
     }
 }
