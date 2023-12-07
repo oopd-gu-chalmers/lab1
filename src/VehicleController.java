@@ -56,7 +56,7 @@ public class VehicleController implements ActionListener{
                     turnVehicleAround(vehicle);
                 }
                 for (MovementListener movementListener: movementListeners) {
-                    movementListener.update(vehicle.getPosition()[0], vehicle.getPosition()[1], vehicle);
+                    movementListener.update((int) vehicle.getPosition()[0], (int) vehicle.getPosition()[1], vehicle);
                 }
             }
         }
