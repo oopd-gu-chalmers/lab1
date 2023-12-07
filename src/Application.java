@@ -45,6 +45,7 @@ public class Application {
 
         VehicleView frame = new VehicleView("CarSim 1.0", vehicleBufferedImageHashMap);
         frame.addListener(vc);
+        vc.addListener(frame);
 
 
 

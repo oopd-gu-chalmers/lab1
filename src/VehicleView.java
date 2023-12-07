@@ -21,7 +21,7 @@ public class VehicleView extends JFrame implements MovementListener{
 
     ArrayList<ActionListener> listeners = new ArrayList<ActionListener>();
     DrawPanel drawPanel;
-
+    HashMap<Vehicle, BufferedImage> vehicleImages = new HashMap<>();
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -41,9 +41,10 @@ public class VehicleView extends JFrame implements MovementListener{
     JButton stopButton = new JButton("Stop all vehicles");
 
     // Constructor
-    public VehicleView(String framename, HashMap<Vehicle, BufferedImage> vehicleBufferedImageHashMap){
+    public VehicleView(String framename, HashMap<Vehicle, BufferedImage> vehicleImages){
+        this.vehicleImages = vehicleImages;
         HashMap<BufferedImage, Point> bufferedImagePointHashMap = new HashMap<>();
-        vehicleBufferedImageHashMap.forEach((vehicle, image) -> {
+        vehicleImages.forEach((vehicle, image) -> {
             bufferedImagePointHashMap.put(image, new Point((int) vehicle.getPosition()[0], (int) vehicle.getPosition()[1]));
         });
         this.drawPanel = new DrawPanel(X, Y-240, bufferedImagePointHashMap);
@@ -136,7 +137,7 @@ public class VehicleView extends JFrame implements MovementListener{
     }
 
     @Override
-    public void update(double x, double y, Vehicle vehicle) {
-
+    public void update(int x, int y, Vehicle vehicle) {
+        drawPanel.moveit(x, y, this.vehicleImages.get(vehicle));
     }
 }
