@@ -14,7 +14,7 @@ public class Application {
                 new Vehicle<Car>(new Volvo240()),
                 new Vehicle<Car>(new Saab95()),
                 new Vehicle<>(new Scania())
-        }; //Lite väl inte bred????
+        };
 
         ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         for(Vehicle vehicle : vehicles) {
