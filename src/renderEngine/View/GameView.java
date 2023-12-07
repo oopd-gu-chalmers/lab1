@@ -42,9 +42,7 @@ public class GameView extends JPanel{
         this.elementsOnScreen = elementsOnScreen;
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
-
     }
-
 
     // This method is called each time the panel updates/refreshes/repaints itself
     // TODO: Change to suit your needs.
