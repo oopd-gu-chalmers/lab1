@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania implements Movable, Engine, HasName{
+public class Scania implements Movable, Engine, HasName, Back{
 
     private double tilt = 0;
     private final Truck truck = new Truck();

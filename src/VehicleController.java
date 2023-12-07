@@ -96,7 +96,64 @@ public class VehicleController {
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                brake(gasAmount);
+            }
+        });
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof Turbo) {
+                        ((Turbo) vehicle).setTurboOn();
+                    }
+                }
+            }
+        });
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof Turbo) {
+                        ((Turbo) vehicle).setTurboOff();
+                    }
+                }
+            }
+        });
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof Back) {
+                        ((Back) vehicle).raiseBack();
+                    }
 
+                }
+            }
+        });
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof Back) {
+                        ((Back) vehicle).lowerBack();
+                    }
+                }
+            }
+        });
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle vehicle : vehicles) {
+                    vehicle.startEngine();
+                }
+            }
+        });
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle vehicle : vehicles) {
+                    vehicle.stopEngine();
+                }
             }
         });
         // Make the frame pack all it's components by respecting the sizes if possible.

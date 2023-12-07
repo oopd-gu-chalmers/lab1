@@ -62,7 +62,6 @@ public class VehicleView implements MovementListener{
 
     @Override
     public void update(int x, int y, Vehicle vehicle) {
-        System.out.println(Arrays.toString(new int[]{x, y}));
         drawPanel.moveit(x, y, this.vehicleImages.get(vehicle));
         frame.repaint();
     }
