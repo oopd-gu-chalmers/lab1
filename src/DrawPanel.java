@@ -19,15 +19,14 @@ public class DrawPanel extends JPanel {
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<BufferedImage> images) {
+    public DrawPanel(int x, int y, HashMap<BufferedImage, Point> vehiclePoints) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.images = images;
-        // Print an error message in case file is not found with a try/catch block
-        for(BufferedImage image: this.images){
-            this.vehiclePoints.put(image, new Point(0, 0));
-        }
+        this.vehiclePoints = vehiclePoints;
+        vehiclePoints.forEach((key, value) -> {
+            this.images.add(key);
+        });
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself

@@ -20,7 +20,7 @@ public class VehicleController implements ActionListener{
 
     // The frame that represents this instance View of the MVC pattern
     // A list of vehicles, modify if needed
-    ArrayList<Vehicle> vehicles;
+    ArrayList<Vehicle> vehicles = new ArrayList<>();
     ArrayList<MovementListener> movementListeners= new ArrayList<>();
 
     public void addListener(MovementListener listener) {
