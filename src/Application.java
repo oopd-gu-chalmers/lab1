@@ -43,7 +43,7 @@ public class Application {
             vehicleBufferedImageHashMap.put(vehicles[i], images.get(i));
         }
 
-        VehicleView frame = new VehicleView("CarSim 1.0", images);
+        VehicleView frame = new VehicleView("CarSim 1.0", vehicleBufferedImageHashMap);
         frame.addListener(vc);
 
 

@@ -43,8 +43,10 @@ public class VehicleView extends JFrame implements MovementListener{
     // Constructor
     public VehicleView(String framename, HashMap<Vehicle, BufferedImage> vehicleBufferedImageHashMap){
         HashMap<BufferedImage, Point> bufferedImagePointHashMap = new HashMap<>();
-        for ()
-        this.drawPanel = new DrawPanel(X, Y-240, );
+        vehicleBufferedImageHashMap.forEach((vehicle, image) -> {
+            bufferedImagePointHashMap.put(image, new Point((int) vehicle.getPosition()[0], (int) vehicle.getPosition()[1]));
+        });
+        this.drawPanel = new DrawPanel(X, Y-240, bufferedImagePointHashMap);
         initComponents(framename);
     }
 
