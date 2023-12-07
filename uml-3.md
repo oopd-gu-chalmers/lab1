@@ -187,14 +187,14 @@ Movable <.. "Vehicle<T extends Movable & Engine>"
 Movement <-- Car
 Movement <-- Truck
 
-/' MovementListener <.. VehicleController '/
+MovementListener <.. VehicleController
 MovementListener <|.. VehicleView
 
 Truck <-- Scania
 Truck <-- MercedesCarTransport
 
-/' "Vehicle<T extends Movable & Engine>" <.. VehicleController
-"Vehicle<T extends Movable & Engine>" <-- DrawPanel '/
+"Vehicle<T extends Movable & Engine>" <.. VehicleController
+/' "Vehicle<T extends Movable & Engine>" <-- DrawPanel '/
 "Vehicle<T extends Movable & Engine>" <-- Application
 "Vehicle<T extends Movable & Engine>" <.. VehicleView
 
