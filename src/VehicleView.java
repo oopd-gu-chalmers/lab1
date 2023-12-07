@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class represents the full view of the MVC pattern of your vehicle simulator.
@@ -40,8 +41,10 @@ public class VehicleView extends JFrame implements MovementListener{
     JButton stopButton = new JButton("Stop all vehicles");
 
     // Constructor
-    public VehicleView(String framename, ArrayList<BufferedImage> images){
-        this.drawPanel = new DrawPanel(X, Y-240, images);
+    public VehicleView(String framename, HashMap<Vehicle, BufferedImage> vehicleBufferedImageHashMap){
+        HashMap<BufferedImage, Point> bufferedImagePointHashMap = new HashMap<>();
+        for ()
+        this.drawPanel = new DrawPanel(X, Y-240, );
         initComponents(framename);
     }
 

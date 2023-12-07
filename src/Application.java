@@ -25,16 +25,10 @@ public class Application {
             }
         }
 
-        HashMap<Vehicle, BufferedImage> vehicleBufferedImageHashMap = new HashMap<>();
-        for (int i = 0; i < vehicles.length; i++) {
-            vehicleBufferedImageHashMap.put(vehicles[i], images.get(i));
-        }
+
 
 
         VehicleController vc = new VehicleController();
-        VehicleView frame = new VehicleView("CarSim 1.0", images);
-        frame.addListener(vc);
-
         int vehicleIndex = 0;
         for(Vehicle vehicle: vehicles) {
             double[] position = {0, 160 * vehicleIndex};
@@ -43,6 +37,16 @@ public class Application {
             vc.vehicles.add(vehicle);
             vehicleIndex++;
         }
+
+        HashMap<Vehicle, BufferedImage> vehicleBufferedImageHashMap = new HashMap<>();
+        for (int i = 0; i < vehicles.length; i++) {
+            vehicleBufferedImageHashMap.put(vehicles[i], images.get(i));
+        }
+
+        VehicleView frame = new VehicleView("CarSim 1.0", images);
+        frame.addListener(vc);
+
+
 
         // Start the timer
         vc.timer.start();
