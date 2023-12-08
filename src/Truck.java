@@ -16,7 +16,7 @@ public class Truck implements Engine{
 
 
 
-    private double enginePower;
+    private final double enginePower = 100;
 
     public double getEnginePower() {return enginePower;}
 
@@ -61,7 +61,7 @@ public class Truck implements Engine{
     public void gas(double amount) {
         if (!backIsOpen) {
             if ((amount >= 0) && (amount <= 1)) {
-                this.setCurrentSpeed(Math.min(this.getCurrentSpeed() + speedFactor() * amount, enginePower));
+                this.setCurrentSpeed(Math.min(this.getCurrentSpeed() + this.speedFactor() * amount, enginePower));
             }
         }
     }
@@ -73,7 +73,9 @@ public class Truck implements Engine{
     }
 
     public void startEngine(){
-        this.setCurrentSpeed(0.1);
+        if (!backIsOpen) {
+            this.setCurrentSpeed(0.1);
+        }
     }
 
     public void stopEngine(){

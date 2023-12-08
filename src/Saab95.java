@@ -15,11 +15,14 @@ public class Saab95 extends Car implements Turbo{
     
     public void setTurboOn(){
 	    turboOn = true;
+        System.out.println("Turbo on!");
     }
 
     public void setTurboOff(){
 	    turboOn = false;
+        System.out.println("Turbo off!");
     }
+
     
     public double speedFactor(){
         double turbo = 1; 

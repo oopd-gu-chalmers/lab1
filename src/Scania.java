@@ -12,16 +12,20 @@ public class Scania implements Movable, Engine, HasName, Back{
         return tilt;
     }
 
-    public void raiseBack() { raiseBack(10); }
+    public void raiseBack() {
+        raiseBack(10);
+    }
 
     public void lowerBack() {
         lowerBack(10);
+        System.out.println("Back lowered!");
     }
 
     public void raiseBack(double amount) {
         if ((amount >= 0) && (truck.getCurrentSpeed() == 0)) {
             tilt = Math.min(tilt + amount, 70);
             truck.setBackIsOpen(true);
+            System.out.println("Beck raised!");
         }
     }
 

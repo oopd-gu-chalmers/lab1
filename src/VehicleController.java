@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -103,9 +104,8 @@ public class VehicleController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof Turbo) {
-                        ((Turbo) vehicle).setTurboOn();
-                    }
+                   if (vehicle.vehicle instanceof Turbo)
+                        ((Turbo) vehicle.vehicle).setTurboOn();
                 }
             }
         });
@@ -113,8 +113,8 @@ public class VehicleController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof Turbo) {
-                        ((Turbo) vehicle).setTurboOff();
+                    if (vehicle.vehicle instanceof Turbo) {
+                        ((Turbo) vehicle.vehicle).setTurboOff();
                     }
                 }
             }
@@ -123,8 +123,8 @@ public class VehicleController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof Back) {
-                        ((Back) vehicle).raiseBack();
+                    if (vehicle.vehicle instanceof Back) {
+                        ((Back) vehicle.vehicle).raiseBack();
                     }
 
                 }
@@ -134,8 +134,8 @@ public class VehicleController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof Back) {
-                        ((Back) vehicle).lowerBack();
+                    if (vehicle.vehicle instanceof Back) {
+                        ((Back) vehicle.vehicle).lowerBack();
                     }
                 }
             }
@@ -199,6 +199,7 @@ public class VehicleController {
         double gas = ((double) amount) / 100;
         for (Vehicle vehicle : vehicles) {
             vehicle.gas(gas);
+            System.out.println(vehicle.vehicle.getCurrentSpeed());
         }
     }
 
