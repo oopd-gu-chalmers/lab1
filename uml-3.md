@@ -1,8 +1,13 @@
 ```puml
 @startuml
-
+skinparam classAttributeIconSize 0
 class "Application" {
     {static} + main(args : String[]) : void
+}
+
+interface "Back" {
+    + raiseBack() : void
+    + lowerBack() : void
 }
 
 abstract class "Car" {
@@ -11,7 +16,7 @@ abstract class "Car" {
     + startEngine() : void
     + stopEngine() : void
 }
-skinparam classAttributeIconSize 0
+
 class "CarStack" {
     - maxCars : int
     - maxDoors : int
@@ -24,11 +29,13 @@ class "CarStack" {
 
 class "DrawPanel" {
     /' ~ vehicles : ArrayList<Vehicle> '/
-    ~ images : ArrayList<BufferedImage>
-    ~ vehiclePoints : ArrayList<Point>
-
+    ~ vehicleImages : HashMap<Vehicle, BufferedImage>
+    ~ vehiclePoints : HashMap<BufferedImage, Point>
+    
     ~ moveit(x : int, y : int, index : int) : void
     # paintComponent(g : Graphics) : void
+    + addVehicle(Vehicle vehicle, BufferedImage image) : void
+    + removeVehicle(Vehicle vehicle) : void
 }
 
 interface "Engine" {
@@ -36,6 +43,10 @@ interface "Engine" {
     + stopEngine() : void
     + gas() : void
     + brake() : void
+}
+
+interface "HasName" {
+    + getName() : String
 }
 
 class "MercedesCarTransport" {
@@ -67,7 +78,9 @@ class "Movement" {
 }
 
 interface "MovementListener" {
-    + update() : void
+    + updateMovement() : void
+    + addVehicle() : void
+    + removeVehicle() : void
 }
 
 class "Saab95" {
@@ -81,6 +94,7 @@ class "Saab95" {
 class "Scania" {
     - tilt : double
     - truck : Truck
+    - modelName : String
     
     + raiseBack() : void
     + raiseBack(amount : double) : void
@@ -114,7 +128,7 @@ class "Vehicle" {
     + brake(amount : double) : void
 }
 '/
-class "Vehicle<T extends Movable & Engine>" {
+class "Vehicle<T extends Movable & Engine & HasName>" {
     + vehicle : T
     
     + move() : void
@@ -126,12 +140,14 @@ class "Vehicle<T extends Movable & Engine>" {
 }
 
 class "VehicleController" {
-    ~ frame : VehicleView
-    ~ vehicles : ArrayList<Vehicle>
+    ~ vehicles : Stack<Vehicles>
+    - timer : Timer
+    ~ various buttons : JButton
     
-
+    
     ~ gas(amount : int) : void
     ~ brake(amount : int) : void
+    + createFrameWithButtons() : JFrame
 }
 
 
@@ -140,11 +156,13 @@ class "VehicleView" {
     {static} - X : int
     {static} - Y : int
     /' ~ vehicleC : VehicleController '/
+    ~ frame : JFrame
     ~ DrawPanel : drawPanel
     
     - initComponents(String title) : void
-    + addListener(ActionListener listener) : void
-    + update(double x, double y, Vehicle vehicles) : void
+    + updateMovement(double x, double y, Vehicle vehicles) : void
+    + addVehicle(Vehicle vehicle) : void
+    + removeVehicle(Vehicle vehicle) : void
 }
 
 class "Volvo240" {
@@ -162,6 +180,8 @@ class "Workshop<CarBrand>" {
     + removeCar(car : CarBrand) : void
 }
 
+Back <|.. Scania
+
 Car <|-- Saab95
 Car <|-- Volvo240
 Car <.. CarStack
@@ -176,27 +196,31 @@ Engine <|.. Car
 Engine <|.. Truck
 Engine <|.. Scania
 Engine <|.. MercedesCarTransport
-Engine <|.. "Vehicle<T extends Movable & Engine>"
+Engine <.. "Vehicle<T extends Movable & Engine & HasName>"
+
+HasName <|.. Car
+HasName <|.. Scania
+HasName <.. "Vehicle<T extends Movable & Engine & HasName>"
 
 Movable <|.. CarStack
+Movable <|.. MercedesCarTransport
 Movable <|.. Movement
 Movable <|.. Scania
-Movable <|.. MercedesCarTransport
-Movable <.. "Vehicle<T extends Movable & Engine>"
+Movable <.. "Vehicle<T extends Movable & Engine & HasName>"
 
 Movement <-- Car
 Movement <-- Truck
 
-MovementListener <.. VehicleController
+MovementListener <-- VehicleController
 MovementListener <|.. VehicleView
 
 Truck <-- Scania
 Truck <-- MercedesCarTransport
 
-"Vehicle<T extends Movable & Engine>" <.. VehicleController
+"Vehicle<T extends Movable & Engine & HasName>" <-- VehicleController
 /' "Vehicle<T extends Movable & Engine>" <-- DrawPanel '/
-"Vehicle<T extends Movable & Engine>" <-- Application
-"Vehicle<T extends Movable & Engine>" <.. VehicleView
+"Vehicle<T extends Movable & Engine & HasName>" <-- Application
+"Vehicle<T extends Movable & Engine & HasName>" <.. VehicleView
 
 VehicleController <-- Application
 /' VehicleController <-- VehicleView '/
