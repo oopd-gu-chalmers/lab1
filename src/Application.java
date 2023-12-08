@@ -37,7 +37,7 @@ public class Application extends JFrame{
             double[] position = {0, 160 * vehicleIndex};
 
             vehicle.setPosition(position);
-            vc.vehicles.add(vehicle);
+            vc.vehicles.push(vehicle);
             vehicleIndex++;
         }
 

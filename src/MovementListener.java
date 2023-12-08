@@ -1,5 +1,7 @@
 import java.awt.image.BufferedImage;
 
 public interface MovementListener {
-    void update(int x, int y, Vehicle vehicle);
+    void updateMovement(int x, int y, Vehicle vehicle);
+    void removeVehicle(Vehicle vehicle);
+    void addVehicle(Vehicle vehicle);
 }

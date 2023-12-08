@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -5,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,20 +25,17 @@ public class VehicleView implements MovementListener{
 
     ArrayList<ActionListener> listeners = new ArrayList<ActionListener>();
     DrawPanel drawPanel;
-    HashMap<Vehicle, BufferedImage> vehicleImages = new HashMap<>();
-
 
     // Constructor
     public VehicleView(JFrame frame, String framename, HashMap<Vehicle, BufferedImage> vehicleImages, int X, int Y){
         this.frame = frame;
-        this.vehicleImages = vehicleImages;
         HashMap<BufferedImage, Point> bufferedImagePointHashMap = new HashMap<>();
         vehicleImages.forEach((vehicle, image) -> {
             bufferedImagePointHashMap.put(image, new Point((int) vehicle.getPosition()[0], (int) vehicle.getPosition()[1]));
         });
         this.X = X;
         this.Y = Y;
-        this.drawPanel = new DrawPanel(X, Y-240, bufferedImagePointHashMap);
+        this.drawPanel = new DrawPanel(X, Y-240, bufferedImagePointHashMap, vehicleImages);
         initComponents(framename);
     }
 
@@ -60,9 +59,25 @@ public class VehicleView implements MovementListener{
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public void updateMovement(int x, int y, Vehicle vehicle) {
+        drawPanel.moveit(x, y, vehicle);
+        frame.repaint();
+    }
+
     @Override
-    public void update(int x, int y, Vehicle vehicle) {
-        drawPanel.moveit(x, y, this.vehicleImages.get(vehicle));
+    public void removeVehicle(Vehicle vehicle) {
+        drawPanel.removeVehicle(vehicle);
+        frame.repaint();
+    }
+
+    @Override
+    public void addVehicle(Vehicle vehicle) {
+        try {
+            BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle.getName() + ".jpg"));
+            drawPanel.addVehicle(vehicle, image);
+        }
+        catch (IOException e) {
+        }
         frame.repaint();
     }
 }
