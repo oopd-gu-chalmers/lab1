@@ -1,42 +1,32 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * This class represents the full view of the MVC pattern of your vehicle simulator.
- * It initializes with being center on the screen and attaching it's controller in it's state.
+ * It initializes with being center on the screen and attaching its controller in its state.
  * It communicates with the Controller by calling methods of it when an action fires of in
- * each of it's components.
+ * each of its components.
  **/
 
 public class VehicleView implements MovementListener{
-    private JFrame frame = new JFrame();
+    private final JFrame frame;
     int X;
     int Y;
 
-    ArrayList<ActionListener> listeners = new ArrayList<ActionListener>();
     DrawPanel drawPanel;
 
     // Constructor
-    public VehicleView(JFrame frame, String framename, HashMap<Vehicle, BufferedImage> vehicleImages, int X, int Y){
+    public VehicleView(JFrame frame, String frameName, HashMap<Vehicle, BufferedImage> vehicleImages, int X, int Y){
         this.frame = frame;
-        HashMap<BufferedImage, Point> bufferedImagePointHashMap = new HashMap<>();
-        vehicleImages.forEach((vehicle, image) -> {
-            bufferedImagePointHashMap.put(image, new Point((int) vehicle.getPosition()[0], (int) vehicle.getPosition()[1]));
-        });
         this.X = X;
         this.Y = Y;
-        this.drawPanel = new DrawPanel(X, Y-240, bufferedImagePointHashMap, vehicleImages);
-        initComponents(framename);
+        this.drawPanel = new DrawPanel(X, Y-240, vehicleImages);
+        initComponents(frameName);
     }
 
     // Sets everything in place and fits everything
@@ -59,8 +49,8 @@ public class VehicleView implements MovementListener{
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void updateMovement(int x, int y, Vehicle vehicle) {
-        drawPanel.moveit(x, y, vehicle);
+    public void updateMovement(Vehicle vehicle) {
+        //drawPanel.moveit(vehicle);
         frame.repaint();
     }
 
@@ -73,10 +63,11 @@ public class VehicleView implements MovementListener{
     @Override
     public void addVehicle(Vehicle vehicle) {
         try {
-            BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle.getName() + ".jpg"));
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/" + vehicle.getName() + ".jpg")));
             drawPanel.addVehicle(vehicle, image);
         }
         catch (IOException e) {
+            System.out.println("Could not find picture " + vehicle.getName() + ".jpg");
         }
         frame.repaint();
     }

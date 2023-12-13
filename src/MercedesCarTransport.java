@@ -12,6 +12,8 @@ public class MercedesCarTransport{
     public void addCar(Car car) {
         if (!truck.getBackIsOpen() && Arrays.equals(car.getPosition(), new double[]{this.truck.getPosition()[0] - this.truck.getDirection()[0],
                 this.truck.getPosition()[1] - this.truck.getDirection()[1]})) {
+            car.setPosition(truck.getPosition());
+            car.setDirection(truck.getDirection());
             cars.addCar(car);
         }
     }
@@ -35,9 +37,7 @@ public class MercedesCarTransport{
 
     public void move() {
        truck.move();
-        for (Car car: cars) {
-            car.setPosition(this.truck.getPosition());
-        }
+       cars.move();
     }
 
     public void turnLeft() {

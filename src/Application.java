@@ -1,15 +1,11 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Stack;
 
 public class Application extends JFrame{
     public static void main(String[] args) {
@@ -21,25 +17,28 @@ public class Application extends JFrame{
                 new Vehicle<>(new Scania())
         };
 
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
+        ArrayList<BufferedImage> images = new ArrayList<>();
         for(Vehicle vehicle : vehicles) {
             try {
-                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle.getName() + ".jpg")));
+                images.add(ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/" + vehicle.getName() + ".jpg"))));
             }
             catch (IOException e) {
             }
         }
 
-        VehicleController vc = new VehicleController();
-        JFrame frame = vc.createFrameWithButtons(X, Y);
+        Stack<Vehicle> vehicleStack = new Stack<>();
         int vehicleIndex = 0;
         for(Vehicle vehicle: vehicles) {
             double[] position = {0, 160 * vehicleIndex};
 
             vehicle.setPosition(position);
-            vc.vehicles.push(vehicle);
+            vehicleStack.push(vehicle);
             vehicleIndex++;
         }
+
+        VehicleController vc = new VehicleController(vehicleStack);
+        JFrame frame = vc.createFrameWithButtons(X, Y);
+
 
         HashMap<Vehicle, BufferedImage> vehicleBufferedImageHashMap = new HashMap<>();
         for (int i = 0; i < vehicles.length; i++) {
@@ -51,6 +50,6 @@ public class Application extends JFrame{
         vc.addListener(vv);
 
         // Start the timer
-        vc.timer.start();
+        vc.startTimer();
     }
 }

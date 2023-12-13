@@ -1,20 +1,16 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Stack;
 
 /*
 * This class represents the Controller part in the MVC pattern.
-* It's responsibilities is to listen to the View and responds in an appropriate manner by
+* Its responsibilities are to listen to the View and responds in an appropriate manner by
 * modifying the model state and the updating the view.
  */
 
 public class VehicleController {
     JPanel controlPanel = new JPanel();
+    ModelControl mc;
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
@@ -33,20 +29,18 @@ public class VehicleController {
     JButton stopButton = new JButton("Stop all vehicles");
     // member fields:
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
-    // The timer is started with a listener (see below) that executes the statements
-    // each step between delays.
-    final Timer timer = new Timer(delay, new TimerListener());
+
 
     // The frame that represents this instance View of the MVC pattern
-    // A list of vehicles, modify if needed
-    Stack<Vehicle> vehicles = new Stack<>();
-    ArrayList<MovementListener> movementListeners= new ArrayList<>();
 
-    public void addListener(MovementListener listener) {
-        movementListeners.add(listener);
+    public VehicleController(Stack<Vehicle> vehicles) {
+        mc = new ModelControl(vehicles);
     }
+
+    void addListener(MovementListener listener) {
+        mc.addListener(listener);
+    }
+
     public JFrame createFrameWithButtons(int X, int Y) {
         JFrame frame = new JFrame();
         SpinnerModel spinnerModel =
@@ -55,11 +49,7 @@ public class VehicleController {
                         100, //max
                         1);//step
         gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
+        gasSpinner.addChangeListener(e -> gasAmount = (int) ((JSpinner)e.getSource()).getValue());
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
@@ -91,147 +81,21 @@ public class VehicleController {
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         frame.add(stopButton);
 
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gas(gasAmount);
-            }
-        });
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                brake(gasAmount);
-            }
-        });
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicles) {
-                   if (vehicle.vehicle instanceof Turbo)
-                        ((Turbo) vehicle.vehicle).setTurboOn();
-                }
-            }
-        });
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicles) {
-                    if (vehicle.vehicle instanceof Turbo) {
-                        ((Turbo) vehicle.vehicle).setTurboOff();
-                    }
-                }
-            }
-        });
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicles) {
-                    if (vehicle.vehicle instanceof Back) {
-                        ((Back) vehicle.vehicle).raiseBack();
-                    }
-
-                }
-            }
-        });
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicles) {
-                    if (vehicle.vehicle instanceof Back) {
-                        ((Back) vehicle.vehicle).lowerBack();
-                    }
-                }
-            }
-        });
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicles) {
-                    vehicle.startEngine();
-                }
-            }
-        });
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Vehicle vehicle : vehicles) {
-                    vehicle.stopEngine();
-                }
-            }
-        });
-        addCarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Vehicle newVehicle = new Vehicle<>(new Volvo240());
-                newVehicle.setPosition(new double[]{160 * (int)(vehicles.size() / 3), 160 * (int)(vehicles.size() % 3)});
-                vehicles.push(newVehicle);
-                for (MovementListener movementListener : movementListeners) {
-                    movementListener.addVehicle(newVehicle);
-                }
-                System.out.println(vehicles.size());
-            }
-        });
-        removeCarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!vehicles.isEmpty()) {
-                    Vehicle vehicleToBeRemoved = vehicles.pop();
-                    for (MovementListener movementListener : movementListeners){
-                        movementListener.removeVehicle(vehicleToBeRemoved);
-                    }
-                }
-            }
-        });
+        gasButton.addActionListener(e -> mc.gas(gasAmount));
+        brakeButton.addActionListener(e -> mc.brake(gasAmount));
+        turboOnButton.addActionListener(e -> mc.setTurboOn());
+        turboOffButton.addActionListener(e -> mc.setTurboOff());
+        liftBedButton.addActionListener(e -> mc.liftBed());
+        lowerBedButton.addActionListener(e -> mc.lowerBed());
+        startButton.addActionListener(e -> mc.startEngine());
+        stopButton.addActionListener(e -> mc.stopEngine());
+        addCarButton.addActionListener(e -> mc.addVehicle());
+        removeCarButton.addActionListener(e -> mc.removeVehicle());
         return frame;
     }
-    /* Each step the TimerListener moves all the vehicles in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
-                vehicle.move();
 
-                int x = (int) Math.min(Math.round(vehicle.getPosition()[0]), (800-100));
-                int y = (int) Math.min(Math.round(vehicle.getPosition()[1]), (800-240-60));
+   void startTimer() {
+        mc.timer.start();
+   }
 
-                if (vehicle.getPosition()[1] > (800-240-60)) {
-                    turnVehicleAround(vehicle);
-                }
-                if (vehicle.getPosition()[1] < (0)) {
-                    turnVehicleAround(vehicle);
-                }
-                if (vehicle.getPosition()[0] > (800-100)) {
-                    turnVehicleAround(vehicle);
-                }
-                if (vehicle.getPosition()[0] < (0)) {
-                    turnVehicleAround(vehicle);
-                }
-                for (MovementListener movementListener: movementListeners) {
-                    movementListener.updateMovement((int) vehicle.getPosition()[0], (int) vehicle.getPosition()[1], vehicle);
-                }
-            }
-        }
-
-        private static void turnVehicleAround(Vehicle vehicle) {
-            vehicle.turnLeft();
-            vehicle.turnLeft();
-        }
-    }
-
-    // Calls the gas method for each vehicle once
-    void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Vehicle vehicle : vehicles) {
-            vehicle.gas(gas);
-            System.out.println(vehicle.vehicle.getCurrentSpeed());
-        }
-    }
-
-    void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (Vehicle vehicle : vehicles) {
-            vehicle.brake(brake);
-        }
-    }
 }
