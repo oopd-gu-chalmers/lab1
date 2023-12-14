@@ -85,7 +85,9 @@ public class ModelControl {
 
     void startEngine() {
         for (Vehicle vehicle : vehicles) {
-            vehicle.startEngine();
+            if (vehicle.getCurrentSpeed() == 0) {
+                vehicle.startEngine();
+            }
         }
     }
 
