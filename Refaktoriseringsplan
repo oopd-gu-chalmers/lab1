@@ -1,0 +1,6 @@
+Dela upp vehicle till olika klasser och ett interface
+Formaterar vehicle så att den i praktiken blir en ny vehicle-klass
+Ändrar mycket subklassning till komposition
+Ändar vilka klasser som är relaterade till varandra, ex. är inte Car och Truck relaterade till Vehicle
+
+nice
