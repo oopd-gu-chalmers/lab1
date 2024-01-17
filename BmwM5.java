@@ -12,7 +12,7 @@ public class BmwM5{
     public BmwM5(){
         nrDoors = 4;
         color = Color.black;
-        enginePower = 300;
+        enginePower = 500;
         modelName = "BmwM5";
         stopEngine();
     }
