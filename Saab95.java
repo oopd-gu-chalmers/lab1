@@ -8,6 +8,7 @@ public class Saab95{
     public Color color; // Color of the car
     public String modelName; // The car model name
     //TESTCOMMENT TO BE REMOVED
+    // Anothercomment to be removed
     public Saab95(){
         nrDoors = 2;
         color = Color.red;
