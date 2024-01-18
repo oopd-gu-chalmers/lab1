@@ -19,6 +19,11 @@ public class Car implements Moveable{
         return enginePower;
     }
 
+    public Point2D.Double getPosition(){
+        position = new Point2D.Double();
+        return position;
+    }
+
     public double getCurrentSpeed(){
         return currentSpeed;
     }
@@ -38,6 +43,12 @@ public class Car implements Moveable{
     public void stopEngine(){
         currentSpeed = 0;
     }
+
+    public void setPosition(double x, double y){
+        position.x = x;
+        position.y = y;
+    }
+
 
     @Override
     public void move() {
