@@ -1,12 +1,14 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
-public class Car {
+public class Car implements Moveable{
     // Attributes
     public int nrDoors; // Number of doors on the car
     public double enginePower; // Engine power of the car
     public double currentSpeed; // The current speed of the car
     public Color color; // Color of the car
     public String modelName; // The car model name
+    public Point2D.Double position; // Position of the car
 
     // Methods:
 
@@ -35,5 +37,20 @@ public class Car {
 
     public void stopEngine(){
         currentSpeed = 0;
+    }
+
+    @Override
+    public void move() {
+        position.y = position.y + currentSpeed;
+    }
+
+    @Override
+    public void turnLeft() {
+        position.x = position.x - currentSpeed;
+    }
+
+    @Override
+    public void turnRight() {
+        position.x = position.x + currentSpeed;
     }
 }
