@@ -3,29 +3,22 @@ import java.awt.*;
 public class Volvo240 extends car{
 
     public final static double trimFactor = 1.25;
-    public double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    public String modelName; // The car model name
-    
+
     public Volvo240(){
-        int nrDoors = 4;
-        color = Color.black;
-        enginePower = 100;
-        modelName = "Volvo240";
+        super(4, 100, Color.black, "Volvo240");
         stopEngine();
     }
 
     public double speedFactor(){
-        return enginePower * 0.01 * trimFactor;
+        return getEnginePower() * 0.01 * trimFactor;
     }
 
     public void incrementSpeed(double amount){
-	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+	    getCurrentSpeed() = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
 
     public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        getCurrentSpeed() = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
     // TODO fix this method according to lab pm
