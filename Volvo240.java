@@ -1,5 +1,5 @@
 import java.awt.*;
-//hej julia
+//hej
 public class Volvo240{
     
 
