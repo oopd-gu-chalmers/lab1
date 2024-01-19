@@ -1,11 +1,14 @@
 import java.awt.*;
 
-abstract class Car {
+
+abstract class Car implements Movable{
     private final int nrDoors;
     private final double enginePower;
-    public double currentSpeed;
+    public double currentSpeed; // Lägga till set current speed till exempel?
     private Color color;
-    public String modelName;
+    private final String modelName;
+    private Position position;
+    private double direction;
 
 
     public Car(int nrDoors, Color color, int enginePower, String modelName){
@@ -13,6 +16,8 @@ abstract class Car {
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
+        this.position = new Position(0, 0);
+        this.direction = 0;
         stopEngine();
     }
     public int getNrDoors(){
@@ -56,4 +61,18 @@ abstract class Car {
     public void brake(double amount){
         decrementSpeed(amount);
     }
+
+    public void move(){
+        position.set_position(position.get_x() + currentSpeed * Math.cos(direction),
+                              position.get_y() + currentSpeed * Math.sin(direction));
+    }
+
+    public void turnLeft(double degrees){
+        direction = (direction + degrees) % 360;
+    }
+    // Turn radius/angle begränsning
+    public void turnRight(double degrees){
+        direction = (direction - degrees) % 360;
+    }
+
 }
