@@ -3,12 +3,15 @@ import java.awt.geom.Point2D;
 
 public class Car implements Moveable{
     // Attributes
-    public int nrDoors; // Number of doors on the car
-    public double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    public String modelName; // The car model name
-    public Point2D.Double position; // Position of the car
+    protected int nrDoors; // Number of doors on the car
+    protected double enginePower; // Engine power of the car
+    protected double currentSpeed; // The current speed of the car
+    protected Color color; // Color of the car
+    protected String modelName; // The car model name
+    protected Point2D.Double position; // Position of the car
+
+    protected enum Direction {up, down, left, right}; // The current direction of the car
+    protected Direction direction;
 
     // Methods:
 
@@ -17,6 +20,10 @@ public class Car implements Moveable{
     }
     public double getEnginePower(){
         return enginePower;
+    }
+
+    public String getModelName(){
+        return modelName;
     }
 
     public Point2D.Double getPosition(){
@@ -49,19 +56,50 @@ public class Car implements Moveable{
         position.y = y;
     }
 
+    public void setDirection(Direction dir){
+        direction = dir;
+    }
+
+    public Direction getDirection(){
+        return direction;
+    }
 
     @Override
     public void move() {
-        position.y = position.y + currentSpeed;
+        if (getDirection() == Direction.up){
+            position.y = position.y + currentSpeed;
+        }
+        if (getDirection() == Direction.down){
+            position.y = position.y - currentSpeed;
+        }
+        if (getDirection() == Direction.left){
+            position.x = position.x - currentSpeed;
+        }
+
+        if (getDirection() == Direction.right){
+            position.x = position.x + currentSpeed;
+        }
     }
 
     @Override
     public void turnLeft() {
-        position.x = position.x - currentSpeed;
+        if (getDirection() == Direction.up){
+            direction = Direction.left;
+        }
+        if (getDirection() == Direction.down){
+            direction = Direction.right;
+        }
+        if (getDirection() == Direction.left){
+            direction = Direction.down;
+        }
+
+        if (getDirection() == Direction.right){
+            direction = Direction.up;
+        }
     }
 
     @Override
     public void turnRight() {
-        position.x = position.x + currentSpeed;
+
     }
 }
