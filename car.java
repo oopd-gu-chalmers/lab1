@@ -3,15 +3,19 @@ import java.awt.*;
 public class car implements Movable {
     private final int nrDoors; // Number of doors on the car
     private final double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
+    public double currentSpeed; // The current speed of the car // behövs pågrund att den behöver uppdateras i volvo, Saab
     private Color color; // Color of the car
     private final String modelName; // The car model name
+    public int direction = 0; // 360 degrees
+    public double xPos;
+    public double yPos;
 
     public car(int nrDoors, double enginePower, Color color, String modelName) {
        this.nrDoors = nrDoors;
        this.enginePower = enginePower;
        this.color = color;
        this.modelName = modelName;
+
     }
 
     public int getNrDoors(){
@@ -44,9 +48,9 @@ public class car implements Movable {
 
     }
     public void turnleft() {
-
+        direction -= (90 + 360) % 360;
     }
     public void turnright() {
-
+        direction += 90 % 360;
     }
 }

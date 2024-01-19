@@ -7,6 +7,7 @@ public class Volvo240 extends car{
     public Volvo240(){
         super(4, 100, Color.black, "Volvo240");
         stopEngine();
+        // använder super för att få tillgång till car konstruktionen för att slippa göra egna variabler
     }
 
     private double speedFactor(){

@@ -5,6 +5,7 @@ public class Saab95 extends car{
     private boolean turboOn;
     public Saab95(){
         super(2,125, Color.red, "Saab95");
+        // använder super för att få tillgång till car konstruktionen för att slippa göra egna variabler
 	    turboOn = false;
         stopEngine();
     }
