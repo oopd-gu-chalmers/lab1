@@ -1,6 +1,6 @@
 import java.awt.*;
 //hej igen
-public class Volvo240{
+public class Volvo240 {
     
 
     public final static double trimFactor = 1.25;
