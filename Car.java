@@ -3,64 +3,62 @@ import java.awt.geom.Point2D;
 
 public class Car implements Moveable{
     // Attributes
-    protected int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
-    protected Color color; // Color of the car
-    protected String modelName; // The car model name
-    protected Point2D.Double position; // Position of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
+    protected Point2D.Double position; // The position of the car
+    private enum Direction {up, down, left, right}; // Define what directions the car can have
+    private Direction direction; // The direction of the car
 
-    protected enum Direction {up, down, left, right}; // The current direction of the car
-    protected Direction direction;
+    public Car(int nrDoors, Color color, int enginePower, String modelName){
+        this.nrDoors = nrDoors;
+        this.color = color;
+        this.enginePower = enginePower;
+        this.modelName = modelName;
+        position = new Point2D.Double(0, 0);
+        stopEngine();
+        setDirection(Direction.up);
+    }
 
     // Methods:
 
-    public int getNrDoors(){
+    protected int getNrDoors(){
         return nrDoors;
     }
-    public double getEnginePower(){
+    protected double getEnginePower(){
         return enginePower;
     }
 
-    public String getModelName(){
+
+    protected String getModelName(){
         return modelName;
     }
 
-    public Point2D.Double getPosition(){
-        position = new Point2D.Double();
-        return position;
-    }
 
-    public double getCurrentSpeed(){
-        return currentSpeed;
-    }
-
-    public Color getColor(){
+    protected Color getColor(){
         return color;
     }
 
-    public void setColor(Color clr){
+    protected void setColor(Color clr){
         color = clr;
     }
 
-    public void startEngine(){
+    protected void startEngine(){
         currentSpeed = 0.1;
     }
 
-    public void stopEngine(){
+    protected void stopEngine(){
         currentSpeed = 0;
     }
 
-    public void setPosition(double x, double y){
-        position.x = x;
-        position.y = y;
-    }
 
-    public void setDirection(Direction dir){
+    protected void setDirection(Direction dir){
         direction = dir;
     }
 
-    public Direction getDirection(){
+    protected Direction getDirection(){
         return direction;
     }
 
@@ -100,6 +98,18 @@ public class Car implements Moveable{
 
     @Override
     public void turnRight() {
+        if (getDirection() == Direction.up){
+            direction = Direction.right;
+        }
+        if (getDirection() == Direction.down){
+            direction = Direction.left;
+        }
+        if (getDirection() == Direction.left){
+            direction = Direction.up;
+        }
 
+        if (getDirection() == Direction.right){
+            direction = Direction.down;
+        }
     }
 }
