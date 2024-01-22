@@ -186,4 +186,9 @@ class Saab95Test {
         assertEquals(0, saab.getDirection());
     }
 
+    @Test
+    void getModelName(){
+        assertEquals("Saab95", saab.getModelName());
+    }
+
 }
