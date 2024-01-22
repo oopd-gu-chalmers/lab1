@@ -24,6 +24,10 @@ abstract class Car implements Movable{
         return nrDoors;
     }
 
+    public String getModelName(){
+        return modelName;
+    }
+
     public double getEnginePower(){
         return enginePower;
     }
@@ -65,6 +69,10 @@ abstract class Car implements Movable{
     public void move(){
         position.set_position(position.get_x() + currentSpeed * Math.cos(Math.toRadians(direction)),
                               position.get_y() + currentSpeed * Math.sin(Math.toRadians(direction)));
+    }
+
+    public double getDirection(){
+        return direction;
     }
 
     public void turnLeft(double degrees){
