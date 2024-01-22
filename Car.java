@@ -6,13 +6,17 @@ abstract class Car implements Movable{
     protected double currentSpeed;
     protected Color color;
     protected String modelName;
-    public double xPos = 0;
-    public double yPos = 0;
-    public double direction = 0; // Riktning i grader (0-360)
+    protected Point pt = new Point(0,0); //start = 0,0
+    protected double direction = 0; // Riktning i grader (0-360)
 
-    public int getNrDoors(){
-        return nrDoors;
+    public Car(int nrDoors, double enginePower, Color color, String modelName){
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.color = color;
+        this.modelName = modelName;
     }
+
+    public int getNrDoors(){return nrDoors;}
 
     public double getEnginePower(){
         return enginePower;
@@ -38,15 +42,41 @@ abstract class Car implements Movable{
 	    currentSpeed = 0;
     }
 
+//    public Point getPosition(){
+//        return pt.getLocation();
+//    }
+
+//    public double getDirection(){
+//        return direction;
+//    }
+
+    public void setPosition(Point newPt) {
+        this.pt = newPt.getLocation();
+    }
+
+    public void setDirection(double newDir) {
+        this.direction = newDir;
+    }
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
-        incrementSpeed(amount);
+        if (amount >= 0 && amount <= 1){
+            incrementSpeed(amount);
+        }
+        else {
+            System.out.println("Gas amount not in correct interval");
+        }
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount){
-        decrementSpeed(amount);
+        if (amount >= 0 && amount <= 1){
+            decrementSpeed(amount);
+        }
+        else {
+            System.out.println("Break amount not in correct interval");
+        }
+
     }
 
     //LAB (syntax) QUESTION: do we need @override to override an abstract method?
@@ -57,8 +87,8 @@ abstract class Car implements Movable{
         double deltaY = currentSpeed * Math.sin(Math.toRadians(direction));
 
         // Uppdatera bilens position
-        xPos += deltaX;
-        yPos += deltaY;
+        this.pt.x += deltaX;
+        this.pt.y += deltaY;
     }
 
     @Override
