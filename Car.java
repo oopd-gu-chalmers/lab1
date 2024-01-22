@@ -67,6 +67,10 @@ abstract class Car implements Movable{
                               position.get_y() + currentSpeed * Math.sin(direction));
     }
 
+    public double getDirection(){
+        return direction;
+    }
+
     public void turnLeft(double degrees){
         direction = (direction + degrees) % 360;
     }
