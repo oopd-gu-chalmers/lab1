@@ -67,8 +67,8 @@ abstract class Car implements Movable{
     }
 
     public void move(){
-        position.set_position(position.get_x() + currentSpeed * Math.cos(direction),
-                              position.get_y() + currentSpeed * Math.sin(direction));
+        position.set_position(position.get_x() + currentSpeed * Math.cos(Math.toRadians(direction)),
+                              position.get_y() + currentSpeed * Math.sin(Math.toRadians(direction)));
     }
 
     public double getDirection(){
@@ -81,6 +81,10 @@ abstract class Car implements Movable{
     // Turn radius/angle begränsning
     public void turnRight(double degrees){
         direction = (direction - degrees) % 360;
+    }
+
+    public Position getPosition(){
+        return position;
     }
 
 }
