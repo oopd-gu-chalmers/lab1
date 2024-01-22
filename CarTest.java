@@ -1,3 +1,5 @@
+
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -21,35 +23,46 @@ public class CarTest {
     @Test
     public void getEnginePower() {
         assertEquals(100, volvocar.getEnginePower(), 0.0001);
+        assertEquals(125, sabcar.getEnginePower(), 0.0001);
+
     }
 
     @Test
     public void getCurrentSpeed() {
         volvocar.startEngine();
         assertEquals(0.1, volvocar.getCurrentSpeed(), 0.0001);
+        sabcar.startEngine();
+        assertEquals(0.1, sabcar.getCurrentSpeed(), 0.0001);
     }
 
     @Test
     public void getColor() {
         assertEquals(Color.black, volvocar.getColor());
+        assertEquals(Color.red, sabcar.getColor());
     }
 
     @Test
     public void setColor() {
         volvocar.setColor(Color.black);
         assertEquals(Color.black, volvocar.getColor());
+        sabcar.setColor(Color.red);
+        assertEquals(Color.red, sabcar.getColor());
     }
 
     @Test
     public void startEngine() {
         volvocar.startEngine();
         assertEquals(0.1, volvocar.getCurrentSpeed(), 0.0001);
+        sabcar.startEngine();
+        assertEquals(0.1, sabcar.getCurrentSpeed(), 0.0001);
     }
 
     @Test
     public void stopEngine() {
         volvocar.stopEngine();
         assertEquals(0.0, volvocar.getCurrentSpeed(), 0.0001);
+        sabcar.stopEngine();
+        assertEquals(0.0, sabcar.getCurrentSpeed(), 0.0001);
     }
 
     @Test
