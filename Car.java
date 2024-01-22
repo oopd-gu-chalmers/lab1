@@ -8,7 +8,7 @@ abstract class Car implements Movable {
     private double currentSpeed; //current speed of the car
     private Color color; //color of the car
     String modelName; //car model name
-    private Point position; // position
+    private Point2D position; // position
     private double direction;
 
     public Car(int nrDoors, Color color, double enginePower, String modelName){
@@ -17,7 +17,7 @@ abstract class Car implements Movable {
         this.enginePower = enginePower;
         this.modelName = modelName;
         stopEngine();
-        this.position = new Point(0,0);
+        this.position = new Point2D.Double(0,0);
         this.direction = 0;
 
     }
@@ -43,12 +43,12 @@ abstract class Car implements Movable {
     public void stopEngine(){
         currentSpeed = 0;
     }
-    abstract double speedfactor();
+    abstract double speedFactor();
     public void incrementSpeed (double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedfactor() * amount, enginePower);
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
     public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedfactor() * amount, 0);
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
     public void gas(double amount){
         if (amount >= 0 && amount <=1){
@@ -61,25 +61,30 @@ abstract class Car implements Movable {
             decrementSpeed(amount);
         }
     }
-    public Point getPosition(){
-        return position.getLocation();
+    public Point2D getPosition(){
+        return position;
     }
-    /*public void setPosition(int x, int y){
-        position.setLocation(x, y);
-    }*/
+    public double getXPosition(){
+        return position.getX();
+    }
+    public double getYPosition(){
+        return position.getY();
+    }
+    public double getDirection(){
+        return direction;
+    }
     @Override
     public void move(){
-        position.x += (int) (Math.cos(direction) * currentSpeed);
-        position.y += (int) (Math.sin(direction) * currentSpeed);
+        position.setLocation(Math.cos(direction) * currentSpeed, Math.sin(direction) * currentSpeed);
 
         //position.setLocation(Math.cos(direction) + currentSpeed, Math.sin(direction) + currentSpeed); Detta behövs nog inte
     }
     @Override
     public void turnLeft(){
-        direction += 45;
+        direction += Math.PI/4;
     }
     @Override
     public void turnRight(){
-        direction -= 45;
+        direction -= Math.PI/4  ;
     }
 }
