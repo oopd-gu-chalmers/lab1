@@ -59,11 +59,32 @@ abstract class Car implements Movable{
     abstract void decrementSpeed(double amount);
 
     public void gas(double amount){
-        incrementSpeed(amount);
+        try{
+            if (amount >= 0 && amount <= 1){
+                incrementSpeed(amount);
+            } else {
+                throw new Exception("Invalid gas input");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    public void update_speed(double new_speed){
+        try {
+            if (new_speed <= getEnginePower() && new_speed >= 0) {
+                currentSpeed = new_speed;
+
+            } else {
+                throw new Exception("Invalid Speed");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void move(){
