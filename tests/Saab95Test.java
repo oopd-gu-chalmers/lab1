@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,14 +36,18 @@ class Saab95Test {
 
     @Test
     void getCurrentSpeed() {
+        assertEquals(0, saab.getCurrentSpeed());
     }
 
     @Test
     void getColor() {
+        assertEquals(Color.red, saab.getColor());
     }
 
     @Test
     void setColor() {
+        saab.setColor(Color.blue);
+        assertEquals(Color.blue, saab.getColor());
     }
 
     @Test
@@ -95,10 +102,18 @@ class Saab95Test {
 
     @Test
     void turnLeft() {
+        saab.turnLeft(30);
+        assertEquals(30, saab.getDirection());
+        saab.turnLeft(390);
+        assertEquals(60, saab.getDirection());
     }
 
     @Test
     void turnRight() {
+        saab.turnRight(30);
+        assertEquals(-30, saab.getDirection());
+        saab.turnRight(390);
+        assertEquals(-60, saab.getDirection());
     }
 
     @Test
@@ -130,7 +145,6 @@ class Saab95Test {
 
         saab.setTurboOn();
         assertEquals(125*0.01*1.3, saab.speedFactor());
-
     }
 
     @Test
@@ -163,6 +177,13 @@ class Saab95Test {
 
     @Test
     void getPosition() {
+        assertEquals(0, saab.getPosition().get_x());
+        assertEquals(0, saab.getPosition().get_y());
+    }
+
+    @Test
+    void getDirection() {
+        assertEquals(0, saab.getDirection());
     }
 
 }
