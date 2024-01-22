@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Saab95Test {
 
+    private Saab95 saab;
+
     @BeforeEach
     void setUp() {
-        
+        saab = new Saab95();
     }
 
     @AfterEach
@@ -37,10 +39,16 @@ class Saab95Test {
 
     @Test
     void startEngine() {
+        saab.stopEngine();
+        saab.startEngine();
+        assertNotEquals(saab.currentSpeed,0);
     }
 
     @Test
     void stopEngine() {
+        saab.startEngine();
+        saab.stopEngine();
+        assertEquals(saab.currentSpeed,0);
     }
 
     @Test
@@ -53,6 +61,17 @@ class Saab95Test {
 
     @Test
     void move() {
+        Position positionBeforeMove;
+        positionBeforeMove = new Position(saab.getPosition().get_x(), saab.getPosition().get_y());
+        saab.startEngine();
+
+        saab.move();
+        assertNotEquals(positionBeforeMove.get_x(), saab.getPosition().get_x());
+
+        saab.turnLeft(180);
+        saab.move();
+        assertEquals(positionBeforeMove.get_x(), saab.getPosition().get_x());
+
     }
 
     @Test
@@ -82,4 +101,9 @@ class Saab95Test {
     @Test
     void decrementSpeed() {
     }
+
+    @Test
+    void getPosition() {
+    }
+
 }
