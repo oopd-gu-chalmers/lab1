@@ -176,6 +176,7 @@ class CarTests {
     @Test
     void decrementSpeed() {
         int amount = 30;
+        double initialSpeed = volvo.getCurrentSpeed();
         saab.incrementSpeed(amount);
         saab2.incrementSpeed(amount);
 
@@ -187,9 +188,15 @@ class CarTests {
         saab2.currentSpeed = saab2.getCurrentSpeed() - saab2.speedFactor()*5;
         assertNotEquals(saab.getCurrentSpeed(), saab2.getCurrentSpeed());
 
+        assertEquals(initialSpeed, volvo.getCurrentSpeed());
         volvo.incrementSpeed(amount);
-        volvo2.currentSpeed = volvo2.getCurrentSpeed() - volvo2.speedFactor()*10;
-        assertEquals(volvo.getCurrentSpeed(), volvo2.getCurrentSpeed());
+        volvo.incrementSpeed(amount);
+        volvo.incrementSpeed(amount);
+        assertNotEquals(initialSpeed, volvo.getCurrentSpeed());
+        volvo.decrementSpeed(amount);
+        volvo.decrementSpeed(amount);
+        volvo.decrementSpeed(amount);
+        assertEquals(initialSpeed, volvo.getCurrentSpeed());
     }
 
     @Test
