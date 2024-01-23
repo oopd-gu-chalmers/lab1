@@ -10,7 +10,7 @@ abstract class Car implements Movable{
     private double direction;
 
 
-    public Car(int nrDoors, Color color, int enginePower, String modelName){
+    public Car(int nrDoors, Color color, double enginePower, String modelName){
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
