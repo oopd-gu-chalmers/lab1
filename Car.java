@@ -2,19 +2,23 @@ import java.awt.*;
 abstract class Car implements Movable{
 
     protected int nrDoors;
-    protected double enginePower; 
-    protected double currentSpeed;
+    protected double enginePower;
     protected Color color;
     protected String modelName;
-    protected Point pt = new Point(0,0); //start = 0,0
-    protected double direction = 0; // Riktning i grader (0-360)
+    protected double currentSpeed;
+    protected Point pt;
+    protected double direction;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-    }
+
+        this.currentSpeed = 0;
+        this.pt = new Point(0,0); //start = 0,0
+        this.direction = 0; // Riktning i grader (0-360)
+    } //Konstruktor
 
     public int getNrDoors(){return nrDoors;}
 
@@ -42,13 +46,13 @@ abstract class Car implements Movable{
 	    currentSpeed = 0;
     }
 
-//    public Point getPosition(){
-//        return pt.getLocation();
-//    }
+    public Point getPosition(){
+        return pt.getLocation();
+    }
 
-//    public double getDirection(){
-//        return direction;
-//    }
+    public double getDirection(){
+        return direction;
+    }
 
     public void setPosition(Point newPt) {
         this.pt = newPt.getLocation();
@@ -58,7 +62,6 @@ abstract class Car implements Movable{
         this.direction = newDir;
     }
 
-    // TODO fix this method according to lab pm
     public void gas(double amount){
         if (amount >= 0 && amount <= 1){
             incrementSpeed(amount);
@@ -68,7 +71,6 @@ abstract class Car implements Movable{
         }
     }
 
-    // TODO fix this method according to lab pm
     public void brake(double amount){
         if (amount >= 0 && amount <= 1){
             decrementSpeed(amount);
@@ -79,7 +81,6 @@ abstract class Car implements Movable{
 
     }
 
-    //LAB (syntax) QUESTION: do we need @override to override an abstract method?
     @Override
     public void move() {
         // Beräkna nya koordinater baserat på riktningen och hastigheten
