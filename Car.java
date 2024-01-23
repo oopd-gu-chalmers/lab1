@@ -7,66 +7,64 @@ public class Car implements Movable {
     private Color color; // Color of the car
     private String modelName; // The car model name
     private Point point;
-    private Point currentDirection;
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point point, Point currentDirection){
+    private Point direction;
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point point, Point direction){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
         this.point = point;
-        this.currentDirection = currentDirection;
+        this.direction = direction;
     } // Använda this. eller inte?
 
     public int getNrDoors() {
-        return nrDoors;
-    } // Använd this. eller inte?
+        return this.nrDoors;
+    }
 
     public double getEnginePower() {
-        return enginePower;
+        return this.enginePower;
     }
 
     public double getCurrentSpeed() {
-        return currentSpeed;
+        return this.currentSpeed;
     }
 
     public Color getColor() {
-        return color;
+        return this.color;
     }
 
     public void setColor(Color clr) {
-        color = clr;
+        this.color = clr;
     }
 
     public void startEngine() {
-        currentSpeed = 0.1;
+        this.currentSpeed = 0.1;
     }
 
     public void stopEngine() {
-        currentSpeed = 0;
+        this.currentSpeed = 0;
     }
 
     @Override
     public void move() {
-        this.point.setLocation(
-                this.point.x + this.currentDirection.x * this.currentSpeed,
-                this.point.y + this.currentDirection.y * this.currentSpeed
-        );
+        this.point.x = (int) (this.point.x + this.direction.x*this.currentSpeed);
+        this.point.y = (int) (this.point.y + this.direction.y*this.currentSpeed);
     }
 
     @Override
     public void turnLeft() { // can only look at oen of the four vädersträck
-        int tmp = this.currentDirection.x;
-        this.currentDirection.x = - this.currentDirection.y;
-        this.currentDirection.y = tmp;
+        int tmp = this.direction.x;
+        this.direction.x = - this.direction.y;
+        this.direction.y = tmp;
 
     }
 
     @Override
     public void turnRight() {
-        int tmp = this.currentDirection.x;
-        this.currentDirection.x = this.currentDirection.y;
-        this.currentDirection.y = - tmp;
+        int tmp = this.direction.x;
+        this.direction.x = this.direction.y;
+        this.direction.y = - tmp;
     }
 }
 
