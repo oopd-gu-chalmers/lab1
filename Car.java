@@ -1,10 +1,9 @@
 import java.awt.*;
 
-
 abstract class Car implements Movable{
     private final int nrDoors;
     private final double enginePower;
-    public double currentSpeed; // Lägga till set current speed till exempel?
+    protected double currentSpeed; // Lägga till set current speed till exempel?
     private Color color;
     private final String modelName;
     private Position position;
@@ -70,8 +69,17 @@ abstract class Car implements Movable{
         }
     }
 
+    // Because gas and break never handles values outside of the range [0,1]
     public void brake(double amount){
-        decrementSpeed(amount);
+        try{
+            if (amount >= 0 && amount <= 1){
+                decrementSpeed(amount);
+            } else {
+                throw new Exception("Invalid brake input");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void update_speed(double new_speed){
