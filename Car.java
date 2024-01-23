@@ -53,12 +53,14 @@ abstract class Car implements Movable {
     public void gas(double amount){
         if (amount >= 0 && amount <=1){
            incrementSpeed(amount);
-        }
+        } else {throw new IllegalArgumentException("Gas must be between 0 and 1");}
     }
 
     public void brake(double amount) {
         if (amount >= 0 && amount <= 1) {
             decrementSpeed(amount);
+        } else {
+            throw new IllegalArgumentException("Brake must be between 0 and 1");
         }
     }
     public Point2D getPosition(){
