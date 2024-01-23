@@ -182,7 +182,7 @@ class CarTests {
 
     @Test
     void decrementSpeed() {
-        int amount = 30;
+        int amount = 20;
         saab.incrementSpeed(amount);
         saab2.incrementSpeed(amount);
 
