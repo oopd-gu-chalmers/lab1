@@ -69,7 +69,7 @@ abstract class Car implements Movable{
         }
     }
 
-    // Because gas and break never handles values outside of the range [0,1]
+    // Because gas and break never handles values outside of the range [0,1] gas will never result in a lower speed and vice versa
     public void brake(double amount){
         try{
             if (amount >= 0 && amount <= 1){
