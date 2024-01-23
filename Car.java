@@ -1,13 +1,13 @@
 import java.awt.*;
 public abstract class Car implements Movable {
     //Common attributes
-    protected int nrDoors;
-    protected double enginePower;
+    private int nrDoors;
+    private double enginePower;
     protected double currentSpeed;
     protected Color color;
     protected String modelName;
     protected Point position;
-    protected double currentDirection;
+    private double currentDirection;
 
 
 
@@ -18,6 +18,7 @@ public abstract class Car implements Movable {
         this.color = color;
         this.modelName = modelName;
         this.position = position;
+        this.currentDirection = 90;
 
     }
 
@@ -53,6 +54,8 @@ public abstract class Car implements Movable {
     public abstract void incrementSpeed(double amount);
     public abstract void decrementSpeed(double amount);
 
+    protected abstract double speedFactor();
+
     public void move() {
         double deltaX = currentSpeed * Math.cos(Math.toRadians(currentDirection));
         double deltaY = currentSpeed * Math.sin(Math.toRadians(currentDirection));
@@ -79,14 +82,22 @@ public abstract class Car implements Movable {
         return currentDirection;
     }
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    public void gas(double amount) {
+        if (amount >= 0 && amount <= 1) {
+            incrementSpeed(amount);
+        }
+        else {
+            throw new IllegalArgumentException("Wrong gas input: ");
+        }
     }
-
-    // TODO fix this method according to lab pm
     public void brake(double amount){
-        decrementSpeed(amount);
+        if (amount >= 0 && amount <= 1) {
+            decrementSpeed(amount);
+        }
+        else {
+            throw new IllegalArgumentException("Wrong brake input: ");
+        }
+
     }
 }
 
