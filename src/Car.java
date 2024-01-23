@@ -1,6 +1,10 @@
+package src;
+
+import src.Movable;
+
 import java.awt.*;
 
-public class Car implements Movable {
+public abstract class Car implements Movable {
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     public double currentSpeed; // The current speed of the car
@@ -68,5 +72,18 @@ public class Car implements Movable {
         this.currentDirection.x = this.currentDirection.y;
         this.currentDirection.y = - tmp;
     }
+
+    public abstract double speedFactor();
+
+    public void incrementSpeed(double amount){
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
+
+    }
+
+    public void decrementSpeed(double amount){
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+
+    }
 }
+
 

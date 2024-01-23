@@ -1,6 +1,10 @@
+package src;
+
+import src.Car;
+
 import java.awt.*;
 
-public class Volvo240 extends Car{
+public class Volvo240 extends Car {
 
     private final static double trimFactor = 1.25; // Skapa getter metod istället för att ha denna public?
     
@@ -13,13 +17,6 @@ public class Volvo240 extends Car{
         return getEnginePower() * 0.01 * trimFactor;
     }
 
-    public void incrementSpeed(double amount){
-	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
-    }
-
-    public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-    }
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
