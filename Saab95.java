@@ -27,7 +27,8 @@ public class Saab95 extends Car {
     }
 
     public void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        // The speed should not be below 0?
+        currentSpeed = Math.min(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
     public void setTurboOn(){

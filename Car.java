@@ -75,6 +75,9 @@ public abstract class Car implements Movable {
         }
 
     }
+    protected double getCurrentDirection(){
+        return currentDirection;
+    }
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
