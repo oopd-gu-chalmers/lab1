@@ -1,8 +1,8 @@
 import java.awt.*;
 public abstract class Car implements Movable {
     //Common attributes
-    private int nrDoors;
-    private double enginePower;
+    private final int nrDoors;
+    private final double enginePower;
     protected double currentSpeed;
     protected Color color;
     protected String modelName;
