@@ -5,15 +5,11 @@ public class Volvo240 extends Car {
 
 
     public Volvo240() {
-        super(4, 100, 0, Color.black, "Volvo240", new Point(0,0));
-        //nrDoors = 4;
-        //color = Color.black;
-        //enginePower = 100;
-        //modelName = "Volvo240";
-        stopEngine();
+        super(4, 100, "Volvo240");
+        setColor(Color.black);
     }
 
-    public double speedFactor() {
+    protected double speedFactor() {
         return this.getEnginePower() * 0.01 * trimFactor;
     }
 

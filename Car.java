@@ -4,21 +4,21 @@ public abstract class Car implements Movable {
     private final int nrDoors;
     private final double enginePower;
     protected double currentSpeed;
-    protected Color color;
+    private Color color;
     protected String modelName;
     protected Point position;
     private double currentDirection;
 
 
 
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point position) {
+    public Car(int nrDoors, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
-        this.currentSpeed = currentSpeed;
-        this.color = color;
+        this.currentSpeed = 0;
         this.modelName = modelName;
-        this.position = position;
+        this.position = new Point(0,0);
         this.currentDirection = 90;
+        stopEngine();
 
     }
 
@@ -31,15 +31,15 @@ public abstract class Car implements Movable {
         return enginePower;
     }
 
-    public double getCurrentSpeed() {
+    protected double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    public Color getColor() {
+    protected Color getColor() {
         return color;
     }
 
-    public void setColor(Color clr) {
+    protected void setColor(Color clr) {
         color = clr;
     }
 
