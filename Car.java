@@ -8,20 +8,25 @@ abstract class Car implements Movable {
     private double currentSpeed; //current speed of the car
     private Color color; //color of the car
     String modelName; //car model name
-    private Point2D position; // position
+    private Point position; // position
+    private double[] size; //size of the car
     private double direction;
 
-    public Car(int nrDoors, Color color, double enginePower, String modelName){
+    public Car(int nrDoors, Color color, double enginePower, String modelName, double length, double width){
         this.nrDoors =nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
-        stopEngine();
-        this.position = new Point2D.Double(0,0);
+        this.position = new Point(0,0);
+        this.size = new double[]{length, width};
         this.direction = 0;
+        stopEngine();
 
     }
 
+
+
+    // Getters
     public int getNrDoors(){
         return nrDoors;
     }
@@ -34,9 +39,23 @@ abstract class Car implements Movable {
     public Color getColor() {
         return color;
     }
+    public Point getPosition() {return position; }
+    public double[] getSize() {return size; }
+    public double getXPosition(){return position.getX();}
+    public double getYPosition(){return position.getY();}
+    public double getDirection(){return direction;}
+
+
+
+    // Setters
     public void setColor(Color color) {
         this.color = color;
     }
+    public void setPosition(Point position) {this.position = position;}
+
+
+
+    // Actions
     public void startEngine(){
         currentSpeed = 0.1;
     }
@@ -63,18 +82,7 @@ abstract class Car implements Movable {
             throw new IllegalArgumentException("Brake must be between 0 and 1");
         }
     }
-    public Point2D getPosition(){
-        return position;
-    }
-    public double getXPosition(){
-        return position.getX();
-    }
-    public double getYPosition(){
-        return position.getY();
-    }
-    public double getDirection(){
-        return direction;
-    }
+
     @Override
     public void move(){
         position.setLocation(Math.cos(direction) * currentSpeed, Math.sin(direction) * currentSpeed);

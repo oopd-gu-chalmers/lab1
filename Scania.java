@@ -4,7 +4,7 @@ public class Scania extends Car {
     private double flatbedAngle;
 
     public Scania(){
-        super(2, Color.blue, 400, "Scania"); // 2 doors, blue, 400 engine power
+        super(2, Color.blue, 400, "Scania", 8, 2); // 2 doors, blue, 400 engine power
         this.flatbedAngle = 0;
     }
 
@@ -44,7 +44,7 @@ public class Scania extends Car {
     }
 
     @Override
-    double speedfactor() {
+    double speedFactor() {
         return 0;
     }
 
