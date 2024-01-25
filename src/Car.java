@@ -1,6 +1,7 @@
 package src;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 public abstract class Car implements Movable {
     private final int nrDoors; // Number of doors on the car
@@ -8,9 +9,9 @@ public abstract class Car implements Movable {
     public double currentSpeed; // The current speed of the car
     public Color color; // Color of the car
     private final String modelName; // The car model name
-    public Point point;
+    public Point2D point;
     public Point direction;
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point point, Point direction){
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -50,8 +51,8 @@ public abstract class Car implements Movable {
 
     @Override
     public void move() {
-        this.point.x = (int) (this.point.x + this.direction.x*this.currentSpeed);
-        this.point.y = (int) (this.point.y + this.direction.y*this.currentSpeed);
+        this.point =  new Point2D.Double(this.point.getX() + this.direction.x*this.currentSpeed,
+                this.point.getY()+this.direction.y*this.currentSpeed);
     }
 
     @Override

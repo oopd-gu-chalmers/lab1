@@ -1,7 +1,9 @@
 package src;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
+import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Saab95Test {
@@ -54,7 +56,7 @@ class Saab95Test {
 
     @org.junit.jupiter.api.Test
     void move() {
-        Point tmp1 = saab.point;
+        Point2D tmp1 = new Point2D.Double(saab.point.getX(), saab.point.getY());
         saab.startEngine();
         saab.move();
         assertNotEquals(saab.point, tmp1);
@@ -62,7 +64,7 @@ class Saab95Test {
 
     @org.junit.jupiter.api.Test
     void turnLeft() {
-        Point tmp1 = saab.direction;
+        Point tmp1 = new Point(saab.direction.x, saab.direction.y);
         saab.turnLeft();
         Point turnedtmp1 = new Point(-tmp1.y, tmp1.x);
         assertEquals(turnedtmp1, saab.direction);
@@ -70,8 +72,8 @@ class Saab95Test {
 
     @org.junit.jupiter.api.Test
     void turnRight() {
-        Point tmp1 = saab.direction;
-        saab.turnLeft();
+        Point tmp1 = new Point(saab.direction.x, saab.direction.y);
+        saab.turnRight();
         Point turnedtmp1 = new Point(tmp1.y, -tmp1.x);
         assertEquals(turnedtmp1, saab.direction);
     }
@@ -85,8 +87,47 @@ class Saab95Test {
 
     @org.junit.jupiter.api.Test
     void decrementSpeed() {
+        saab.startEngine();
         double tmp1 = saab.getCurrentSpeed();
         saab.decrementSpeed(1);
         assertNotEquals(tmp1, saab.getCurrentSpeed());
+    }
+    @org.junit.jupiter.api.Test
+    void setTurbo() {
+        boolean thebool = saab.turboOn;
+        saab.setTurboOn();
+        assertNotEquals(saab.turboOn, thebool);
+    }
+    @org.junit.jupiter.api.Test
+    void setTurbooff() {
+        saab.setTurboOn();
+        boolean thebool = saab.turboOn;
+        saab.setTurboOff();
+        assertNotEquals(thebool, saab.turboOn);
+    }
+    @org.junit.jupiter.api.Test
+    void brake() {
+        saab.startEngine();
+        double tmp1 = saab.getCurrentSpeed();
+        saab.brake(0.5);
+        assertNotEquals(tmp1, saab.getCurrentSpeed());
+
+}
+    @org.junit.jupiter.api.Test
+    void gas() {
+        saab.startEngine();
+        double tmp1 = saab.getCurrentSpeed();
+        saab.gas(0.5);
+        assertNotEquals(tmp1, saab.getCurrentSpeed());
+}
+    @org.junit.jupiter.api.Test
+    void gasexc() {
+        Exception y = assertThrows(RuntimeException.class, () -> saab.gas(1.5));
+        assertEquals(y.getMessage(), "Fucking idiot");
+    }
+    @org.junit.jupiter.api.Test
+    void brakeexc() {
+        Exception y = assertThrows(RuntimeException.class, () -> saab.brake(1.5));
+        assertEquals(y.getMessage(), "Fucking idiot");
     }
 }

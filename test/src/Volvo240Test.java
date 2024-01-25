@@ -1,6 +1,9 @@
 package src;
 
+import org.junit.jupiter.api.Test;
+
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,7 +56,7 @@ class Volvo240Test {
 
     @org.junit.jupiter.api.Test
     void move() {
-        Point tmp1 = volvo.point;
+        Point2D tmp1 = new Point2D.Double(volvo.point.getX(), volvo.point.getY());
         volvo.startEngine();
         volvo.move();
         assertNotEquals(volvo.point, tmp1);
@@ -61,7 +64,7 @@ class Volvo240Test {
 
     @org.junit.jupiter.api.Test
     void turnLeft() {
-        Point tmp1 = volvo.direction;
+        Point tmp1 = new Point(volvo.direction.x, volvo.direction.y);
         volvo.turnLeft();
         Point turnedtmp1 = new Point(-tmp1.y, tmp1.x);
         assertEquals(turnedtmp1, volvo.direction);
@@ -69,8 +72,8 @@ class Volvo240Test {
 
     @org.junit.jupiter.api.Test
     void turnRight() {
-        Point tmp1 = volvo.direction;
-        volvo.turnLeft();
+        Point tmp1 = new Point(volvo.direction.x, volvo.direction.y);
+        volvo.turnRight();
         Point turnedtmp1 = new Point(tmp1.y, -tmp1.x);
         assertEquals(turnedtmp1, volvo.direction);
     }
@@ -84,8 +87,35 @@ class Volvo240Test {
 
     @org.junit.jupiter.api.Test
     void decrementSpeed() {
+        volvo.startEngine();
         double tmp1 = volvo.getCurrentSpeed();
         volvo.decrementSpeed(1);
         assertNotEquals(tmp1, volvo.getCurrentSpeed());
+    }
+    @org.junit.jupiter.api.Test
+    void brake() {
+        volvo.startEngine();
+        double tmp1 = volvo.getCurrentSpeed();
+        volvo.brake(0.5);
+        assertNotEquals(tmp1, volvo.getCurrentSpeed());
+
+    }
+    @Test
+    void gas() {
+        volvo.startEngine();
+        double tmp1 = volvo.getCurrentSpeed();
+        volvo.gas(0.5);
+        assertNotEquals(tmp1, volvo.getCurrentSpeed());
+    }
+    @org.junit.jupiter.api.Test
+    void gasexc() {
+        Exception y = assertThrows(RuntimeException.class, ()-> volvo.gas(1.5));
+        assertEquals(y.getMessage(), "Fucking idiot");
+    }
+
+    @org.junit.jupiter.api.Test
+    void brakeexc() {
+        Exception y = assertThrows(RuntimeException.class, ()-> volvo.brake(1.5));
+        assertEquals(y.getMessage(), "Fucking idiot");
     }
 }
