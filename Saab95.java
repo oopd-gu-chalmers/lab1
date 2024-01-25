@@ -6,7 +6,6 @@ public class Saab95 extends Car{
     public Saab95(){
         super(2,125, Color.red, "Saab95"); //nrDoors = 2; color = Color.red; enginePower = 125; modelName = "Saab95";
         turboOn = false;
-        stopEngine();
     } //Konstruktor
     
     public void setTurboOn() {turboOn = true; }
@@ -18,17 +17,10 @@ public class Saab95 extends Car{
     @Override
     public double speedFactor(){ //PUBLIC???
         double turbo = 1;
-        if(turboOn) turbo = 1.3;
+        if(turboOn) turbo = 1.3; //If a saab has turboOn it has been fitted with 30% stronger brakes, lets say they get 30% better when turbo is on.
         return enginePower * 0.01 * turbo;
     }
-    @Override
-    public void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-    } //enhetlig!!
-    @Override
-    public void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
+
 
 }
 

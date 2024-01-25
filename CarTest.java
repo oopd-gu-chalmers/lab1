@@ -3,10 +3,10 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-    private Car saab;
-    private Car volvo;
+    private Saab95 saab;
+    private Volvo240 volvo; //en för saab och en för volvo
 
-    @org.junit.jupiter.api.BeforeEach //konstruktor för testklassen?
+    @org.junit.jupiter.api.BeforeEach
     void setUp() {
         this.saab = new Saab95();
         this.volvo = new Volvo240();
@@ -35,40 +35,62 @@ class CarTest {
     }
 
     @org.junit.jupiter.api.Test
-    void getColor() {
+    void getSaabColor() {
         assertEquals(Color.red, saab.getColor());
+    }
+
+    @org.junit.jupiter.api.Test
+    void getVolvoColor() {
         assertEquals(Color.black, volvo.getColor());
     }
 
     @org.junit.jupiter.api.Test
-    void setColor() {
+    void setSaabColor() {
         saab.setColor(Color.pink);
-        volvo.setColor(Color.cyan);
-
         assertEquals(Color.pink, saab.getColor());
+    }
+
+    @org.junit.jupiter.api.Test
+    void setVolvoColor() {
+        volvo.setColor(Color.cyan);
         assertEquals(Color.cyan, volvo.getColor());
     }
 
     @org.junit.jupiter.api.Test
-    void startEngine() {
+    void startSaabEngine() {
         saab.startEngine();
-        volvo.startEngine();
         assertEquals(0.1, saab.getCurrentSpeed());
+    }
+
+    @org.junit.jupiter.api.Test
+    void startVolvoEngine() {
+        volvo.startEngine();
         assertEquals(0.1, volvo.getCurrentSpeed());
     }
 
     @org.junit.jupiter.api.Test
-    void stopEngine() {
+    void stopSaabEngine() {
         saab.startEngine();
-        volvo.startEngine();
         saab.stopEngine();
-        volvo.stopEngine();
         assertEquals(0, saab.getCurrentSpeed());
+    }
+
+    @org.junit.jupiter.api.Test
+    void stopVolvoEngine() {
+        volvo.startEngine();
+        volvo.stopEngine();
         assertEquals(0, volvo.getCurrentSpeed());
     }
 
     @org.junit.jupiter.api.Test
     void setPosition() {
+        Point newSaabPosition = new Point(10, 15);
+        Point newVolvoPosition = new Point(20, 25);
+        saab.setPosition(newSaabPosition);
+        volvo.setPosition(newVolvoPosition);
+
+        assertEquals(newSaabPosition, saab.getPosition());
+        assertEquals(newVolvoPosition, volvo.getPosition());
     }
 
     @org.junit.jupiter.api.Test
@@ -82,60 +104,114 @@ class CarTest {
 
     @org.junit.jupiter.api.Test
     void setDirection() {
+        saab.setDirection(180);
+        volvo.setDirection(270);
+
+        assertEquals(180, saab.getDirection());
+        assertEquals(270, volvo.getDirection());
     }
 
     @org.junit.jupiter.api.Test
     void getDirection() {
-        saab.turnLeft();
-        volvo.turnLeft();
-        assertEquals(-90, saab.getDirection());
-        assertEquals(-90, volvo.getDirection());
-    }
-
-    @org.junit.jupiter.api.Test
-    void gas() {
-        //currentspeed is defaulted to 0 here
-        //would like to test saab.setTurboOn();, saab.setTurboOff(); here aswell but cannot access them here sadly
-        saab.gas(0.5);
-        volvo.gas(0.5);
-        assertEquals(0.625, saab.getCurrentSpeed());
-        assertEquals(0.625, volvo.getCurrentSpeed()); //0,01*1,25*100 is same as 0,01
-
-    }
-
-    @org.junit.jupiter.api.Test
-    void brake() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void move() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void turnLeft() {
-        saab.turnLeft();
-        volvo.turnLeft();
-        assertEquals(-90, saab.getDirection());
-        assertEquals(-90, volvo.getDirection());
-    }
-
-    @org.junit.jupiter.api.Test
-    void turnRight() {
-        saab.turnRight();
-        volvo.turnRight();
         assertEquals(90, saab.getDirection());
         assertEquals(90, volvo.getDirection());
     }
 
     @org.junit.jupiter.api.Test
-    void speedFactor() {
+    void volvogas() {
+        //currentspeed is defaulted to 0 here
+        volvo.gas(0.5);
+        assertEquals(0.625, volvo.getCurrentSpeed()); //0,01*1,25*100 is same as 0,01*125*1 (saab and volvo same when no turbo for saab)
+
     }
 
     @org.junit.jupiter.api.Test
-    void incrementSpeed() {
+    void saabgas() {
+        //currentspeed is defaulted to 0 here
+
+        saab.setTurboOff();
+        saab.gas(0.5);
+        assertEquals(0.625, saab.getCurrentSpeed());
+
+        saab.stopEngine();
+
+        saab.setTurboOn();
+        saab.gas(0.5);
+        assertEquals(0.8125, saab.getCurrentSpeed());
+
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void brakeSaab() {
+        saab.gas(1);
+        saab.brake(0.5);
+        assertEquals(0.625, saab.getCurrentSpeed());
     }
 
     @org.junit.jupiter.api.Test
+    void brakeVolvo() {
+        volvo.gas(1);
+        volvo.brake(0.5);
+        assertEquals(0.625, volvo.getCurrentSpeed());
+    }
+
+    @org.junit.jupiter.api.Test
+    void moveSaab() {
+        saab.startEngine();
+        saab.gas(1);
+        Point saabStartPosition = saab.getPosition();
+        saab.move();
+        assertNotEquals(saabStartPosition, saab.getPosition());
+    }
+
+    @org.junit.jupiter.api.Test
+    void moveVolvo() {
+        volvo.startEngine();
+        volvo.gas(1);
+        Point volvoStartPosition = volvo.getPosition();
+        volvo.move();
+        assertNotEquals(volvoStartPosition, volvo.getPosition());
+    }
+
+    @org.junit.jupiter.api.Test
+    void turnLeftSaab() {
+        saab.turnLeft();
+        assertEquals(0, saab.getDirection());
+    }
+
+    @org.junit.jupiter.api.Test
+    void turnLeftVolvo() {
+        volvo.turnLeft();
+        assertEquals(0, volvo.getDirection());
+    }
+
+    @org.junit.jupiter.api.Test
+    void turnRightSaab() {
+        saab.turnRight();
+        assertEquals(180, saab.getDirection());
+    }
+
+    @org.junit.jupiter.api.Test
+    void turnRightVolvo() {
+        volvo.turnRight();
+        assertEquals(180, volvo.getDirection());
+    }
+
+    /*
+    @org.junit.jupiter.api.Test
+    void speedFactor() { //redundant
+        saab.setTurboOff();
+        assertEquals(false, saab.turboOn);
+    }
+
+    @org.junit.jupiter.api.Test
+    void incrementSpeed() { //redundant
+    }
+
+    @org.junit.jupiter.api.Test //redundant
     void decrementSpeed() {
     }
+
+     */
 }

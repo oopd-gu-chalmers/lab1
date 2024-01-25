@@ -9,7 +9,7 @@ abstract class Car implements Movable{
     protected Point pt;
     protected double direction;
 
-    public Car(int nrDoors, double enginePower, Color color, String modelName){
+    public Car(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
@@ -17,69 +17,66 @@ abstract class Car implements Movable{
 
         this.currentSpeed = 0;
         this.pt = new Point(0,0); //start = 0,0
-        this.direction = 0; // Riktning i grader (0-360)
-    } //Konstruktor
+        this.direction = 90; // Riktning i grader (0-360)
+    }
 
-    public int getNrDoors(){return nrDoors;}
+    protected int getNrDoors(){return nrDoors;}
 
-    public double getEnginePower(){
+    protected double getEnginePower(){
         return enginePower;
     }
 
-    public double getCurrentSpeed(){
-        return currentSpeed;
-    }
+    protected double getCurrentSpeed(){return currentSpeed;}
 
-    public Color getColor(){
-        return color;
-    }
+    protected Color getColor(){return color;}
 
-    public void setColor(Color clr){
+    protected void setColor(Color clr){
 	    color = clr;
     }
 
-    public void startEngine(){
+    protected void startEngine(){
 	    currentSpeed = 0.1;
     }
 
-    public void stopEngine(){
+    protected void stopEngine(){
 	    currentSpeed = 0;
     }
 
-    public Point getPosition(){
+    protected Point getPosition(){
         return pt.getLocation();
     }
 
-    public double getDirection(){
+    protected double getDirection(){
         return direction;
     }
 
-    public void setPosition(Point newPt) {
+    protected void setPosition(Point newPt) {
         this.pt = newPt.getLocation();
     }
 
-    public void setDirection(double newDir) {
+    protected void setDirection(double newDir) {
         this.direction = newDir;
     }
 
-    public void gas(double amount){
+    protected void gas(double amount){
         if (amount >= 0 && amount <= 1){
             incrementSpeed(amount);
         }
         else {
-            System.out.println("Gas amount not in correct interval");
+            throw new IllegalArgumentException("Gas amount not in correct interval");
         }
     }
 
-    public void brake(double amount){
+    protected void brake(double amount){
         if (amount >= 0 && amount <= 1){
             decrementSpeed(amount);
         }
         else {
-            System.out.println("Break amount not in correct interval");
+            throw new IllegalArgumentException("Break amount not in correct interval");
         }
 
     }
+
 
     @Override
     public void move() {
@@ -94,24 +91,36 @@ abstract class Car implements Movable{
 
     @Override
     public void turnLeft() {
-        // Turn the car left by decreasing its direction angle of deez nuts
+        // Turn the car left by decreasing its direction angle
         direction -= 90;
-        if (direction < 0) {
-            direction += 360; // Keep the angle within the range [0, 360]
-        }
-
+        direction = direction % 360;
     }
 
     @Override
     public void turnRight() {
         // Turn the car right by increasing its direction angle
         direction += 90;
-        if (direction >= 360) {
-            direction -= 360; // Keep the angle within the range [0, 360]
-        }
+        direction = direction % 360;
     }
     public abstract double speedFactor();
-    public abstract void incrementSpeed(double amount);
-    public abstract void decrementSpeed(double amount);
+
+    public void incrementSpeed(double amount){
+        if (speedFactor() * amount >= 0){
+            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        }
+        else {
+            throw new IllegalArgumentException("Increment speed not positive");
+        }
+
+    }
+    public void decrementSpeed(double amount){
+        if (speedFactor() * amount >= 0){
+            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        }
+        else {
+            throw new IllegalArgumentException("Decrement speed not negative");
+        }
+
+    }
 
 }
