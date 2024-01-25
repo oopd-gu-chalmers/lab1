@@ -16,13 +16,33 @@ public class Car_transport extends Truck{
         set_platformAngle(70);
     }
 
+    public void pivotDown(){
+        if (getCurrentSpeed() == 0){
+            set_platformAngle(0);
+        } else {
+            System.out.println("Cannot lower ramp while driving");
+        }
+
+    }
+
     public double speedFactor(){
         return getEnginePower() * 0.01 * ((double) (capacity - cargo.size() + 1) / capacity);
     }
 
-
-
-    public void pivotDown(){
-        set_platformAngle(0);
+    public void load_cargo(Car car){
+        if (get_platformAngle() == 0 && cargo.size() < capacity) {
+            cargo.push(car);
+        } else {
+            System.out.println("Unable to load cargo now");
+        }
     }
+
+    public void unload_cargo(){
+        if (get_platformAngle() == 0 ) {
+            cargo.pop();
+        } else {
+            System.out.println("Unable to unload cargo now");
+        }
+    }
+
 }
