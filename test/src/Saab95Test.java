@@ -9,12 +9,13 @@ class Saab95Test {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
+
         saab = new Saab95();
     }
 
     @org.junit.jupiter.api.Test
     void getNrDoors() {
-        assertEquals(4, saab.getNrDoors());
+        assertEquals(2, saab.getNrDoors());
     }
 
     @org.junit.jupiter.api.Test

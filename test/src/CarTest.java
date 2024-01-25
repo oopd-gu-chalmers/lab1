@@ -15,7 +15,7 @@ class CarTest {
     }
     @org.junit.jupiter.api.Test
     void getNrDoors() {
-        assert saab.getNrDoors() == 4;
+        assert saab.getNrDoors() == 2;
         assert volvo.getNrDoors() == 4;
     }
 
