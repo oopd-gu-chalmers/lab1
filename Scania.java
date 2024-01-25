@@ -13,10 +13,11 @@ public class Scania extends Truck {
     public void pivotUp(){
         try{
         double newAngle = get_platformAngle() + 10;
+
         if (newAngle > 70){
             throw new Exception("Platform too steep");
         } else if (getCurrentSpeed() > 0) {
-            throw new Exception("Can't pivot while moving");
+            throw new Exception("Can't pivot up while moving");
         } else{
             set_platformAngle(newAngle);
         }
@@ -28,10 +29,12 @@ public class Scania extends Truck {
     public void pivotDown(){
         try {
         double newAngle = get_platformAngle() - 10;
+
         if (newAngle < 0){
             throw new Exception("Platform already flat");
-        }
-        else {
+        } else if (getCurrentSpeed() > 0){
+            throw new Exception("Can't pivot down while moving");
+        } else {
             set_platformAngle(newAngle);
         }
     } catch (Exception e) {
