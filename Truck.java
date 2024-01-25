@@ -24,6 +24,15 @@ abstract class Truck extends Car{
         this.update_speed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
 
+    @Override
+    public void gas(double amount){
+        if (platformAngle == 0){
+            super.gas(amount);
+        } else {
+            System.out.println("Cannot gas with ramp up");
+        }
+    }
+
     abstract void pivotUp();
 
     abstract void pivotDown();
