@@ -4,13 +4,13 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public abstract class Car implements Movable {
-    private final int nrDoors; // Number of doors on the car
-    private final double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    private final String modelName; // The car model name
-    public Point2D point;
-    public Point direction;
+    private final int nrDoors;
+    private final double enginePower;
+    public double currentSpeed;
+    private Color color;
+    private final String modelName;
+    private Point2D point;
+    private Point direction;
     public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -19,7 +19,7 @@ public abstract class Car implements Movable {
         this.modelName = modelName;
         this.point = point;
         this.direction = direction;
-    } // Använda this. eller inte?
+    }
 
     public int getNrDoors() {
         return this.nrDoors;
@@ -49,6 +49,13 @@ public abstract class Car implements Movable {
         this.currentSpeed = 0;
     }
 
+    public Point2D getpoint() {
+        return this.point;}
+
+    public Point getDirection() {
+        return this.direction;
+    }
+
     @Override
     public void move() {
         this.point =  new Point2D.Double(this.point.getX() + this.direction.x*this.currentSpeed,
@@ -56,7 +63,7 @@ public abstract class Car implements Movable {
     }
 
     @Override
-    public void turnLeft() { // can only look at oen of the four vädersträck
+    public void turnLeft() {
         int tmp = this.direction.x;
         this.direction.x = - this.direction.y;
         this.direction.y = tmp;
@@ -77,5 +84,18 @@ public abstract class Car implements Movable {
     public void decrementSpeed(double amount){
         this.currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
 }
+    public void gas(double amount) {
+        if (0 <= amount && amount <= 1) {
+            incrementSpeed(amount);
+        } else {
+            throw new RuntimeException("Fucking idiot");
+        }}
+    public void brake(double amount){
+        if (0 <= amount && amount <= 1) {
+            decrementSpeed(amount);
+        } else {
+            throw new RuntimeException("Fucking idiot");
+        }
+    }
 }
 

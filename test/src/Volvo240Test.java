@@ -32,7 +32,7 @@ class Volvo240Test {
 
     @org.junit.jupiter.api.Test
     void getColor() {
-        assertEquals(volvo.getColor(), volvo.color);
+        assertEquals(volvo.getColor(), Color.BLACK);
     }
 
     @org.junit.jupiter.api.Test
@@ -56,26 +56,26 @@ class Volvo240Test {
 
     @org.junit.jupiter.api.Test
     void move() {
-        Point2D tmp1 = new Point2D.Double(volvo.point.getX(), volvo.point.getY());
+        Point2D tmp1 = new Point2D.Double(volvo.getpoint().getX(), volvo.getpoint().getY());
         volvo.startEngine();
         volvo.move();
-        assertNotEquals(volvo.point, tmp1);
+        assertNotEquals(volvo.getpoint(), tmp1);
     }
 
     @org.junit.jupiter.api.Test
     void turnLeft() {
-        Point tmp1 = new Point(volvo.direction.x, volvo.direction.y);
+        Point tmp1 = new Point(volvo.getDirection().x, volvo.getDirection().y);
         volvo.turnLeft();
         Point turnedtmp1 = new Point(-tmp1.y, tmp1.x);
-        assertEquals(turnedtmp1, volvo.direction);
+        assertEquals(turnedtmp1, volvo.getDirection());
     }
 
     @org.junit.jupiter.api.Test
     void turnRight() {
-        Point tmp1 = new Point(volvo.direction.x, volvo.direction.y);
+        Point tmp1 = new Point(volvo.getDirection().x, volvo.getDirection().y);
         volvo.turnRight();
         Point turnedtmp1 = new Point(tmp1.y, -tmp1.x);
-        assertEquals(turnedtmp1, volvo.direction);
+        assertEquals(turnedtmp1, volvo.getDirection());
     }
 
     @org.junit.jupiter.api.Test
@@ -100,7 +100,7 @@ class Volvo240Test {
         assertNotEquals(tmp1, volvo.getCurrentSpeed());
 
     }
-    @Test
+    @org.junit.jupiter.api.Test
     void gas() {
         volvo.startEngine();
         double tmp1 = volvo.getCurrentSpeed();

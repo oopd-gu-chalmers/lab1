@@ -11,7 +11,6 @@ class Saab95Test {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-
         saab = new Saab95();
     }
 
@@ -32,7 +31,7 @@ class Saab95Test {
 
     @org.junit.jupiter.api.Test
     void getColor() {
-        assertEquals(saab.getColor(), saab.color);
+        assertEquals(saab.getColor(), Color.RED);
     }
 
     @org.junit.jupiter.api.Test
@@ -56,26 +55,26 @@ class Saab95Test {
 
     @org.junit.jupiter.api.Test
     void move() {
-        Point2D tmp1 = new Point2D.Double(saab.point.getX(), saab.point.getY());
+        Point2D tmp1 = new Point2D.Double(saab.getpoint().getX(), saab.getpoint().getY());
         saab.startEngine();
         saab.move();
-        assertNotEquals(saab.point, tmp1);
+        assertNotEquals(saab.getpoint(), tmp1);
     }
 
     @org.junit.jupiter.api.Test
     void turnLeft() {
-        Point tmp1 = new Point(saab.direction.x, saab.direction.y);
+        Point tmp1 = new Point(saab.getDirection().x, saab.getDirection().y);
         saab.turnLeft();
         Point turnedtmp1 = new Point(-tmp1.y, tmp1.x);
-        assertEquals(turnedtmp1, saab.direction);
+        assertEquals(turnedtmp1, saab.getDirection());
     }
 
     @org.junit.jupiter.api.Test
     void turnRight() {
-        Point tmp1 = new Point(saab.direction.x, saab.direction.y);
+        Point tmp1 = new Point(saab.getDirection().x, saab.getDirection().y);
         saab.turnRight();
         Point turnedtmp1 = new Point(tmp1.y, -tmp1.x);
-        assertEquals(turnedtmp1, saab.direction);
+        assertEquals(turnedtmp1, saab.getDirection());
     }
 
     @org.junit.jupiter.api.Test

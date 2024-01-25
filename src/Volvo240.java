@@ -12,21 +12,6 @@ public class Volvo240 extends Car{
     public double speedFactor(){
         return getEnginePower() * 0.01 * trimFactor;
     }
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        if (0 <= amount && amount <= 1) {
-            incrementSpeed(amount);
-        } else {
-            throw new RuntimeException("Fucking idiot");
-        }}
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        if (0 <= amount && amount <= 1) {
-            decrementSpeed(amount);
-        } else {
-            throw new RuntimeException("Fucking idiot");
-        }
-    }
 
 }
