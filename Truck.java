@@ -29,13 +29,16 @@ abstract class Truck extends Car{ // A truck is a car with a bed and a bedAngle
     public void move() {
         // Beräkna nya koordinater baserat på riktningen och hastigheten
         if (getBedAngle() == 0) {
-            double deltaX = currentSpeed * Math.cos(Math.toRadians(direction));
-            double deltaY = currentSpeed * Math.sin(Math.toRadians(direction));
+            double deltaX = getCurrentSpeed() * Math.cos(Math.toRadians(getDirection()));
+            double deltaY = getCurrentSpeed() * Math.sin(Math.toRadians(getDirection()));
 
-            // Uppdatera bilens position
-            this.pt.x += deltaX;
-            this.pt.y += deltaY;
-        }
+            Point newPosition = new Point(
+                    (int) (getPosition().getX() + deltaX),
+                    (int) (getPosition().getY() + deltaY)
+            );
+
+            setPosition(newPosition);
+               }
         else {
             throw new IllegalArgumentException("Truck cannot move if Bed angle is not 0.");
         }
