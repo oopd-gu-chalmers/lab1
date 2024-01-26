@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends car{
+public class Saab95 extends Car {
 
     private boolean turboOn;
     public Saab95(){
@@ -10,7 +10,7 @@ public class Saab95 extends car{
         stopEngine();
     }
     
-
+    public boolean getTurbo() { return turboOn;}
     public void setTurboOn(){
 	    turboOn = true;
     }
@@ -24,22 +24,14 @@ public class Saab95 extends car{
         if(turboOn) turbo = 1.3;
         return getEnginePower() * 0.01 * turbo;
     }
+    @Override
+    protected void incrementSpeed(double amount){
+       this.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
 
-    private void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
     }
-
-    private void decrementSpeed(double amount){
-       currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
-    
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    @Override
+    protected void decrementSpeed(double amount){
+        this.setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
-    }
 }

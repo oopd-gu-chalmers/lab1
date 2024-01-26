@@ -7,13 +7,14 @@ import java.awt.*;
 import static org.junit.Assert.*;
 
 public class CarTest {
-    public CarTest() {
-        volvocar = new car(4, 100, Color.black, "Volvo240");
-        sabcar = new car(2, 125, Color.red, "Saab95");
+    Volvo240 volvocar;
+    Saab95 sabcar;
+   @Before
+    public void setUp() {
+        volvocar = new Volvo240();
+        sabcar = new Saab95();
     }
 
-    car volvocar;
-    car sabcar;
     @Test
     public void getNrDoors() {
         assertEquals(4, volvocar.getNrDoors());
@@ -53,28 +54,143 @@ public class CarTest {
     public void startEngine() {
         volvocar.startEngine();
         assertEquals(0.1, volvocar.getCurrentSpeed(), 0.0001);
-        sabcar.startEngine();
-        assertEquals(0.1, sabcar.getCurrentSpeed(), 0.0001);
     }
 
     @Test
     public void stopEngine() {
-        volvocar.stopEngine();
-        assertEquals(0.0, volvocar.getCurrentSpeed(), 0.0001);
         sabcar.stopEngine();
         assertEquals(0.0, sabcar.getCurrentSpeed(), 0.0001);
     }
 
     @Test
     public void move() {
+        volvocar.startEngine();
+        volvocar.move();
+        assertEquals(0.1, volvocar.getCurrentSpeed(), 0.0001);
+        sabcar.startEngine();
+        sabcar.move();
+        assertEquals(0.1, sabcar.getCurrentSpeed(), 0.0001);
     }
 
     @Test
-    public void turnleft() {
+    public void turnLeft() {
+        volvocar.setDirection(0);
+        if (volvocar.getDirection() == 0) {
+            volvocar.setDirection(4);
+        }
+        volvocar.turnleft();
+        assertEquals(3, volvocar.getDirection());
 
     }
 
     @Test
-    public void turnright() {
+    public void turnRight() {
+        volvocar.setDirection(4);
+        if (volvocar.getDirection() == 4) {
+            volvocar.setDirection(-1);
+        }
+        volvocar.turnright();
+        assertEquals(0, volvocar.getDirection());
     }
+    @Test
+    public void gasVolvo() {
+        //amount is higher than 1
+        volvocar.gas(1.01);
+        assertEquals(0.0, volvocar.getCurrentSpeed(), 0.0001);
+        //checks if speed is increasing and speed dosent lower when you gas
+        double e = volvocar.getCurrentSpeed();
+        volvocar.gas(0.2);
+        assertEquals(0.25, volvocar.getCurrentSpeed(), 0.0001);
+        assertTrue(volvocar.getCurrentSpeed() >= e);
+        //speed limit
+        volvocar.setCurrentSpeed(99.99);
+        volvocar.gas(1);
+        assertEquals(100, volvocar.getCurrentSpeed(), 0.0001);
+    }
+            @Test
+            public void gasSab() {
+                //amount is higher than 1
+                sabcar.gas(1.01);
+            assertEquals(0.0, sabcar.getCurrentSpeed(), 0.0001);
+                //checks if speed is increasing and speed dosent lower when you gas
+            double f = sabcar.getCurrentSpeed();
+            sabcar.gas(0.2);
+            assertEquals(0.25, sabcar.getCurrentSpeed(), 0.0001);
+            assertTrue(sabcar.getCurrentSpeed() >= f);
+                //speed limit
+            sabcar.setCurrentSpeed(124.99);
+            sabcar.gas(1);
+            assertEquals(125, sabcar.getCurrentSpeed(), 0.0001);
+        }
+
+
+    @Test
+    public void brakeVolvo() {
+        //amount lower than 0
+        volvocar.brake(-0.01);
+        assertEquals(0, volvocar.getCurrentSpeed(), 0.0001);
+        //check if speed is lower, and speed dosent get higher.
+        volvocar.setCurrentSpeed(1);
+        double e = volvocar.getCurrentSpeed();
+        volvocar.brake(0.2);
+        assertEquals(0.75, volvocar.getCurrentSpeed(), 0.0001);
+        assertTrue(volvocar.getCurrentSpeed() <= e);
+        // speed cant be lower than 0
+        volvocar.setCurrentSpeed(0.01);
+        volvocar.brake(0.9);
+        assertEquals(0, volvocar.getCurrentSpeed(), 0.0001);
+    }
+        @Test
+        public void brakeSab() {
+       //amount lower than 0
+            sabcar.brake(-0.01);
+            assertEquals(0, sabcar.getCurrentSpeed(), 0.0001);
+            //check if speed is lower, and speed dosent get higher.
+            sabcar.setCurrentSpeed(1);
+            double f = sabcar.getCurrentSpeed();
+            sabcar.brake(0.2);
+            assertEquals(0.75, sabcar.getCurrentSpeed(), 0.0001);
+            assertTrue(sabcar.getCurrentSpeed() <= f);
+            // speed cant be lower than 0
+            sabcar.setCurrentSpeed(0.01);
+            sabcar.brake(0.9);
+            assertEquals(0, sabcar.getCurrentSpeed(), 0.0001);
+        }
+        @Test
+        public void turboOn() {
+            sabcar.setTurboOn();
+            assertTrue(sabcar.getTurbo());
+        }
+        @Test
+            public void turboOff() {
+            sabcar.setTurboOff();
+            assertFalse(sabcar.getTurbo());
+        }
+        @Test
+        public void raiseFlak() {
+            Scania scania = new Scania();
+            scania.raiseFlak();
+            assertEquals(5, scania.getAngleFlak(), 0.0001);
+
+            scania.angle = 69;
+            scania.raiseFlak();
+            assertEquals(70, scania.getAngleFlak(),0.0001);
+
+            scania.setDirection(40);
+            scania.raiseFlak();
+        }
+
+        @Test
+        public void lowerFlak() {
+            Scania scania = new Scania();
+            scania.angle = 5;
+            scania.lowerFlak();
+            assertEquals(0, scania.getAngleFlak(), 0.0001);
+
+            scania.lowerFlak();
+            assertEquals(0, scania.getAngleFlak(),0.0001);
+
+            scania.setCurrentSpeed(40);
+            scania.lowerFlak();
+        }
 }
