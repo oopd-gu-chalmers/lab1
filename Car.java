@@ -7,7 +7,7 @@ abstract class Car implements Movable {
     private double enginePower; //engine power of the car
     private double currentSpeed; //current speed of the car
     private Color color; //color of the car
-    String modelName; //car model name
+    private String modelName; //car model name
     private Point position; // position
     private double[] size; //size of the car
     private double direction;
@@ -39,6 +39,7 @@ abstract class Car implements Movable {
     public Color getColor() {
         return color;
     }
+    public String getModelName() {return modelName;}
     public Point getPosition() {return position; }
     public double[] getSize() {return size; }
     public double getXPosition(){return position.getX();}
