@@ -42,7 +42,8 @@ public class Car_transport extends Truck{
 
     public void unload_cargo(){
         if (get_platformAngle() == 0 ) {
-            cargo.pop();
+            Car car = cargo.pop();
+            car.set_position(this.getPosition().get_x() + 5, this.getPosition().get_y());
         } else {
             System.out.println("Unable to unload cargo now");
         }
@@ -51,8 +52,8 @@ public class Car_transport extends Truck{
     @Override
     public void move(){
         super.move();
+        Position car_transport_pos = this.getPosition();
         for (Car car : cargo){
-            Position car_transport_pos = this.getPosition();
             car.set_position(car_transport_pos.get_x(), car_transport_pos.get_y());
         }
     }

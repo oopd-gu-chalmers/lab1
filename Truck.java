@@ -24,7 +24,17 @@ abstract class Truck extends Car{
         this.update_speed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
 
-    // Startengine bör läggas till här
+
+    @Override
+    public void startEngine(){
+        if (platformAngle == 0){
+            super.startEngine();
+        } else {
+            System.out.println("Cannot start engine with platform up");
+        }
+
+    }
+
     @Override
     public void gas(double amount){
         if (platformAngle == 0){
