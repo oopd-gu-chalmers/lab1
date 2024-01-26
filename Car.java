@@ -1,13 +1,13 @@
 import java.awt.*;
 abstract class Car implements Movable{
 
-    protected int nrDoors;
-    protected double enginePower;
-    protected Color color;
-    protected String modelName;
-    protected double currentSpeed;
-    protected Point pt;
-    protected double direction;
+    private int nrDoors;
+    private double enginePower;
+    private Color color;
+    private String modelName;
+    private double currentSpeed;
+    private Point pt;
+    private double direction;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
         this.nrDoors = nrDoors;
@@ -27,6 +27,8 @@ abstract class Car implements Movable{
     }
 
     protected double getCurrentSpeed(){return currentSpeed;}
+
+    protected String getModelName(){return modelName;}
 
     protected Color getColor(){return color;}
 
@@ -58,7 +60,7 @@ abstract class Car implements Movable{
         this.direction = newDir;
     }
 
-    protected void gas(double amount){
+    public void gas(double amount){
         if (amount >= 0 && amount <= 1){
             incrementSpeed(amount);
         }
@@ -67,7 +69,7 @@ abstract class Car implements Movable{
         }
     }
 
-    protected void brake(double amount){
+    public void brake(double amount){
         if (amount >= 0 && amount <= 1){
             decrementSpeed(amount);
         }
@@ -85,8 +87,8 @@ abstract class Car implements Movable{
         double deltaY = currentSpeed * Math.sin(Math.toRadians(direction));
 
         // Uppdatera bilens position
-        this.pt.x += deltaX;
-        this.pt.y += deltaY;
+        this.pt.x += (int) deltaX;
+        this.pt.y += (int) deltaY;
     }
 
     @Override
@@ -102,9 +104,9 @@ abstract class Car implements Movable{
         direction += 90;
         direction = direction % 360;
     }
-    public abstract double speedFactor();
+    protected abstract double speedFactor();
 
-    public void incrementSpeed(double amount){
+    protected void incrementSpeed(double amount){
         if (speedFactor() * amount >= 0){
             currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
         }
@@ -113,7 +115,7 @@ abstract class Car implements Movable{
         }
 
     }
-    public void decrementSpeed(double amount){
+    protected void decrementSpeed(double amount){
         if (speedFactor() * amount >= 0){
             currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
         }
