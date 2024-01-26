@@ -116,4 +116,8 @@ abstract class Car implements Movable{
         return position;
     }
 
+    public void set_position(double x, double y){
+        position.set_position(x, y);
+    }
+
 }

@@ -30,7 +30,10 @@ public class Car_transport extends Truck{
     }
 
     public void load_cargo(Car car){
-        if (get_platformAngle() == 0 && cargo.size() < capacity) {
+        if (get_platformAngle() == 0 && cargo.size() < capacity && !(car instanceof Car_transport)
+                && car.getPosition().distance_to_other_position(this.getPosition()) < 10) {
+            Position car_transport_pos = this.getPosition();
+            car.set_position(car_transport_pos.get_x(), car_transport_pos.get_y());
             cargo.push(car);
         } else {
             System.out.println("Unable to load cargo now");
@@ -42,6 +45,15 @@ public class Car_transport extends Truck{
             cargo.pop();
         } else {
             System.out.println("Unable to unload cargo now");
+        }
+    }
+
+    @Override
+    public void move(){
+        super.move();
+        for (Car car : cargo){
+            Position car_transport_pos = this.getPosition();
+            car.set_position(car_transport_pos.get_x(), car_transport_pos.get_y());
         }
     }
 
