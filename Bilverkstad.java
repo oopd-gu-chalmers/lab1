@@ -4,7 +4,7 @@ import java.util.List;
 public class Bilverkstad<T extends Car> {
 
     public List<T> cars = new ArrayList<T>();
-    private int capacity;
+    private final int capacity;
 
     public Bilverkstad(int capacity){
         this.capacity = capacity;
@@ -22,7 +22,8 @@ public class Bilverkstad<T extends Car> {
         if (cars.contains(car)){
             cars.remove(car);
             return car;
+        } else {
+            return null;
         }
-
     }
 }
