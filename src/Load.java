@@ -1,5 +1,5 @@
-public interface Load {
-    void load(Car car);
-    Car unload();
+public interface Load<T extends Car> {
+    void load(T car);
+    T unload();
     boolean noLoad();
 }

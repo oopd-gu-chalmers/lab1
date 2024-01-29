@@ -1,9 +1,9 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class CarTransport extends Truck{
+public class CarTransport<T extends Car> extends Truck{
 
-    protected CarTransportLoad loadCar;
+    protected CarTransportLoad<T> loadCar;
     private double loadDistance;
     public CarTransportRamp ramp;
     public CarTransport() {
@@ -16,9 +16,9 @@ public class CarTransport extends Truck{
         // Truck can only move when ramp is up
         if (ramp.canMove()){
             super.move();
-            // If the stack is not empty, change the position for each car to the truck's position
+            // If the stack is not empty, change the position for each car to the truck's position if it moves
             if (!loadCar.noLoad()){
-                for(Car car : loadCar.cargoStack)
+                for(T car : loadCar.cargoStack)
                 {
                     car.setPosition(getPosition().x, getPosition().y);
                 }
@@ -26,7 +26,7 @@ public class CarTransport extends Truck{
         }
     }
 
-    protected void loadCar(Car car){
+    protected void loadCar(T car){
         if (getDirection() == car.getDirection()){
             if (getPosition().distance(car.getPosition()) <= loadDistance && ramp.getRampDown()){
                 loadCar.load(car);

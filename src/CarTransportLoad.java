@@ -1,15 +1,15 @@
 import java.util.Stack;
 
-public class CarTransportLoad implements Load{
-    protected Stack<Car> cargoStack;
+public class CarTransportLoad<T extends Car> implements Load<T>{
+    protected Stack<T> cargoStack;
 
     @Override
-    public void load(Car car) {
+    public void load(T car) {
         cargoStack.push(car);
     }
 
     @Override
-    public Car unload() {
+    public T unload() {
         return cargoStack.pop();
     }
 

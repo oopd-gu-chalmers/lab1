@@ -1,17 +1,31 @@
-public class WorkshopLoad implements Load{
+import java.util.LinkedList;
+import java.util.Queue;
 
-    @Override
-    public void load(Car car) {
+public class WorkshopLoad<T extends Car> implements Load<T>{
 
+    public Queue<T> queue = new LinkedList<T>();
+
+   @Override
+    public void load(T car) {
+        queue.add(car);
     }
 
     @Override
-    public Car unload() {
-        return null;
+    public T unload() {
+        return queue.remove();
     }
 
     @Override
     public boolean noLoad() {
-        return false;
+        return queue.isEmpty();
+    }
+
+    public int getSize(){
+        if (!queue.isEmpty()) {
+            return queue.size();
+        }
+        else {
+            return 0;
+        }
     }
 }

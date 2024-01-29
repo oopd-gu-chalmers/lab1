@@ -1,9 +1,10 @@
 import java.awt.*;
 
 public class Scania extends Truck{
-    public ScaniaRamp ramp;
+    protected Ramp ramp;
     public Scania() {
-        super(2, Color.black, 250, "Scania", new ScaniaRamp());
+        super(2, Color.black, 250, "Scania");
+        ramp = new ScaniaRamp();
     }
 
     @Override
@@ -13,5 +14,6 @@ public class Scania extends Truck{
             super.move();
         }
     }
+
 
 }
