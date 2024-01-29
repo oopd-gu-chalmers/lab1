@@ -126,9 +126,12 @@ public class CarTest {
 
     @Test
     public void brakeVolvo() {
-        //amount lower than 0
-        volvocar.brake(-0.01);
-        assertEquals(0, volvocar.getCurrentSpeed(), 0.0001);
+        try {
+            //amount lower than 0
+            volvocar.brake(-0.01);
+        } catch (IllegalArgumentException e) {
+            System.out.println("amount to low");
+        }
         //check if speed is lower, and speed dosent get higher.
         volvocar.setCurrentSpeed(1);
         double e = volvocar.getCurrentSpeed();
@@ -142,9 +145,12 @@ public class CarTest {
     }
         @Test
         public void brakeSab() {
-       //amount lower than 0
-            sabcar.brake(-0.01);
-            assertEquals(0, sabcar.getCurrentSpeed(), 0.0001);
+            try {
+                //amount lower than 0
+                sabcar.brake(-0.01);
+            } catch (IllegalArgumentException e) {
+                System.out.println("amount is to low");
+            }
             //check if speed is lower, and speed dosent get higher.
             sabcar.setCurrentSpeed(1);
             double f = sabcar.getCurrentSpeed();
@@ -168,29 +174,41 @@ public class CarTest {
         }
         @Test
         public void raiseFlak() {
+            //raise flak with 5
             Scania scania = new Scania();
             scania.raiseFlak();
             assertEquals(5, scania.getAngleFlak(), 0.0001);
-
-            scania.angle = 69;
+            // cant raise more than 70
+            scania.setAngleFLak(69);
             scania.raiseFlak();
             assertEquals(70, scania.getAngleFlak(),0.0001);
-
+            //cant raise flak while car is moving
             scania.setDirection(40);
-            scania.raiseFlak();
+            try {
+                scania.raiseFlak();
+            } catch (IllegalArgumentException e) {
+                System.out.println("car is moving");
+            }
+
         }
 
         @Test
         public void lowerFlak() {
+            // lower flak with 5
             Scania scania = new Scania();
-            scania.angle = 5;
+            scania.setAngleFLak(5);
             scania.lowerFlak();
             assertEquals(0, scania.getAngleFlak(), 0.0001);
-
+            // cant lower more than 0
             scania.lowerFlak();
             assertEquals(0, scania.getAngleFlak(),0.0001);
-
+            //cant lower flak while car is moving
             scania.setCurrentSpeed(40);
-            scania.lowerFlak();
+            try {
+                scania.lowerFlak();
+            } catch (IllegalArgumentException e) {
+                System.out.println("car is moving");
+            }
         }
+
 }

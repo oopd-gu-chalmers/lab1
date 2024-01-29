@@ -19,7 +19,18 @@ public abstract class Car implements Movable {
         this.yPos = 0.0;
         this.xPos = 0.0;
     }
-
+    public double getxPos() {
+        return xPos;
+    }
+    public double getyPos() {
+        return yPos;
+    }
+    public void setxPos(double pos) {
+        xPos = pos;
+    }
+    public void setyPos(double pos) {
+        yPos = pos;
+    }
     public int getNrDoors() {
         return nrDoors;
     }
@@ -111,5 +122,4 @@ public abstract class Car implements Movable {
 
     protected void decrementSpeed(double amount) {};
     protected void incrementSpeed(double amount) {};
-
 }
