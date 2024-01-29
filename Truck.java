@@ -1,12 +1,12 @@
 import java.awt.*;
 
-abstract class Truck extends Car{ // A truck is a car with a bed and a bedAngle
+abstract class Truck extends Car { // A truck is a car with a bed and a bedAngle
 
-    protected double bedAngle;
+    private double bedAngle;
 
-    public Truck(int nrDoors, double enginePower, Color color, String modelName, double bedAngle){
+    public Truck(int nrDoors, double enginePower, Color color, String modelName){
         super(nrDoors, enginePower, color, modelName);
-        this.bedAngle = bedAngle;
+        this.bedAngle = 0;
     }
 
     protected double getBedAngle(){
@@ -29,21 +29,12 @@ abstract class Truck extends Car{ // A truck is a car with a bed and a bedAngle
     public void move() {
         // Beräkna nya koordinater baserat på riktningen och hastigheten
         if (getBedAngle() == 0) {
-            double deltaX = getCurrentSpeed() * Math.cos(Math.toRadians(getDirection()));
-            double deltaY = getCurrentSpeed() * Math.sin(Math.toRadians(getDirection()));
-
-            Point newPosition = new Point(
-                    (int) (getPosition().getX() + deltaX),
-                    (int) (getPosition().getY() + deltaY)
-            );
-
-            setPosition(newPosition);
-               }
+            super.move(); //If we are overriding the move method from a parent, then we need to use super.move() in our new method instead of this.move() to refer to the old move inherited from parent.
+        }
         else {
             throw new IllegalArgumentException("Truck cannot move if Bed angle is not 0.");
         }
     }
-
 
 
 }
