@@ -6,7 +6,7 @@ public class BilTransport extends Car{
     private boolean rampState;
     private Deque<Car> flaket = new ArrayDeque<>();
     private int maxload = 4;
-    private final double maxReach = 100.0;
+    private final double maxReach = 10.0;
 
     public BilTransport(){
         super(2, 60, Color.blue, "BilTransport");
@@ -42,7 +42,7 @@ public class BilTransport extends Car{
             throw new IllegalArgumentException("error");
     }
     public void unLoadCar(Car car) {
-        if(!rampState) {
+        if(!rampState && !flaket.isEmpty()) {
             flaket.pop();
         }
     }
