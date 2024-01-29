@@ -4,7 +4,7 @@ public class Scania extends Car {
 
     protected double trailerAngle;
     public Scania() {
-        super(2,250, "Scania");
+        super(2,250, Color.cyan, "Scania");
         setColor(Color.pink);
     }
 

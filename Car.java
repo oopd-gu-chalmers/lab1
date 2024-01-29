@@ -11,10 +11,11 @@ public abstract class Car implements Movable {
 
 
 
-    public Car(int nrDoors, double enginePower, String modelName) {
+    public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = 0;
+        this.color = color;
         this.modelName = modelName;
         this.position = new Point(0,0);
         this.currentDirection = 90;
@@ -22,6 +23,14 @@ public abstract class Car implements Movable {
 
     }
 
+    public boolean isCarClose(Car car) {
+        System.out.println("This car's position: " + this.position);
+        System.out.println("Other car's position: " + car.position);
+        boolean close = (Math.abs(car.position.x - this.position.x) <= 1 && Math.abs(car.position.y - this.position.y) <= 1);
+        System.out.println("Is the other car close? " + close);
+        // returns true when car is close
+        return close;
+    }
 
     public int getNrDoors() {
         return nrDoors;
