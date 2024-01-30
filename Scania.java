@@ -3,9 +3,10 @@ import java.awt.*;
 public class Scania extends Car {
 
     protected double trailerAngle;
+    private static final double maxPlatformAngle = 70;
+    private static final double minPlatformAngle = 0;
     public Scania() {
-        super(2,250, Color.cyan, "Scania");
-        setColor(Color.pink);
+        super(2,250, Color.pink, "Scania");
     }
 
     @Override
@@ -16,7 +17,7 @@ public class Scania extends Car {
             throw new IllegalArgumentException("Gas input either too high or too low, or trailer angle not 0: ");
         }
     }
-    // Göra en klass för fordon i allmänhet för att hänvisa gas och broms likt incrementspeed och liknande
+    // Göra en klass för fordon i allmänhet för att hänvisa gas och broms likt incrementspeed och liknande?
 
     protected void incrementAngle(double amount) {
         trailerAngle = trailerAngle + amount;
@@ -26,7 +27,6 @@ public class Scania extends Car {
         trailerAngle = trailerAngle - amount;
     }
 
-    //att sänka och höja rampen bör vara protected och komplitterat med en get funktion
     protected void raiseRamp(double amount) {
         if ((trailerAngle + amount) <= 70 && (currentSpeed == 0)) {
             incrementAngle(amount);
@@ -37,12 +37,7 @@ public class Scania extends Car {
     }
 
     protected void lowerRamp(double amount) {
-        if (trailerAngle - amount >= 0) {
-            decrementAngle(amount);
-        }
-        else {
-            throw new IllegalArgumentException("Min angle reached: ");
-        }
+        trailerAngle = Math.max(trailerAngle+amount, minPlatformAngle);
     }
 //
     public double getRampAngle(){
@@ -54,9 +49,6 @@ public class Scania extends Car {
         return getEnginePower() * 0.02;
     }
 
-    // increment speed och decrement speed kanske kan flyttas eftersom det
-    // inte finns någon direkt koppling mellan hastighetsändringarna och
-    // hanteringen av rampen.?
     public void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
