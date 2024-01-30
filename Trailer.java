@@ -1,4 +1,4 @@
 public interface Trailer {
-    void raise(double amount);
-    void lower (double amount);
+    void raiseRamp(double amount);
+    void lowerRamp (double amount);
 }

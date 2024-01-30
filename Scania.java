@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends Car implements Trailer{
 
     protected double trailerAngle;
     private static final double maxPlatformAngle = 70;
@@ -27,7 +27,7 @@ public class Scania extends Car {
         trailerAngle = trailerAngle - amount;
     }
 
-    protected void raiseRamp(double amount) {
+    public void raiseRamp(double amount) {
         if ((trailerAngle + amount) <= 70 && (currentSpeed == 0)) {
             incrementAngle(amount);
         }
@@ -36,7 +36,7 @@ public class Scania extends Car {
         }
     }
 
-    protected void lowerRamp(double amount) {
+    public void lowerRamp(double amount) {
         trailerAngle = Math.max(trailerAngle+amount, minPlatformAngle);
     }
 //
