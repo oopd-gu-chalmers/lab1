@@ -7,7 +7,7 @@ public class CarTransport extends Car implements CarTransportHandler {
     private static final double max_platformAngle = 70;
     private static final double min_platformAngle = 0;
     public Deque<Car> cars;
-    protected int maxLoad = 8;
+    protected static int maxLoad = 8;
 
     public CarTransport(){
         super(2,300, Color.cyan, "CarTransport");
@@ -40,6 +40,8 @@ public class CarTransport extends Car implements CarTransportHandler {
     protected void decrementAngle(double amount) {
         platformAngle = platformAngle - amount;
     }
+
+
     @Override
     public void raiseRamp() {
         if (platformAngle == min_platformAngle) {
