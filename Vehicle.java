@@ -1,15 +1,16 @@
 import java.awt.*;
-abstract class Car implements Movable{
+abstract class Vehicle implements Movable{
 
     private int nrDoors;
     private double enginePower;
     private Color color;
     private String modelName;
+
     private double currentSpeed;
     private Point pt;
     private double direction;
 
-    public Car(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
