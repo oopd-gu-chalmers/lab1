@@ -17,7 +17,6 @@ public class Scania extends Car implements Trailer{
             throw new IllegalArgumentException("Gas input either too high or too low, or trailer angle not 0: ");
         }
     }
-    // Göra en klass för fordon i allmänhet för att hänvisa gas och broms likt incrementspeed och liknande?
 
     protected void incrementAngle(double amount) {
         trailerAngle = trailerAngle + amount;
