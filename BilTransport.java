@@ -1,12 +1,11 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class BilTransport extends Car{
     private boolean rampState;
-    private Deque<Car> flaket = new ArrayDeque<>();
-    private int maxload = 4;
-    private final double maxReach = 10.0;
+    private int maxload = 5;
 
     public BilTransport(){
         super(2, 60, Color.blue, "BilTransport");
@@ -29,15 +28,12 @@ public class BilTransport extends Car{
     }
 
     public void loadCar(Car car) {
-        double x = Math.abs(car.getxPos() - this.getxPos());
-        double y = Math.abs(car.getyPos() - this.getyPos());
+        Point2D.Double transportCoordinates = new Point2D.Double(car.getxPos(), car.getyPos());
         if(!rampState && flaket.size() <= maxload
-           && x <= maxReach && y <= maxReach) {
+           && car.getCordination().distance(transportCoordinates) <= 5.0) {
             flaket.push(car);
-            car.setxPos(this.getxPos());
-            car.setyPos(this.getyPos());
+            car.getCordination().setLocation(transportCoordinates);
         }
-
         else
             throw new IllegalArgumentException("error");
     }
