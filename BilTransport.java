@@ -12,6 +12,9 @@ public class BilTransport extends Car{
         this.rampState = false;
     }
 
+    public Deque<Car> getFlak() {return flaket;}
+    public int getMaxload(){return maxload;}
+
     public void raiseRamp() {
         if(getCurrentSpeed() == 0.0) {
             rampState = true;
@@ -37,10 +40,14 @@ public class BilTransport extends Car{
         else
             throw new IllegalArgumentException("error");
     }
-    public void unLoadCar(Car car) {
-        if(!rampState && !flaket.isEmpty()) {
-            flaket.pop();
+
+    // Lasta av
+    public Car unLoadCar() {
+        Car car = null;
+        if(!rampState && getCurrentSpeed() == 0 && !flaket.isEmpty()) {
+            car = flaket.pop();
         }
+        return car;
     }
 
 

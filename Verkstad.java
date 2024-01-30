@@ -18,11 +18,18 @@ public class Verkstad {
         return true;
     }
 
-    public void loadCar(BilTransport transport) {
-        if (verkstaden.size() <= maxCapacity) {
-
+    public void unLoadCar(BilTransport transport) {
+        if (transport.getFlak().peek() != null && verkstaden.size() <= maxCapacity) {
+            Car car = transport.unLoadCar();
+            car.getCordination().setLocation(this.position);
             verkstaden.add(car);
-        } else
-            throw new IllegalArgumentException("verkstaden is full");
+        }
+    }
+    public void loadCar(BilTransport transport) {
+        if(!verkstaden.isEmpty() && transport.getFlak().size() < transport.getMaxload()) {
+            Car car = verkstaden.remove(verkstaden.size() - 1);
+            car.getCordination().setLocation(transport.getCordination());
+            transport.loadCar(car);
+        }
     }
 }
