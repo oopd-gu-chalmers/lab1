@@ -88,14 +88,21 @@ public abstract class Car implements Movable {
         if (0 <= amount && amount <= 1) {
             incrementSpeed(amount);
         } else {
-            throw new RuntimeException("Fucking idiot");
+            throw new RuntimeException("Amount needs to be between 0 and 1!");
         }}
     public void brake(double amount){
         if (0 <= amount && amount <= 1) {
             decrementSpeed(amount);
         } else {
-            throw new RuntimeException("Fucking idiot");
+            throw new RuntimeException("Amount needs to be between 0 and 1!");
         }
+    }
+    public void setPos(Point2D point){
+        this.point = point;
+    }
+    public void updatePosition(Transport transport) {
+        Point2D transportPosition = transport.getpoint();
+        this.point = new Point2D.Double(transportPosition.getX(), transportPosition.getY());
     }
 }
 
