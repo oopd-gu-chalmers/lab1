@@ -82,7 +82,7 @@ abstract class Car implements Movable{
         }
     }
 
-    public void update_speed(double new_speed){
+    public void updateSpeed(double new_speed){
         try {
             if (new_speed <= getEnginePower() && new_speed >= 0) {
                 currentSpeed = new_speed;
@@ -116,7 +116,7 @@ abstract class Car implements Movable{
         return position;
     }
 
-    public void set_position(double x, double y){
+    public void setPosition(double x, double y){
         position.set_position(x, y);
     }
 

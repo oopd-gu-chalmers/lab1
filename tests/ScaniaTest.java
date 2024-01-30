@@ -7,26 +7,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ScaniaTest {
 
-    Scania carA;
+    Scania truckA;
 
     @BeforeEach
     void setUp() {
-        carA = new Scania(3, Color.blue, 190, "9000");
+        truckA = new Scania(3, Color.blue, 190, "9000");
     }
 
     @Test
     void pivotUp() {
-        carA.set_platformAngle(0);
-        assertEquals(0, carA.get_platformAngle());
-        carA.pivotUp();
-        assertTrue(carA.get_platformAngle() > 0);
+        truckA.setPlatformAngle(0);
+        assertEquals(0, truckA.getPlatformAngle());
+        truckA.pivotUp();
+        assertTrue(truckA.getPlatformAngle() > 0);
+
+        truckA.setPlatformAngle(68);
+        truckA.pivotUp();
+        assertEquals(70, truckA.getPlatformAngle());
     }
 
     @Test
     void pivotDown() {
-        carA.set_platformAngle(50);
-        assertEquals(50, carA.get_platformAngle());
-        carA.pivotDown();
-        assertTrue(carA.get_platformAngle() < 50);
+        truckA.setPlatformAngle(50);
+        assertEquals(50, truckA.getPlatformAngle());
+        truckA.pivotDown();
+        assertTrue(truckA.getPlatformAngle() < 50);
+
+        truckA.setPlatformAngle(5);
+        truckA.pivotDown();
+        assertEquals(0, truckA.getPlatformAngle());
     }
 }

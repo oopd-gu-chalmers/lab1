@@ -12,33 +12,33 @@ public class Scania extends Truck {
 
     public void pivotUp(){
         try{
-        double newAngle = get_platformAngle() + 10;
-
-        if (newAngle > 70){
-            throw new Exception("Platform too steep");
+        double newAngle = getPlatformAngle() + 10;
+        // Byt plats på dessa två
+        if (newAngle > maxAngle){
+            setPlatformAngle(70);
         } else if (getCurrentSpeed() > 0) {
             throw new Exception("Can't pivot up while moving");
         } else{
-            set_platformAngle(newAngle);
+            setPlatformAngle(newAngle);
         }
     } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
     public void pivotDown(){
         try {
-        double newAngle = get_platformAngle() - 10;
+        double newAngle = getPlatformAngle() - 10;
 
-        if (newAngle < 0){
-            throw new Exception("Platform already flat");
+        if (newAngle < minAngle){
+            setPlatformAngle(0);
         } else if (getCurrentSpeed() > 0){
             throw new Exception("Can't pivot down while moving");
         } else {
-            set_platformAngle(newAngle);
+            setPlatformAngle(newAngle);
         }
     } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 }

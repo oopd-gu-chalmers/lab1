@@ -3,25 +3,28 @@ import java.awt.*;
 abstract class Truck extends Car{
 
     private double platformAngle;
+    public final double maxAngle = 70;
+    public final double minAngle = 0;
+
     public Truck(int nrDoors, Color color, double enginePower, String modelName){
         super(nrDoors, color, enginePower, modelName);
         platformAngle = 0;
     }
 
-    public double get_platformAngle(){
+    public double getPlatformAngle(){
         return this.platformAngle;
     }
 
-    public void set_platformAngle(double angle){
+    public void setPlatformAngle(double angle){
         this.platformAngle = angle;
     }
 
     public void incrementSpeed(double amount){
-        this.update_speed(Math.min(getCurrentSpeed() + speedFactor()*amount, getEnginePower()));
+        this.updateSpeed(Math.min(getCurrentSpeed() + speedFactor()*amount, getEnginePower()));
     }
 
     public void decrementSpeed(double amount){
-        this.update_speed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+        this.updateSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
 
 
@@ -32,7 +35,6 @@ abstract class Truck extends Car{
         } else {
             System.out.println("Cannot start engine with platform up");
         }
-
     }
 
     @Override
