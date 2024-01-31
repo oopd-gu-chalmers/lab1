@@ -1,15 +1,16 @@
 import java.awt.*;
-abstract class Car implements Movable{
+abstract class Vehicle implements Movable{
 
     private int nrDoors;
     private double enginePower;
     private Color color;
     private String modelName;
+
     private double currentSpeed;
     private Point pt;
     private double direction;
 
-    public Car(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
@@ -82,13 +83,15 @@ abstract class Car implements Movable{
 
     @Override
     public void move() {
-        // Beräkna nya koordinater baserat på riktningen och hastigheten
-        double deltaX = currentSpeed * Math.cos(Math.toRadians(direction));
-        double deltaY = currentSpeed * Math.sin(Math.toRadians(direction));
+        double deltaX = getCurrentSpeed() * Math.cos(Math.toRadians(getDirection()));
+        double deltaY = getCurrentSpeed() * Math.sin(Math.toRadians(getDirection()));
 
-        // Uppdatera bilens position
-        this.pt.x += (int) deltaX;
-        this.pt.y += (int) deltaY;
+        Point newPosition = new Point(
+                (int) (getPosition().getX() + deltaX),
+                (int) (getPosition().getY() + deltaY)
+        );
+
+        setPosition(newPosition);
     }
 
     @Override

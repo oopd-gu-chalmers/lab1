@@ -2,7 +2,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarTest {
+class VehicleTest {
     private Saab95 saab;
     private Volvo240 volvo; //en för saab och en för volvo
 
