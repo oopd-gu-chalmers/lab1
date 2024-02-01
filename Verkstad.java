@@ -1,28 +1,32 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Verkstad {
-    private List<Car> verkstaden;
-    private Point2D.Double position;
+public class Verkstad <T extends Car>{
+    private List<T> verkstaden;
     private final int maxCapacity;
+    private final boolean carAllowed;
 
 
-    public Verkstad(final int maxCapacity, Point2D.Double position) {
-        this.verkstaden = new ArrayList<>();
-        this.position = position;
+    public Verkstad(final int maxCapacity, ArrayList<T> verkstad) {
+        this.verkstaden = verkstad;
         this.maxCapacity = maxCapacity;
+        this.carAllowed = true;
     }
 
-    private boolean hasONECarAllowedInVerkstad() {
-        return true;
+    public int getCapacity() {
+        return verkstaden.size();
     }
-
-    public void loadCar(BilTransport transport) {
-        if (verkstaden.size() <= maxCapacity) {
-
+    public void loadOn(T car) {
+        if (verkstaden.size() < maxCapacity) {
             verkstaden.add(car);
-        } else
-            throw new IllegalArgumentException("verkstaden is full");
+        } else throw new IllegalArgumentException("verkstaden is full");
+    }
+
+    public void unLoadCar(T car) {
+        if (!verkstaden.isEmpty()) {
+            verkstaden.remove(car);
+        } else throw new IllegalArgumentException("verkstaden is tom");
     }
 }

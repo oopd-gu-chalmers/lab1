@@ -3,16 +3,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class CarTest {
     Volvo240 volvocar;
     Saab95 sabcar;
+    BilTransport bilTransport;
+    Scania scania;
+    Verkstad <Volvo240> verkstadMedVolvo;
+    Verkstad <Truck> verkstadMedAllaTrucks;
    @Before
     public void setUp() {
-        volvocar = new Volvo240();
-        sabcar = new Saab95();
+        this.volvocar = new Volvo240();
+        this.sabcar = new Saab95();
+        this.scania = new Scania();
+        this.bilTransport = new BilTransport();
+        this.verkstadMedVolvo = new Verkstad<>(2, new ArrayList<>());
+        this.verkstadMedAllaTrucks = new Verkstad<>(2, new ArrayList<>());
     }
 
     @Test
@@ -79,8 +89,15 @@ public class CarTest {
             volvocar.setDirection(4);
         }
         volvocar.turnleft();
+        assertEquals(0, volvocar.getDirection());
+        volvocar.turnleft();
+        assertEquals(1, volvocar.getDirection());
+        volvocar.turnleft();
+        assertEquals(2, volvocar.getDirection());
+        volvocar.turnleft();
         assertEquals(3, volvocar.getDirection());
-
+        volvocar.turnleft();
+        assertEquals(4, volvocar.getDirection());
     }
 
     @Test
@@ -90,14 +107,22 @@ public class CarTest {
             volvocar.setDirection(-1);
         }
         volvocar.turnright();
-        assertEquals(0, volvocar.getDirection());
+        assertEquals(4, volvocar.getDirection());
+        volvocar.turnright();
+        assertEquals(3, volvocar.getDirection());
+        volvocar.turnright();
+        assertEquals(2, volvocar.getDirection());
+        volvocar.turnright();
+        assertEquals(1, volvocar.getDirection());
+
     }
+
     @Test
     public void gasVolvo() {
         //amount is higher than 1
         volvocar.gas(1.01);
         assertEquals(0.0, volvocar.getCurrentSpeed(), 0.0001);
-        //checks if speed is increasing and speed dosent lower when you gas
+        //checks if speed is increasing and speed doesn't decrease when you gas
         double e = volvocar.getCurrentSpeed();
         volvocar.gas(0.2);
         assertEquals(0.25, volvocar.getCurrentSpeed(), 0.0001);
@@ -107,22 +132,21 @@ public class CarTest {
         volvocar.gas(1);
         assertEquals(100, volvocar.getCurrentSpeed(), 0.0001);
     }
-            @Test
-            public void gasSab() {
-                //amount is higher than 1
-                sabcar.gas(1.01);
-            assertEquals(0.0, sabcar.getCurrentSpeed(), 0.0001);
-                //checks if speed is increasing and speed dosent lower when you gas
-            double f = sabcar.getCurrentSpeed();
-            sabcar.gas(0.2);
-            assertEquals(0.25, sabcar.getCurrentSpeed(), 0.0001);
-            assertTrue(sabcar.getCurrentSpeed() >= f);
-                //speed limit
-            sabcar.setCurrentSpeed(124.99);
-            sabcar.gas(1);
-            assertEquals(125, sabcar.getCurrentSpeed(), 0.0001);
-        }
-
+    @Test
+    public void gasSab() {
+        //amount is higher than 1
+        sabcar.gas(1.01);
+        assertEquals(0.0, sabcar.getCurrentSpeed(), 0.0001);
+        //checks if speed is increasing and speed doesn't decrease when you gas
+        double f = sabcar.getCurrentSpeed();
+        sabcar.gas(0.2);
+        assertEquals(0.25, sabcar.getCurrentSpeed(), 0.0001);
+        assertTrue(sabcar.getCurrentSpeed() >= f);
+        //speed limit
+        sabcar.setCurrentSpeed(124.99);
+        sabcar.gas(1);
+        assertEquals(125, sabcar.getCurrentSpeed(), 0.0001);
+    }
 
     @Test
     public void brakeVolvo() {
@@ -173,42 +197,142 @@ public class CarTest {
             assertFalse(sabcar.getTurbo());
         }
         @Test
-        public void raiseFlak() {
+        public void raiseRamp() {
             //raise flak with 5
-            Scania scania = new Scania();
-            scania.raiseFlak();
-            assertEquals(5, scania.getAngleFlak(), 0.0001);
+            scania.raiseRamp();
+            assertEquals(5, scania.getAngle(), 0.0001);
             // cant raise more than 70
-            scania.setAngleFLak(69);
-            scania.raiseFlak();
-            assertEquals(70, scania.getAngleFlak(),0.0001);
+            scania.setAngle(69);
+            scania.raiseRamp();
+            assertEquals(70, scania.getAngle(),0.0001);
             //cant raise flak while car is moving
             scania.setDirection(40);
             try {
-                scania.raiseFlak();
+                scania.raiseRamp();
             } catch (IllegalArgumentException e) {
                 System.out.println("car is moving");
             }
 
+            // Same tests with BilTransport
+            bilTransport.raiseRamp();
+            assertTrue(bilTransport.getRampState());
         }
 
         @Test
-        public void lowerFlak() {
+        public void lowerRamp() {
             // lower flak with 5
-            Scania scania = new Scania();
-            scania.setAngleFLak(5);
-            scania.lowerFlak();
-            assertEquals(0, scania.getAngleFlak(), 0.0001);
+            scania.setAngle(5);
+            scania.lowerRamp();
+            assertEquals(0, scania.getAngle(), 0.0001);
             // cant lower more than 0
-            scania.lowerFlak();
-            assertEquals(0, scania.getAngleFlak(),0.0001);
+            scania.lowerRamp();
+            assertEquals(0, scania.getAngle(),0.0001);
             //cant lower flak while car is moving
             scania.setCurrentSpeed(40);
             try {
-                scania.lowerFlak();
+                scania.lowerRamp();
             } catch (IllegalArgumentException e) {
-                System.out.println("car is moving");
+                System.out.println("Scania is moving");
             }
+
+            // Same tests with BilTransport
+            bilTransport.lowerRamp();
+            assertFalse(bilTransport.getRampState());
         }
 
+        @Test
+        public void loadOn() {
+            // Kollar ifall den läggs till i verkstaden.
+            verkstadMedVolvo.loadOn(volvocar);
+            //verkstadMedVolvo.loadOn(sabcar);
+            assertEquals(1, verkstadMedVolvo.getCapacity());
+
+            // Kollar om det fungerar att lägga till olika typer.
+            verkstadMedAllaTrucks.loadOn(scania);
+            verkstadMedAllaTrucks.loadOn(bilTransport);
+            //verkstadMedAllaTrucks.loadOn(volvocar);
+            assertEquals(2, verkstadMedAllaTrucks.getCapacity());
+        }
+
+        @Test
+        public void unLoadCar() {
+            verkstadMedVolvo.loadOn(volvocar);
+            verkstadMedAllaTrucks.loadOn(scania);
+
+            // Kollar om det går med en Volvo-verkstad
+            verkstadMedVolvo.unLoadCar(volvocar);
+            //verkstadMedVolvo.unLoadCar(sabcar);
+            assertEquals(0, verkstadMedVolvo.getCapacity());
+
+            // Kollar om det går för en verkstad med alla typer av lastbilar.
+            verkstadMedAllaTrucks.unLoadCar(scania);
+            assertEquals(0, verkstadMedAllaTrucks.getCapacity());
+        }
+
+    @Test
+    public void loadCar() {
+        bilTransport.lowerRamp();
+        bilTransport.loadCar(volvocar);
+        bilTransport.loadCar(sabcar);
+        assertEquals(2, bilTransport.getFlak().size());
+
+        //more than MAX_LOAD
+        bilTransport.loadCar(volvocar);
+        bilTransport.loadCar(volvocar);
+        bilTransport.loadCar(sabcar);
+        try {
+            bilTransport.loadCar(volvocar);
+        } catch (IllegalArgumentException e) {
+            System.out.println("reached full capacity");
+        }
+    }
+
+    @Test
+    public void unloadCar(){
+        bilTransport.lowerRamp();
+        bilTransport.loadCar(volvocar);
+        bilTransport.loadCar(sabcar);
+        bilTransport.unLoadCar(volvocar);
+        assertEquals(0, bilTransport.getFlak().size());
+    }
+
+    @Test
+    public void getAngleFlak(){
+        assertEquals(0, scania.getAngle());
+    }
+
+    @Test
+    public void setAngleFLak(){
+        scania.setAngle(20);
+        assertEquals(20, scania.getAngle());
+    }
+
+    @Test
+    public void truckGas(){
+        scania.gas(0.2);
+        // flak is 50 cant gas
+        bilTransport.setAngle(50);
+        try {
+            bilTransport.gas(0.2);
+        } catch (IllegalArgumentException e) {
+            System.out.println("flak is not 0 cant gas");
+        }
+    }
+
+    @Test
+    public void decrementSpeed(){
+        scania.setCurrentSpeed(50);
+        scania.decrementSpeed(10);
+        assertEquals(46.0, scania.getCurrentSpeed(), 0.0001);
+    }
+    @Test
+    public void getRampState () {
+       scania.rampState = true;
+       assertTrue(scania.getRampState());
+    }
+
+    @Test
+    public void moveTruck() {
+
+    }
 }

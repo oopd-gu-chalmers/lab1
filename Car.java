@@ -10,10 +10,11 @@ public abstract class Car implements Movable {
     private int direction; //
     private double xPos;
     private double yPos;
-    private Point2D.Double cordination = new Point2D.Double(xPos, yPos);
+    private Point2D.Double cordination;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
+        this.cordination = new Point2D.Double(xPos, yPos);
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
@@ -23,18 +24,13 @@ public abstract class Car implements Movable {
     }
 
     // Getters och setters
-    public String getModelName() {return modelName;}
+    public double setXPos(double d) { return xPos = d;}
+    public double setYPos(double d) { return yPos = d;}
     public double getxPos() {
         return xPos;
     }
     public double getyPos() {
         return yPos;
-    }
-    public void setxPos(double pos) {
-        xPos = pos;
-    }
-    public void setyPos(double pos) {
-        yPos = pos;
     }
     public Point2D.Double getCordination(){
         return cordination;
@@ -89,43 +85,39 @@ public abstract class Car implements Movable {
                 break;
             default:
                 System.out.println("unknown direction");
+                break;
         }
         System.out.println("Current Position: (" + xPos + ", " + yPos + ")");
-        System.out.println("current direction" + direction);
-
+        System.out.println("Current direction: " + direction);
     }
 
     public void turnleft() {
-        direction -= (1 + 4) % 4;
+        direction ++;
+        if (direction > 4) {
+            direction = 0;
+        }
     }
 
     public void turnright() {
-        direction += 1 % 4;
+        direction --;
+        if (direction < 0) {
+            direction = 4;
+        }
     }
 
     public void gas(double amount) {
         if ((currentSpeed >= 0 && currentSpeed <= getEnginePower()) && (amount >= 0 && amount <= 1)) {
             incrementSpeed(amount);
-            if (currentSpeed > getEnginePower()) {
-                currentSpeed = getEnginePower();
-                System.out.println("max speed has reached");
-            }
+            currentSpeed = Math.min(currentSpeed, getEnginePower());
         }
-        else
-            System.out.println("amount is not ok");
+        this.move();
     }
 
-    // TODO fix this method according to lab pm
     public void brake(double amount) {
         if ((currentSpeed >= 0 && currentSpeed <= getEnginePower()) && (amount >= 0 && amount <= 1)) {
             decrementSpeed(amount);
-            if (currentSpeed < 0) {
-                currentSpeed = 0;
-                System.out.println("minimum speed has reached");
-            }
+            currentSpeed = Math.max(currentSpeed, 0);
         }
-        else
-            throw new IllegalArgumentException("amount to high");
     }
 
     protected void decrementSpeed(double amount) {};

@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class JPanel extends javax.swing.JPanel implements Runnable{
+public class JPanel extends javax.swing.JPanel implements Runnable {
     private int width = 800;
     private int height = 600;
+    private BilTransport car;
     int playerX = 400;
     int playerY = 100;
     int FPS = 60;
@@ -20,11 +21,10 @@ public class JPanel extends javax.swing.JPanel implements Runnable{
     }
 
     public void startGameThread() {
-    gameThread = new Thread(this);
-    gameThread.start();
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
-    BilTransport car = new BilTransport();
     @Override
     public void run() {
         double drawInterval = 1000000000/FPS;
@@ -32,7 +32,6 @@ public class JPanel extends javax.swing.JPanel implements Runnable{
         while(gameThread != null) {
 
             update();
-
             repaint();
 
             try {
@@ -52,8 +51,8 @@ public class JPanel extends javax.swing.JPanel implements Runnable{
 
     public void update(){
         if(keyH.upPressed) {
-           // playerY += 10;
             car.gas(0.3);
+           // playerY += 10;
         }
         if(keyH.downPressed) {
            car.brake(0.3);
@@ -75,7 +74,6 @@ public class JPanel extends javax.swing.JPanel implements Runnable{
         g2.setColor(Color.blue);
         g2.fillRect((int) car.getxPos(), (int) car.getyPos(), 15, 15);
         g2.dispose();
-
     }
 
 
