@@ -12,8 +12,10 @@ public abstract class Loader<T> implements Loadable<T> {
     public Loader(int maxLoadables) {
         this.maxLoadables = maxLoadables;
         this.loadedCars = new ArrayList<>();
+    }
 
-
+    public List<T> getLoadedCars() {
+        return loadedCars;
     }
 
     @Override
