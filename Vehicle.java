@@ -27,6 +27,10 @@ abstract class Vehicle implements Movable{
         return enginePower;
     }
 
+    protected double setEnginePower(double newEnginePower){
+        return enginePower = newEnginePower;
+    }
+
     protected double getCurrentSpeed(){return currentSpeed;}
 
     protected String getModelName(){return modelName;}

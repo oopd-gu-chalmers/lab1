@@ -40,7 +40,7 @@ public class CarTransporter extends Vehicle{
             }
         }
         else {
-            throw new IllegalArgumentException("CarTransporter cannot move if Bed is down.");
+            throw new IllegalArgumentException("CarTransporter cannot move if bed is down.");
         }
     }
     public void load(Vehicle car) {
@@ -62,7 +62,7 @@ public class CarTransporter extends Vehicle{
         }
     }
 
-    public void unload() {
+    public Vehicle unload() {
         boolean bedUp = isBedUp();
 
         if (!bedUp) {
@@ -75,6 +75,7 @@ public class CarTransporter extends Vehicle{
                         (int) (getPosition().getY())
                 );
                 car.setPosition(newPosition);
+                return car;
             }
         } else {
             throw new IllegalArgumentException("Can't unload a car when bed is up");
@@ -86,6 +87,10 @@ public class CarTransporter extends Vehicle{
         Point otherPosition = car.getPosition();
 
         return currentPosition.distance(otherPosition);
+    }
+
+    public Stack<Vehicle> getCarStack(){
+        return this.loadComponent.getCarStack();
     }
 
 }
