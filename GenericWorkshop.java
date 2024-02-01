@@ -1,6 +1,6 @@
 import java.awt.*;
 
-abstract class GenericWorkshop <V extends Vehicle> {
+class GenericWorkshop <V extends Vehicle> {
 
     private LoadComponent loadComponent;
 

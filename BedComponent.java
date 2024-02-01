@@ -6,9 +6,7 @@ public class BedComponent {
         this.bedUp = true;
     }
 
-    public boolean isBedUp() {
-        return this.bedUp;
-    }
+    public boolean isBedUp() {return this.bedUp;}
 
     public void setBedState(boolean newState, double currentSpeed) {
         if (currentSpeed == 0) {
