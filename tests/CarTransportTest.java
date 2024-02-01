@@ -39,7 +39,6 @@ class CarTransportTest {
         carTransport.lowerPlatform();
         assertThrows(IllegalStateException.class, () -> carTransport.incrementSpeed(1));
     }
-
     @Test
     void raisePlatform() {
         carTransport.lowerPlatform();
@@ -54,11 +53,16 @@ class CarTransportTest {
     void lowerPlatform() {
         carTransport.lowerPlatform();
         assertFalse(carTransport.getRampState());
-
+        carTransport.raisePlatform();
         carTransport.startEngine();
         assertThrows(IllegalStateException.class, () -> carTransport.lowerPlatform());
     }
 
+    @Test
+    void loadCarWithRampUp() {
+        carTransport.raisePlatform();
+        assertThrows(IllegalStateException.class, () -> carTransport.loadCar(volvo1));
+    }
     @Test
     void loadCar() {
         carTransport.lowerPlatform();
@@ -73,19 +77,33 @@ class CarTransportTest {
 
     @Test
     void checkLoadedCarPosition(){
+        carTransport.lowerPlatform();
         carTransport.loadCar(volvo1);
         assertEquals(volvo1.getPosition(), carTransport.getPosition());
     }
-
+    @Test
+    void unloadCarWithRampUp(){
+        carTransport.lowerPlatform();
+        carTransport.loadCar(volvo1);
+        carTransport.raisePlatform();
+        assertThrows(IllegalStateException.class, () -> carTransport.unloadCar());
+    }
     @Test
     void unloadCar() {
+        carTransport.lowerPlatform();
+        carTransport.loadCar(volvo1);
+        carTransport.loadCar(volvo2);
+        assertEquals(volvo2, carTransport.unloadCar());
+        assertNotEquals(volvo2.getPosition(), carTransport.getPosition());
     }
 
-    @Test
-    void isRampUp() {
-    }
 
-    @Test
-    void validateRampOperation() {
-    }
 }
+
+
+
+
+
+
+
+

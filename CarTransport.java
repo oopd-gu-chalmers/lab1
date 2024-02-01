@@ -78,12 +78,6 @@ public class CarTransport extends Vehicle implements Platform{
 
 
 
-
-
-
-
-
-
     // Validation methods
     public void validateRampOperation() {
         if (getCurrentSpeed() != 0) {
