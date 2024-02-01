@@ -14,8 +14,12 @@ public abstract class Loader<T> implements Loadable<T> {
         this.loadedCars = new ArrayList<>();
     }
 
-    public List<T> getLoadedCars() {
+    public ArrayList<T> getLoadedCars() {
         return loadedCars;
+    }
+
+    public int size() {
+        return loadedCars.size();
     }
 
     @Override

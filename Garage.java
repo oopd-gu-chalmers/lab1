@@ -10,6 +10,10 @@ public class Garage<T extends Car> implements Loadable<T>{
         garageLocation = new Point();
 
     }
+
+    public QueueLoader<T> getLoadedCars() {
+        return loadedCars;
+    }
     public Point getLocation() {
         return garageLocation;
     }
