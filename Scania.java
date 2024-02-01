@@ -1,10 +1,10 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends Vehicle implements Platform {
     private double flatbedAngle;
 
     public Scania(){
-        super(2, Color.blue, 400, "Scania", 8, 2); // 2 doors, blue, 400 engine power
+        super(2, Color.blue, 400, "Scania"); // 2 doors, blue, 400 engine power
         this.flatbedAngle = 0;
     }
 
@@ -12,26 +12,25 @@ public class Scania extends Car {
         return flatbedAngle;
     }
 
-    public void setFlatbedAngle(double flatbedAngle) {
-        if (getCurrentSpeed() == 0 && (flatbedAngle >= 0 && flatbedAngle <= 70)){
-            this.flatbedAngle = flatbedAngle;
+    @Override
+    public void raisePlatform() {
+        if (getCurrentSpeed() == 0){
+            flatbedAngle = Math.min(flatbedAngle + 10, 70);
+        }
+        else {
+            throw new IllegalStateException("Cannot raise flatbed when moving!");
         }
     }
 
-    public void raiseFlatbed() {
-        if (getCurrentSpeed() == 0) {
-            setFlatbedAngle(Math.min(flatbedAngle + 10, 70));
-        } else {
-            System.out.println("Cannot raise flatbed when moving!");
+    @Override
+    public void lowerPlatform() {
+        if (getCurrentSpeed() == 0){
+            flatbedAngle = Math.max(flatbedAngle - 10, 0);
         }
-    }
+        else {
+            throw new IllegalStateException("Cannot lower flatbed when moving!");
+        }
 
-    public void lowerFlatbed() {
-        if (getCurrentSpeed() == 0) {
-            setFlatbedAngle(Math.max(flatbedAngle - 10, 0));
-        } else {
-            System.out.println("Cannot lower flatbed when moving!");
-        }
     }
 
     @Override
@@ -39,13 +38,13 @@ public class Scania extends Car {
         if (getFlatbedAngle() == 0) {
             super.startEngine();
         } else {
-            System.out.println("Cannot start engine with raised flatbed!");
+            throw new IllegalStateException("Cannot start engine with raised flatbed!");
         }
     }
 
     @Override
     double speedFactor() {
-        return 0;
+        return 0.1;
     }
 
     @Override
@@ -53,18 +52,9 @@ public class Scania extends Car {
         if (getFlatbedAngle() == 0){
             super.incrementSpeed(amount);
         } else {
-            System.out.println("Cannot increase speed with raised flatbed!");
+            throw new IllegalStateException("Cannot increase speed with raised flatbed!");
         }
     }
-
-    /* Not needed?
-    @Override
-    public void decrementSpeed(double amount){
-        if (getFlatbedAngle() == 0){
-            super.decrementSpeed(amount);
-        }
-    }
-    */
 
 
     // JUnit test case (for demonstration purposes)
@@ -86,11 +76,11 @@ public class Scania extends Car {
         System.out.println("Testing raising and lowering flatbed when stationary:");
 
         // Test raising flatbed when stationary
-        scaniaTruck.raiseFlatbed();
+        scaniaTruck.raisePlatform();
         System.out.println("Flatbed angle after raising: " + scaniaTruck.getFlatbedAngle());
 
         // Test lowering flatbed when stationary
-        scaniaTruck.lowerFlatbed();
+        scaniaTruck.lowerPlatform();
         System.out.println("Flatbed angle after lowering: " + scaniaTruck.getFlatbedAngle());
 
 
@@ -98,7 +88,7 @@ public class Scania extends Car {
         // Test starting engine with raised flatbed
         System.out.println(" ");
         System.out.println("Test starting engine with raised flatbed:");
-        scaniaTruck.raiseFlatbed();
+        scaniaTruck.raisePlatform();
         scaniaTruck.startEngine();  // Should not start engine with raised flatbed
 
 
@@ -106,7 +96,7 @@ public class Scania extends Car {
         // Test starting engine with lowered flatbed
         System.out.println(" ");
         System.out.println("Test starting engine with lowered flatbed:");
-        scaniaTruck.lowerFlatbed();
+        scaniaTruck.lowerPlatform();
         scaniaTruck.startEngine();  // Should start engine with lowered flatbed
         System.out.println("Current speed with lowered flatbed: " + scaniaTruck.getCurrentSpeed());
 
@@ -116,6 +106,8 @@ public class Scania extends Car {
         System.out.println(" ");
         System.out.println("Test raising flatbed when non-stationary:");
         scaniaTruck.incrementSpeed(0.5);
-        scaniaTruck.raiseFlatbed();  // Should not raise flatbed when non-stationary
+        scaniaTruck.raisePlatform();  // Should not raise flatbed when non-stationary
     }
+
+
 }

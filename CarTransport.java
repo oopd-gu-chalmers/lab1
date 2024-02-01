@@ -2,74 +2,77 @@ import java.awt.*;
 import java.util.Stack;
 
 
-public class CarTransport extends Car {
+public class CarTransport extends Vehicle implements Platform{
+    private StackLoader<Car> loadedCars;
     private boolean rampUp;
-    private Stack<Car> loadedCars;
-    private int maxCars;
-    private double[] maxSize;
     private static final int maxCarDistance = 5;
 
 
     // Constructor
-    public CarTransport(int maxCars, double[] maxSize) {
-        // Call the superclass constructor with dummy values for length and width
-        super(2, Color.gray, 600, "CarTransport", 0, 0);
+    public CarTransport() {
+        super(2, Color.gray, 600, "CarTransport");
         this.rampUp = true;
-        this.loadedCars = new Stack<>();
-        this.maxCars = maxCars;
-        this.maxSize = maxSize;
+        loadedCars = new StackLoader<>(5);
+
+
     }
 
-    
+
 
     // Actions
-    public void raiseRamp() {
-        validateRampOperation();
-        rampUp = true;
+    @Override
+    public void startEngine() {
+        if (rampUp) {
+            super.startEngine();
+        }
+        else {
+            throw new IllegalStateException("Cannot start engine when ramp is down!");
+        }
     }
-
-    public void lowerRamp() {
-        validateRampOperation();
-        rampUp = false;
-    }
-
-    public void loadCar(Car car) {
-
-        validateNotTransporter(car);
-        validateCarLoaded(car);
-        validateRampState();
-        validateTransporterState();
-        validateCarPosition(car);
-        validateMaxCars();
-        validateCarSize(car);
-
-        loadedCars.push(car);
-        car.setPosition(getPosition()); // Set the car's position to be the same as the transporter
-    }
-
-    public void unloadCar() {
-
-        validateTransporterState();
-        validateRampState();
-        validateTransporterEmpty();
-
-        Car lastLoadedCar = loadedCars.pop();
-        setCarPositionABitOff(lastLoadedCar);
+    @Override
+    public void incrementSpeed(double amount){
+        if (rampUp){
+            super.incrementSpeed(amount);
+        }
+        else {
+            throw new IllegalStateException("Cannot increase speed when ramp is down!");
+        }
     }
 
     @Override
     double speedFactor() {
-        return 0;
+        return 0.1;
+    }
+    // Platform methods
+    @Override
+    public void raisePlatform() {
+       validateRampOperation();
+         rampUp = true;
+    }
+    @Override
+    public void lowerPlatform() {
+        validateRampOperation();
+        rampUp = false;
+    }
+    // Loadable methods
+    public void loadCar(Car car) {
+        validateTransporterState();
+        validateRampState();
+        validateCarPosition(car);
+        loadedCars.load(car);
+        car.setPosition(getPosition());
     }
 
-    @Override
-    public void move(){
-        super.move();
+    public Car unloadCar() {
+        validateTransporterState();
+        validateRampState();
         for (Car car : loadedCars) {
             car.setPosition(getPosition());
         }
+        Car unloadedCar = loadedCars.unload();
+        setCarPositionABitOff(unloadedCar);
+        return unloadedCar;
     }
-
 
 
 
@@ -83,10 +86,6 @@ public class CarTransport extends Car {
         Point carPosition = car.getPosition();
         Point transporterPosition = getPosition();
         return carPosition.distance(transporterPosition) <= range;
-    }
-    private boolean isCarSizeValid(Car car){                                // Is the car small enough to be loaded?
-        double[] carSize = car.getSize();
-        return carSize[0] <= maxSize[0] && carSize[1] <= maxSize[1];
     }
 
 
@@ -108,17 +107,6 @@ public class CarTransport extends Car {
         }
     }
 
-    private void validateCarSize(Car car) {
-        if (!isCarSizeValid(car)) {
-            throw new IllegalArgumentException("Car is too big for transporter and cannot be loaded!");
-        }
-    }
-
-    private void validateMaxCars() {
-        if (loadedCars.size() >= maxCars) {
-            throw new IllegalStateException("Transporter is full, cannot load car!");
-        }
-    }
 
     private void validateRampState() {
         if (rampUp) {
@@ -126,11 +114,11 @@ public class CarTransport extends Car {
         }
     }
 
-    private void validateCarLoaded(Car car) {
+/*    private void validateCarLoaded(Car car) {
         if (loadedCars.contains(car)) {
             throw new IllegalStateException("Car is already loaded!");
         }
-    }
+    }*/
 
     private void validateTransporterState() {
         if (getCurrentSpeed() != 0) {
@@ -138,21 +126,16 @@ public class CarTransport extends Car {
         }
     }
 
-    private void validateNotTransporter(Car car) {
-        if (car instanceof CarTransport) {
-            throw new IllegalStateException("Cannot load a transporter onto another transporter!");
-        }
-    }
 
-    private void validateTransporterEmpty() {
+/*    private void validateTransporterEmpty() {
         if (loadedCars.isEmpty()) {
             throw new IllegalStateException("Transporter is empty!");
         }
-    }
+    }*/
 
 
 
-    
+
     // Helper methods
     private void setCarPositionABitOff(Car car) {
         Point transporterPosition = getPosition();
