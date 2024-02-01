@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GarageTest {
-    Garage garageGeneral;
-    Garage garageSaab95;
+    Garage<Car> garageGeneral;
+    Garage<Saab95> garageSaab95;
     Volvo240 volvo240;
     Saab95 saab95;
 
 
     @BeforeEach
     void setUp() {
-        garageGeneral = new Garage(2, new Point(0,0));
-        garageSaab95 = new Garage<Saab95>(2, new Point(0,0));
+        garageGeneral = new Garage<>(2, new Point(0,0));
+        garageSaab95 = new Garage<>(2, new Point(0,0));
         volvo240 = new Volvo240();
         saab95 = new Saab95();
     }

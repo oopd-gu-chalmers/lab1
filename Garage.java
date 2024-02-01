@@ -7,7 +7,7 @@ public class Garage<T extends Car> implements Loadable<T>{
 
     public Garage(int capacity, Point garageLocation) {
         loadedCars = new QueueLoader<>(capacity);
-        garageLocation = garageLocation;
+        this.garageLocation = garageLocation;
 
     }
 
