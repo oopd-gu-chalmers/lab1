@@ -80,14 +80,6 @@ public class CarTransport extends Vehicle implements Platform{
 
 
 
-    // Getters
-    public boolean isRampUp() {
-        return rampUp;
-    }
-
-
-
-
 
 
 
@@ -98,7 +90,6 @@ public class CarTransport extends Vehicle implements Platform{
             throw new IllegalStateException("Cannot operate ramp when transporter is non-stationary!");
         }
     }
-
 
 
 
