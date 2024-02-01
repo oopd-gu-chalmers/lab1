@@ -44,15 +44,42 @@ public class CarTransporter extends Vehicle{
         }
     }
     public void load(Vehicle car) {
-        loadComponent.load((car), isBedUp(),getPosition(), distanceToCar(car), car.getEnginePower());
-    }
-    public void unload() {
-        Vehicle car = loadComponent.unload(isBedUp(), getPosition());
-        if (car == null) {
-            throw new IllegalArgumentException("Unable to unload the car");
+        boolean bedUp = isBedUp();
+        Point transporterPosition = getPosition();
+        double distanceToCar = distanceToCar(car);
+
+        if (car instanceof CarTransporter) {
+            throw new IllegalArgumentException("Cannot transport another carTransporter");
+        } else if (bedUp) {
+            throw new IllegalArgumentException("Can't load a car when bed is up");
+        } else if (distanceToCar > 5) {
+            throw new IllegalArgumentException("Distance to the car too big");
+        } else if (car.getEnginePower() > 400) {
+            throw new IllegalArgumentException("car is too big");
+        } else {
+            car.setPosition(transporterPosition);
+            loadComponent.load(car);
         }
     }
 
+    public void unload() {
+        boolean bedUp = isBedUp();
+
+        if (!bedUp) {
+            Vehicle car = loadComponent.unload();
+            if (car == null) {
+                throw new IllegalArgumentException("Unable to unload the car");
+            } else {
+                Point newPosition = new Point(
+                        (int) (getPosition().getX() + 2),
+                        (int) (getPosition().getY())
+                );
+                car.setPosition(newPosition);
+            }
+        } else {
+            throw new IllegalArgumentException("Can't unload a car when bed is up");
+        }
+    }
 
     protected double distanceToCar(Vehicle car){
         Point currentPosition = this.getPosition();

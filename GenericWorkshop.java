@@ -1,46 +1,24 @@
-import java.util.ArrayList;
+import java.awt.*;
 
-abstract class GenericWorkshop implements Capacity {
+abstract class GenericWorkshop <V extends Vehicle> {
 
-    private final Vehicle[] cars;
-    private int count;
-    private Class<?> acceptedCar;
-
-
-    public GenericWorkshop(int maxCapacity, Class<?> acceptedCars) {
-        this.cars = new Vehicle[maxCapacity];
-        this.count = 0;
-        this.acceptedCar = acceptedCars;
-    }
+    private LoadComponent loadComponent;
 
     public GenericWorkshop(int maxCapacity) {
-        this.cars = new Vehicle[maxCapacity];
-        this.count = 0;
-        this.acceptedCar = Vehicle.class;
+        this.loadComponent = new LoadComponent(maxCapacity);
+
     }
 
-    @Override
-    public void loadCar(Vehicle car) {
-
-        if (count < cars.length && acceptedCar.isInstance(car)) {
-            cars[count++] = car;
-        }
-//        else if(!acceptedCarsList.contains(car)) {
-//            throw new IllegalArgumentException("Workshop does not accept this type of car.");
-//        }
-        else {
-            throw new IllegalArgumentException("Workshop is full, cannot load more cars.");
-        }
+    public void loadCar(V car) {
+        loadComponent.load(car);
     }
 
-    @Override
-    public void unloadCar() {
-        if (count > 0) {
-            Vehicle car = cars[--count];
-            cars[count] = null; // Optionally clear the reference to the unloaded car
-        } else {
-            System.out.println("No cars to unload.");
+    public V unloadCar() {
+        Vehicle unloadedCar = this.loadComponent.unload();
+        if (unloadedCar != null) {
+            return (V) unloadedCar; // jag hoppas detta funkar
         }
+        return null;
     }
 
 
