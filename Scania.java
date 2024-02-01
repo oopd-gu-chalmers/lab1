@@ -58,7 +58,7 @@ public class Scania extends Vehicle implements Platform {
 
 
     // JUnit test case (for demonstration purposes)
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         // Create a Scania instance
         Scania scaniaTruck = new Scania();
 
@@ -108,6 +108,6 @@ public class Scania extends Vehicle implements Platform {
         scaniaTruck.incrementSpeed(0.5);
         scaniaTruck.raisePlatform();  // Should not raise flatbed when non-stationary
     }
-
+*/
 
 }

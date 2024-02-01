@@ -17,7 +17,9 @@ public class CarTransport extends Vehicle implements Platform{
 
     }
 
-
+    public boolean getRampState(){
+        return rampUp;
+    }
 
     // Actions
     @Override
