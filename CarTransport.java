@@ -5,7 +5,7 @@ import java.util.Stack;
 public class CarTransport extends Vehicle implements Platform{
     private StackLoader<Car> loadedCars;
     private boolean rampUp;
-    private static final int maxCarDistance = 5;
+
 
 
     // Constructor
@@ -58,7 +58,7 @@ public class CarTransport extends Vehicle implements Platform{
     public void loadCar(Car car) {
         validateTransporterState();
         validateRampState();
-        validateCarPosition(car);
+        loadedCars.validateCarPosition(car, getPosition());
         loadedCars.load(car);
         car.setPosition(getPosition());
     }
@@ -82,11 +82,7 @@ public class CarTransport extends Vehicle implements Platform{
     public boolean isRampUp() {
         return rampUp;
     }
-    private boolean isCarWithinRange(Car car, double range) {             // Is the car within range of the transporter?
-        Point carPosition = car.getPosition();
-        Point transporterPosition = getPosition();
-        return carPosition.distance(transporterPosition) <= range;
-    }
+
 
 
 
@@ -101,11 +97,7 @@ public class CarTransport extends Vehicle implements Platform{
         }
     }
 
-    private void validateCarPosition(Car car) {
-        if (!isCarWithinRange(car, maxCarDistance)) {
-            throw new IllegalArgumentException("Car is not within range, please move closer to the transporter!");
-        }
-    }
+
 
 
     private void validateRampState() {

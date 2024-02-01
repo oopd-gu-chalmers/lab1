@@ -2,11 +2,11 @@ import java.awt.*;
 
 public class Garage<T extends Car> implements Loadable<T>{
 
-    private QueueLoader<T> loadedcars;
+    private QueueLoader<T> loadedCars;
     private Point garageLocation;
 
     public Garage(int capacity) {
-        loadedcars = new QueueLoader<>(capacity);
+        loadedCars = new QueueLoader<>(capacity);
         garageLocation = new Point();
 
     }
@@ -14,11 +14,11 @@ public class Garage<T extends Car> implements Loadable<T>{
         return garageLocation;
     }
     public void load(T car) {
-        // TODO
-        loadedcars.load(car);  // Delegation
+        loadedCars.validateCarPosition(car, getLocation());
+        loadedCars.load(car);  // Delegation
     }
     public T unload() {
-        return loadedcars.unload(); // Delegation
+        return loadedCars.unload(); // Delegation
     }
 
 }

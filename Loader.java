@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,6 +6,7 @@ import java.util.List;
 public abstract class Loader<T> implements Loadable<T> {
     protected ArrayList<T> loadedCars;
     private int maxLoadables;
+    private static final int maxCarDistance = 5;
 
 
     public Loader(int maxLoadables) {
@@ -13,7 +15,6 @@ public abstract class Loader<T> implements Loadable<T> {
 
 
     }
-
 
     @Override
     public void load(T car) {
@@ -34,5 +35,16 @@ public abstract class Loader<T> implements Loadable<T> {
             throw new IllegalStateException("Cannot unload more cars!");
         }
     }
+    public void validateCarPosition(Car car, Point loaderposition) {
+        if (!isCarWithinRange(car, loaderposition)) {
+            throw new IllegalArgumentException("Car is not within range, please move closer to the transporter!");
+        }
+    }
+
+    public boolean isCarWithinRange(Car car, Point loaderposition) {             // Is the car within range of the transporter?
+        Point carPosition = car.getPosition();
+        return carPosition.distance(loaderposition) <= maxCarDistance;
+    }
+
     protected abstract T unloadImpl();
 }
