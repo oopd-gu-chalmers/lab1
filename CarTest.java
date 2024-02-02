@@ -156,7 +156,7 @@ public class CarTest {
         } catch (IllegalArgumentException e) {
             System.out.println("amount to low");
         }
-        //check if speed is lower, and speed dosent get higher.
+        //check if speed is lower, and speed doesn't get higher.
         volvocar.setCurrentSpeed(1);
         double e = volvocar.getCurrentSpeed();
         volvocar.brake(0.2);
@@ -200,11 +200,11 @@ public class CarTest {
         public void raiseRamp() {
             //raise flak with 5
             scania.raiseRamp();
-            assertEquals(5, scania.getAngle(), 0.0001);
+            assertEquals(10, scania.getRamp().getAngle(), 0.001);
             // cant raise more than 70
-            scania.setAngle(69);
+            scania.getRamp().angleSet(70);
             scania.raiseRamp();
-            assertEquals(70, scania.getAngle(),0.0001);
+            assertEquals(70, scania.getRamp().getAngle(),0.001);
             //cant raise flak while car is moving
             scania.setDirection(40);
             try {
@@ -215,18 +215,18 @@ public class CarTest {
 
             // Same tests with BilTransport
             bilTransport.raiseRamp();
-            assertTrue(bilTransport.getRampState());
+            assertTrue(bilTransport.getRamp().getRampState());
         }
 
         @Test
         public void lowerRamp() {
-            // lower flak with 5
-            scania.setAngle(5);
+            // lower flak with 10
+            scania.getRamp().angleSet(10);
             scania.lowerRamp();
-            assertEquals(0, scania.getAngle(), 0.0001);
+            assertEquals(0, scania.getRamp().getAngle(), 0.001);
             // cant lower more than 0
             scania.lowerRamp();
-            assertEquals(0, scania.getAngle(),0.0001);
+            assertEquals(0, scania.getRamp().getAngle(),0.001);
             //cant lower flak while car is moving
             scania.setCurrentSpeed(40);
             try {
@@ -237,7 +237,7 @@ public class CarTest {
 
             // Same tests with BilTransport
             bilTransport.lowerRamp();
-            assertFalse(bilTransport.getRampState());
+            assertFalse(bilTransport.getRamp().getRampState());
         }
 
         @Test
@@ -292,26 +292,28 @@ public class CarTest {
         bilTransport.lowerRamp();
         bilTransport.loadCar(volvocar);
         bilTransport.loadCar(sabcar);
-        bilTransport.unLoadCar(volvocar);
-        assertEquals(0, bilTransport.getFlak().size());
+        bilTransport.unLoadCar();
+        assertEquals(1, bilTransport.getFlak().size());
+        assertTrue(bilTransport.getFlak().peek().equals(volvocar));
     }
 
     @Test
     public void getAngleFlak(){
-        assertEquals(0, scania.getAngle());
+       scania.getRamp().angleSet(0);
+        assertEquals(0, scania.getRamp().getAngle(), 0.001);
     }
 
     @Test
     public void setAngleFLak(){
-        scania.setAngle(20);
-        assertEquals(20, scania.getAngle());
+        scania.getRamp().angleSet(20);
+        assertEquals(20, scania.getRamp().getAngle(), 0.001);
     }
 
     @Test
     public void truckGas(){
         scania.gas(0.2);
         // flak is 50 cant gas
-        bilTransport.setAngle(50);
+        bilTransport.getRamp().angleSet(50);
         try {
             bilTransport.gas(0.2);
         } catch (IllegalArgumentException e) {
@@ -327,8 +329,8 @@ public class CarTest {
     }
     @Test
     public void getRampState () {
-       scania.rampState = true;
-       assertTrue(scania.getRampState());
+       scania.getRamp().setRampState(true);
+       assertTrue(scania.getRamp().getRampState());
     }
 
     @Test

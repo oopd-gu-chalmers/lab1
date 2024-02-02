@@ -1,13 +1,9 @@
-import org.junit.Test;
-
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Queue;
 
 public class BilTransport extends Truck {
-    private final Ramp ramp = new Ramp();
+    private Ramp ramp = new Ramp();
     private boolean rampState;
     private Deque<Car> flaket;
     private final int MAXLOAD;
@@ -16,23 +12,16 @@ public class BilTransport extends Truck {
         this.flaket = new ArrayDeque<>();
         this.rampState = false;
         this.MAXLOAD = 5;
-        this.setAngle(0);
     }
-
-    @Override
-    public boolean getRampState() { return this.rampState; }
 
     @Override
     public void raiseRamp() {
         ramp.raiseRamp(getCurrentSpeed(), rampState);
     }
 
+    @Override
     public void lowerRamp() {
-        if(this.getCurrentSpeed() == 0) {
-            this.setAngle(70);
-            rampState = false;
-        }
-        else throw new IllegalArgumentException("cant lower ramp car is moving");
+        ramp.lowerRamp(getCurrentSpeed(), rampState);
     }
 
     public void loadCar(Car car) {
@@ -44,10 +33,12 @@ public class BilTransport extends Truck {
         }
         else throw new IllegalArgumentException("error");
     }
-    public void unLoadCar(Car car) {
+    public void unLoadCar() {
         if(!rampState && !flaket.isEmpty()) {
-            flaket.remove(car);
+            flaket.removeLast();
         }
     }
     public Deque<Car> getFlak() { return flaket; }
+
+    public Ramp getRamp() { return ramp;}
 }

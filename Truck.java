@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Truck extends Car {
+public abstract class Truck extends Car {
     protected boolean rampState;
     private double angle;
     public Truck() {
@@ -8,7 +8,6 @@ public class Truck extends Car {
         this.rampState = false;
     }
 
-    public boolean getRampState() { return rampState; }
     @Override
     public void gas(double amount) {
         if (bool(amount) && angle == 0 ) {
@@ -16,10 +15,6 @@ public class Truck extends Car {
             this.setCurrentSpeed(Math.min(this.getCurrentSpeed(), getEnginePower()));
         }
         this.move();
-    }
-
-    public void setAngle(double angle) {
-        this.angle = angle;
     }
 
     private boolean bool (double amount) { return this.getCurrentSpeed() >= 0 && this.getCurrentSpeed() <=
@@ -65,4 +60,7 @@ public class Truck extends Car {
         System.out.println("Current direction: " + this.getDirection());
     }
 
+    public abstract void raiseRamp();
+
+    public abstract void lowerRamp();
 }

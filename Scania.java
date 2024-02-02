@@ -1,19 +1,16 @@
 public class Scania extends Truck {
-    private final Ramp ramp = new Ramp();
-    private int angle;
+    private double angle;
+    private final Ramp ramp;
 
     public Scania() {
-        this.angle = 0;
+        this.ramp = new Ramp();
+        this.angle = this.ramp.getAngle();
     }
-    public int getAngle() {
-        return angle;
-    }
-    public void setAngle(int amount) {angle = amount;}
 
     @Override
     public void gas(double amount) {
         if ((this.getCurrentSpeed() >= 0 && this.getCurrentSpeed() <= getEnginePower())
-                && (amount >= 0 && amount <= 1) || rampState) {
+                && (amount >= 0 && amount <= 1) || ramp.getRampState()) {
             incrementSpeed(amount);
             this.setCurrentSpeed(Math.min(this.getCurrentSpeed(), getEnginePower()));
         }
@@ -21,11 +18,13 @@ public class Scania extends Truck {
     }
     @Override
     public void raiseRamp() {
-        ramp.raiseRamp(this.getCurrentSpeed(), this.angle);
+        ramp.raiseRamp(this.getCurrentSpeed(), ramp.getAngle());
     }
     @Override
     public void lowerRamp() {
-        ramp.raiseRamp(this.getCurrentSpeed(), this.angle);
+        ramp.lowerRamp(this.getCurrentSpeed(), ramp.getAngle());
     }
+
+    public Ramp getRamp () { return ramp; }
 }
 
