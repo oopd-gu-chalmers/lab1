@@ -8,7 +8,6 @@ public class Verkstad <T extends Car>{
     private final int maxCapacity;
     private final boolean carAllowed;
 
-
     public Verkstad(final int maxCapacity, ArrayList<T> verkstad) {
         this.verkstaden = verkstad;
         this.maxCapacity = maxCapacity;

@@ -1,18 +1,23 @@
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class BilTransport extends Truck {
+public class BilTransport extends Car implements HasRamp {
     private Ramp ramp = new Ramp();
     private boolean rampState;
     private Deque<Car> flaket;
     private final int MAXLOAD;
 
     public BilTransport(){
+        super(2, 90, Color.red, "BilTransport");
         this.flaket = new ArrayDeque<>();
-        this.rampState = false;
+        this.rampState = true;
         this.MAXLOAD = 5;
     }
+
+    public Deque<Car> getFlak() { return flaket; }
+    public Ramp getRamp() { return ramp; }
 
     @Override
     public void raiseRamp() {
@@ -25,20 +30,42 @@ public class BilTransport extends Truck {
     }
 
     public void loadCar(Car car) {
-        Point2D.Double transportCoordinates = new Point2D.Double(car.getxPos(), car.getyPos());
-        if(!rampState && flaket.size() <= MAXLOAD
-           && car.getCordination().distance(transportCoordinates) <= 5.0) {
+        if(!ramp.getRampState() && flaket.size() <= MAXLOAD && car.getPosition().distance(getPosition()) <= 5.0) {
             flaket.push(car);
-            car.getCordination().setLocation(transportCoordinates);
-        }
-        else throw new IllegalArgumentException("error");
+            updateBilTransport();
+        } else throw new IllegalArgumentException("Cannot load Car!");
     }
+
+    public void updateBilTransport () {
+        for (Car c: this.flaket) {
+            c.getPosition().setLocation(getPosition());
+        }
+    }
+
     public void unLoadCar() {
         if(!rampState && !flaket.isEmpty()) {
             flaket.removeLast();
         }
     }
-    public Deque<Car> getFlak() { return flaket; }
 
-    public Ramp getRamp() { return ramp;}
+    @Override
+    public void move() {
+        if (!ramp.getRampState()) {
+        } else {
+            super.move();
+            updateBilTransport();
+        }
+
+    }
+
+    private double speedFactor() {
+        double trimFactor = 0.8;
+        return this.getCurrentSpeed() * 0.01 * trimFactor;
+    }
+    protected void incrementSpeed(double amount) {
+        this.setCurrentSpeed(Math.min(this.getCurrentSpeed() + speedFactor() * amount, this.getEnginePower()));
+    }
+    protected void decrementSpeed(double amount) {
+        this.setCurrentSpeed(Math.max(this.getCurrentSpeed() - speedFactor() * amount, 0));
+    }
 }

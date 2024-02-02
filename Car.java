@@ -24,15 +24,15 @@ public abstract class Car implements Movable {
     }
 
     // Getters och setters
-    public double setXPos(double d) { return xPos = d;}
-    public double setYPos(double d) { return yPos = d;}
+    public void setXPos(double x) { cordination.setLocation(x, yPos);}
+    public void setYPos(double y) { cordination.setLocation(xPos, y);}
     public double getxPos() {
         return xPos;
     }
     public double getyPos() {
         return yPos;
     }
-    public Point2D.Double getCordination(){
+    public Point2D.Double getPosition(){
         return cordination;
     }
     public int getNrDoors() {return nrDoors;}
@@ -72,23 +72,21 @@ public abstract class Car implements Movable {
     public void move() {
         switch (direction) {
             case 0: // north
-                yPos += currentSpeed;
+                getPosition().setLocation(xPos,yPos + currentSpeed);
                 break;
             case 1: // east
-                xPos += currentSpeed;
+                getPosition().setLocation(xPos + currentSpeed,yPos);
                 break;
             case 2: // south
-                yPos -= currentSpeed;
+                getPosition().setLocation(xPos,yPos - currentSpeed);
                 break;
             case 3: // west
-                xPos -= currentSpeed;
+                getPosition().setLocation(xPos - currentSpeed,yPos);
                 break;
             default:
                 System.out.println("unknown direction");
                 break;
         }
-        System.out.println("Current Position: (" + xPos + ", " + yPos + ")");
-        System.out.println("Current direction: " + direction);
     }
 
     public void turnleft() {

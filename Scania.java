@@ -1,20 +1,10 @@
-public class Scania extends Truck {
-    private double angle;
-    private final Ramp ramp;
+import java.awt.*;
+
+public class Scania extends Car implements HasRamp {
+    private final Ramp ramp = new Ramp();;
 
     public Scania() {
-        this.ramp = new Ramp();
-        this.angle = this.ramp.getAngle();
-    }
-
-    @Override
-    public void gas(double amount) {
-        if ((this.getCurrentSpeed() >= 0 && this.getCurrentSpeed() <= getEnginePower())
-                && (amount >= 0 && amount <= 1) || ramp.getRampState()) {
-            incrementSpeed(amount);
-            this.setCurrentSpeed(Math.min(this.getCurrentSpeed(), getEnginePower()));
-        }
-        this.move();
+        super(2, 90, Color.red, "Scania");
     }
     @Override
     public void raiseRamp() {
@@ -26,5 +16,26 @@ public class Scania extends Truck {
     }
 
     public Ramp getRamp () { return ramp; }
+
+    @Override
+    public void move() {
+        if (ramp.getAngle() != 0) {
+            System.out.println("Cannot move");
+        } else {
+            super.move();
+            this.getPosition().setLocation(getPosition());
+        }
+    }
+
+    private double speedFactor() {
+        double trimFactor = 0.8;
+        return this.getCurrentSpeed() * 0.01 * trimFactor;
+    }
+    protected void incrementSpeed(double amount) {
+        this.setCurrentSpeed(Math.min(this.getCurrentSpeed() + speedFactor() * amount, this.getEnginePower()));
+    }
+    protected void decrementSpeed(double amount) {
+        this.setCurrentSpeed(Math.max(this.getCurrentSpeed() - speedFactor() * amount, 0));
+    }
 }
 
