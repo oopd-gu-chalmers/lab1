@@ -1,6 +1,4 @@
-import java.lang.annotation.Documented;
-
-public class Ramp implements IRamp{
+public class Ramp {
     private double angle;
     private boolean rampState;
 

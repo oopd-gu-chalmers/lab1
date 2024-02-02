@@ -294,7 +294,7 @@ public class CarTest {
         bilTransport.loadCar(sabcar);
         bilTransport.unLoadCar();
         assertEquals(1, bilTransport.getFlak().size());
-        assertTrue(bilTransport.getFlak().peek().equals(volvocar));
+        assertEquals(sabcar.toString(), bilTransport.getFlak().getFirst().toString());
     }
 
     @Test
