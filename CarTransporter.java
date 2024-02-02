@@ -5,7 +5,7 @@ import java.util.Stack;
 public class CarTransporter extends Vehicle{
 
     private BedComponent bedComponent;
-    private LoadComponent loadComponent;
+    private LoadComponent<Vehicle> loadComponent; //TODO Change to car
 
     public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, int loadCapacity){
         super(nrDoors, enginePower, color, modelName);
@@ -44,13 +44,12 @@ public class CarTransporter extends Vehicle{
         }
     }
     public void load(Vehicle car) {
-        boolean bedUp = isBedUp();
         Point transporterPosition = getPosition();
         double distanceToCar = distanceToCar(car);
 
-        if (car instanceof CarTransporter) {
+        if (car instanceof CarTransporter) { //TODO gör bil till en ny klass under vehicle och kontrollera så att vi endast får loada
             throw new IllegalArgumentException("Cannot transport another carTransporter");
-        } else if (bedUp) {
+        } else if (isBedUp()) {
             throw new IllegalArgumentException("Can't load a car when bed is up");
         } else if (distanceToCar > 5) {
             throw new IllegalArgumentException("Distance to the car too big");
@@ -67,22 +66,21 @@ public class CarTransporter extends Vehicle{
 
         if (!bedUp) {
             Vehicle car = loadComponent.unload();
-            if (car == null) {
-                throw new IllegalArgumentException("Unable to unload the car");
-            } else {
-                Point newPosition = new Point(
-                        (int) (getPosition().getX() + 2),
-                        (int) (getPosition().getY())
-                );
-                car.setPosition(newPosition);
-                return car;
-            }
-        } else {
+
+            Point newPosition = new Point(
+                    (int) (getPosition().getX() + 2),
+                    (int) (getPosition().getY())
+            );
+            car.setPosition(newPosition);
+            return car;
+
+        }
+        else {
             throw new IllegalArgumentException("Can't unload a car when bed is up");
         }
     }
 
-    protected double distanceToCar(Vehicle car){
+    private double distanceToCar(Vehicle car){
         Point currentPosition = this.getPosition();
         Point otherPosition = car.getPosition();
 

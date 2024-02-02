@@ -1,8 +1,8 @@
 import java.util.Stack;
 
 
-public class LoadComponent {
-    private Stack<Vehicle> carStack;
+public class LoadComponent <V> { // TODO använd parametrisk polymorfism KLAR
+    private Stack<V> carStack;
     private int loadCapacity;
 
     public LoadComponent(int capacity) {
@@ -15,16 +15,19 @@ public class LoadComponent {
         }
     }
 
-    public void load(Vehicle car) {
+    public void load(V car) { //TODO inför begränsing och ändra till V. KLAR
+        if (carStack.size() >= loadCapacity) {
+            throw new IllegalArgumentException("Load capacity is full");
+        }
         carStack.push(car);
     }
 
-    public Vehicle unload() {
+    public V unload() { //TODO trow exception istället för att returna null. KLAR
         if (!carStack.empty()) {
-            Vehicle car = carStack.pop();
+            V car = carStack.pop();
             return car;
         }
-        return null;
+        throw new IllegalArgumentException("Load capacity is empty");
 
     }
 
@@ -32,7 +35,7 @@ public class LoadComponent {
         return this.loadCapacity;
     }
 
-    public Stack<Vehicle> getCarStack(){
+    public Stack<V> getCarStack(){
         return this.carStack;
     }
 

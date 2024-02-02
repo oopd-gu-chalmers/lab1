@@ -4,7 +4,7 @@ public class BedComponent {
 
     public BedComponent() {
         this.bedUp = true;
-    }
+    } //konstruktor
 
     public boolean isBedUp() {return this.bedUp;}
 
