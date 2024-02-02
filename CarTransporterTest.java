@@ -37,7 +37,7 @@ class CarTransporterTest {
 
     @Test
     void setBedState() { //checking the bed setter
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         assertFalse(hanomag.isBedUp());
     }
 
@@ -56,7 +56,7 @@ class CarTransporterTest {
 
     @Test
     void load() { //checking that we can load when bed is down
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         hanomag.load(volvo);
         hanomag.load(saab);
         assertEquals(2, hanomag.getCarStack().size());
@@ -65,26 +65,23 @@ class CarTransporterTest {
 
     @Test
     void loadWithBedUp() { //checking that we can't load when bed is up
-        hanomag.setBedState(true);
         assertThrows(IllegalArgumentException.class, () -> {
             hanomag.load(volvo);
         });
 
     }
 
-    @Test
-    void loadCarTransporter() { //checking that we can't load another CarTransporter
-        hanomag.setBedState(false);
-        assertThrows(IllegalArgumentException.class, () -> {
-            hanomag.load(hanomag2);
-        });
-
-
-    }
+//    @Test
+//    void loadCarTransporter() { //checking that we can't load another CarTransporter
+//        hanomag.lowerBed();
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            hanomag.load(hanomag2);
+//        });
+//    }
 
     @Test
     void loadCarFarAway() { //checking that we can't load a car that is too far away
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         volvo.setPosition(new Point(10, 10));
         assertThrows(IllegalArgumentException.class, () -> {
             hanomag.load(volvo);
@@ -93,7 +90,7 @@ class CarTransporterTest {
 
     @Test
     void loadCarTooBig() { //checking that we can't load a car that is too big
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         volvo.setEnginePower(1500);
         assertThrows(IllegalArgumentException.class, () -> {
             hanomag.load(volvo);
@@ -102,7 +99,7 @@ class CarTransporterTest {
 
     @Test
     void unload() { //checking that we can unload cars when bed is down
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         hanomag.load(volvo);
         hanomag.load(saab);
         hanomag.unload();
@@ -111,7 +108,7 @@ class CarTransporterTest {
 
     @Test
     void unloadCorrectCar() {
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         hanomag.load(volvo);
         hanomag.load(saab);
         Vehicle unloadedCar = hanomag.unload();
@@ -122,7 +119,7 @@ class CarTransporterTest {
 
     @Test
     void unloadCarPosition() {
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         hanomag.load(volvo);
         Vehicle unloadedCar = hanomag.unload();
         assertNotEquals(unloadedCar.getPosition(), hanomag.getPosition());
@@ -131,9 +128,9 @@ class CarTransporterTest {
 
     @Test
     void unloadCarBedisUp() {
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         hanomag.load(volvo);
-        hanomag.setBedState(true);
+        hanomag.raiseBed();
         assertThrows(IllegalArgumentException.class, () -> {
             hanomag.unload();
         });
@@ -141,7 +138,7 @@ class CarTransporterTest {
 
     @Test
     void unloadCarWhenEmpty() {
-        hanomag.setBedState(false);
+        hanomag.lowerBed();
         assertThrows(IllegalArgumentException.class, () -> {
             hanomag.unload();
         });

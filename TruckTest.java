@@ -18,14 +18,9 @@ class TruckTest {
     }
 
     @Test
-    void getBedAngle() {
-        assertEquals(0, scania.getBedAngle());
-    }
-
-    @Test
     void setBedAngle() {
-        scania.setBedAngle(30);
-        assertEquals(30, scania.getBedAngle());
+        scania.lowerBed();
+        assertTrue(scania.isBedDown());
     }
 
     @Test
@@ -39,9 +34,17 @@ class TruckTest {
     @Test
     void move1() {
         assertThrows(IllegalArgumentException.class, () -> {
-            scania.setBedAngle(30);
+            scania.lowerBed();
             scania.gas(1);
-            scania.move();
+        });
+
+    }
+
+    @Test
+    void move2() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            scania.gas(1);
+            scania.lowerBed();
         });
 
     }

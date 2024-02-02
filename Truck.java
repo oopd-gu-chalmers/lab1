@@ -1,31 +1,36 @@
 import java.awt.*;
 
-abstract class Truck extends Vehicle{ // A truck is a Vehicle with a bed and a bedAngle
-
-    private BedWithAngleComponent bed;
+abstract class Truck extends Vehicle implements BedInterface{ // A truck is a Vehicle with a bed and a bedAngle
 
     public Truck(int nrDoors, double enginePower, Color color, String modelName){
         super(nrDoors, enginePower, color, modelName);
-        this.bed = new BedWithAngleComponent();
     }
 
-    protected double getBedAngle(){
-        return this.bed.getBedAngle();
-    }
-
-    protected void setBedAngle(double newBedAngle){
-        this.bed.setBedAngle(newBedAngle, getCurrentSpeed());
+    protected double speedFactor(){
+        return 5;
     }
 
     @Override
     public void move() {
-        if (getBedAngle() == 0) {
+        if (isBedUp()) {
             super.move(); //If we are overriding the move method from a parent, then we need to use super.move() in our new method instead of this.move() to refer to the old move inherited from parent.
         }
         else {
-            throw new IllegalArgumentException("Truck cannot move if Bed angle is not 0.");
+            throw new IllegalArgumentException("Truck cannot move if Bed is down.");
         }
     }
 
+    @Override
+    public void gas(double amount) {
+        if (isBedUp()) {
+            super.gas(amount);
+        }
+        else {
+            throw new IllegalArgumentException("Truck cannot move if Bed is down.");
+        }
+    }
+
+
+    //TODO Override gas and check if bed is up - has to do this on carTransporter as well -> Might want to restructure our code because of this, schematicall
 
 }

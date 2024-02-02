@@ -2,33 +2,36 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class CarTransporter extends Vehicle{
+public class CarTransporter extends Truck{
 
-    private BedComponent bedComponent;
-    private LoadComponent loadComponent;
+    private BedComponent bed;
+    private LoadComponent<Car> loadComponent; //TODO Change to car. KLAR
 
     public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, int loadCapacity){
         super(nrDoors, enginePower, color, modelName);
-        this.bedComponent = new BedComponent();
-        this.loadComponent = new LoadComponent(loadCapacity);
+        this.bed = new BedComponent();
+        this.loadComponent = new LoadComponent<>(loadCapacity);
     }
 
-    protected double speedFactor(){
-        return 5;
+    public boolean isBedUp(){
+        return this.bed.isBedUp();
     }
 
-    protected boolean isBedUp(){
-        return this.bedComponent.isBedUp();
+    public boolean isBedDown(){
+        return this.bed.isBedDown();
     }
 
-    protected void setBedState(boolean newState){
-        this.bedComponent.setBedState(newState, getCurrentSpeed());
+    public void raiseBed(){
+        this.bed.raiseBed(getCurrentSpeed());
+    }
+
+    public void lowerBed(){
+        this.bed.lowerBed(getCurrentSpeed());
     }
 
     protected int getLoadCapacity(){
         return this.loadComponent.getLoadCapacity();
     }
-
 
     @Override
     public void move() {
@@ -43,14 +46,12 @@ public class CarTransporter extends Vehicle{
             throw new IllegalArgumentException("CarTransporter cannot move if bed is down.");
         }
     }
-    public void load(Vehicle car) {
-        boolean bedUp = isBedUp();
+
+    public void load(Car car) {
         Point transporterPosition = getPosition();
         double distanceToCar = distanceToCar(car);
 
-        if (car instanceof CarTransporter) {
-            throw new IllegalArgumentException("Cannot transport another carTransporter");
-        } else if (bedUp) {
+        if (isBedUp()) {
             throw new IllegalArgumentException("Can't load a car when bed is up");
         } else if (distanceToCar > 5) {
             throw new IllegalArgumentException("Distance to the car too big");
@@ -62,22 +63,21 @@ public class CarTransporter extends Vehicle{
         }
     }
 
-    public Vehicle unload() {
+    public Car unload() {
         boolean bedUp = isBedUp();
 
         if (!bedUp) {
-            Vehicle car = loadComponent.unload();
-            if (car == null) {
-                throw new IllegalArgumentException("Unable to unload the car");
-            } else {
-                Point newPosition = new Point(
-                        (int) (getPosition().getX() + 2),
-                        (int) (getPosition().getY())
-                );
-                car.setPosition(newPosition);
-                return car;
-            }
-        } else {
+            Car car = loadComponent.unload();
+
+            Point newPosition = new Point(
+                    (int) (getPosition().getX() + 2),
+                    (int) (getPosition().getY())
+            );
+            car.setPosition(newPosition);
+            return car;
+
+        }
+        else {
             throw new IllegalArgumentException("Can't unload a car when bed is up");
         }
     }
@@ -89,7 +89,7 @@ public class CarTransporter extends Vehicle{
         return currentPosition.distance(otherPosition);
     }
 
-    public Stack<Vehicle> getCarStack(){
+    public Stack<Car> getCarStack(){
         return this.loadComponent.getCarStack();
     }
 
