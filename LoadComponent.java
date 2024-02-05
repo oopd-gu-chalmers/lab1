@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 
-public class LoadComponent <V> { // TODO använd parametrisk polymorfism KLAR
+public class LoadComponent <V extends Vehicle> { // TODO använd parametrisk polymorfism KLAR
     private Stack<V> carStack;
     private int loadCapacity;
 
@@ -22,13 +23,28 @@ public class LoadComponent <V> { // TODO använd parametrisk polymorfism KLAR
         carStack.push(car);
     }
 
-    public V unload() { //TODO trow exception istället för att returna null. KLAR
+    public V unload() { //If no regNr entered, then no overload and we just pop out the last car.
         if (!carStack.empty()) {
             V car = carStack.pop();
             return car;
         }
         throw new IllegalArgumentException("Load capacity is empty");
 
+    }
+
+    public V unload(int regNum) { // if regNum is sent as argument this function will be used, i.e if we have another method signature this overloads statically
+        ArrayList<V> carList = new ArrayList<V>(carStack);
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegNum() == regNum) {
+                V foundCar = carList.get(i);
+                carList.remove(i);
+                carStack.clear();
+                carStack.addAll(carList);
+                return foundCar;
+            }
+        }
+        throw new IllegalArgumentException("Could not find vehicle with correct registration number");
     }
 
     public int getLoadCapacity() {

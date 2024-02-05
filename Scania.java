@@ -5,7 +5,7 @@ public class Scania extends Truck{
     private BedWithAngleComponent bed;
 
     public Scania(){
-        super(2,500, Color.CYAN, "ScaniaTruck");
+        super(2,500, Color.CYAN, "ScaniaTruck", 1234);
         this.bed = new BedWithAngleComponent();
     }
 

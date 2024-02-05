@@ -2,8 +2,8 @@ import java.awt.*;
 
 abstract class Truck extends Vehicle implements BedInterface{ // A truck is a Vehicle with a bed and a bedAngle
 
-    public Truck(int nrDoors, double enginePower, Color color, String modelName){
-        super(nrDoors, enginePower, color, modelName);
+    public Truck(int nrDoors, double enginePower, Color color, String modelName, int regNum){
+        super(nrDoors, enginePower, color, modelName, regNum);
     }
 
     protected double speedFactor(){
