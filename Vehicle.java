@@ -79,9 +79,7 @@ abstract class Vehicle implements Movable {
 
     @Override
     public void move(){
-        position.setLocation(Math.cos(direction) * currentSpeed, Math.sin(direction) * currentSpeed);
-
-        //position.setLocation(Math.cos(direction) + currentSpeed, Math.sin(direction) + currentSpeed); Detta behövs nog inte
+        position.setLocation((position.getX() + Math.cos(direction) * currentSpeed), (position.getY() + Math.sin(direction) * currentSpeed));
     }
     @Override
     public void turnLeft(){
