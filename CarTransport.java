@@ -106,13 +106,6 @@ public class CarTransport extends Vehicle implements Platform{
     }
 
 
-/*    private void validateTransporterEmpty() {
-        if (loadedCars.isEmpty()) {
-            throw new IllegalStateException("Transporter is empty!");
-        }
-    }*/
-
-
 
 
     // Helper methods

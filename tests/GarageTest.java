@@ -37,4 +37,5 @@ class GarageTest {
         garageGeneral.unload();
         assertEquals(0, garageGeneral.getLoadedCars().size());
     }
+
 }
