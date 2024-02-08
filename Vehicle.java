@@ -83,7 +83,7 @@ abstract class Vehicle implements Movable{
             decrementSpeed(amount);
         }
         else {
-            throw new IllegalArgumentException("Break amount not in correct interval");
+            throw new IllegalArgumentException("Brake amount not in correct interval");
         }
 
     }
