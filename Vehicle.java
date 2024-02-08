@@ -5,16 +5,18 @@ abstract class Vehicle implements Movable{
     private double enginePower;
     private Color color;
     private String modelName;
+    private int regNum;
 
     private double currentSpeed;
     private Point pt;
     private double direction;
 
-    public Vehicle(int nrDoors, double enginePower, Color color, String modelName){ //Konstruktor
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName, int regNum){ //Konstruktor
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.regNum = regNum;
 
         this.currentSpeed = 0;
         this.pt = new Point(0,0); //start = 0,0
@@ -22,6 +24,8 @@ abstract class Vehicle implements Movable{
     }
 
     protected int getNrDoors(){return nrDoors;}
+
+    public int getRegNum(){return regNum;}
 
     protected double getEnginePower(){
         return enginePower;

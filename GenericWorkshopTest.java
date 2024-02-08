@@ -44,4 +44,13 @@ class GenericWorkshopTest {
         assertEquals(saab, vehicleWorkshop.unloadCar());
         assertEquals(volvo, vehicleWorkshop.unloadCar());
     }
+
+    @Test
+    void unloadCarVehicleWorkshopWithRegNum() {
+        vehicleWorkshop.loadCar(volvo);
+        vehicleWorkshop.loadCar(saab);
+        vehicleWorkshop.loadCar(scania);
+        assertEquals(volvo, vehicleWorkshop.unloadCar(5643));
+
+    }
 }

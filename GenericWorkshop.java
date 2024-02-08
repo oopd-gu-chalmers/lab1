@@ -12,10 +12,14 @@ class GenericWorkshop <V extends Vehicle> {
         loadComponent.load(car);
     }
 
-    public V unloadCar() {
+    public V unloadCar() { //Shpouldn't be car, should be unloadVehicle but whatever
         V unloadedCar = this.loadComponent.unload();
         return unloadedCar;
+    }
 
+    public V unloadCar(int regNum) { //Shouldn't be car, should be unloadVehicle but whatever
+        V unloadedCar = this.loadComponent.unload(regNum);
+        return unloadedCar;
     }
 
 

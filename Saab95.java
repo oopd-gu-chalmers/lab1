@@ -4,7 +4,7 @@ public class Saab95 extends Car{
     private boolean turboOn;
 
     public Saab95(){
-        super(2,125, Color.red, "Saab95"); //nrDoors = 2; color = Color.red; enginePower = 125; modelName = "Saab95";
+        super(2,125, Color.red, "Saab95", 4436); //nrDoors = 2; color = Color.red; enginePower = 125; modelName = "Saab95";
         turboOn = false;
     }
 

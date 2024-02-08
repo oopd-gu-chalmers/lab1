@@ -7,10 +7,10 @@ public class CarTransporter extends Truck{
     private BedComponent bed;
     private LoadComponent<Car> loadComponent; //TODO Change to car. KLAR
 
-    public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, int loadCapacity){
-        super(nrDoors, enginePower, color, modelName);
+    public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, int loadCapacity, int regNum){
+        super(nrDoors, enginePower, color, modelName, regNum);
         this.bed = new BedComponent();
-        this.loadComponent = new LoadComponent<>(loadCapacity);
+        this.loadComponent = new LoadComponent<>(loadCapacity); //felixjons
     }
 
     public boolean isBedUp(){
@@ -68,6 +68,25 @@ public class CarTransporter extends Truck{
 
         if (!bedUp) {
             Car car = loadComponent.unload();
+
+            Point newPosition = new Point(
+                    (int) (getPosition().getX() + 2),
+                    (int) (getPosition().getY())
+            );
+            car.setPosition(newPosition);
+            return car;
+
+        }
+        else {
+            throw new IllegalArgumentException("Can't unload a car when bed is up");
+        }
+    }
+
+    public Car unload(int regNum) {
+        boolean bedUp = isBedUp();
+
+        if (!bedUp) {
+            Car car = loadComponent.unload(regNum);
 
             Point newPosition = new Point(
                     (int) (getPosition().getX() + 2),
