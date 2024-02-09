@@ -4,6 +4,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -20,17 +21,16 @@ public class CarView extends JFrame{
     // The controller member
     CarController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
+    DrawPanel drawPanel = new DrawPanel(X, Y-240); // x= 800, y=560
 
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
-    // int brakeAmount;                         //behövs inte???
     JLabel gasLabel = new JLabel("Amount of gas");
 
-    JButton gasButton = new JButton("GaZz it!");
+    JButton gasButton = new JButton("GaZz!");
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
@@ -46,6 +46,9 @@ public class CarView extends JFrame{
         initComponents(framename);
     }
 
+
+
+
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
@@ -59,12 +62,13 @@ public class CarView extends JFrame{
 
 
         SpinnerModel spinnerModel =
-                new SpinnerNumberModel(0, //initial value
+                new SpinnerNumberModel(100, //initial value
                         0, //min
                         100, //max
                         2);//step
         gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
+        gasSpinner.addChangeListener(new ChangeListener()
+        {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
             }
@@ -114,6 +118,20 @@ public class CarView extends JFrame{
             public void actionPerformed(ActionEvent e) { carC.brake(gasAmount);
             }
         });
+
+       startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.startAllCars();
+            }
+        });
+
+       stopButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    carC.stopAllCars();
+                }
+            });
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
