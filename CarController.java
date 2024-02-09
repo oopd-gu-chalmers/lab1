@@ -28,6 +28,7 @@ public class CarController {
 
     private ArrayList<BufferedImage> images = new ArrayList<>();
     private ArrayList<Point> points = new ArrayList<>();
+    private boolean imageRenderingLimiter = false;
     //private ArrayList<Tuple(BufferedImage, Point)> .... maybe
 
     //methods:
@@ -55,6 +56,8 @@ public class CarController {
         cc.timer.start();
 
 
+
+
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -62,33 +65,38 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            points.clear();
 
             for (int i = 0; i < vehicles.size(); i++) {
                 Vehicle car = vehicles.get(i);
                 car.move();
 
-                if (car.getPosition().getX() > frame.drawPanel.getWidth() || car.getPosition().getX() < 0) {
+                double carX = car.getPosition().getX();
+                double carY = car.getPosition().getY();
+                int width = frame.drawPanel.getWidth();
+                int height = frame.drawPanel.getHeight();
+
+                if (carX + car.getImage().getWidth() > width || carX < 0) {
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
 
                 }
-                else if (car.getPosition().getY() > frame.drawPanel.getHeight() || car.getPosition().getY() < 0) {
+                else if (carY + car.getImage().getHeight() > height || carY < 0) {
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
                 }
 
-                int x = (int) Math.round(car.getPosition().getX());
-                int y = (int) Math.round(car.getPosition().getY());
-                frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
-                images.add(i, car.getImage());
+                if (!imageRenderingLimiter) {
+                    images.add(i, car.getImage());
+                }
+
                 points.add(i, car.getPosition());
             }
+            imageRenderingLimiter = true;
             frame.drawPanel.prePaint(points, images);
             frame.drawPanel.repaint();
 

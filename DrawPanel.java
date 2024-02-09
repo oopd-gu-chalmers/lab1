@@ -12,19 +12,8 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
 
     //Point volvoWorkshopPoint = new Point(300,300);
 
-//    // TODO: Make this general for all cars. Move it to CarController
-//    void moveit(int x, int y, Vehicle car){
-//        if (car.getModelName().equals("Volvo240")) {
-//            volvoPoint.x = x;
-//            volvoPoint.y = y;
-//        }
-//        else if (car.getModelName().equals("Saab95")) {
-//            saabPoint.x = x;
-//            saabPoint.y = y;
-//        }
-//    }
-    ArrayList<Point> positions;
-    ArrayList<BufferedImage> images;
+    ArrayList<Point> positions = new ArrayList<>();
+    ArrayList<BufferedImage> images = new ArrayList<>();
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
