@@ -1,4 +1,6 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.IOException;
 
 public class Saab95 extends Car{
     private boolean turboOn;
@@ -6,6 +8,12 @@ public class Saab95 extends Car{
     public Saab95(){
         super(2,125, Color.red, "Saab95", 4436); //nrDoors = 2; color = Color.red; enginePower = 125; modelName = "Saab95";
         turboOn = false;
+        try {
+            this.setImage(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
     }
 
     protected void setTurboOn() {turboOn = true; }

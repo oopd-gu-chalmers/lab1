@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 abstract class Vehicle implements Movable{
 
     private int nrDoors;
@@ -10,6 +11,7 @@ abstract class Vehicle implements Movable{
     private double currentSpeed;
     private Point pt;
     private double direction;
+    private BufferedImage image;
 
     public Vehicle(int nrDoors, double enginePower, Color color, String modelName, int regNum){ //Konstruktor
         this.nrDoors = nrDoors;
@@ -25,6 +27,12 @@ abstract class Vehicle implements Movable{
 
     protected int getNrDoors(){return nrDoors;}
 
+    public BufferedImage getImage(){return image;}
+
+    public void setImage(BufferedImage img){image = img;}
+
+    protected String getModelName(){return modelName;}
+
     public int getRegNum(){return regNum;}
 
     protected double getEnginePower(){
@@ -37,7 +45,6 @@ abstract class Vehicle implements Movable{
 
     protected double getCurrentSpeed(){return currentSpeed;}
 
-    protected String getModelName(){return modelName;}
 
     protected Color getColor(){return color;}
 
@@ -53,7 +60,7 @@ abstract class Vehicle implements Movable{
 	    currentSpeed = 0;
     }
 
-    protected Point getPosition(){
+    public Point getPosition(){
         return pt.getLocation();
     }
 
