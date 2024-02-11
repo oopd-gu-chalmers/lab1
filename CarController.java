@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,15 +22,22 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    static ArrayList<Vehicle> cars = new ArrayList<>();
 
     //methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
+        Volvo240 volvo = new Volvo240();
+        Saab95 saab = new Saab95();
+        saab.setPosition(new Point(0, 100));
+        Scania scania = new Scania();
+        scania.setPosition(new Point(0, 200));
 
-        cc.cars.add(new Volvo240());
+        cc.cars.add(volvo);
+        cc.cars.add(saab);
+        cc.cars.add(scania);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -44,12 +52,13 @@ public class CarController {
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
+            for (Vehicle car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
-                frame.drawPanel.moveit(x, y);
-                //repaint(); //calls the paintComponent method of the panel
+                frame.drawPanel.moveit(x, y, car);
+                if (car.getXPosition() > frame.getX()-100 || car.getXPosition() < 0 || car.getYPosition() > frame.getY() - 100 || car.getYPosition() < 0){
+                    car.reverseDirection();}
                 frame.drawPanel.repaint();
             }
         }
@@ -58,7 +67,7 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-       for (Car car : cars
+       for (Vehicle car : cars
                 ) {
             car.gas(gas);
         }
@@ -66,9 +75,18 @@ public class CarController {
 
     void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars
+        for (Vehicle car : cars
                 ) {
             car.brake(brake);
+        }
+    }
+
+    void turboOn() {
+        for (Vehicle car : cars
+                ) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOn();
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ public class Scania extends Vehicle implements Platform {
     private double flatbedAngle;
 
     public Scania(){
-        super(2, Color.blue, 400, "Scania"); // 2 doors, blue, 400 engine power
+        super(2, Color.blue, 400, "Scania",""); // 2 doors, blue, 400 engine power
         this.flatbedAngle = 0;
     }
 

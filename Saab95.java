@@ -5,7 +5,7 @@ public class Saab95 extends Car{
 
     public boolean turboOn;
     public Saab95(){
-        super(2, Color.red, 120, "Saab95");
+        super(2, Color.red, 120, "Saab95", "pics/Saab95.jpg");
 	    turboOn = false;
     }
 
@@ -14,6 +14,9 @@ public class Saab95 extends Car{
         double turbo = 1;
         if(turboOn) turbo = 1.3;
         return getEnginePower() * 0.01 * turbo;
+    }
+    public void setTurboOn(){
+        turboOn = true;
     }
     /*
     public boolean turboOn;

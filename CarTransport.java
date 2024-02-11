@@ -10,7 +10,7 @@ public class CarTransport extends Vehicle implements Platform{
 
     // Constructor
     public CarTransport() {
-        super(2, Color.gray, 600, "CarTransport");
+        super(2, Color.gray, 600, "CarTransport","pics/CarTransport.jpg");
         this.rampUp = true;
         loadedCars = new StackLoader<>(5);
 

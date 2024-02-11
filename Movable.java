@@ -6,4 +6,6 @@ interface Movable {
 
     public void turnRight();
 
+    public void reverseDirection();
+
 }

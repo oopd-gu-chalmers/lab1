@@ -9,8 +9,9 @@ abstract class Vehicle implements Movable {
     private Point position; // position
     //private double[] size; //size of the vehicle
     private double direction;
+    private String imagePath;
 
-    public Vehicle(int nrDoors, Color color, double enginePower, String modelName)//, double length, double width)
+    public Vehicle(int nrDoors, Color color, double enginePower, String modelName, String imagePath)//, double length, double width)
     {
         this.nrDoors =nrDoors;
         this.color = color;
@@ -19,6 +20,7 @@ abstract class Vehicle implements Movable {
         this.position = new Point(0,0);
         //this.size = new double[]{length, width};
         this.direction = 0;
+        this.imagePath = imagePath;
         stopEngine();
 
     }
@@ -42,6 +44,8 @@ abstract class Vehicle implements Movable {
     public double getXPosition(){return position.getX();}
     public double getYPosition(){return position.getY();}
     public double getDirection(){return direction;}
+    public String getImagePath(){return imagePath;}
+    public String setImagePath(String path){return imagePath = path;}
 
     // Setters
     public void setColor(Color color) {
@@ -90,7 +94,9 @@ abstract class Vehicle implements Movable {
     @Override
     public void move(){
         position.setLocation((position.getX() + Math.cos(direction) * currentSpeed), (position.getY() + Math.sin(direction) * currentSpeed));
-    }
+        }
+
+
     @Override
     public void turnLeft(){
         direction += Math.PI/4;
@@ -98,5 +104,10 @@ abstract class Vehicle implements Movable {
     @Override
     public void turnRight(){
         direction -= Math.PI/4  ;
+    }
+
+    @Override
+    public void reverseDirection(){
+        direction += Math.PI;
     }
 }
