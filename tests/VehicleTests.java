@@ -7,7 +7,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CarTests {
+class VehicleTests {
 
     private Saab95 saab;
     private Saab95 saab2;

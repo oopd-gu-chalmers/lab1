@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Truck {
+public class Scania extends TruckI {
 
     public Scania(int nrDoors, Color color, double enginePower, String modelName){
         super(nrDoors, color, enginePower, modelName);
