@@ -22,7 +22,7 @@ abstract class Vehicle implements Movable{
 
         this.currentSpeed = 0;
         this.pt = new Point(0,0); //start = 0,0
-        this.direction = 90; // Riktning i grader (0-360)
+        this.direction = 0; // Riktning i grader (0-360)
     }
 
     protected int getNrDoors(){return nrDoors;}

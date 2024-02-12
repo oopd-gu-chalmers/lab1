@@ -15,6 +15,7 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
     ArrayList<Point> positions = new ArrayList<>();
     ArrayList<BufferedImage> images = new ArrayList<>();
 
+
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
@@ -24,10 +25,11 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
 
     }
 
+
+
     protected void prePaint(ArrayList<Point> newPositions, ArrayList<BufferedImage> newImages) {
         this.positions = newPositions;
         this.images = newImages;
-
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -35,7 +37,7 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int i = 0; i < images.size(); i++) {
+        for (int i = 0; i < positions.size(); i++) {
             g.drawImage(images.get(i), (int) positions.get(i).getX(), (int) positions.get(i).getY(), null);
         }
 

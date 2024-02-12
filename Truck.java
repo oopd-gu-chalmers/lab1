@@ -7,7 +7,7 @@ abstract class Truck extends Vehicle implements BedInterface{ // A truck is a Ve
     }
 
     protected double speedFactor(){
-        return 5;
+        return 8;
     }
 
     @Override

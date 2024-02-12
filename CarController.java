@@ -1,8 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -21,17 +23,19 @@ public class CarController {
     private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
+
     CarView frame;
-    // A list of cars, modify if needed
 
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     private ArrayList<BufferedImage> images = new ArrayList<>();
     private ArrayList<Point> points = new ArrayList<>();
-    private boolean imageRenderingLimiter = false;
-    //private ArrayList<Tuple(BufferedImage, Point)> .... maybe
 
-    //methods:
+    private boolean imageRenderingLimiter = false;
+    private BufferedImage volvoworkshopImage;
+
+
+
 
     public static void main(String[] args) {
         // Instance of this class
@@ -46,14 +50,15 @@ public class CarController {
         cc.vehicles.add(scania);
 
         volvo.setPosition(new Point(0,0));
-        saab.setPosition(new Point(100, 0));
-        scania.setPosition(new Point(200,0));
+        saab.setPosition(new Point(0, 100));
+        scania.setPosition(new Point(0,200));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("SimulateDeezCars", cc);
 
         // Start the timer
         cc.timer.start();
+
 
 
 
@@ -65,10 +70,10 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
             for (int i = 0; i < vehicles.size(); i++) {
                 Vehicle car = vehicles.get(i);
                 car.move();
+
 
                 double carX = car.getPosition().getX();
                 double carY = car.getPosition().getY();
@@ -81,24 +86,35 @@ public class CarController {
                     car.turnLeft();
                     car.startEngine();
 
-                }
-                else if (carY + car.getImage().getHeight() > height || carY < 0) {
+                } else if (carY + car.getImage().getHeight() > height || carY < 0) {
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
                 }
 
-                // repaint() calls the paintComponent method of the panel
-                if (!imageRenderingLimiter) {
-                    images.add(i, car.getImage());
+                else if (car instanceof Volvo240 && volvoworkshopPosition.distance(car.getPosition()) < 3) {
+                    volvoworkshop.loadCar((Volvo240) car); // born to code, forced to cast.
+                    images.set(i, null); // this is stupid. When tuple implementation remove this.
                 }
 
-                points.add(i, car.getPosition());
+
+                if (!imageRenderingLimiter) { // only add images in first frame. //VI MÅSTE ÄNDRA så images och positions är i en tuple eller ha en typ DrawableObject med ett imageattribut och ett positionsattribut
+                    images.add(car.getImage());
+                    points.add(car.getPosition());
+                } else {
+                    points.set(i, car.getPosition());
+                }
             }
+
+            if (!imageRenderingLimiter) {
+                images.add(volvoworkshopImage);
+                points.add(volvoworkshopPosition);
+            }
+
             imageRenderingLimiter = true;
             frame.drawPanel.prePaint(points, images);
-            frame.drawPanel.repaint();
+            frame.drawPanel.repaint(); // repaint() calls the paintComponent method of the panel
 
         }
     }
@@ -136,11 +152,35 @@ public class CarController {
         }
     }
 
-//    void turboOn() {
-//        for (Vehicle car : vehicles) {
-//            if (car instanceof Saab95) {
-//                ((Saab95) car).turboOn();
-//            }
-//        }
-//    }
+    void turboOn() {
+        for (Vehicle car : vehicles) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOn();
+            }
+        }
+    }
+
+    void turboOff() {
+        for (Vehicle car : vehicles) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOff();
+            }
+        }
+    }
+
+    void liftBed() {
+        for (Vehicle car : vehicles) {
+            if (car instanceof Scania) {
+                ((Scania) car).raiseBed();
+            }
+        }
+    }
+
+    void lowerBed() {
+        for (Vehicle car : vehicles) {
+            if (car instanceof Scania) {
+                ((Scania) car).lowerBed();
+            }
+        }
+    }
 }
