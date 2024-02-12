@@ -40,7 +40,7 @@ public class VehicleTransport extends TruckI {
     public void loadCargo(Vehicle vehicle){
         if (canLoadCargo(vehicle)) {
             Position carTransportPosition = this.getPosition();
-            vehicle.setPosition(carTransportPosition.get_x(), carTransportPosition.get_y());
+            vehicle.setPosition(carTransportPosition.getX(), carTransportPosition.getY());
             cargos.push(vehicle);
         } else {
             System.out.println("Unable to load cargo now");
@@ -50,7 +50,7 @@ public class VehicleTransport extends TruckI {
     public Vehicle unloadCargo(){
         if (getPlatformAngle() == 70) {
             Vehicle vehicle = cargos.pop();
-            vehicle.setPosition(this.getPosition().get_x() + 5, this.getPosition().get_y());
+            vehicle.setPosition(this.getPosition().getX() + 5, this.getPosition().getY());
             return vehicle;
         } else {
             System.out.println("Unable to unload cargo now");
@@ -67,7 +67,7 @@ public class VehicleTransport extends TruckI {
         super.move();
         Position carTransportPos = this.getPosition();
         for (Vehicle vehicle : cargos){
-            vehicle.setPosition(carTransportPos.get_x(), carTransportPos.get_y());
+            vehicle.setPosition(carTransportPos.getX(), carTransportPos.getY());
         }
     }
 

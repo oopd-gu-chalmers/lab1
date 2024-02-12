@@ -96,8 +96,8 @@ abstract class Vehicle implements Movable{
     }
 
     public void move(){
-        position.set_position(position.get_x() + currentSpeed * Math.cos(Math.toRadians(direction)),
-                              position.get_y() + currentSpeed * Math.sin(Math.toRadians(direction)));
+        position.set_position(position.getX() + currentSpeed * Math.cos(Math.toRadians(direction)),
+                              position.getY() + currentSpeed * Math.sin(Math.toRadians(direction)));
     }
 
     public double getDirection(){
