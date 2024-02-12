@@ -1,49 +1,62 @@
 import java.awt.*;
 
-public class Scania extends Car {
-    private int angle;
-    private final double trimFactor = 0.8;
+public class Scania extends Car implements hasRamp {
+    private final Ramp ramp;
 
     public Scania() {
-        super(2, 80, Color.white, "Scania");
-        this.angle = 0;
+        super(2, 90, Color.cyan, "Scania");
+        this.ramp = new Ramp();
+        this.ramp.setAngle(0);
     }
+
+
+    public void raiseRamp() {
+        ramp.raiseRamp(this.getCurrentSpeed());
+    }
+
+    public void lowerRamp() {
+        ramp.lowerRamp(this.getCurrentSpeed());
+    }
+
+    public Ramp getRamp() {
+        return ramp;
+    }
+
+    @Override
+    public void gas(double amount) {
+        if (this.ramp.getAngle() == 0 && bool(amount)) {
+            incrementSpeed(amount);
+            this.setCurrentSpeed(Math.min(this.getCurrentSpeed(), getEnginePower()));
+        } else  {
+            throw new IllegalArgumentException("cant gas");
+    }
+    }
+
+    private boolean bool(double amount) {
+        return this.getCurrentSpeed() >= 0 && this.getCurrentSpeed() <=
+                getEnginePower() && (amount >= 0 && amount <= 1);
+    }
+
     private double speedFactor() {
-        return getEnginePower() * 0.01 * trimFactor;
+        double trimFactor = 0.8;
+        return this.getEnginePower() * 0.01 * trimFactor;
     }
+
     @Override
     protected void incrementSpeed(double amount) {
-        this.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
+        this.setCurrentSpeed(Math.min(this.getCurrentSpeed() + speedFactor() * amount, this.getEnginePower()));
     }
+
     @Override
     protected void decrementSpeed(double amount) {
-        this.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
-    }
-    public int getAngleFlak() {
-        return angle;
-    }
-    public void setAngleFLak(int amount) {angle = amount;}
-
-    public void lowerFlak() {
-        if (getCurrentSpeed() == 0) {
-            angle -= 5;
-            if (angle < 0) {
-                angle = 0;
-            }
-        }
-        else
-            throw new IllegalArgumentException("car is moving, can´t lower the flak!");
+        this.setCurrentSpeed(Math.max(this.getCurrentSpeed() - speedFactor() * amount, 0));
     }
 
-    public void raiseFlak(){
-        if(getCurrentSpeed() == 0) {
-            angle += 5;
-            if (angle > 70.0) {
-                angle = 70;
-            }
+    @Override
+    public void move(){
+        if(this.ramp.getAngle() == 0) {
+            super.move();
         }
-        else
-          throw new IllegalArgumentException("car is moving, can´t raise the flak!");
     }
-}
+    }
 

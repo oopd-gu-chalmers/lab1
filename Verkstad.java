@@ -2,34 +2,31 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Verkstad {
-    private List<Car> verkstaden;
-    private Point2D.Double position;
+public class Verkstad<T extends Car> {
+    private List<T> verkstaden;
+    private final Point2D.Double position;
     private final int maxCapacity;
 
 
-    public Verkstad(final int maxCapacity, Point2D.Double position) {
-        this.verkstaden = new ArrayList<>();
+    public Verkstad(final int maxCapacity, Point2D.Double position, ArrayList<T> verkstaden) {
+        this.verkstaden = verkstaden;
         this.position = position;
         this.maxCapacity = maxCapacity;
     }
 
-    private boolean hasONECarAllowedInVerkstad() {
-        return true;
-    }
+    public int getCapacity() {return verkstaden.size();}
 
-    public void unLoadCar(BilTransport transport) {
-        if (transport.getFlak().peek() != null && verkstaden.size() <= maxCapacity) {
-            Car car = transport.unLoadCar();
-            car.getCordination().setLocation(this.position);
+    public void add(T car) {
+        if (verkstaden.size() <= maxCapacity) {
             verkstaden.add(car);
         }
-    }
-    public void loadCar(BilTransport transport) {
-        if(!verkstaden.isEmpty() && transport.getFlak().size() < transport.getMaxload()) {
-            Car car = verkstaden.remove(verkstaden.size() - 1);
-            car.getCordination().setLocation(transport.getCordination());
-            transport.loadCar(car);
+        else throw new IllegalArgumentException("verkstaden är full");
+     }
+
+    public void remove(T car) {
+        if(!verkstaden.isEmpty()) {
+            verkstaden.remove(car);
         }
+        else throw new IllegalArgumentException("verkstaden är tom");
     }
 }

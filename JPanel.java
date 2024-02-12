@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
+/*import java.awt.*;
 
 public class JPanel extends javax.swing.JPanel implements Runnable{
     private int width = 800;
@@ -52,20 +52,20 @@ public class JPanel extends javax.swing.JPanel implements Runnable{
 
     public void update(){
         if(keyH.upPressed) {
-           // playerY += 10;
-            car.gas(0.3);
+            playerY += 10;
+           // car.gas(0.3);
         }
         if(keyH.downPressed) {
-           car.brake(0.3);
-            //playerY -=10;
+          // car.brake(0.3);
+            playerY -=10;
         }
         if(keyH.rightPressed) {
-            car.turnright();
-            //playerX += 10;
+          //  car.turnright();
+            playerX += 10;
         }
         if(keyH.leftPressed) {
-            car.turnleft();
-           // playerX -= 10;;
+           // car.turnleft();
+            playerX -= 10;;
         }
         car.move();
     }
@@ -73,10 +73,13 @@ public class JPanel extends javax.swing.JPanel implements Runnable{
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.blue);
-        g2.fillRect((int) car.getxPos(), (int) car.getyPos(), 15, 15);
+        g2.fillRect(playerX, playerY, 15, 15);
         g2.dispose();
 
     }
 
 
 }
+
+
+ */

@@ -3,52 +3,82 @@ import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class BilTransport extends Car{
+public class BilTransport extends Car implements hasRamp {
+    private Ramp ramp = new Ramp();
     private boolean rampState;
-    private int maxload = 5;
+    private Deque<Car> flaket;
+    private final int MAXLOAD;
 
     public BilTransport(){
-        super(2, 60, Color.blue, "BilTransport");
+        super(2, 90, Color.red, "BilTransport");
+        this.flaket = new ArrayDeque<>();
         this.rampState = false;
+        this.MAXLOAD = 5;
     }
+    public Deque<Car> getFlak() { return flaket; }
 
-    public Deque<Car> getFlak() {return flaket;}
-    public int getMaxload(){return maxload;}
-
+    public Ramp getRamp() { return ramp;}
     public void raiseRamp() {
-        if(getCurrentSpeed() == 0.0) {
-            rampState = true;
-        }
-        else
-            throw new IllegalArgumentException("cant raise ramp car is moving");
+        ramp.raiseRamp(getCurrentSpeed(), rampState);
     }
+
     public void lowerRamp() {
-        if(getCurrentSpeed() == 0.0) {
-            rampState = false;
-        }
-        else
-            throw new IllegalArgumentException("cant lower ramp car is moving");
+        ramp.lowerRamp(getCurrentSpeed(), rampState);
     }
 
     public void loadCar(Car car) {
         Point2D.Double transportCoordinates = new Point2D.Double(car.getxPos(), car.getyPos());
-        if(!rampState && flaket.size() <= maxload
-           && car.getCordination().distance(transportCoordinates) <= 5.0) {
+        if(!rampState && flaket.size() <= MAXLOAD
+                && car.getCordination().distance(transportCoordinates) <= 5.0) {
             flaket.push(car);
             car.getCordination().setLocation(transportCoordinates);
         }
-        else
-            throw new IllegalArgumentException("error");
+        else throw new IllegalArgumentException("error");
     }
 
-    // Lasta av
-    public Car unLoadCar() {
-        Car car = null;
-        if(!rampState && getCurrentSpeed() == 0 && !flaket.isEmpty()) {
-            car = flaket.pop();
+    public void unLoadCar() {
+        if(!rampState && !flaket.isEmpty()) {
+            flaket.removeLast();
         }
-        return car;
     }
 
+    @Override
+    public void gas(double amount) {
+        if (bool(amount) && rampState ) {
+            incrementSpeed(amount);
+            this.setCurrentSpeed(Math.min(this.getCurrentSpeed(), getEnginePower()));
+        }
+        this.move();
+    }
 
+    private boolean bool (double amount) { return this.getCurrentSpeed() >= 0 && this.getCurrentSpeed() <=
+            getEnginePower() && (amount >= 0 && amount <= 1);
+    }
+
+    private double speedFactor() {
+        double trimFactor = 0.8;
+        return this.getEnginePower() * 0.01 * trimFactor;
+    }
+    @Override
+    protected void incrementSpeed(double amount) {
+        this.setCurrentSpeed(Math.min(this.getCurrentSpeed() + speedFactor() * amount, this.getEnginePower()));
+    }
+    @Override
+    protected void decrementSpeed(double amount) {
+        this.setCurrentSpeed(Math.max(this.getCurrentSpeed() - speedFactor() * amount, 0));
+    }
+
+    @Override
+    public void move(){
+        if (rampState) {
+            super.move();
+            updateBilTransport();
+        }
 }
+    public void updateBilTransport () {
+        Point2D.Double transportCoordinates = new Point2D.Double(getxPos(), getyPos());
+        for (Car c: this.getFlak()) {
+            c.getCordination().setLocation(transportCoordinates);
+        }
+    }
+    }

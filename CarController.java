@@ -63,6 +63,9 @@ public class CarController {
                 frame.drawPanel.addCar(car);
                 frame.drawPanel.moveit(car, x, y);
                 System.out.println(car.getxPos());
+                if(car instanceof Scania) {
+                    System.out.println(((Scania) car).getRamp().getAngle());
+                }
                 if (x > frame.drawPanel.getWidth() - 100) {
                     car.setDirection(3);
                 }

@@ -10,32 +10,28 @@ public abstract class Car implements Movable {
     private int direction; //
     private double xPos;
     private double yPos;
-    private Point2D.Double cordination = new Point2D.Double(xPos, yPos);
+    protected Point2D.Double cordination = new Point2D.Double(xPos, yPos);
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-        this.direction = 0;
+        this.direction = 1;
         this.yPos = 0.0;
         this.xPos = 0.0;
     }
 
     // Getters och setters
-    public String getModelName() {return modelName;}
     public double getxPos() {
         return xPos;
     }
     public double getyPos() {
         return yPos;
     }
-    public void setxPos(double pos) {
-        xPos = pos;
-    }
-    public void setyPos(double pos) {
-        yPos = pos;
-    }
+    public String getModelname(){return modelName;}
+    public void setxPos(double value){xPos = value;}
+    public void setyPos(double value){yPos = value;}
     public Point2D.Double getCordination(){
         return cordination;
     }
@@ -44,36 +40,26 @@ public abstract class Car implements Movable {
     public double getEnginePower() {
         return enginePower;
     }
-
     public double getCurrentSpeed() {
         return currentSpeed;
     }
-
     public Color getColor() {
         return color;
     }
-
     public void setColor(Color clr) {
         color = clr;
     }
+    public void setDirection(int i) {direction = i; }
+    public int getDirection() { return direction; }
 
-    public void startEngine() {
-        currentSpeed = 0.1;
-    }
+    // Start- och stop -engine.
+    public void startEngine() { currentSpeed = 0.1; }
+    public void stopEngine() { currentSpeed = 0; }
 
-    public void stopEngine() {
-        currentSpeed = 0;
-    }
 
-    public void setDirection(int i) {
-        direction = i;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
+    // Generell move function för ALLA typer av fordon.
     public void move() {
+        direction = this.getDirection();
         switch (direction) {
             case 0: // north
                 yPos += currentSpeed;
@@ -89,45 +75,49 @@ public abstract class Car implements Movable {
                 break;
             default:
                 System.out.println("unknown direction");
+                break;
         }
-        System.out.println("Current Position: (" + xPos + ", " + yPos + ")");
-        System.out.println("current direction" + direction);
 
     }
 
+    // Sväng vänster resp. höger.
     public void turnleft() {
-        direction -= (1 + 4) % 4;
+        direction++;
+        if(direction > 4) {
+            direction = 0;
+        }
     }
-
     public void turnright() {
-        direction += 1 % 4;
+        direction --;
+        if(direction < 0) {
+            direction = 4;
+        }
     }
 
+    // Gasa / Öka farten
     public void gas(double amount) {
         if ((currentSpeed >= 0 && currentSpeed <= getEnginePower()) && (amount >= 0 && amount <= 1)) {
             incrementSpeed(amount);
-            if (currentSpeed > getEnginePower()) {
-                currentSpeed = getEnginePower();
-                System.out.println("max speed has reached");
-            }
+            currentSpeed = Math.min(currentSpeed,getEnginePower());
         }
         else
             System.out.println("amount is not ok");
+        this.move();
     }
 
-    // TODO fix this method according to lab pm
+    // Bromsa / Minska farten.
     public void brake(double amount) {
         if ((currentSpeed >= 0 && currentSpeed <= getEnginePower()) && (amount >= 0 && amount <= 1)) {
             decrementSpeed(amount);
-            if (currentSpeed < 0) {
-                currentSpeed = 0;
-                System.out.println("minimum speed has reached");
-            }
+            currentSpeed = Math.max(currentSpeed, 0);
         }
         else
             throw new IllegalArgumentException("amount to high");
+        this.move();
     }
 
+    // Abstrakta metoder som måste finnas i subklasserna. De skiljer från varandra. Här säger vi bara
+    // att de måste finnas.
     protected void decrementSpeed(double amount) {};
     protected void incrementSpeed(double amount) {};
 }
