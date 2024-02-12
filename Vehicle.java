@@ -96,7 +96,7 @@ abstract class Vehicle implements Movable{
     }
 
     public void move(){
-        position.set_position(position.getX() + currentSpeed * Math.cos(Math.toRadians(direction)),
+        position.setPosition(position.getX() + currentSpeed * Math.cos(Math.toRadians(direction)),
                               position.getY() + currentSpeed * Math.sin(Math.toRadians(direction)));
     }
 
@@ -117,7 +117,7 @@ abstract class Vehicle implements Movable{
     }
 
     public void setPosition(double x, double y){
-        position.set_position(x, y);
+        position.setPosition(x, y);
     }
 
 }

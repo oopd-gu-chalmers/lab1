@@ -87,7 +87,7 @@ class VehicleTransportTest extends Saab95 {
         carTransportA.gas(0.7);
         carTransportA.move();
         carTransportA.move();
-        assertEquals(0, carTransportA.getPosition().distance_to_other_position(saab.getPosition()));
+        assertEquals(0, carTransportA.getPosition().distanceToOtherPosition(saab.getPosition()));
 
     }
 }

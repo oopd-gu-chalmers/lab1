@@ -34,7 +34,7 @@ public class VehicleTransport extends TruckI {
 
     private boolean canLoadCargo(Vehicle vehicle){
         return getPlatformAngle() == 70 && cargos.size() < capacity && !(vehicle instanceof VehicleTransport)
-                && vehicle.getPosition().distance_to_other_position(this.getPosition()) < 10;
+                && vehicle.getPosition().distanceToOtherPosition(this.getPosition()) < 10;
     }
 
     public void loadCargo(Vehicle vehicle){

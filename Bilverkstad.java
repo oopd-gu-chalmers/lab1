@@ -6,8 +6,16 @@ public class Bilverkstad<T extends Vehicle> {
     public List<T> cars = new ArrayList<T>();
     private final int capacity;
 
+
+    Position pos = new Position(0, 0);
+
+
     public Bilverkstad(int capacity){
         this.capacity = capacity;
+    }
+
+    public void setPosition(double x, double y) {
+        pos.setPosition(x, y);
     }
 
     public void dropOff(T car){
