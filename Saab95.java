@@ -18,6 +18,10 @@ public class Saab95 extends Car{
     public void setTurboOn(){
         turboOn = true;
     }
+
+    public void setTurboOff(){
+        turboOn = false;
+    }
     /*
     public boolean turboOn;
     public int nrDoors; // Number of doors on the car
@@ -50,16 +54,6 @@ public class Saab95 extends Car{
 
     public void stopEngine(){
 	    currentSpeed = 0;
-    }
-
-
-
-    public void setTurboOn(){
-	    turboOn = true;
-    }
-
-    public void setTurboOff(){
-	    turboOn = false;
     }
     
     public double speedFactor(){

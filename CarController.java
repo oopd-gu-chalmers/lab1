@@ -89,4 +89,29 @@ public class CarController {
             }
         }
     }
+
+    void turboOff() {
+        for (Vehicle car : cars
+                ) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOff();
+            }
+        }
+    }
+
+    void liftBed() {
+        for (Vehicle car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).raisePlatform();
+            }
+        }
+    }
+
+    void lowerBed() {
+        for (Vehicle car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).lowerPlatform();
+            }
+        }
+    }
 }
