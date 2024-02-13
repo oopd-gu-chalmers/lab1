@@ -23,6 +23,7 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     static ArrayList<Vehicle> cars = new ArrayList<>();
+    static Garage<Volvo240> garage = new Garage<>(10, new Point(650, 0));
 
     //methods:
 
@@ -59,6 +60,10 @@ public class CarController {
                 frame.drawPanel.moveit(x, y, car);
                 if (car.getXPosition() > frame.getX()-100 || car.getXPosition() < 0 || car.getYPosition() > frame.getY() - 100 || car.getYPosition() < 0){
                     car.reverseDirection();}
+                if (car instanceof Volvo240 && car.getPosition().equals(garage.getLocation())){
+                    garage.load((Volvo240) car);
+                    cars.remove(car);
+                }
                 frame.drawPanel.repaint();
             }
         }
