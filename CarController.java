@@ -23,7 +23,7 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     static ArrayList<Vehicle> cars = new ArrayList<>();
-    static Garage<Volvo240> garage = new Garage<>(10, new Point(650, 0));
+    static Garage<Volvo240> garage;
 
     //methods:
 
@@ -35,6 +35,7 @@ public class CarController {
         saab.setPosition(new Point(0, 100));
         Scania scania = new Scania();
         scania.setPosition(new Point(0, 200));
+        garage = new Garage<>(10, new Point(650, 0));
 
         cc.cars.add(volvo);
         cc.cars.add(saab);
