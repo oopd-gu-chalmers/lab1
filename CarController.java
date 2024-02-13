@@ -28,6 +28,8 @@ public class CarController {
     CarView frame;
 
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private GenericWorkshop<Volvo240> volvoworkshop;
+    private Point volvoworkshopPosition;
 
     //private ArrayList<BufferedImage> images = new ArrayList<>();
     //private ArrayList<Point> points = new ArrayList<>();
@@ -36,6 +38,15 @@ public class CarController {
     private boolean imageRenderingLimiter = false;
     private BufferedImage volvoworkshopImage;
 
+
+//    public static <A, B, C> Triple<A, B, C> findTripleByThirdElement(ArrayList<Triple<A, B, C>> list, B thirdElement) {
+//        for (Triple<A, B, C> triple : list) {
+//            if (triple.getThird().equals(thirdElement)) {
+//                return triple;
+//            }
+//        }
+//        return null; // Return null if the Triple object is not found
+//    }
 
 
     public static void main(String[] args) {
@@ -92,7 +103,7 @@ public class CarController {
                 double carX = car.getPosition().getX();
                 double carY = car.getPosition().getY();
                 int width = frame.drawPanel.getWidth();
-                int height = frame.drawPanel.getHeight();
+                int height = frame.drawPanel.getHeight(); //Functional Decomposition desirable probably
 
                 if (carX + car.getImage().getWidth() > width || carX < 0) {
                     car.stopEngine();

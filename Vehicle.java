@@ -1,6 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-abstract class Vehicle implements Movable{
+abstract class Vehicle implements Movable, Drawable{
 
     private int nrDoors;
     private double enginePower;
