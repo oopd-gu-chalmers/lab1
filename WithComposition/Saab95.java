@@ -2,7 +2,7 @@ package WithComposition;
 
 import java.awt.*;
 
-public class Saab95 implements Vehicle, Movable{
+public class Saab95 implements Vehicle{
     public boolean turboOn;
     private final VehicleHelper vehicleHelper;
 
