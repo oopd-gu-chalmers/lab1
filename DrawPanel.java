@@ -19,19 +19,8 @@ public class DrawPanel extends JPanel{
 
     CarController carC;
 
-    BufferedImage volvoImage;
-    // To keep track of a single car's position
-    Point volvoPoint = new Point();
-
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
-
-    BufferedImage scaniaImage;
-    Point scaniaPoint = new Point(0, 100);
-
-
-    BufferedImage saab95Image;
-    Point saabPoint = new Point(0, 200);
 
     // TODO: Make this general for all cars
     void moveit(Vehicle car, int x, int y){

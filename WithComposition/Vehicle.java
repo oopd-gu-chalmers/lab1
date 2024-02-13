@@ -2,7 +2,7 @@ package WithComposition;
 
 import java.awt.*;
 
-public interface Vehicle {
+public interface Vehicle extends Movable{
 
     public int getNrDoors();
 

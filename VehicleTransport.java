@@ -13,8 +13,6 @@ public class VehicleTransport extends TruckI {
     }
 
     public void pivotUp(){
-
-        //använd klassvariabel och max ist
         setPlatformAngle(maxAngle);
     }
 
@@ -66,6 +64,7 @@ public class VehicleTransport extends TruckI {
     public void move(){
         super.move();
         Position carTransportPos = this.getPosition();
+        // TODO: hur hanterar vi detta med polymorfismen här?
         for (Vehicle vehicle : cargos){
             vehicle.setPosition(carTransportPos.getX(), carTransportPos.getY());
         }

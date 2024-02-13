@@ -2,7 +2,7 @@ package WithComposition;
 
 import java.awt.*;
 
-public class VehicleHelper implements Vehicle, Movable{
+public class VehicleHelper implements Vehicle{
     private final int nrDoors;
     private final double enginePower;
     private double currentSpeed;
