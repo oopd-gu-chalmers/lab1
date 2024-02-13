@@ -68,7 +68,7 @@ abstract class Vehicle implements Movable{
         return direction;
     }
 
-    protected void setPosition(Point newPt) {
+    public void setPosition(Point newPt) {
         this.pt = newPt.getLocation();
     }
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.util.List;
 
 // This panel represents the animated part of the view with the car images.
 
@@ -12,8 +13,8 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
 
     //Point volvoWorkshopPoint = new Point(300,300);
 
-    ArrayList<Point> positions = new ArrayList<>();
-    ArrayList<BufferedImage> images = new ArrayList<>();
+    List<Point> positions = new ArrayList<>();
+    List<BufferedImage> images = new ArrayList<>();
 
 
     // Initializes the panel and reads the images
@@ -27,7 +28,7 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
 
 
 
-    protected void prePaint(ArrayList<Point> newPositions, ArrayList<BufferedImage> newImages) {
+    protected void prePaint(List<BufferedImage> newImages, List<Point> newPositions) {
         this.positions = newPositions;
         this.images = newImages;
     }
