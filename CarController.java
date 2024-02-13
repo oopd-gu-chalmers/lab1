@@ -43,6 +43,7 @@ public class CarController {
         cc.cars.add(sc0);
 
 
+
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
@@ -65,6 +66,9 @@ public class CarController {
                 System.out.println(car.getxPos());
                 if(car instanceof Scania) {
                     System.out.println(((Scania) car).getRamp().getAngle());
+                }
+                if(car instanceof Volvo240) {
+                    loadVolvo((Volvo240) car);
                 }
                 if (x > frame.drawPanel.getWidth() - 100) {
                     car.setDirection(3);
@@ -117,10 +121,30 @@ public class CarController {
         }
     }
     void lowerFlak() {
-        for(Car c : cars) {
+        for (Car c : cars) {
             if (c instanceof Scania) {
                 ((Scania) c).lowerRamp();
             }
+        }
+    }
+
+        void stopAllCars() {
+            for (Car c : cars) {
+                c.stopEngine();
+            }
+        }
+        void startAllCars() {
+            for(Car c : cars) {
+                c.startEngine();
+            }
+        }
+
+    void loadVolvo(Volvo240 car) {
+        Verkstad<Volvo240> verkstad = new Verkstad<>(5, frame.drawPanel.volvoWorkshopPoint);
+            if(car.getxPos() >= frame.drawPanel.volvoWorkshopPoint.x) {
+                verkstad.add(car);
+                car.setxPos(frame.drawPanel.volvoWorkshopPoint.x);
+                car.setyPos(frame.drawPanel.volvoWorkshopPoint.y);
         }
     }
 }

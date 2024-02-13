@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Verkstad<T extends Car> {
     private List<T> verkstaden;
-    private final Point2D.Double position;
+    private final Point2D position;
     private final int maxCapacity;
 
 
-    public Verkstad(final int maxCapacity, Point2D.Double position, ArrayList<T> verkstaden) {
-        this.verkstaden = verkstaden;
+    public Verkstad(final int maxCapacity, Point2D position) {
+        this.verkstaden = new ArrayList<>();
         this.position = position;
         this.maxCapacity = maxCapacity;
     }
