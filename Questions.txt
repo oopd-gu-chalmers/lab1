@@ -67,23 +67,52 @@ Vi har även high coupling då flera klasser är beroende av varandra, vilket g�
  3. Analysera era klasser med avseende på Separation of Concern (SoC) och Single Responsibility Principle (SRP).
 
 a) Vilka ansvarsområden har era klasser?
-    - Car: Subklass av Vehicle. Skapar nya bilar.
-    - CarController: Sköter bilarna i simulatorn. Skapar nya bilar, uppdaterar positioner och hastigheter, samt uppdaterar vyn.
+
+    - Car: Subklass av Vehicle. Ansvarar inte för några nya beteenden, utan är snararare en representation för
+           faktiska bilar (dvs inte lastbilar, biltransporter, osv).
+
+    - CarController: Sköter bilarna i simulatorn. Skapar nya bilar, uppdaterar positioner och hastigheter,
+                     samt uppdaterar vyn.
+
     - CarTransport: Subklass av Vehicle. Transportbil av andra bilar.
-    - CarView:
+
+    - CarView: Ansvarar för allt som rör pop-up fönstret, dvs skapar knappar och definierar vad ett knapptryck ska
+               resultera i. Innehåller också en s.k. listener som övervakar ifall knapptryck sker.
+
     - DrawPanel: Ansvarar för att rita ut och flytta bilarna i fönstret.
-    - Garage:
+
+    - Garage: Ansvarar för att lagra bilar och hålla koll på dessa i en Array. Implementerar interfacet Loadable och
+              kan därför både lasta och lossa bilar.
+
     - Loadable: Interface för att visa vad något lastbart ska kunna göra.
-    - Loader: Abstrakt klass som ansvarar för att lasta och lossa bilar. Implementerar flera metoder och variabler som används av subklasserna.
+
+    - Loader: Abstrakt klass som ansvarar för att lasta och lossa bilar. Implementerar flera metoder
+              och variabler som används av subklasserna.
+
     - Movable: Interface för att visa vad ett rörligt fordon ska kunna göra.
+
     - Platform: Interface för att visa vad en plattform ska kunna göra, dvs höjas och sänkas.
+
     - QueueLoader: Subklass av Loader. Implementerar en kö för att lasta och lossa bilar enligt FIFO-principen.
+
     - Saab95: Subklass av Car. Skapar nya Saab95-bilar och implementerar dess specifika beteenden såsom turbo.
+
     - Scania: Subklass av Vehicle. Skapar nya Scania-bilar och implementerar en platformsfunktion mha interfacet platform.
+
     - StackLoader: Subklass av Loader. Implementerar en stack för att lasta och lossa bilar enligt LIFO-principen.
-    - Vehicle: Abstrakt klass som ansvarar för information och rörelsemönster om fordon och  implementerar dess specifika beteenden.
+
+    - Vehicle: Abstrakt klass som ansvarar för information och rörelsemönster om fordon och  implementerar
+               dess specifika beteenden.
+
     - Volvo 240: Subklass av Car. Skapar nya Volvo 240-bilar och implementerar dess specifika beteenden.
+
+
 
 b) Vilka anledningar har de att förändras?
 
 c) På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre följa SoC och SRP?
+
+
+Man hade kunnat göra två olika klasser (dekomposition); en som
+               sköter knapptryckningar och som sköter själva fönstret. Skulle bli lättare att läsa och det
+               skulle bli lättare att hitta saker i klasserna, samt blir det bättre med avsikt på SoC
