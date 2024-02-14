@@ -43,6 +43,12 @@ Det finns flera nödvändiga beroenden:
         - scania
         - garage
         - Timer
+        - carVielw
+
+    - carView
+        - carController
+        - drawPanel
+
 
 
 
