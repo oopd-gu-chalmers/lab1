@@ -2,11 +2,48 @@
 
 a) Vilka beroenden är nödvändiga?
 Det finns flera nödvändiga beroenden:
-    - Garage är beroende av Car, vilket krävs för att kunna lagra bilar i garaget.
-    - De olika bilarna är beroende av Car/Vehicle, vilket krävs för att kunna skapa nya instanser av bilar.
-    - CarController är beroende av Garage, Vehicle, vilket krävs för att kunna kontrollera garaget och bilarna, samt skapa nya instanser.
-    - CarController är beroende av Timer, vilket krävs för att kunna använda timern för att simulera tiden.
-    - CarController är beroende av CarView, vilket krävs för att kunna uppdatera CarView.
+    - Car
+        - Vehicle
+
+    - Vehicle
+        -Movable
+
+    - Garage
+        - Car
+        - queLoader
+
+    - Volvo240
+        - Car
+
+    - Saab95
+        - Car
+
+    - Scania
+        - Vehicle
+        - Platform
+
+    - carTransport
+        - Vehicle
+        - Platform
+        - stackLoader
+
+    - Loader
+        - Loadable
+
+    - stackLoader
+        - Loader
+        - Itterable
+
+    - queLoader
+        - Loader
+
+    - carController
+        - volvo240
+        - saab95
+        - scania
+        - garage
+        - Timer
+
 
 
 b) Vilka klasser är beroende av varandra som inte borde vara det?
