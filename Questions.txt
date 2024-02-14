@@ -54,11 +54,13 @@ Det finns flera nödvändiga beroenden:
 
 b) Vilka klasser är beroende av varandra som inte borde vara det?
 Det finns flera beroenden som inte borde vara nödvändiga:
-    - CarView och CarController är beroende av varandraCa.
+    - Gararge är beroende på loadable
+    - CarView och CarController är beroende av varandra.
     - CarController är beroende av Garage, vilket inte borde vara nödvändigt då CarController endast ska kontrollera bilarna och inte garaget.
-    - CarController är beroende av
+    - carview är beroende av carController
 
 c) Finns det starkare beroenden än nödvändigt?
+
 
 d) Kan ni identifiera några brott mot övriga designprinciper vi pratat om i kursen?
 
