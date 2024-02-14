@@ -82,7 +82,7 @@ a) Vilka ansvarsområden har era klasser?
     - DrawPanel: Ansvarar för att rita ut och flytta bilarna i fönstret.
 
     - Garage: Ansvarar för att lagra bilar och hålla koll på dessa i en Array. Implementerar interfacet Loadable och
-              kan därför både lasta och lossa bilar. Använder sig även av QueueLoader genom att skapa en instans av denna.
+              kan därför både lasta och lossa bilar.
 
     - Loadable: Interface för att visa vad något lastbart ska kunna göra.
 
@@ -110,27 +110,9 @@ a) Vilka ansvarsområden har era klasser?
 
 b) Vilka anledningar har de att förändras?
 
-    - CarController bör ändras då den sköter både bilarnas beteenden, uppdaterar vyn och skapar nya bilar.
-      Detta är för mycket ansvar för en klass och bör därför brytas ut i flera klasser. Vidare bör Timelistener flyttas
-      ut till en egen klass för att skapa en bättre separation of concern.
-
-    - CarView bör även den ändras då dess ansvarsområde är för stort. Den har flera ansvarsområden och bör därför
-      brytas ut i flera klasser. Man kan exemplvis skapa en klass som sköter knapptryckningarna och en som
-      sköter själva fönstret.
-
-    - DrawPanel bör ändras då den har flera ansvarsområden såsom att ladda in bilder, rendera bilderna och flytta fordonen.
-      Dessa ansvarsområden bör brytas ut i flera klasser, t.ex. en klass som ansvarar för att ladda in bilder, en klass som
-      ansvarar för att rendera bilderna och en klass som ansvarar för att flytta fordonen.
-
-    - Loader hade kunnat ändras då den ansvarar för att validera ifall bilar är tillräckligt nära för att kunna lastas.
-      Detta ansvarsområde hade kunnat brytas ut i en egen klass för att på så sätt låta Loader endast ansvara för att
-      lasta och lossa bilar.
-
-
 c) På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre följa SoC och SRP?
 
-        - CarController
-        - CarView
-        - DrawPanel
-        - Loader
 
+Man hade kunnat göra två olika klasser (dekomposition); en som
+               sköter knapptryckningar och som sköter själva fönstret. Skulle bli lättare att läsa och det
+               skulle bli lättare att hitta saker i klasserna, samt blir det bättre med avsikt på SoC
