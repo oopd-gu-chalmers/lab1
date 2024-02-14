@@ -53,6 +53,8 @@ Det finns flera beroenden som inte borde vara nödvändiga:
     - CarController är beroende av
 
 c) Finns det starkare beroenden än nödvändigt?
+    - carView och carController
+    - alla bilar är kopplade till carController. Kanske vore bättre med en class som tar hand om detta.
 
 d) Kan ni identifiera några brott mot övriga designprinciper vi pratat om i kursen?
 
