@@ -46,6 +46,7 @@ public class CarTransport extends Vehicle implements Platform{
         return 0.1;
     }
     // Platform methods
+
     @Override
     public void raisePlatform() {
        validateRampOperation();
@@ -79,7 +80,7 @@ public class CarTransport extends Vehicle implements Platform{
 
 
     // Validation methods
-    public void validateRampOperation() {
+    private void validateRampOperation() {
         if (getCurrentSpeed() != 0) {
             throw new IllegalStateException("Cannot operate ramp when transporter is non-stationary!");
         }

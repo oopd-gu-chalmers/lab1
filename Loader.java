@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public abstract class Loader<T> implements Loadable<T> {
@@ -18,7 +17,7 @@ public abstract class Loader<T> implements Loadable<T> {
         return loadedCars;
     }
 
-    public int size() {
+    public int getCurrentLoadSize() {
         return loadedCars.size();
     }
 

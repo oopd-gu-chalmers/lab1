@@ -3,7 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GarageTest {
@@ -35,7 +35,7 @@ class GarageTest {
     void unload() {
         garageGeneral.load(volvo240);
         garageGeneral.unload();
-        assertEquals(0, garageGeneral.getLoadedCars().size());
+        assertEquals(0, garageGeneral.getLoadedCars().getCurrentLoadSize());
     }
 
 }
