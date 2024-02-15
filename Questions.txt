@@ -135,3 +135,11 @@ c) På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre 
         - CarView
         - DrawPanel
         - Loader
+
+4. Refaktoreringsplan:
+
+    1. skapa vehicleFactory
+    2. skapa Game
+    3. dela upp DrawPanel i Drawpanel och DrawObjects
+    4. addera delar av carView till DrawPanel
+    5. Flytta action listeners från carView till actionListener
