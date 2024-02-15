@@ -1,0 +1,137 @@
+2. Analysera de beroenden som finns med avseende på cohesion och coupling, och Dependency Inversion Principle.
+
+a) Vilka beroenden är nödvändiga?
+Det finns flera nödvändiga beroenden:
+    - Car
+        - Vehicle
+
+    - Vehicle
+        -Movable
+
+    - Garage
+        - Car
+        - queLoader
+
+    - Volvo240
+        - Car
+
+    - Saab95
+        - Car
+
+    - Scania
+        - Vehicle
+        - Platform
+
+    - carTransport
+        - Vehicle
+        - Platform
+        - stackLoader
+
+    - Loader
+        - Loadable
+
+    - stackLoader
+        - Loader
+        - Itterable
+
+    - queLoader
+        - Loader
+
+    - carController
+        - volvo240
+        - saab95
+        - scania
+        - garage
+        - Timer
+
+
+
+b) Vilka klasser är beroende av varandra som inte borde vara det?
+Det finns flera beroenden som inte borde vara nödvändiga:
+    - CarView och CarController är beroende av varandraCa.
+    - CarController är beroende av Garage, vilket inte borde vara nödvändigt då CarController endast ska kontrollera bilarna och inte garaget.
+    - CarController är beroende av
+
+c) Finns det starkare beroenden än nödvändigt?
+    - carView och carController
+    - alla bilar är kopplade till carController. Kanske vore bättre med en class som tar hand om detta.
+
+d) Kan ni identifiera några brott mot övriga designprinciper vi pratat om i kursen?
+
+Vad gäller cohesion finns det flera klasser med ganska låg cohesion. Exempelvis CarController som har
+ flera ansvarsområden: både att kontrollera bilarnas beteenden, men också uppdatera vyn och skapa nya bilar.
+ Detta hade eventuellt kunnat brytas ut i flera olika klasser med olika ansvarsområden.
+Vi har även high coupling då flera klasser är beroende av varandra, vilket gör det svårt att ändra i koden. Exempelvis är
+ CarView och CarController beroende av varandra.
+
+
+
+ 3. Analysera era klasser med avseende på Separation of Concern (SoC) och Single Responsibility Principle (SRP).
+
+a) Vilka ansvarsområden har era klasser?
+
+    - Car: Subklass av Vehicle. Ansvarar inte för några nya beteenden, utan är snararare en representation för
+           faktiska bilar (dvs inte lastbilar, biltransporter, osv).
+
+    - CarController: Sköter bilarna i simulatorn. Skapar nya bilar, uppdaterar positioner och hastigheter,
+                     samt uppdaterar vyn.
+
+    - CarTransport: Subklass av Vehicle. Transportbil av andra bilar.
+
+    - CarView: Ansvarar för allt som rör pop-up fönstret, dvs skapar knappar och definierar vad ett knapptryck ska
+               resultera i. Innehåller också en s.k. listener som övervakar ifall knapptryck sker.
+
+    - DrawPanel: Ansvarar för att rita ut och flytta bilarna i fönstret.
+
+    - Garage: Ansvarar för att lagra bilar och hålla koll på dessa i en Array. Implementerar interfacet Loadable och
+              kan därför både lasta och lossa bilar.
+
+    - Loadable: Interface för att visa vad något lastbart ska kunna göra.
+
+    - Loader: Abstrakt klass som ansvarar för att lasta och lossa bilar. Implementerar flera metoder
+              och variabler som används av subklasserna.
+
+    - Movable: Interface för att visa vad ett rörligt fordon ska kunna göra.
+
+    - Platform: Interface för att visa vad en plattform ska kunna göra, dvs höjas och sänkas.
+
+    - QueueLoader: Subklass av Loader. Implementerar en kö för att lasta och lossa bilar enligt FIFO-principen.
+
+    - Saab95: Subklass av Car. Skapar nya Saab95-bilar och implementerar dess specifika beteenden såsom turbo.
+
+    - Scania: Subklass av Vehicle. Skapar nya Scania-bilar och implementerar en platformsfunktion mha interfacet platform.
+
+    - StackLoader: Subklass av Loader. Implementerar en stack för att lasta och lossa bilar enligt LIFO-principen.
+
+    - Vehicle: Abstrakt klass som ansvarar för information och rörelsemönster om fordon och  implementerar
+               dess specifika beteenden.
+
+    - Volvo 240: Subklass av Car. Skapar nya Volvo 240-bilar och implementerar dess specifika beteenden.
+
+
+
+b) Vilka anledningar har de att förändras?
+
+    - CarController bör ändras då den sköter både bilarnas beteenden, uppdaterar vyn och skapar nya bilar.
+      Detta är för mycket ansvar för en klass och bör därför brytas ut i flera klasser. Vidare bör Timelistener flyttas
+      ut till en egen klass för att skapa en bättre separation of concern.
+
+    - CarView bör även den ändras då dess ansvarsområde är för stort. Den har flera ansvarsområden och bör därför
+      brytas ut i flera klasser. Man kan exemplvis skapa en klass som sköter knapptryckningarna och en som
+      sköter själva fönstret.
+
+    - DrawPanel bör ändras då den har flera ansvarsområden såsom att ladda in bilder, rendera bilderna och flytta fordonen.
+      Dessa ansvarsområden bör brytas ut i flera klasser, t.ex. en klass som ansvarar för att ladda in bilder, en klass som
+      ansvarar för att rendera bilderna och en klass som ansvarar för att flytta fordonen.
+
+    - Loader hade kunnat ändras då den ansvarar för att validera ifall bilar är tillräckligt nära för att kunna lastas.
+      Detta ansvarsområde hade kunnat brytas ut i en egen klass för att på så sätt låta Loader endast ansvara för att
+      lasta och lossa bilar.
+
+
+c) På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre följa SoC och SRP?
+
+        - CarController
+        - CarView
+        - DrawPanel
+        - Loader
