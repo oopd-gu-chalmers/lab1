@@ -58,6 +58,11 @@ public class CarController {
             Iterator<Vehicle> carIterator = cars.iterator();
             while (carIterator.hasNext()) {
                 Vehicle car = carIterator.next();
+                   if (car instanceof Saab95) {
+                System.out.println(((Saab95) car).getCurrentSpeed() + "saab");}
+                else if (car instanceof Volvo240) {
+                    System.out.println(((Volvo240) car).getCurrentSpeed() + "volvo");
+                }
                 car.move();
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());

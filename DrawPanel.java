@@ -21,15 +21,15 @@ public class DrawPanel extends JPanel{
 
     // TODO: Make this general for all cars
     public void moveit(int x, int y, Vehicle car){
-        if (car.getModelName().equals("Volvo240")){
+        if (car instanceof Volvo240){
         Volvo240.x = x;
         Volvo240.y = y;
         }
-        else if (car.getModelName().equals("Saab95")){
+        else if (car instanceof Saab95){
         Saab95.x = x;
         Saab95.y = y;
         }
-        else if (car.getModelName().equals("Scania")){
+        else if (car instanceof Scania){
         Scania.x = x;
         Scania.y = y;
         }
@@ -64,10 +64,10 @@ public class DrawPanel extends JPanel{
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(scaniaImage, Saab95.x, Saab95.y, null); // see javadoc for more info on the parameters
+        g.drawImage(saab95Image, Saab95.x, Saab95.y, null); // see javadoc for more info on the parameters
         g.drawImage(volvo240Image, Volvo240.x, Volvo240.y, null); // see javadoc for more info on the parameters
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
-        g.drawImage(saab95Image, Scania.x, Scania.y, null); // see javadoc for more info on the parameters
+        g.drawImage(scaniaImage, Scania.x, Scania.y, null); // see javadoc for more info on the parameters
     }
 
 }

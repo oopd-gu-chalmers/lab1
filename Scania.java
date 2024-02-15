@@ -44,7 +44,7 @@ public class Scania extends Vehicle implements Platform {
 
     @Override
     double speedFactor() {
-        return 0.1;
+        return getEnginePower()* 0.01;
     }
 
     @Override
