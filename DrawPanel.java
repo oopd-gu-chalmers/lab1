@@ -17,7 +17,7 @@ public class DrawPanel extends JPanel{
     Point Volvo240 = new Point();
     Point Saab95 = new Point();
     Point Scania = new Point();
-    Point volvoWorkshopPoint = new Point(300,300);
+    Point volvoWorkshopPoint = new Point(300,0);
 
     // TODO: Make this general for all cars
     public void moveit(int x, int y, Vehicle car){
