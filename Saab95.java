@@ -6,7 +6,7 @@ public class Saab95 extends Car{
     public boolean turboOn;
     public Saab95(){
         super(2, Color.red, 120, "Saab95", "pics/Saab95.jpg");
-	    turboOn = false;
+	    turboOn = true;
     }
 
     @Override

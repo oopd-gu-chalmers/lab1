@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -35,7 +36,7 @@ public class CarController {
         saab.setPosition(new Point(0, 100));
         Scania scania = new Scania();
         scania.setPosition(new Point(0, 200));
-        garage = new Garage<>(10, new Point(650, 0));
+        garage = new Garage<>(10, new Point(300, 0));
 
         cc.cars.add(volvo);
         cc.cars.add(saab);
@@ -54,7 +55,9 @@ public class CarController {
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle car : cars) {
+            Iterator<Vehicle> carIterator = cars.iterator();
+            while (carIterator.hasNext()) {
+                Vehicle car = carIterator.next();
                 car.move();
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
@@ -63,7 +66,7 @@ public class CarController {
                     car.reverseDirection();}
                 if (car instanceof Volvo240 && car.getPosition().equals(garage.getLocation())){
                     garage.load((Volvo240) car);
-                    cars.remove(car);
+                    carIterator.remove();
                 }
                 frame.drawPanel.repaint();
             }
