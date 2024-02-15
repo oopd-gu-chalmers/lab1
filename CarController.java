@@ -121,7 +121,7 @@ public class CarController {
         }
     }
     void lowerFlak() {
-        for (Car c : cars) {
+        for(Car c : cars) {
             if (c instanceof Scania) {
                 ((Scania) c).lowerRamp();
             }

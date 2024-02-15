@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class BilTransport extends Car implements hasRamp {
+public class BilTransport extends Car implements hasRamp{
     private Ramp ramp = new Ramp();
     private boolean rampState;
     private Deque<Car> flaket;
