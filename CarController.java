@@ -29,24 +29,13 @@ public class CarController {
 
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
     private GenericWorkshop<Volvo240> volvoworkshop;
-    private Point volvoworkshopPosition;
 
-    //private ArrayList<BufferedImage> images = new ArrayList<>();
-    //private ArrayList<Point> points = new ArrayList<>();
     private TripleManager <BufferedImage, Point, Drawable> tripleImagePointCar = new TripleManager<>();
 
     private boolean imageRenderingLimiter = false;
     private BufferedImage volvoworkshopImage;
 
 
-//    public static <A, B, C> Triple<A, B, C> findTripleByThirdElement(ArrayList<Triple<A, B, C>> list, B thirdElement) {
-//        for (Triple<A, B, C> triple : list) {
-//            if (triple.getThird().equals(thirdElement)) {
-//                return triple;
-//            }
-//        }
-//        return null; // Return null if the Triple object is not found
-//    }
 
 
     public static void main(String[] args) {
@@ -69,9 +58,9 @@ public class CarController {
         cc.volvoworkshop.setImage(cc.volvoworkshopImage);
 
         //set starting postions
-        volvo.setPosition(new Point(0,0));
-        saab.setPosition(new Point(0, 100));
-        scania.setPosition(new Point(0,200));
+        volvo.setPosition(new Point(0,200));
+        saab.setPosition(new Point(100, 0));
+        scania.setPosition(new Point(0,0));
         cc.volvoworkshop.setPosition(new Point(300,0));
 
         //add to object list
@@ -102,7 +91,7 @@ public class CarController {
 
                 double carX = car.getPosition().getX();
                 double carY = car.getPosition().getY();
-                int width = frame.drawPanel.getWidth();
+                int width = frame.drawPanel.getWidth(); //TODO This and the one under will be moved into CarView/we will help giving width and height of DrawPanel here some way without nee
                 int height = frame.drawPanel.getHeight(); //Functional Decomposition desirable probably
 
                 if (carX + car.getImage().getWidth() > width || carX < 0) {
@@ -138,7 +127,7 @@ public class CarController {
             imageRenderingLimiter = true;
             frame.drawPanel.prePaint(tripleImagePointCar.getAllFirstElements(), tripleImagePointCar.getAllSecondElements());
             frame.drawPanel.repaint(); // repaint() calls the paintComponent method of the panel
-
+            //TODO We want to move this functionality (all frame calls into Carview, for example using an ActionListener call in CarView that is called each time the loop above has been run that updates the DrawPanel, i.e calls prePaint and repaint etc,
         }
     }
 

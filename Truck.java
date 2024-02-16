@@ -31,6 +31,6 @@ abstract class Truck extends Vehicle implements BedInterface{ // A truck is a Ve
     }
 
 
-    //TODO Override gas and check if bed is up - has to do this on carTransporter as well -> Might want to restructure our code because of this, schematicall
+    //TODO Override gas and check if bed is up - has to do this on carTransporter as well -> Might want to restructure our code because of this, schematically
 
 }

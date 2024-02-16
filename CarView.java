@@ -46,7 +46,8 @@ public class CarView extends JFrame{
         initComponents(framename);
     }
 
-
+    //@Override
+    //(public void repaint():
 
 
     // Sets everything in place and fits everything

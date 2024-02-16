@@ -15,7 +15,7 @@ class GenericWorkshop <V extends Vehicle> implements Drawable {
         loadComponent.load(car);
     }
 
-    public V unloadCar() { //Shpouldn't be car, should be unloadVehicle but whatever
+    public V unloadCar() { //Shouldn't be car, should be unloadVehicle but whatever
         V unloadedCar = this.loadComponent.unload();
         return unloadedCar;
     }

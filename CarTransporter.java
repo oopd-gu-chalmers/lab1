@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class CarTransporter extends Truck{
+public abstract class CarTransporter extends Truck{ //mabye not abstract
 
     private BedComponent bed;
     private LoadComponent<Car> loadComponent; //TODO Change to car. KLAR
@@ -13,18 +13,22 @@ public class CarTransporter extends Truck{
         this.loadComponent = new LoadComponent<>(loadCapacity); //felixjons
     }
 
+    @Override
     public boolean isBedUp(){
         return this.bed.isBedUp();
     }
 
+    @Override
     public boolean isBedDown(){
         return this.bed.isBedDown();
     }
 
+    @Override
     public void raiseBed(){
         this.bed.raiseBed(getCurrentSpeed());
     }
 
+    @Override
     public void lowerBed(){
         this.bed.lowerBed(getCurrentSpeed());
     }

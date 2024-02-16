@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.List;
 
@@ -11,7 +8,6 @@ import java.util.List;
 
 public class DrawPanel extends JPanel{ //todo: make this specialized. It should only draw. Not controll position.
 
-    //Point volvoWorkshopPoint = new Point(300,300);
 
     List<Point> positions = new ArrayList<>();
     List<BufferedImage> images = new ArrayList<>();
@@ -22,8 +18,6 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.white);
-
-
     }
 
 
