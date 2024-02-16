@@ -2,7 +2,7 @@ package WithComposition;
 
 import java.awt.*;
 
-public class Volvo240 implements Vehicle, Movable{
+public class Volvo240 implements Vehicle{
 
     public final static double trimFactor = 1.25;
     private final VehicleHelper vehicleHelper;

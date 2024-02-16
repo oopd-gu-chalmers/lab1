@@ -2,7 +2,7 @@ package WithComposition;
 
 import java.awt.*;
 
-public class Scania implements Truck, Vehicle, Movable{
+public class Scania implements Truck, Vehicle{
 
     private final CargoBed cargoBed;
     private final VehicleHelper vehicleHelper;
