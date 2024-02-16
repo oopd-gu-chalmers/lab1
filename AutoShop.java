@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bilverkstad<T extends Vehicle> {
+public class AutoShop<T extends Vehicle> {
 
     public List<T> cars = new ArrayList<T>();
     private final int capacity;
     public Position pos = new Position(0, 0);
 
 
-    public Bilverkstad(int capacity){
+    public AutoShop(int capacity){
         this.capacity = capacity;
     }
 

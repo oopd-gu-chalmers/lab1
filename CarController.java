@@ -27,7 +27,7 @@ public class CarController {
     ArrayList<Vehicle> cars = new ArrayList<>();
     // TODO: kolla hur vi gör detta i UML diagrammet
 
-    ArrayList<Bilverkstad<Volvo240>> autoShops = new ArrayList<>();
+    ArrayList<AutoShop<Volvo240>> autoShops = new ArrayList<>();
 
     //methods:
 
@@ -48,10 +48,10 @@ public class CarController {
         scania.setPosition(0, 200);
         cc.cars.add(scania);
 
-        Bilverkstad<Volvo240> bilverkstad = new Bilverkstad<Volvo240>(2);
-        bilverkstad.setPosition(300, 300);
+        AutoShop<Volvo240> autoShop = new AutoShop<Volvo240>(2);
+        autoShop.setPosition(300, 300);
 
-        cc.autoShops.add(bilverkstad);
+        cc.autoShops.add(autoShop);
 
 
         // Start a new view and send a reference of self
@@ -70,7 +70,7 @@ public class CarController {
                 Vehicle car = cars.get(i);
                 car.move();
 
-                for (Bilverkstad<Volvo240> autoShop : autoShops) {
+                for (AutoShop<Volvo240> autoShop : autoShops) {
                     if (car.getPosition().distanceToOtherPosition(autoShop.pos) < 50 && car instanceof Volvo240) {
                         autoShop.dropOff((Volvo240) car);
                         cars.remove(car);

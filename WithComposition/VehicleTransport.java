@@ -3,10 +3,12 @@ package WithComposition;
 import java.awt.*;
 import java.util.Stack;
 
-public class VehicleTransport implements Truck, Vehicle, Movable{
+public class VehicleTransport implements Truck, Vehicle{
 
     private final Stack<Vehicle> cargo;
+
     private final CargoBed cargoBed;
+
     private final VehicleHelper vehicleHelper;
 
     private final int capacity;
