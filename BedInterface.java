@@ -1,6 +1,6 @@
 public interface BedInterface {
-    void raiseBed();
-    void lowerBed();
+    void raiseBed(double currentSpeed);
+    void lowerBed(double currentSpeed);
     boolean isBedUp();
     boolean isBedDown();
 }

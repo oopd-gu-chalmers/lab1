@@ -6,15 +6,15 @@ public class BedWithAngleComponent {
         this.bedAngle = 0;
     } //konstruktor
 
-    protected boolean isBedUp(){
+    public boolean isBedUp(){
         return bedAngle == 0;
     }
 
-    protected boolean isBedDown(){
+    public boolean isBedDown(){
         return bedAngle == 70;
     }
 
-    protected void raiseBed(double currentSpeed){
+    public void raiseBed(double currentSpeed){
         if (currentSpeed != 0){
             throw new IllegalArgumentException("Please stop to raise bed");
         }
@@ -26,7 +26,7 @@ public class BedWithAngleComponent {
         }
     }
 
-    protected void lowerBed(double currentSpeed){
+    public void lowerBed(double currentSpeed){
         if (currentSpeed != 0){
             throw new IllegalArgumentException("Please stop to lower bed");
         }

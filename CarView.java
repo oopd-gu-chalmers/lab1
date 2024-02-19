@@ -34,8 +34,8 @@ public class CarView extends JFrame{
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
+    JButton liftBedButton = new JButton("Truck Lift Bed");
+    JButton lowerBedButton = new JButton("Truck Lower Bed");
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
@@ -46,7 +46,8 @@ public class CarView extends JFrame{
         initComponents(framename);
     }
 
-
+    //@Override
+    //(public void repaint():
 
 
     // Sets everything in place and fits everything

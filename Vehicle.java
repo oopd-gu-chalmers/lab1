@@ -39,18 +39,13 @@ abstract class Vehicle implements Movable, Drawable{
         return enginePower;
     }
 
-    protected double setEnginePower(double newEnginePower){
-        return enginePower = newEnginePower;
-    }
+    protected double setEnginePower(double newEnginePower){ return enginePower = newEnginePower;} ////Goes against access/modifier principle stuff (forgot name of principle, whatever)
 
     protected double getCurrentSpeed(){return currentSpeed;}
 
-
     protected Color getColor(){return color;}
 
-    protected void setColor(Color clr){
-	    color = clr;
-    }
+    protected void setColor(Color clr){ color = clr; }
 
     protected void startEngine(){
 	    currentSpeed = 0.1;
