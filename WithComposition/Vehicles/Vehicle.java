@@ -1,9 +1,12 @@
-package WithComposition;
+package WithComposition.Vehicles;
 
 import java.awt.*;
 
-public interface Vehicle extends Movable{
+public interface Vehicle extends Movable {
 
+    public String getImage();
+
+    public void setImage(String path);
     public int getNrDoors();
 
     public String getModelName();
@@ -21,6 +24,11 @@ public interface Vehicle extends Movable{
     public void startEngine();
 
     public void stopEngine();
+
+    public void brake(double amount);
+
+    public void gas(double amount);
+
 
     public double getDirection();
 
