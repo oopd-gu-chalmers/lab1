@@ -1,6 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-abstract class Vehicle implements Movable{
+abstract class Vehicle implements Movable, Drawable{
 
     private int nrDoors;
     private double enginePower;
@@ -22,7 +22,7 @@ abstract class Vehicle implements Movable{
 
         this.currentSpeed = 0;
         this.pt = new Point(0,0); //start = 0,0
-        this.direction = 90; // Riktning i grader (0-360)
+        this.direction = 0; // Riktning i grader (0-360)
     }
 
     protected int getNrDoors(){return nrDoors;}
@@ -68,7 +68,7 @@ abstract class Vehicle implements Movable{
         return direction;
     }
 
-    protected void setPosition(Point newPt) {
+    public void setPosition(Point newPt) {
         this.pt = newPt.getLocation();
     }
 

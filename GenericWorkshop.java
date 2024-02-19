@@ -1,8 +1,11 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
-class GenericWorkshop <V extends Vehicle> {
+class GenericWorkshop <V extends Vehicle> implements Drawable {
 
     private LoadComponent<V> loadComponent;
+    private Point position;
+    private BufferedImage image;
 
     public GenericWorkshop(int maxCapacity) {
         this.loadComponent = new LoadComponent<>(maxCapacity);
@@ -23,5 +26,23 @@ class GenericWorkshop <V extends Vehicle> {
     }
 
 
+    public BufferedImage getImage() {
+        return this.image;
+    }
+
+    public Point getPosition() {
+        return this.position;
+    }
+
+
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
 }
+
 
