@@ -17,20 +17,4 @@ public class Scania extends Truck{
         }
     }
 
-    public boolean isBedUp(){
-        return this.bed.isBedUp();
-    }
-
-    public boolean isBedDown(){
-        return this.bed.isBedDown();
-    }
-
-    public void raiseBed(){
-        this.bed.raiseBed(getCurrentSpeed());
-    }
-
-    public void lowerBed(){
-        this.bed.lowerBed(getCurrentSpeed());
-    }
-
 }

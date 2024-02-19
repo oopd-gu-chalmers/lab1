@@ -58,9 +58,9 @@ public class CarController {
         cc.volvoworkshop.setImage(cc.volvoworkshopImage);
 
         //set starting postions
-        volvo.setPosition(new Point(0,200));
+        volvo.setPosition(new Point(0,0));
         saab.setPosition(new Point(100, 0));
-        scania.setPosition(new Point(0,0));
+        scania.setPosition(new Point(0,200));
         cc.volvoworkshop.setPosition(new Point(300,0));
 
         //add to object list
@@ -106,7 +106,7 @@ public class CarController {
                     car.turnLeft();
                     car.startEngine();
                 }
-                else if (car instanceof Volvo240 && volvoworkshop.getPosition().distance(car.getPosition()) < 3) {
+                else if (car instanceof Volvo240 && volvoworkshop.getPosition().distance(car.getPosition()) < 5) {
                     volvoworkshop.loadCar((Volvo240) car); // born to code, forced to cast.
                     tripleImagePointCar.removeTripleByThird(car);
                 }
@@ -182,16 +182,16 @@ public class CarController {
 
     void liftBed() {
         for (Vehicle car : vehicles) {
-            if (car instanceof Scania) {
-                ((Scania) car).raiseBed();
+            if (car instanceof Truck) {
+                ((Truck) car).raiseBed();
             }
         }
     }
 
     void lowerBed() {
         for (Vehicle car : vehicles) {
-            if (car instanceof Scania) {
-                ((Scania) car).lowerBed();
+            if (car instanceof Truck) {
+                ((Truck) car).lowerBed();
             }
         }
     }

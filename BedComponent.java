@@ -6,15 +6,15 @@ public class BedComponent {
         this.bedUp = true;
     } //konstruktor
 
-    protected boolean isBedUp() {
+    public boolean isBedUp() {
         return this.bedUp;
     }
 
-    protected boolean isBedDown() {
+    public boolean isBedDown() {
         return !this.bedUp;
     }
 
-    protected void raiseBed(double currentSpeed) {
+    public void raiseBed(double currentSpeed) {
         if (currentSpeed != 0) {
             throw new IllegalArgumentException("Please stop to raise bed");
         } else if (this.bedUp) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 // This panel represents the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{ //todo: make this specialized. It should only draw. Not controll position.
+public class DrawPanel extends JPanel{
 
 
     List<Point> positions = new ArrayList<>();
@@ -19,8 +19,6 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.white);
     }
-
-
 
     protected void prePaint(List<BufferedImage> newImages, List<Point> newPositions) {
         this.positions = newPositions;
@@ -35,6 +33,5 @@ public class DrawPanel extends JPanel{ //todo: make this specialized. It should 
         for (int i = 0; i < positions.size(); i++) {
             g.drawImage(images.get(i), (int) positions.get(i).getX(), (int) positions.get(i).getY(), null);
         }
-
     }
 }
