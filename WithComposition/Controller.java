@@ -13,21 +13,17 @@ public class Controller {
     Model model;
 
     JPanel controlPanel = new JPanel();
-
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     JLabel gasLabel = new JLabel("Amount of gas");
-
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
-
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
-
     int gasAmount = 0;
 
     public Controller(View view, Model model) {
@@ -48,7 +44,6 @@ public class Controller {
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
-
         view.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
@@ -60,10 +55,8 @@ public class Controller {
         controlPanel.add(lowerBedButton, 5);
         controlPanel.setPreferredSize(new Dimension((model.dimensions.width/2)+4, 200));
         controlPanel.setBackground(Color.CYAN);
-
         view.add(controlPanel);
 
-        //controlPanel.setBackground(Color.CYAN);
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
@@ -137,17 +130,6 @@ public class Controller {
                 model.lowerBed();
             }
         });
-
-    }
-
-    public static void main(String[] args) {
-        Model model = new Model();
-        View view = new View(model);
-        model.register(view);
-        new Controller(view, model);
-
-        model.startTimer();
-
     }
 }
 

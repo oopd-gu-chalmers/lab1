@@ -100,7 +100,7 @@ public class TruckHelper{
         vehicleHelper.setPosition(x, y);
     }
 
-    public boolean canPivotUp(double newAngle) {
+    public boolean canPivotUp() {
         if (getCurrentSpeed() > 0) {
             System.out.println("Cannot pivot up while moving");
             return false;
@@ -111,13 +111,13 @@ public class TruckHelper{
 
     public void pivotUp(){
         double newAngle = Math.min(getPlatformAngle() + 10, getMaxPlatformAngle());
-        if (canPivotUp(newAngle)) {
+        if (canPivotUp()) {
             cargoBed.setPlatformAngle(newAngle);
         }
     }
 
 
-    public boolean canPivotDown(double newAngle) {
+    public boolean canPivotDown() {
         if (getCurrentSpeed() > 0){
             System.out.println("Cannot pivot down while moving");
             return false;
@@ -128,7 +128,7 @@ public class TruckHelper{
 
     public void pivotDown(){
         double newAngle = Math.max(getPlatformAngle() - 10, getMinPlatformAngle());
-        if (canPivotDown(newAngle)) {
+        if (canPivotDown()) {
             cargoBed.setPlatformAngle(newAngle);
         }
     }

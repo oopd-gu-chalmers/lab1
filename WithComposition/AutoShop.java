@@ -10,7 +10,6 @@ public class AutoShop<T extends Vehicle> {
 
     public List<T> cars = new ArrayList<>();
     private final int capacity;
-
     private final String image;
     public Position pos = new Position(0, 0);
 
@@ -23,6 +22,7 @@ public class AutoShop<T extends Vehicle> {
     public String getImage() {
         return image;
     }
+
     public void setPosition(double x, double y) {
         pos.setPosition(x, y);
     }

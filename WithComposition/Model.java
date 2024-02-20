@@ -17,7 +17,7 @@ public class Model implements Subject{
     ArrayList<Vehicle> cars = new ArrayList<>();
     ArrayList<AutoShop<Volvo240>> autoShops = new ArrayList<>();
 
-    private final java.util.List<Observer> observers = new ArrayList<>();
+    private final ArrayList<Observer> observers = new ArrayList<>();
 
     private final int delay = 50;
     private final Timer timer = new Timer(delay, new TimerListener());

@@ -11,11 +11,9 @@ public class VehicleTransport implements Truck {
     public VehicleTransport(int capacity){
         Stack<Vehicle> cargoType = new Stack<>();
         this.cargo = new Cargo<>(cargoType, capacity);
-
         this.truckHelper = new TruckHelper(2, 500, Color.blue, "VehicleTransport", 0, 0, 70);
         this.truckHelper.stopEngine();
         this.setImage("pics/Scania.jpg");
-
     }
 
     public String getImage() {
@@ -25,6 +23,7 @@ public class VehicleTransport implements Truck {
     public void setImage(String path) {
         truckHelper.setImage(path);
     }
+
     public int getNrDoors(){
         return truckHelper.getNrDoors();
     }

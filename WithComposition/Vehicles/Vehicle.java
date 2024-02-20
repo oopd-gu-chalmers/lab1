@@ -4,37 +4,35 @@ import java.awt.*;
 
 public interface Vehicle extends Movable {
 
-    public String getImage();
+    String getImage();
 
-    public void setImage(String path);
-    public int getNrDoors();
+    void setImage(String path);
+    int getNrDoors();
 
-    public String getModelName();
+    String getModelName();
 
-    public double getEnginePower();
+    double getEnginePower();
 
-    public double getCurrentSpeed();
+    double getCurrentSpeed();
 
-    public void setCurrentSpeed(double speed);
+    void setCurrentSpeed(double speed);
 
-    public Color getColor();
+    Color getColor();
 
-    public void setColor(Color clr);
+    void setColor(Color clr);
 
-    public void startEngine();
+    void startEngine();
 
-    public void stopEngine();
+    void stopEngine();
 
-    public void brake(double amount);
+    void brake(double amount);
 
-    public void gas(double amount);
+    void gas(double amount);
 
+    double getDirection();
 
-    public double getDirection();
+    Position getPosition();
 
-    public Position getPosition();
-
-    public void setPosition(double x, double y);
-
+    void setPosition(double x, double y);
 }
 

@@ -19,6 +19,7 @@ public class Scania implements Truck {
     public void setImage(String path) {
         truckHelper.setImage(path);
     }
+
     public int getNrDoors(){
         return truckHelper.getNrDoors();
     }
@@ -74,7 +75,7 @@ public class Scania implements Truck {
     }
 
     public void gas(double amount){
-        if (truckHelper.getPlatformAngle() == 0){
+        if (truckHelper.getPlatformAngle() == truckHelper.getMinPlatformAngle()){
             if (truckHelper.gasCheck(amount)) {
                 incrementSpeed(amount);
             }

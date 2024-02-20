@@ -8,7 +8,7 @@ public class VehicleHelper implements Vehicle {
     private double currentSpeed;
     private Color color;
     private final String modelName;
-    private Position position;
+    private final Position position;
     private double direction;
 
     private String image;
@@ -49,7 +49,6 @@ public class VehicleHelper implements Vehicle {
     public double getCurrentSpeed(){
         return currentSpeed;
     }
-
 
     public void setCurrentSpeed(double speed){
         currentSpeed = speed;
@@ -103,6 +102,7 @@ public class VehicleHelper implements Vehicle {
     public void turnLeft(double degrees){
         direction = (direction + degrees) % 360;
     }
+
     public void turnRight(double degrees){
         direction = (direction - degrees) % 360;
     }
@@ -120,5 +120,6 @@ public class VehicleHelper implements Vehicle {
     }
 
     public void gas(double amount){}
+
     public void brake(double amount){}
 }

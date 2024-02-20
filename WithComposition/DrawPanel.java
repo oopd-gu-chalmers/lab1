@@ -14,9 +14,9 @@ import java.util.Objects;
 
 public class DrawPanel extends JPanel {
 
-    private ArrayList<Vehicle> cars;
+    private final ArrayList<Vehicle> cars;
 
-    private ArrayList<AutoShop<Volvo240>> autoShops;
+    private final ArrayList<AutoShop<Volvo240>> autoShops;
 
     public DrawPanel(int x, int y, ArrayList<Vehicle> cars, ArrayList<AutoShop<Volvo240>> autoShops) {
         this.setDoubleBuffered(true);
@@ -26,9 +26,6 @@ public class DrawPanel extends JPanel {
         this.autoShops = autoShops;
     }
 
-    public BufferedImage getImage(String path) throws IOException {
-        return ImageIO.read((Objects.requireNonNull(DrawPanel.class.getResourceAsStream(path))));
-    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
