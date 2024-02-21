@@ -49,34 +49,6 @@ public class CarController {
         cc.timer.start();
     }
 
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
-
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            Iterator<Vehicle> carIterator = cars.iterator();
-            while (carIterator.hasNext()) {
-                Vehicle car = carIterator.next();
-                   if (car instanceof Saab95) {
-                System.out.println(((Saab95) car).getCurrentSpeed() + "saab");}
-                else if (car instanceof Volvo240) {
-                    System.out.println(((Volvo240) car).getCurrentSpeed() + "volvo");
-                }
-                car.move();
-                int x = (int) Math.round(car.getXPosition());
-                int y = (int) Math.round(car.getYPosition());
-                frame.drawPanel.moveit(x, y, car);
-                if (car.getXPosition() > frame.getX()-100 || car.getXPosition() < 0 || car.getYPosition() > frame.getY() - 100 || car.getYPosition() < 0){
-                    car.reverseDirection();}
-                if (car instanceof Volvo240 && car.getPosition().equals(garage.getLocation())){
-                    garage.load((Volvo240) car);
-                    carIterator.remove();
-                }
-                frame.drawPanel.repaint();
-            }
-        }
-    }
 
     // Calls the gas method for each car once
     void gas(int amount) {
