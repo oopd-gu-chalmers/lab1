@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public class vehicleFactory {
@@ -8,6 +9,7 @@ public class vehicleFactory {
 
     public void buildSaab95() {
         Saab95 saab = new Saab95();
+        saab.setPosition(new Point(0, 100));
         vehicles.add(saab);
     }
 
@@ -18,6 +20,7 @@ public class vehicleFactory {
 
     public void buildScania() {
         Scania scania = new Scania();
+        scania.setPosition(new Point(0, 200));
         vehicles.add(scania);
     }
 

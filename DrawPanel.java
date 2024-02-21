@@ -1,73 +1,171 @@
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-// This panel represents the animated part of the view with the car images.
+/**
+ * This class represents the full view of the MVC pattern of your car simulator.
+ * It initializes with being center on the screen and attaching it's controller in it's state.
+ * It communicates with the Controller by calling methods of it when an action fires of in
+ * each of it's components.
+ * TODO: Write more actionListeners and wire the rest of the buttons
+ **/
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JFrame{
+    private CarController carC;
+    private DrawObjects objects;
+    private int windowX;
+    private int windowY;
+    JPanel controlPanel = new JPanel();
+    JPanel gasPanel = new JPanel();
+    JSpinner gasSpinner = new JSpinner();
+    int gasAmount = 0;
+    JLabel gasLabel = new JLabel("Amount of gas");
 
-    // Just a single image, TODO: Generalize
-    BufferedImage volvoWorkshopImage;
-    BufferedImage volvo240Image;
-    BufferedImage saab95Image;
-    BufferedImage scaniaImage;
-    // To keep track of a single car's position
-    Point Volvo240 = new Point();
-    Point Saab95 = new Point();
-    Point Scania = new Point();
-    Point volvoWorkshopPoint = new Point(300,0);
+    JButton gasButton = new JButton("Gas");
+    JButton brakeButton = new JButton("Brake");
+    JButton turboOnButton = new JButton("Saab Turbo on");
+    JButton turboOffButton = new JButton("Saab Turbo off");
+    JButton liftBedButton = new JButton("Scania Lift Bed");
+    JButton lowerBedButton = new JButton("Lower Lift Bed");
 
-    // TODO: Make this general for all cars
-    public void moveit(int x, int y, Vehicle car){
-        if (car instanceof Volvo240){
-        Volvo240.x = x;
-        Volvo240.y = y;
-        }
-        else if (car instanceof Saab95){
-        Saab95.x = x;
-        Saab95.y = y;
-        }
-        else if (car instanceof Scania){
-        Scania.x = x;
-        Scania.y = y;
-        }
+    JButton startButton = new JButton("Start all cars");
+    JButton stopButton = new JButton("Stop all cars");
 
+    // Constructor
+    public DrawPanel(String framename, CarController cc, DrawObjects objects, int X, int Y){
+        this.carC = cc;
+        this.windowX = X;
+        this.windowY = Y;
+        this.objects = objects;
+        initComponents(framename, objects);
     }
 
+    // Sets everything in place and fits everything
+    // TODO: Take a good look and make sure you understand how these methods and components work
+    private void initComponents(String title, DrawObjects objects) {
+
+        this.setTitle(title);
+        this.setPreferredSize(new Dimension(windowX,windowY));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+
+        this.add(this.objects);
 
 
-    // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
-        this.setDoubleBuffered(true);
-        this.setPreferredSize(new Dimension(x, y));
-        this.setBackground(Color.green);
-        // Print an error message in case file is not found with a try/catch block
-            try {
-                // You can remove the "pics" part if running outside of IntelliJ and
-                // everything is in the same main folder.
-                // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
 
-                // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-                // if you are starting in IntelliJ.
-                saab95Image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
-                scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
-                volvo240Image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-                volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-            } catch (IOException ex){
-                ex.printStackTrace();
+        SpinnerModel spinnerModel =
+                new SpinnerNumberModel(0, //initial value
+                        0, //min
+                        100, //max
+                        1);//step
+        gasSpinner = new JSpinner(spinnerModel);
+        gasSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
             }
-        }
+        });
+
+        gasPanel.setLayout(new BorderLayout());
+        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
+        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+
+        this.add(gasPanel);
+
+        controlPanel.setLayout(new GridLayout(2,4));
+
+        controlPanel.add(gasButton, 0);
+        controlPanel.add(turboOnButton, 1);
+        controlPanel.add(liftBedButton, 2);
+        controlPanel.add(brakeButton, 3);
+        controlPanel.add(turboOffButton, 4);
+        controlPanel.add(lowerBedButton, 5);
+        controlPanel.setPreferredSize(new Dimension((windowX/2)+4, 200));
+        this.add(controlPanel);
+        controlPanel.setBackground(Color.CYAN);
 
 
+        startButton.setBackground(Color.blue);
+        startButton.setForeground(Color.green);
+        startButton.setPreferredSize(new Dimension(windowX/5-15,200));
+        this.add(startButton);
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(saab95Image, Saab95.x, Saab95.y, null); // see javadoc for more info on the parameters
-        g.drawImage(volvo240Image, Volvo240.x, Volvo240.y, null); // see javadoc for more info on the parameters
-        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
-        g.drawImage(scaniaImage, Scania.x, Scania.y, null); // see javadoc for more info on the parameters
+
+        stopButton.setBackground(Color.red);
+        stopButton.setForeground(Color.black);
+        stopButton.setPreferredSize(new Dimension(windowX/5-15,200));
+        this.add(stopButton);
+
+        // This actionListener is for the gas button only
+        // TODO: Create more for each component as necessary
+        gasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.gas(gasAmount);
+                System.out.println("Gas pressed");
+            }
+        });
+
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.brake(gasAmount);
+            }
+        });
+
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.turboOn();
+            }
+        });
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.turboOff();
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.liftBed();
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.lowerBed();
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.startAllCars();
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.stopAllCars();
+            }
+        });
+
+        // Make the frame pack all it's components by respecting the sizes if possible.
+        this.pack();
+
+        // Get the computer screen resolution
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        // Center the frame
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        // Make the frame visible
+        this.setVisible(true);
+        // Make sure the frame exits when "x" is pressed
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 }

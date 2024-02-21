@@ -48,7 +48,7 @@ Det finns flera nödvändiga beroenden:
 
 b) Vilka klasser är beroende av varandra som inte borde vara det?
 Det finns flera beroenden som inte borde vara nödvändiga:
-    - CarView och CarController är beroende av varandraCa.
+    - DrawObjects och CarController är beroende av varandraCa.
     - CarController är beroende av Garage, vilket inte borde vara nödvändigt då CarController endast ska kontrollera bilarna och inte garaget.
     - CarController är beroende av
 
@@ -62,7 +62,7 @@ Vad gäller cohesion finns det flera klasser med ganska låg cohesion. Exempelvi
  flera ansvarsområden: både att kontrollera bilarnas beteenden, men också uppdatera vyn och skapa nya bilar.
  Detta hade eventuellt kunnat brytas ut i flera olika klasser med olika ansvarsområden.
 Vi har även high coupling då flera klasser är beroende av varandra, vilket gör det svårt att ändra i koden. Exempelvis är
- CarView och CarController beroende av varandra.
+ DrawObjects och CarController beroende av varandra.
 
 
 
@@ -78,7 +78,7 @@ a) Vilka ansvarsområden har era klasser?
 
     - CarTransport: Subklass av Vehicle. Transportbil av andra bilar.
 
-    - CarView: Ansvarar för allt som rör pop-up fönstret, dvs skapar knappar och definierar vad ett knapptryck ska
+    - DrawObjects: Ansvarar för allt som rör pop-up fönstret, dvs skapar knappar och definierar vad ett knapptryck ska
                resultera i. Innehåller också en s.k. listener som övervakar ifall knapptryck sker.
 
     - DrawPanel: Ansvarar för att rita ut och flytta bilarna i fönstret.
@@ -116,7 +116,7 @@ b) Vilka anledningar har de att förändras?
       Detta är för mycket ansvar för en klass och bör därför brytas ut i flera klasser. Vidare bör Timelistener flyttas
       ut till en egen klass för att skapa en bättre separation of concern.
 
-    - CarView bör även den ändras då dess ansvarsområde är för stort. Den har flera ansvarsområden och bör därför
+    - DrawObjects bör även den ändras då dess ansvarsområde är för stort. Den har flera ansvarsområden och bör därför
       brytas ut i flera klasser. Man kan exemplvis skapa en klass som sköter knapptryckningarna och en som
       sköter själva fönstret.
 
@@ -132,7 +132,7 @@ b) Vilka anledningar har de att förändras?
 c) På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre följa SoC och SRP?
 
         - CarController
-        - CarView
+        - DrawObjects
         - DrawPanel
         - Loader
 
