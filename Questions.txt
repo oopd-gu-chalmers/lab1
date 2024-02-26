@@ -1,4 +1,44 @@
-Vilka avvikelser från MVC-idealet kan ni identifiera i det ursprungliga användargränssnittet? Vad borde ha gjorts smartare, dummare eller tunnare?
-- Det första som slår oss är att det finns en del beräkningar i View-klassen. Detta är en avvikelse från MVC-idealet. Det borde ha gjorts smartare genom att flytta beräkningarna till Model-klassen. View borde helt enkelt vara mer "dumb", ett exempel är moveit-metoden.
+Uppgift 2
+---------------------------------------------------------------------------
 
-- Vilka av dessa brister åtgärdade ni med er nya design från del 2A? Hur då? Vilka brister åtgärdade ni inte?
+* Vilka avvikelser från MVC-idealet kan ni identifiera i det ursprungliga användargränssnittet? Vad borde ha gjorts smartare, dummare eller tunnare?
+
+- Det första som slår oss är att det finns en del beräkningar i View-klassen. Detta är en avvikelse från MVC-idealet. Designen borde ha gjorts på ett annat sätt genom att flytta beräkningarna till Model-klassen. View borde helt enkelt vara mer "dumb", ett exempel på funktionalitet som inte bör finnas här är är moveit-metoden.
+
+- Ett annat stort problem är klassen CarController. Enligt MVC-idealet skall denna klass vara "Thin". Förutom att kontrollera modellen finns här även Main-metoden. Denna borde flyttas till enn application-klass för att tunna ut Controller-klassen.
+
+- Om något skall göras smartare är det själva modellen. Innan vår förändring saknades en factory-klass, därav innehöll koden en hög grad av coupling. Just nu känns själva modellen ganska smart. 
+
+* Vilka av dessa brister åtgärdade ni med er nya design från del 2A? Hur då? Vilka brister åtgärdade ni inte?
+
+Vi gjorde några stora förändringar:
+- Tunnade ut controller genom att skapa en "game"-klass med main-metoden
+- Skapade ett factory för att göra modellen smartare
+
+Det finns saker vi borde förändra till nästa uppdatering. Ett exempel på en sådan sak är move-it funktionen. Den borde inte behöva finnas då bilarnas positioner redan är kända. 
+
+Uppgift 3
+---------------------------------------------------------------------------
+
+* Observer, Factory Method, State, Composite. För vart och ett av dessa fyra designmönster, svara på följande frågor:
+* Finns det något ställe i er design där ni redan använder detta pattern, avsiktligt eller oavsiktligt? Vilka designproblem löste ni genom att använda det?
+* Finns det något ställe där ni kan förbättra er design genom att använda detta design pattern? Vilka designproblem skulle ni lösa genom att använda det? Om inte, varför skulle er design inte förbättras av att använda det?
+
+- Composite:
+"Gör det möjligt att använda grupper av objekt (av någon typ) på samma sätt som ett enskilt objekt (av den typen)" 
+Används mycket i modellen. Till exempel för hanteringen av vehicles i vår mainfunktion. Vi loopar igenom en lista av typen och alla fordon får en efter en .move() funktionen kallad för att flytta bilen. Ett annat exempel är när vi gasar alla fordon i spelet. 
+
+- Factory method
+"Syftet med Factory Pattern är att dölja intern implementation:
+• Vilka konkreta konstruktorer som används.
+• Vilka specifika klasser som används – undviker beroende på konkreta implementationer"
+I vårt fall använder vi en factory method för att skapa instanser av de olika biltyperna. Vi har en klass vid namn "vehicleFactory", den ser till att minska beroenderna mellan modellen och Viewn. 
+
+- State
+Handlar om att ett objekt kan välja mellan ett antal förutbestämda tillstånd genom såkallade transitionsmetoder. Ett exempel på detta i koden är interfacet movable som innehåller funktionerna move, turnleft, turnright och reverseDirection. Dessa kallas på för att ändra state hos alla klasser som anväder komposition från interfacet. Metoderna finns till för att undvika inkonsekventa tillstånd.
+
+- Observer
+Handlar om att låta ett interface ta emot öskade förändringar och sedan meddela detta till andra dela av koden. Tanken är att invertera beroenden. Detta designmönster anväder vi oss av i klassen drawPanel i form av så kallade event listeners. När en händelse inträffar skickar dessa en signal till car controller där en föränding av state görs.
+
+
+
