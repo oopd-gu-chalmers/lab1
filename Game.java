@@ -10,7 +10,7 @@ public class Game {
     static Garage<Volvo240> garage = new Garage(10, new Point(300, 0));
     static vehicleFactory factory = new vehicleFactory();
     private static Timer timer;
-    static CarController controller = new CarController(factory.getVehicles());
+    static CarController controller = new CarController(factory);
     static DrawObjects objects = new DrawObjects(windowX, windowY, factory.getVehicles());
     static DrawPanel frame = new DrawPanel("CarSim 1.0", controller, windowX, windowY);
 
@@ -31,7 +31,7 @@ public class Game {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Iterator<Vehicle> carIterator = factory.getVehicles().iterator();
-                while (carIterator.hasNext()) {
+                while (carIterator.hasNext() || factory.getVehicles().isEmpty()) {
                     Vehicle car = carIterator.next();
                     car.move();
                     if (car.getXPosition() > windowX - 100 || car.getXPosition() < 0 || car.getYPosition() >windowY - 100 || car.getYPosition() < 0) {

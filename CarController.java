@@ -14,8 +14,8 @@ import java.util.Iterator;
 public class CarController {
     private ArrayList<Vehicle> cars = new ArrayList<>();
 
-    public CarController(ArrayList<Vehicle> vehicles) {
-        cars = vehicles;
+    public CarController(vehicleFactory factory) {
+        cars = factory.getVehicles();
     }
 
     void gas(int amount) {
@@ -79,4 +79,13 @@ public class CarController {
             car.stopEngine();
         }
     }
+
+    void addCar() {
+        vehicleFactory.buildSaab95();
+    }
+
+    void removeCar() {
+        vehicleFactory.scrapCar();
+    }
+
 }
