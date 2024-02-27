@@ -161,14 +161,14 @@ public class DrawPanel extends JFrame{
         addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.addCar();
+                vehicleFactory.buildRandomCar();
             }
         });
 
         removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.removeCar();
+                vehicleFactory.scrapCar();
             }
         });
 

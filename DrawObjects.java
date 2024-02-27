@@ -59,7 +59,7 @@ public class DrawObjects extends JPanel{
             } else if (car instanceof Saab95) {
                 g.drawImage(saab95Image, (int) car.getXPosition(), (int) car.getYPosition(), null);
             }
-            g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
         }
+        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
 }

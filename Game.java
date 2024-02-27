@@ -16,9 +16,9 @@ public class Game {
 
 
     public static void main(String[] args) {
-        factory.buildSaab95();
-        factory.buildVolvo240();
-        factory.buildScania();
+        factory.buildSaab95(0,100);
+        factory.buildVolvo240(0,0);
+        factory.buildScania(0,200);
         update();
         frame.add(objects);
         frame.pack();
@@ -30,19 +30,17 @@ public class Game {
         timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Iterator<Vehicle> carIterator = factory.getVehicles().iterator();
-                while (carIterator.hasNext() || factory.getVehicles().isEmpty()) {
-                    Vehicle car = carIterator.next();
-                    car.move();
-                    if (car.getXPosition() > windowX - 100 || car.getXPosition() < 0 || car.getYPosition() >windowY - 100 || car.getYPosition() < 0) {
-                        car.reverseDirection();
-                    }
-                    if (car instanceof Volvo240 && car.getPosition().equals(garage.getLocation())) {
-                        garage.load((Volvo240) car);
-                        carIterator.remove();
-                    }
-                    objects.repaint();
+                   for (Vehicle car : factory.getVehicles()){
+                        car.move();
+                        if (car.getXPosition() > windowX - 100 || car.getXPosition() < 0 || car.getYPosition() > windowY - 100 || car.getYPosition() < 0) {
+                            car.reverseDirection();
+                        }
+                        if (car instanceof Volvo240 && car.getPosition().equals(garage.getLocation())) {
+                            garage.load((Volvo240) car);
+                            factory.getVehicles().remove(car);
+                        }
                 }
+                objects.repaint();
             }
         });
     }

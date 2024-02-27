@@ -80,12 +80,4 @@ public class CarController {
         }
     }
 
-    void addCar() {
-        vehicleFactory.buildSaab95();
-    }
-
-    void removeCar() {
-        vehicleFactory.scrapCar();
-    }
-
 }
