@@ -11,7 +11,7 @@ public class Game {
     static vehicleFactory factory = new vehicleFactory();
     private static Timer timer;
     static CarController controller = new CarController(factory.getVehicles());
-    static DrawObjects objects = new DrawObjects(windowX, windowY);
+    static DrawObjects objects = new DrawObjects(windowX, windowY, factory.getVehicles());
     static DrawPanel frame = new DrawPanel("CarSim 1.0", controller, windowX, windowY);
 
 
@@ -34,9 +34,6 @@ public class Game {
                 while (carIterator.hasNext()) {
                     Vehicle car = carIterator.next();
                     car.move();
-                    int x = (int) Math.round(car.getXPosition());
-                    int y = (int) Math.round(car.getYPosition());
-                    objects.moveit(x, y, car);
                     if (car.getXPosition() > windowX - 100 || car.getXPosition() < 0 || car.getYPosition() >windowY - 100 || car.getYPosition() < 0) {
                         car.reverseDirection();
                     }
