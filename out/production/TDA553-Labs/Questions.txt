@@ -1,145 +1,44 @@
-2. Analysera de beroenden som finns med avseende på cohesion och coupling, och Dependency Inversion Principle.
+Uppgift 2
+---------------------------------------------------------------------------
 
-a) Vilka beroenden är nödvändiga?
-Det finns flera nödvändiga beroenden:
-    - Car
-        - Vehicle
+* Vilka avvikelser från MVC-idealet kan ni identifiera i det ursprungliga användargränssnittet? Vad borde ha gjorts smartare, dummare eller tunnare?
 
-    - Vehicle
-        -Movable
+- Det första som slår oss är att det finns en del beräkningar i View-klassen. Detta är en avvikelse från MVC-idealet. Designen borde ha gjorts på ett annat sätt genom att flytta beräkningarna till Model-klassen. View borde helt enkelt vara mer "dumb", ett exempel på funktionalitet som inte bör finnas här är är moveit-metoden.
 
-    - Garage
-        - Car
-        - queLoader
+- Ett annat stort problem är klassen CarController. Enligt MVC-idealet skall denna klass vara "Thin". Förutom att kontrollera modellen finns här även Main-metoden. Denna borde flyttas till enn application-klass för att tunna ut Controller-klassen.
 
-    - Volvo240
-        - Car
+- Om något skall göras smartare är det själva modellen. Innan vår förändring saknades en factory-klass, därav innehöll koden en hög grad av coupling. Just nu känns själva modellen ganska smart. 
 
-    - Saab95
-        - Car
+* Vilka av dessa brister åtgärdade ni med er nya design från del 2A? Hur då? Vilka brister åtgärdade ni inte?
 
-    - Scania
-        - Vehicle
-        - Platform
+Vi gjorde några stora förändringar:
+- Tunnade ut controller genom att skapa en "game"-klass med main-metoden
+- Skapade ett factory för att göra modellen smartare
 
-    - carTransport
-        - Vehicle
-        - Platform
-        - stackLoader
+Det finns saker vi borde förändra till nästa uppdatering. Ett exempel på en sådan sak är move-it funktionen. Den borde inte behöva finnas då bilarnas positioner redan är kända. 
 
-    - Loader
-        - Loadable
+Uppgift 3
+---------------------------------------------------------------------------
 
-    - stackLoader
-        - Loader
-        - Itterable
+* Observer, Factory Method, State, Composite. För vart och ett av dessa fyra designmönster, svara på följande frågor:
+* Finns det något ställe i er design där ni redan använder detta pattern, avsiktligt eller oavsiktligt? Vilka designproblem löste ni genom att använda det?
+* Finns det något ställe där ni kan förbättra er design genom att använda detta design pattern? Vilka designproblem skulle ni lösa genom att använda det? Om inte, varför skulle er design inte förbättras av att använda det?
 
-    - queLoader
-        - Loader
+- Composite:
+"Gör det möjligt att använda grupper av objekt (av någon typ) på samma sätt som ett enskilt objekt (av den typen)" 
+Används mycket i modellen. Till exempel för hanteringen av vehicles i vår mainfunktion. Vi loopar igenom en lista av typen och alla fordon får en efter en .move() funktionen kallad för att flytta bilen. Ett annat exempel är när vi gasar alla fordon i spelet. 
 
-    - carController
-        - volvo240
-        - saab95
-        - scania
-        - garage
-        - Timer
+- Factory method
+"Syftet med Factory Pattern är att dölja intern implementation:
+• Vilka konkreta konstruktorer som används.
+• Vilka specifika klasser som används – undviker beroende på konkreta implementationer"
+I vårt fall använder vi en factory method för att skapa instanser av de olika biltyperna. Vi har en klass vid namn "vehicleFactory", den ser till att minska beroenderna mellan modellen och Viewn. 
+
+- State
+Handlar om att ett objekt kan välja mellan ett antal förutbestämda tillstånd genom såkallade transitionsmetoder. Ett exempel på detta i koden är interfacet movable som innehåller funktionerna move, turnleft, turnright och reverseDirection. Dessa kallas på för att ändra state hos alla klasser som anväder komposition från interfacet. Metoderna finns till för att undvika inkonsekventa tillstånd.
+
+- Observer
+Handlar om att låta ett interface ta emot öskade förändringar och sedan meddela detta till andra dela av koden. Tanken är att invertera beroenden. Detta designmönster anväder vi oss av i klassen drawPanel i form av så kallade event listeners. När en händelse inträffar skickar dessa en signal till car controller där en föränding av state görs.
 
 
 
-b) Vilka klasser är beroende av varandra som inte borde vara det?
-Det finns flera beroenden som inte borde vara nödvändiga:
-    - DrawObjects och CarController är beroende av varandraCa.
-    - CarController är beroende av Garage, vilket inte borde vara nödvändigt då CarController endast ska kontrollera bilarna och inte garaget.
-    - CarController är beroende av
-
-c) Finns det starkare beroenden än nödvändigt?
-    - carView och carController
-    - alla bilar är kopplade till carController. Kanske vore bättre med en class som tar hand om detta.
-
-d) Kan ni identifiera några brott mot övriga designprinciper vi pratat om i kursen?
-
-Vad gäller cohesion finns det flera klasser med ganska låg cohesion. Exempelvis CarController som har
- flera ansvarsområden: både att kontrollera bilarnas beteenden, men också uppdatera vyn och skapa nya bilar.
- Detta hade eventuellt kunnat brytas ut i flera olika klasser med olika ansvarsområden.
-Vi har även high coupling då flera klasser är beroende av varandra, vilket gör det svårt att ändra i koden. Exempelvis är
- DrawObjects och CarController beroende av varandra.
-
-
-
- 3. Analysera era klasser med avseende på Separation of Concern (SoC) och Single Responsibility Principle (SRP).
-
-a) Vilka ansvarsområden har era klasser?
-
-    - Car: Subklass av Vehicle. Ansvarar inte för några nya beteenden, utan är snararare en representation för
-           faktiska bilar (dvs inte lastbilar, biltransporter, osv).
-
-    - CarController: Sköter bilarna i simulatorn. Skapar nya bilar, uppdaterar positioner och hastigheter,
-                     samt uppdaterar vyn.
-
-    - CarTransport: Subklass av Vehicle. Transportbil av andra bilar.
-
-    - DrawObjects: Ansvarar för allt som rör pop-up fönstret, dvs skapar knappar och definierar vad ett knapptryck ska
-               resultera i. Innehåller också en s.k. listener som övervakar ifall knapptryck sker.
-
-    - DrawPanel: Ansvarar för att rita ut och flytta bilarna i fönstret.
-
-    - Garage: Ansvarar för att lagra bilar och hålla koll på dessa i en Array. Implementerar interfacet Loadable och
-              kan därför både lasta och lossa bilar.
-
-    - Loadable: Interface för att visa vad något lastbart ska kunna göra.
-
-    - Loader: Abstrakt klass som ansvarar för att lasta och lossa bilar. Implementerar flera metoder
-              och variabler som används av subklasserna.
-
-    - Movable: Interface för att visa vad ett rörligt fordon ska kunna göra.
-
-    - Platform: Interface för att visa vad en plattform ska kunna göra, dvs höjas och sänkas.
-
-    - QueueLoader: Subklass av Loader. Implementerar en kö för att lasta och lossa bilar enligt FIFO-principen.
-
-    - Saab95: Subklass av Car. Skapar nya Saab95-bilar och implementerar dess specifika beteenden såsom turbo.
-
-    - Scania: Subklass av Vehicle. Skapar nya Scania-bilar och implementerar en platformsfunktion mha interfacet platform.
-
-    - StackLoader: Subklass av Loader. Implementerar en stack för att lasta och lossa bilar enligt LIFO-principen.
-
-    - Vehicle: Abstrakt klass som ansvarar för information och rörelsemönster om fordon och  implementerar
-               dess specifika beteenden.
-
-    - Volvo 240: Subklass av Car. Skapar nya Volvo 240-bilar och implementerar dess specifika beteenden.
-
-
-
-b) Vilka anledningar har de att förändras?
-
-    - CarController bör ändras då den sköter både bilarnas beteenden, uppdaterar vyn och skapar nya bilar.
-      Detta är för mycket ansvar för en klass och bör därför brytas ut i flera klasser. Vidare bör Timelistener flyttas
-      ut till en egen klass för att skapa en bättre separation of concern.
-
-    - DrawObjects bör även den ändras då dess ansvarsområde är för stort. Den har flera ansvarsområden och bör därför
-      brytas ut i flera klasser. Man kan exemplvis skapa en klass som sköter knapptryckningarna och en som
-      sköter själva fönstret.
-
-    - DrawPanel bör ändras då den har flera ansvarsområden såsom att ladda in bilder, rendera bilderna och flytta fordonen.
-      Dessa ansvarsområden bör brytas ut i flera klasser, t.ex. en klass som ansvarar för att ladda in bilder, en klass som
-      ansvarar för att rendera bilderna och en klass som ansvarar för att flytta fordonen.
-
-    - Loader hade kunnat ändras då den ansvarar för att validera ifall bilar är tillräckligt nära för att kunna lastas.
-      Detta ansvarsområde hade kunnat brytas ut i en egen klass för att på så sätt låta Loader endast ansvara för att
-      lasta och lossa bilar.
-
-
-c) På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre följa SoC och SRP?
-
-        - CarController
-        - DrawObjects
-        - DrawPanel
-        - Loader
-
-4. Refaktoreringsplan:
-
-    1. skapa vehicleFactory
-    2. skapa Game
-    3. dela upp DrawPanel i Drawpanel och DrawObjects
-    4. addera delar av carView till DrawPanel
-    5. Flytta action listeners från carView till actionListener

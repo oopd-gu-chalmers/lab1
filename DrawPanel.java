@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 
 public class DrawPanel extends JFrame{
     private CarController carC;
-    private DrawObjects objects;
     private int windowX;
     private int windowY;
     JPanel controlPanel = new JPanel();
@@ -35,23 +34,22 @@ public class DrawPanel extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public DrawPanel(String framename, CarController cc, DrawObjects objects, int X, int Y){
+    public DrawPanel(String framename, CarController cc, int X, int Y){
         this.carC = cc;
         this.windowX = X;
         this.windowY = Y;
-        this.objects = objects;
-        initComponents(framename, objects);
+        initComponents(framename);
     }
 
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title, DrawObjects objects) {
+    private void initComponents(String title) {
 
         this.setTitle(title);
         this.setPreferredSize(new Dimension(windowX,windowY));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        this.add(this.objects);
+        //this.add(this.objects);
 
 
 
