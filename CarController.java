@@ -1,9 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -12,71 +7,41 @@ import java.util.Iterator;
  */
 
 public class CarController {
-    private ArrayList<Vehicle> cars = new ArrayList<>();
+    private CarModel carModel;
 
-    public CarController(ArrayList<Vehicle> vehicles) {
-        cars = vehicles;
+    public CarController(ArrayList<Vehicle> model) {
+        carModel = model;
     }
 
     void gas(int amount) {
-        double gas = ((double) amount) / 100;
-       for (Vehicle car : cars
-                ) {
-            car.gas(gas);
-        }
+        carModel.gas(amount);
     }
 
     void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (Vehicle car : cars
-                ) {
-            car.brake(brake);
-        }
+        carModel.brake(amount);
     }
 
     void turboOn() {
-        for (Vehicle car : cars
-                ) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOn();
-            }
-        }
+        carModel.turboOn();
     }
 
     void turboOff() {
-        for (Vehicle car : cars
-                ) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOff();
-            }
-        }
+        carModel.turboOff();
     }
 
     void liftBed() {
-        for (Vehicle car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).raisePlatform();
-            }
-        }
+        carModel.liftBed();
     }
 
     void lowerBed() {
-        for (Vehicle car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).lowerPlatform();
-            }
-        }
+        carModel.lowerBed();
     }
 
     void startAllCars() {
-        for (Vehicle car : cars) {
-            car.startEngine();
-        }
+        carModel.startAllCars();
     }
 
     void stopAllCars() {
-        for (Vehicle car : cars) {
-            car.stopEngine();
-        }
+        carModel.stopAllCars();
     }
 }
