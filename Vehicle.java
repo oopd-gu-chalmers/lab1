@@ -62,6 +62,7 @@ abstract class Vehicle implements Movable {
     }
     abstract double speedFactor();
     public void incrementSpeed (double amount){
+
         double newSpeed = getCurrentSpeed() + speedFactor() * amount;
         if (newSpeed <= enginePower) {
             currentSpeed = newSpeed;

@@ -51,8 +51,6 @@ public class Scania extends Vehicle implements Platform {
     public void incrementSpeed(double amount){
         if (getFlatbedAngle() == 0){
             super.incrementSpeed(amount);
-        } else {
-            throw new IllegalStateException("Cannot increase speed with raised flatbed!");
         }
     }
 
