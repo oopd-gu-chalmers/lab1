@@ -12,7 +12,7 @@ public class Game {
     private static Timer timer;
     static CarController controller = new CarController(factory);
     static DrawObjects objects = new DrawObjects(windowX, windowY, factory.getVehicles());
-    static DrawPanel frame = new DrawPanel("CarSim 1.0", controller, windowX, windowY);
+    static DrawPanel frame = new DrawPanel("CarSim 1.0", controller, windowX, windowY, factory);
 
 
     public static void main(String[] args) {

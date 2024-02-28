@@ -2,26 +2,26 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class vehicleFactory {
-    private static ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public vehicleFactory() {
     }
 
-    public static void buildSaab95(int x, int y) {
+    public void buildSaab95(int x, int y) {
         if (vehicles.size() < 10) {
         Saab95 saab = new Saab95();
         saab.setPosition(new Point(x, y));
         vehicles.add(saab);}
     }
 
-    public static void buildVolvo240(int x, int y) {
+    public void buildVolvo240(int x, int y) {
         if (vehicles.size() < 10) {
             Volvo240 volvo = new Volvo240();
             volvo.setPosition(new Point(x,y));
             vehicles.add(volvo);}
     }
 
-    public static void buildScania(int x, int y) {
+    public void buildScania(int x, int y) {
         if (vehicles.size() < 10) {
             Scania scania = new Scania();
             scania.setPosition(new Point(x, y));
@@ -33,12 +33,12 @@ public class vehicleFactory {
         return vehicles;
     }
 
-    public static void scrapCar() {
+    public void scrapCar() {
         //if there is more than one car in the list, remove the last one
         if (vehicles.size() >= 1){vehicles.removeLast();}
     }
 
-    public static void buildRandomCar() {
+    public void buildRandomCar() {
         int random = (int) (Math.random() * 3);
         int x = (int) (Math.random() * 600);
         int y = (int) (Math.random() * 500);

@@ -22,24 +22,24 @@ public class DrawPanel extends JFrame{
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
-
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
-
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
     JButton addCarButton = new JButton("Add car");
     JButton removeCarButton = new JButton("Remove car");
+    private vehicleFactory factory;
 
     // Constructor
-    public DrawPanel(String framename, CarController cc, int X, int Y){
+    public DrawPanel(String framename, CarController cc, int X, int Y, vehicleFactory factory){
         this.carC = cc;
         this.windowX = X;
         this.windowY = Y;
+        this.factory = factory;
         initComponents(framename);
     }
 
@@ -161,14 +161,14 @@ public class DrawPanel extends JFrame{
         addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehicleFactory.buildRandomCar();
+                factory.buildRandomCar();
             }
         });
 
         removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehicleFactory.scrapCar();
+                factory.scrapCar();
             }
         });
 
